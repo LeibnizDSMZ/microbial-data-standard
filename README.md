@@ -6,7 +6,6 @@ This project defines a new microbial data standard for culture collection strain
 
 
 ## Technical information
-You find the documentation of the data standard [here](https://dsmz.de).
 
 The data model presented here is implemented with the use of
 [pydantic](https://pydantic.dev).
