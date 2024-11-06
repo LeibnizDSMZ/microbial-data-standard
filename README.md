@@ -1,4 +1,4 @@
-![Documentation Status](https://LeibnizDSMZ.github.io/microbial-data-standard/)
+[![Documentation Status](https://img.shields.io/badge/docs-GitHub-blue.svg?style=flat-square)](https://LeibnizDSMZ.github.io/microbial-data-standard/)
 
 # Microbial Data Standard
 
