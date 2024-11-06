@@ -1,0 +1,157 @@
+repos:
+###################################### Poetry ###################################
+- repo: https://github.com/python-poetry/poetry
+  rev: 1.7.0
+  hooks:
+  - id: poetry-check
+    stages: [pre-commit]
+  - id: poetry-export
+    args: [-f, requirements.txt, -o, requirements.txt]
+    stages: [pre-commit]
+  - id: poetry-export
+    args: [--only=dev, -f, requirements.txt, -o, configs/dev/requirements.dev.txt]
+    stages: [pre-commit]
+  - id: poetry-export
+    args: [--only=test, -f, requirements.txt, -o, configs/dev/requirements.test.txt]
+    stages: [pre-commit]
+
+  ###################################### Local ####################################
+- repo: local
+  hooks:
+  - id: tox
+    name: tox test
+    entry: bash -c 'make runTests'
+    language: system
+    pass_filenames: false
+    stages: [pre-commit]
+  - id: docs
+    name: mkdocs
+    entry: bash -c 'make runDocs'
+    language: system
+    pass_filenames: false
+    stages: [pre-commit]
+
+  ###################################### Default ###################################
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.5.0
+  hooks:
+      # Identify invalid files
+  - id: check-ast
+    stages: [pre-commit]
+  - id: check-yaml
+    stages: [pre-commit]
+    args: [--unsafe]
+  - id: check-json
+    stages: [pre-commit]
+  - id: check-toml
+    stages: [pre-commit]
+  - id: pretty-format-json
+    args: [--autofix]
+    stages: [pre-commit]
+
+      # git checks
+  - id: check-merge-conflict
+    stages: [pre-commit]
+  - id: check-added-large-files
+    exclude: tests/media/.+
+    stages: [pre-commit]
+  - id: detect-private-key
+    stages: [pre-commit]
+  - id: check-case-conflict
+    stages: [pre-commit]
+      # General quality checks
+  - id: check-symlinks
+    stages: [pre-commit]
+  - id: check-executables-have-shebangs
+    stages: [pre-commit]
+  - id: check-shebang-scripts-are-executable
+    stages: [pre-commit]
+  - id: mixed-line-ending
+    stages: [pre-commit]
+  - id: trailing-whitespace
+    args: [--markdown-linebreak-ext=md]
+    stages: [pre-commit]
+  - id: end-of-file-fixer
+    exclude: requirements.txt
+    stages: [pre-commit]
+
+      ###################################### Python ##################################
+      # Python checks
+  - id: check-builtin-literals
+    stages: [pre-commit]
+  - id: check-docstring-first
+    stages: [pre-commit]
+  - id: debug-statements
+    stages: [pre-commit]
+  - id: fix-byte-order-marker
+    stages: [pre-commit]
+
+  # python formatter
+- repo: https://github.com/psf/black
+  rev: 23.11.0
+  hooks:
+  - id: black
+    stages: [pre-commit]
+
+  # ruff linter
+- repo: https://github.com/charliermarsh/ruff-pre-commit
+  rev: v0.1.5
+  hooks:
+  - id: ruff
+    stages: [pre-commit]
+
+  # python mypy
+- repo: local
+  hooks:
+  - id: mypy
+    name: mypy
+    language: system
+    types: [python]
+    entry: bash -c 'set -e; for file in "$@"; do make runPoetry CMD="mypy $file"; done' --
+    stages: [pre-commit]
+    exclude: tests|bin
+
+  # dead code
+- repo: https://github.com/jendrikseipp/vulture
+  rev: v2.10
+  hooks:
+  - id: vulture
+    stages: [pre-commit]
+
+  ###################################### INI/TOML/YAML ###########################
+  # ini formatter
+- repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
+  rev: v2.11.0
+  hooks:
+  - id: pretty-format-ini
+    args: [--autofix]
+    stages: [pre-commit]
+  - id: pretty-format-toml
+    args: [--autofix]
+    stages: [pre-commit]
+  - id: pretty-format-yaml
+    args: [--autofix]
+    stages: [pre-commit]
+
+  ###################################### SpellChecker ############################
+- repo: https://github.com/codespell-project/codespell
+  rev: v2.3.0
+  hooks:
+  - id: codespell
+    additional_dependencies:
+    - tomli
+    stages: [pre-commit]
+
+  ###################################### Shell ###################################
+- repo: https://github.com/shellcheck-py/shellcheck-py
+  rev: v0.9.0.6
+  hooks:
+  - id: shellcheck
+    stages: [pre-commit]
+
+  ###################################### GIT #####################################
+- repo: https://github.com/commitizen-tools/commitizen
+  rev: v3.13.0
+  hooks:
+  - id: commitizen
+    stages: [commit-msg]

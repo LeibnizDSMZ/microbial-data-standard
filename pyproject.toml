@@ -1,0 +1,169 @@
+[build-system]
+build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core"]
+
+[tool.black]
+line-length = 90
+target-version = ["py311"]
+
+[tool.codespell]
+count = ''
+ignore-words = "configs/dev/ignore.txt"
+quiet-level = 3
+skip = '.mypy,.mypy_cache,.vscore,.tox,*~,*.cache,*.lock,venv,**/data/*.json,*ignore.txt'
+
+[tool.commitizen]
+major_version_zero = true
+name = "cz_conventional_commits"
+tag_format = "v$version"
+update_changelog_on_bump = true
+version_files = [
+  "README.md:^\\[!\\[release:"
+]
+version_provider = "poetry"
+version_type = "semver"
+
+[tool.mypy]
+allow_redefinition = false
+# misc
+allow_untyped_globals = false
+check_untyped_defs = false
+disallow_any_decorated = false
+disallow_any_explicit = false
+# any
+disallow_any_expr = false
+disallow_any_generics = true
+disallow_any_unimported = false
+disallow_incomplete_defs = true
+disallow_subclassing_any = false
+# functions
+disallow_untyped_calls = true
+disallow_untyped_decorators = false
+disallow_untyped_defs = true
+exclude = [
+  "__pycache__",
+  "\\.tox",
+  "\\.mypy_cache",
+  "venv",
+  "tests",
+  "bin"
+]
+ignore_missing_imports = true
+implicit_reexport = true
+local_partial_types = true
+# none
+no_implicit_optional = false
+plugins = "pydantic.mypy"
+strict_equality = true
+strict_optional = true
+warn_no_return = true
+# warn
+warn_redundant_casts = true
+warn_return_any = true
+warn_unreachable = true
+warn_unused_ignores = true
+
+[tool.poetry]
+authors = [
+  "Julius Witte"
+]
+description = """Read strain data from microbiolgy DB and transforms them into JSONs"""
+include = [
+]
+keywords = ["python", "data"]
+license = "MIT"
+name = "microbial_strain_data_model"
+packages = [
+  {include = "microbial_strain_data_model", from = "src"}
+]
+readme = "README.md"
+repository = "https://gitlab.int.dsmz.de/bioindustry-4/microbial_strain_data_model"
+version = "0.1.0"
+
+[tool.poetry.dependencies]
+anytree = ">=2.12, <3"
+dacite = ">=1.8,<2"
+email-validator = ">=2.1.2, <3"
+jsonref = ">=1.1.0 , <2"
+jsonschema = {version = ">=4.19,<5", extras = ["format"]}
+mariadb = ">=1.1,<2"
+openpyxl = ">=3.1.5, <4"
+pandas = ">=2.2, <3"
+pendulum = ">=3, <4"
+pycountry = ">=24.6.1, <25"
+pydantic = ">=2.8, <3"
+pydantic-extra-types = ">=2.9.0, < 3"
+python = ">=3.11,<4"
+requests = ">=2.31,<3"
+
+[tool.poetry.group.dev]
+optional = true
+
+[tool.poetry.group.dev.dependencies]
+commitizen = ">=3.12,<4"
+mypy = ">=1.7,<2"
+pre-commit = ">=3.5,<4"
+types-requests = ">=2.31,<3"
+
+[tool.poetry.group.docs]
+optional = true
+
+[tool.poetry.group.docs.dependencies]
+griffe-fieldz = ">=0.2.0, <1"
+mkdocs = ">=1.5,<2"
+mkdocs-literate-nav = ">=0.6, <1"
+mkdocs-material = ">=9.4,<10"
+mkdocstrings = ">=0.23,<1"
+mkdocstrings-python = ">=1.7,<2"
+
+[tool.poetry.group.test]
+optional = true
+
+[tool.poetry.group.test.dependencies]
+coverage = ">= 7.3,<8"
+pytest = ">= 7.4,<8"
+tox = ">=4.11,<5"
+
+[tool.poetry.scripts]
+
+[tool.ruff]
+# Allow unused variables when underscore-prefixed.
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+exclude = [
+  ".git",
+  ".mypy_cache",
+  ".ruff_cache",
+  ".tox",
+  ".venv",
+  "__pypackages__",
+  "__pycache__",
+  "build",
+  "dist",
+  "venv",
+  "bin"
+]
+fixable = ["A", "B", "C", "D", "E", "F", "G", "I", "N", "Q", "S", "T", "W", "ANN", "ARG", "BLE", "COM", "DJ", "DTZ", "EM", "ERA", "EXE", "FBT", "ICN", "INP", "ISC", "NPY", "PD", "PGH", "PIE", "PL", "PT", "PTH", "PYI", "RET", "RSE", "RUF", "SIM", "SLF", "TCH", "TID", "TRY", "UP", "YTT"]
+ignore = ["TRY003", "N818"]
+line-length = 90
+select = ["E", "F", "B", "C90", "S", "PT", "ARG", "PTH", "TRY", "RUF", "N"]
+target-version = "py311"
+unfixable = []
+
+[tool.ruff.mccabe]
+max-complexity = 11
+
+[tool.ruff.per-file-ignores]
+"**/tests/*" = ["S101", "PT011"]
+
+[tool.ruff.pylint]
+max-args = 8
+
+[tool.vulture]
+exclude = []
+ignore_decorators = []
+ignore_names = []
+make_whitelist = true
+min_confidence = 90
+paths = ["src"]
+sort_by_size = true
+verbose = true

@@ -1,0 +1,16 @@
+*
+
+!/bin
+!/src
+!/configs
+
+!Makefile
+!poetry.lock
+!pyproject.toml
+
+!README.md
+!LICENSE
+
+**/__pycache__
+**/*.py[cod]
+**/*$py.class
