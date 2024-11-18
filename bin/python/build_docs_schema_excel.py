@@ -119,7 +119,7 @@ def parse_schema() -> None:
                 )
             for any in value.get("anyOf", []):
                 if next_schema := any.get("properties"):
-                    if name != "taxon.parentTaxon":
+                    if name != "taxon.parentTaxon" and name != "unifiedTaxon.parentTaxon":
                         recursive_parser(next_schema, f"{name}.", id, any.get("required"))
 
     recursive_parser(main_schema.get("properties"), "", "", main_schema.get("required"))

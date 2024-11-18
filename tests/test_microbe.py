@@ -9,7 +9,7 @@ def micro():
     return Microbe(
         id=1,
         organismType=OrganismType.bacteria,
-        typeStrain=False,
+        unifiedTypeStrain=False,
         sample=[
             {
                 "tags": [
@@ -18,13 +18,13 @@ def micro():
                 "source": "/sources/0",
             }
         ],
-        taxon={
+        unifiedTaxon={
             "name": "Somename",
             "taxonRank": TaxonRank.species,
             "taxonStatus": TaxonStatus.valid,
         },
         otherMedia=[{"url": None, "name": "test", "source": "/sources/0"}],
-        fattyAcidProfile=[
+        fattyAcidProfiles=[
             {"profile": [{"percent": 10.0}], "temperature": 10, "source": "/sources/0"}
         ],
         sources=[

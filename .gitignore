@@ -201,7 +201,5 @@ example.json
 
 test.json
 schema.json
-/*.json
-/schema/
 *.xlsx
 .vscode

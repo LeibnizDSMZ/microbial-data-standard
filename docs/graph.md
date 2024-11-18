@@ -16,6 +16,11 @@ yeast
 filamentous
 }
 
+class `TypeStrain`{
+typeStrain: boolean
+source: string
+}
+
 class `Taxon`{
 name: string
 taxonRank: TaxonRank
@@ -57,6 +62,18 @@ url: string | null
 class `ScientificName`{
 name: string
 author: string
+}
+
+class `TaxonWithSource`{
+name: string
+taxonRank: TaxonRank
+taxonStatus: TaxonStatus
+identifier: array[Identifier]
+scientificName: ScientificName | null
+alternateName: string
+parentTaxon: TaxonWithSource | null
+sameAs: string
+source: string
 }
 
 class `Sample`{
@@ -568,8 +585,10 @@ id: integer
 lastUpdate: string
 organismType: OrganismType
 morphType: Morph | null
-typeStrain: boolean
-taxon: Taxon
+unifiedTypeStrain: boolean
+typeStrain: array[TypeStrain]
+unifiedTaxon: Taxon
+taxon: array[TaxonWithSource]
 sample: array[Sample]
 isolation: array[Isolation]
 legal: array[Legal]
@@ -591,7 +610,7 @@ sequences: array[Sequence]
 gcContent: array[GCContent]
 literature: array[Literature]
 wallConstituents: array[CellWall]
-fattyAcidProfile: array[FattyAcidProfile]
+fattyAcidProfiles: array[FattyAcidProfile]
 stainings: array[Staining]
 hemolysis: array[Hemolysis]
 cultivationMedia: array[CultivationMedia]
@@ -607,12 +626,19 @@ sources:
 
 `Microbe` ..> `OrganismType`
 `Microbe` ..> `Morph`
+`Microbe` ..> `TypeStrain`
 `Microbe` ..> `Taxon`
 `Taxon` ..> `TaxonRank`
 `Taxon` ..> `TaxonStatus`
 `Taxon` ..> `Identifier`
 `Taxon` ..> `ScientificName`
 `Taxon` ..> `Taxon`
+`Microbe` ..> `TaxonWithSource`
+`TaxonWithSource` ..> `TaxonRank`
+`TaxonWithSource` ..> `TaxonStatus`
+`TaxonWithSource` ..> `Identifier`
+`TaxonWithSource` ..> `ScientificName`
+`TaxonWithSource` ..> `TaxonWithSource`
 `Microbe` ..> `Sample`
 `Sample` ..> `Country`
 `Country` ..> `CountryHistoricalAlpha2`
