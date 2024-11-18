@@ -1,9 +1,17 @@
 from typing import Self
+from typing_extensions import Annotated
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, StringConstraints
 
 from microbial_strain_data_model.classes.enums import TaxonRank, TaxonStatus
 from microbial_strain_data_model.classes.identifier import Identifier
+
+
+class TypeStrain(BaseModel):
+    type_strain: bool = Field(title="Type Strain", alias="typeStrain")
+    source: Annotated[str, StringConstraints(pattern=r"^\/sources\/\d+$")] = Field(
+        title="Source", alias="source", description="JSON path to source object"
+    )
 
 
 class ScientificName(BaseModel):
@@ -30,3 +38,9 @@ class Taxon(BaseModel):
     )
     parent: Self | None = Field(default=None, title="Parent Taxon", alias="parentTaxon")
     same_as: list[str] = Field(default_factory=list, title="Same As", alias="sameAs")
+
+
+class TaxonWithSource(Taxon):
+    source: Annotated[str, StringConstraints(pattern=r"^\/sources\/\d+$")] = Field(
+        title="Source", alias="source", description="JSON path to source object"
+    )

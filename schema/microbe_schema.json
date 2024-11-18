@@ -1,0 +1,3250 @@
+{
+  "$defs": {
+    "Address": {
+      "description": "Address object comparable to schema.org PostalAddress",
+      "properties": {
+        "addressCountry": {
+          "anyOf": [
+            {
+              "pattern": "^\\w{2}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Country"
+        },
+        "addressLocality": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Locality"
+        },
+        "addressRegion": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Region"
+        },
+        "postOfficeBoxNumber": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Post Office Box Number"
+        },
+        "postalCode": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Post Code"
+        },
+        "streetAddress": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Street Address"
+        }
+      },
+      "required": [
+        "addressCountry"
+      ],
+      "title": "Address",
+      "type": "object"
+    },
+    "Application": {
+      "description": "Application of the strain",
+      "properties": {
+        "application": {
+          "title": "Application",
+          "type": "string"
+        },
+        "source": {
+          "description": "JSON path to source object",
+          "pattern": "^\\/sources\\/\\d+$",
+          "title": "Source",
+          "type": "string"
+        }
+      },
+      "required": [
+        "application",
+        "source"
+      ],
+      "title": "Application",
+      "type": "object"
+    },
+    "BioSafety": {
+      "description": "Biosafety classification",
+      "properties": {
+        "classification": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Classification"
+        },
+        "riskgroup": {
+          "title": "Riskgroup",
+          "type": "string"
+        },
+        "source": {
+          "description": "JSON path to source object",
+          "pattern": "^\\/sources\\/\\d+$",
+          "title": "Source",
+          "type": "string"
+        },
+        "url": {
+          "anyOf": [
+            {
+              "format": "uri",
+              "maxLength": 2083,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "URL"
+        }
+      },
+      "required": [
+        "riskgroup",
+        "source"
+      ],
+      "title": "BioSafety",
+      "type": "object"
+    },
+    "CellShape": {
+      "description": "Cell shape of the strain",
+      "properties": {
+        "cellShape": {
+          "title": "Cell Shape",
+          "type": "string"
+        },
+        "source": {
+          "description": "JSON path to source object",
+          "pattern": "^\\/sources\\/\\d+$",
+          "title": "Source",
+          "type": "string"
+        }
+      },
+      "required": [
+        "cellShape",
+        "source"
+      ],
+      "title": "CellShape",
+      "type": "object"
+    },
+    "CellWall": {
+      "description": "Cell Wall constituent - ChemSubstance + percent of CellWall",
+      "properties": {
+        "alternateName": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Alternate Name",
+          "type": "array"
+        },
+        "identifier": {
+          "items": {
+            "$ref": "#/$defs/Identifier"
+          },
+          "title": "Identifier",
+          "type": "array"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name of Chemical Substance"
+        },
+        "percent": {
+          "anyOf": [
+            {
+              "maximum": 100.0,
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Percent"
+        },
+        "source": {
+          "description": "JSON path to source object",
+          "pattern": "^\\/sources\\/\\d+$",
+          "title": "Source",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source"
+      ],
+      "title": "CellWall",
+      "type": "object"
+    },
+    "Collection": {
+      "description": "Information about one culture collection",
+      "properties": {
+        "address": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Address"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Address"
+        },
+        "availability": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Availability"
+        },
+        "axenicCulture": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Axenic Culture"
+        },
+        "catalogUrl": {
+          "anyOf": [
+            {
+              "format": "uri",
+              "maxLength": 2083,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Catalog URL"
+        },
+        "depositionDate": {
+          "anyOf": [
+            {
+              "pattern": "^(?:\\d{4}[-\\._]?\\d{0,2}[-\\._]?\\d{0,2})?/?(?:\\d{4}[-\\._]?\\d{0,2}[-\\._]?\\d{0,2})?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Deposition Date"
+        },
+        "depositor": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Person"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Depositor"
+        },
+        "email": {
+          "anyOf": [
+            {
+              "format": "email",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Email"
+        },
+        "history": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "History"
+        },
+        "identifier": {
+          "items": {
+            "$ref": "#/$defs/Identifier"
+          },
+          "title": "Identifier",
+          "type": "array"
+        },
+        "legalName": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Legal Name"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "resourceNumber": {
+          "title": "Resource Number",
+          "type": "string"
+        },
+        "restrictionsOnUse": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Restriction"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Restrictions On Use"
+        },
+        "source": {
+          "description": "JSON path to source object",
+          "pattern": "^\\/sources\\/\\d+$",
+          "title": "Source",
+          "type": "string"
+        },
+        "supplyForms": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/SupplyForm"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Supply Forms"
+        },
+        "url": {
+          "anyOf": [
+            {
+              "format": "uri",
+              "maxLength": 2083,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "URL"
+        }
+      },
+      "required": [
+        "name",
+        "resourceNumber",
+        "source"
+      ],
+      "title": "Collection",
+      "type": "object"
+    },
+    "Colony": {
+      "description": "Colony information of a microorganism/strain",
+      "properties": {
+        "color": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ColonyColor"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Color of Colony"
+        },
+        "size": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Size of Colony"
+        },
+        "source": {
+          "description": "JSON path to source object",
+          "pattern": "^\\/sources\\/\\d+$",
+          "title": "Source",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source"
+      ],
+      "title": "Colony",
+      "type": "object"
+    },
+    "ColonyColor": {
+      "description": "Valid colors for colonies\n\nAttributes:\n    white: white\n    cream: cream\n    yellowish: yellowish\n    orange: orange\n    pink: pink\n    red: red\n    buff: buff\n    darkbrown: darkbrown\n    reyish: reyish\n    tannish: tannish\n    beige: beige\n    brownish: brownish",
+      "enum": [
+        "white",
+        "cream",
+        "yellowish",
+        "orange",
+        "pink",
+        "red",
+        "buff",
+        "darkbrown",
+        "reyish",
+        "tannish",
+        "beige",
+        "brownish"
+      ],
+      "title": "ColonyColor",
+      "type": "string"
+    },
+    "ConcentrationUnit": {
+      "description": "Valid concentration units for solutions\n\nAttributes:\n    gram_per_liter: g/L\n    mol_per_liter: mol/L\n    mass_percent: g/g%\n    volume_percent: v/v%",
+      "enum": [
+        "g/L",
+        "mol/L",
+        "g/g%",
+        "v/v%",
+        "unknown"
+      ],
+      "title": "ConcentrationUnit",
+      "type": "string"
+    },
+    "ConnectedPerson": {
+      "description": "Connected Person = Person + Role",
+      "properties": {
+        "identifier": {
+          "items": {
+            "$ref": "#/$defs/Identifier"
+          },
+          "title": "Identifier",
+          "type": "array"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "role": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/PersonRole"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Role"
+        },
+        "source": {
+          "description": "JSON path to source object",
+          "pattern": "^\\/sources\\/\\d+$",
+          "title": "Source",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "source"
+      ],
+      "title": "ConnectedPerson",
+      "type": "object"
+    },
+    "Country": {
+      "description": "Country information, mostly on nagoya protocol",
+      "properties": {
+        "cartagenaProtocolParty": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Is Cartagena Protocol Party"
+        },
+        "conventionOfBiologicalDiversityParty": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Is Convention Of Biological Diversity Party"
+        },
+        "identifier": {
+          "items": {
+            "$ref": "#/$defs/Identifier"
+          },
+          "title": "Identifier",
+          "type": "array"
+        },
+        "nagoyaKualaLumpurParty": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Is Nagoya Kuala Lumpur Party"
+        },
+        "nagoyaProtocolParty": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Is Nagoya Protocol Party"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "pattern": "^\\w{2}$",
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/CountryHistoricalAlpha2"
+            },
+            {
+              "$ref": "#/$defs/CountryOtherCodes"
+            }
+          ],
+          "title": "Country Name (ISO 2 Letter Code)"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "title": "Country",
+      "type": "object"
+    },
+    "CountryHistoricalAlpha2": {
+      "description": "WARNING: This list was generated by ChatGPT no human verification has been done so far\n\nAttributes:\n    CS: Czechoslovakia\n    DD: German Democratic Republic (East Germany)\n    DY: Dahomey\n    FQ: French Southern and Antarctic Territories\n    GE: Gilbert and Ellice Islands\n    HV: Upper Volta\n    JT: Johnston Island\n    MI: Midway Islands\n    NH: New Hebrides\n    RH: Southern Rhodesia\n    SU: Soviet Union\n    TP: East Timor\n    UK: United Kingdom\n    VD: North Vietnam\n    YU: Yugoslavia\n    ZR: Zaire\n    BU: Burma\n    AN: Netherlands Antilles",
+      "enum": [
+        "Czechoslovakia",
+        "German Democratic Republic (East Germany)",
+        "Dahomey",
+        "French Southern and Antarctic Territories",
+        "Gilbert and Ellice Islands",
+        "Upper Volta",
+        "Johnston Island",
+        "Midway Islands",
+        "New Hebrides",
+        "Southern Rhodesia",
+        "Soviet Union",
+        "East Timor",
+        "United Kingdom",
+        "North Vietnam",
+        "Yugoslavia",
+        "Zaire",
+        "Burma",
+        "Netherlands Antilles"
+      ],
+      "title": "CountryHistoricalAlpha2",
+      "type": "string"
+    },
+    "CountryOtherCodes": {
+      "description": "Other allowed Values in case of non-country origin\n\nAttributes:\n    international: International Region\n    other: Other\n    unknown: Unknown",
+      "enum": [
+        "International Region",
+        "Other"
+      ],
+      "title": "CountryOtherCodes",
+      "type": "string"
+    },
+    "CultivationMedia": {
+      "description": "Cultivation media, use links to Media Dive or other resources",
+      "properties": {
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        },
+        "reagentUsed": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Reagent Used",
+          "type": "array"
+        },
+        "source": {
+          "description": "JSON path to source object",
+          "pattern": "^\\/sources\\/\\d+$",
+          "title": "Source",
+          "type": "string"
+        },
+        "url": {
+          "anyOf": [
+            {
+              "format": "uri",
+              "maxLength": 2083,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "URL"
+        }
+      },
+      "required": [
+        "url",
+        "source"
+      ],
+      "title": "CultivationMedia",
+      "type": "object"
+    },
+    "Enzyme": {
+      "description": "Information about one enzyme",
+      "properties": {
+        "active": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Active"
+        },
+        "alternateName": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Alternate Name",
+          "type": "array"
+        },
+        "hasECNumber": {
+          "description": "An EC number like defined by the Enzyme Commission",
+          "pattern": "(?:EC)? ?\\d+\\.\\d+\\.\\d+\\.n?\\d+",
+          "title": "EC Number",
+          "type": "string"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        },
+        "source": {
+          "description": "JSON path to source object",
+          "pattern": "^\\/sources\\/\\d+$",
+          "title": "Source",
+          "type": "string"
+        },
+        "url": {
+          "anyOf": [
+            {
+              "format": "uri",
+              "maxLength": 2083,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "URL",
+          "title": "URL"
+        }
+      },
+      "required": [
+        "hasECNumber",
+        "source"
+      ],
+      "title": "Enzyme",
+      "type": "object"
+    },
+    "FattyAcid": {
+      "description": "Single Fatty Acid - used in Fatty Acid Profile",
+      "properties": {
+        "alternateName": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Alternate Name",
+          "type": "array"
+        },
+        "ecl": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "ECL"
+        },
+        "identifier": {
+          "items": {
+            "$ref": "#/$defs/Identifier"
+          },
+          "title": "Identifier",
+          "type": "array"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name of Chemical Substance"
+        },
+        "percent": {
+          "anyOf": [
+            {
+              "maximum": 100.0,
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Percent"
+        }
+      },
+      "title": "FattyAcid",
+      "type": "object"
+    },
+    "FattyAcidProfile": {
+      "description": "Full Fatty Acid Profile",
+      "properties": {
+        "library": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Library"
+        },
+        "medium": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Medium"
+        },
+        "profile": {
+          "items": {
+            "$ref": "#/$defs/FattyAcid"
+          },
+          "title": "Profile",
+          "type": "array"
+        },
+        "software": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Software"
+        },
+        "source": {
+          "description": "JSON path to source object",
+          "pattern": "^\\/sources\\/\\d+$",
+          "title": "Source",
+          "type": "string"
+        },
+        "temperature": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Temperature"
+        }
+      },
+      "required": [
+        "source"
+      ],
+      "title": "FattyAcidProfile",
+      "type": "object"
+    },
+    "FlagellumArrangement": {
+      "description": "Valid flagellum arrangement options\n\nAttributes:\n    polar: Polar\n    peritrichous: Peritrichous\n    monotrichous_polar: Monotrichous polar",
+      "enum": [
+        "Polar",
+        "Peritrichous",
+        "Monotrichous polar"
+      ],
+      "title": "FlagellumArrangement",
+      "type": "string"
+    },
+    "GCContent": {
+      "description": "GC content of the microorganism",
+      "properties": {
+        "method": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Method"
+        },
+        "source": {
+          "description": "JSON path to source object",
+          "pattern": "^\\/sources\\/\\d+$",
+          "title": "Source",
+          "type": "string"
+        },
+        "value": {
+          "maximum": 100.0,
+          "minimum": 0.0,
+          "title": "Percent Value",
+          "type": "number"
+        }
+      },
+      "required": [
+        "value",
+        "source"
+      ],
+      "title": "GCContent",
+      "type": "object"
+    },
+    "GeoPoint": {
+      "description": "Geopoint / Coordinate object",
+      "properties": {
+        "elevation": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Elevation"
+        },
+        "latitude": {
+          "maximum": 90.0,
+          "minimum": -90.0,
+          "title": "Latitude",
+          "type": "number"
+        },
+        "longitude": {
+          "maximum": 180.0,
+          "minimum": -180.0,
+          "title": "Longitude",
+          "type": "number"
+        },
+        "precision": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Precision"
+        }
+      },
+      "required": [
+        "latitude",
+        "longitude"
+      ],
+      "title": "GeoPoint",
+      "type": "object"
+    },
+    "GrowthRange_ConcentrationUnit_": {
+      "properties": {
+        "growth": {
+          "title": "Growth",
+          "type": "boolean"
+        },
+        "maximal": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Maximal"
+        },
+        "minimal": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Minimal"
+        },
+        "unit": {
+          "$ref": "#/$defs/ConcentrationUnit"
+        }
+      },
+      "required": [
+        "unit",
+        "growth"
+      ],
+      "title": "GrowthRange[ConcentrationUnit]",
+      "type": "object"
+    },
+    "GrowthRange_Literal__C___": {
+      "properties": {
+        "growth": {
+          "title": "Growth",
+          "type": "boolean"
+        },
+        "maximal": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Maximal"
+        },
+        "minimal": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Minimal"
+        },
+        "unit": {
+          "const": "C",
+          "enum": [
+            "C"
+          ],
+          "title": "Unit",
+          "type": "string"
+        }
+      },
+      "required": [
+        "unit",
+        "growth"
+      ],
+      "title": "GrowthRange[Literal['C']]",
+      "type": "object"
+    },
+    "GrowthRange_Literal__pH___": {
+      "properties": {
+        "growth": {
+          "title": "Growth",
+          "type": "boolean"
+        },
+        "maximal": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Maximal"
+        },
+        "minimal": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Minimal"
+        },
+        "unit": {
+          "const": "pH",
+          "enum": [
+            "pH"
+          ],
+          "title": "Unit",
+          "type": "string"
+        }
+      },
+      "required": [
+        "unit",
+        "growth"
+      ],
+      "title": "GrowthRange[Literal['pH']]",
+      "type": "object"
+    },
+    "Growth_Literal__C___": {
+      "properties": {
+        "maximal": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Maximal"
+        },
+        "minimal": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Minimal"
+        },
+        "optimal": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Optimal"
+        },
+        "source": {
+          "description": "JSON path to source object",
+          "pattern": "^\\/sources\\/\\d+$",
+          "title": "Source",
+          "type": "string"
+        },
+        "tested": {
+          "items": {
+            "$ref": "#/$defs/GrowthRange_Literal__C___"
+          },
+          "title": "Tests",
+          "type": "array"
+        },
+        "unit": {
+          "const": "C",
+          "enum": [
+            "C"
+          ],
+          "title": "Unit",
+          "type": "string"
+        }
+      },
+      "required": [
+        "unit",
+        "source"
+      ],
+      "title": "Growth[Literal['C']]",
+      "type": "object"
+    },
+    "Growth_Literal__pH___": {
+      "properties": {
+        "maximal": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Maximal"
+        },
+        "minimal": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Minimal"
+        },
+        "optimal": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Optimal"
+        },
+        "source": {
+          "description": "JSON path to source object",
+          "pattern": "^\\/sources\\/\\d+$",
+          "title": "Source",
+          "type": "string"
+        },
+        "tested": {
+          "items": {
+            "$ref": "#/$defs/GrowthRange_Literal__pH___"
+          },
+          "title": "Tests",
+          "type": "array"
+        },
+        "unit": {
+          "const": "pH",
+          "enum": [
+            "pH"
+          ],
+          "title": "Unit",
+          "type": "string"
+        }
+      },
+      "required": [
+        "unit",
+        "source"
+      ],
+      "title": "Growth[Literal['pH']]",
+      "type": "object"
+    },
+    "Halophil": {
+      "description": "Halophily abilities of a Strain",
+      "properties": {
+        "alternateName": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Alternate Name",
+          "type": "array"
+        },
+        "identifier": {
+          "items": {
+            "$ref": "#/$defs/Identifier"
+          },
+          "title": "Identifier",
+          "type": "array"
+        },
+        "maximal": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Maximal"
+        },
+        "minimal": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Minimal"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name of Chemical Substance"
+        },
+        "optimal": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Optimal"
+        },
+        "source": {
+          "description": "JSON path to source object",
+          "pattern": "^\\/sources\\/\\d+$",
+          "title": "Source",
+          "type": "string"
+        },
+        "tested": {
+          "items": {
+            "$ref": "#/$defs/GrowthRange_ConcentrationUnit_"
+          },
+          "title": "Tests",
+          "type": "array"
+        },
+        "unit": {
+          "$ref": "#/$defs/ConcentrationUnit"
+        }
+      },
+      "required": [
+        "unit",
+        "source"
+      ],
+      "title": "Halophil",
+      "type": "object"
+    },
+    "Hemolysis": {
+      "description": "Hemolysis of bloods",
+      "properties": {
+        "blood": {
+          "$ref": "#/$defs/HemolysisBlood",
+          "title": "Blood"
+        },
+        "hemolysisType": {
+          "$ref": "#/$defs/HemolysisType",
+          "title": "Hemolysis Type"
+        },
+        "source": {
+          "description": "JSON path to source object",
+          "pattern": "^\\/sources\\/\\d+$",
+          "title": "Source",
+          "type": "string"
+        }
+      },
+      "required": [
+        "blood",
+        "hemolysisType",
+        "source"
+      ],
+      "title": "Hemolysis",
+      "type": "object"
+    },
+    "HemolysisBlood": {
+      "description": "Valid blood types\n\nAttributes:\n    sheep: sheep\n    horse: horse\n    unknown: unknown",
+      "enum": [
+        "sheep",
+        "horse",
+        "unknown"
+      ],
+      "title": "HemolysisBlood",
+      "type": "string"
+    },
+    "HemolysisType": {
+      "description": "Valid hemolysis types\n\nAttributes:\n    alpha: alpha\n    beta: beta\n    gamma: gamma",
+      "enum": [
+        "alpha",
+        "beta",
+        "gamma"
+      ],
+      "title": "HemolysisType",
+      "type": "string"
+    },
+    "Host": {
+      "description": "Valid host types\n\nAttributes:\n    plant: plant\n    animal: animal\n    invertebrates: invertebrates\n    vertebrates: vertebrates\n    mammals: mammals\n    primates: non-human primates\n    human: human\n    fungi: fungi",
+      "enum": [
+        "plant",
+        "animal",
+        "invertebrates",
+        "vertebrates",
+        "mammals",
+        "non-human primates",
+        "human",
+        "fungi"
+      ],
+      "title": "Host",
+      "type": "string"
+    },
+    "Identifier": {
+      "description": "Identifier of every Kind, compare to schema.org PropertyValue class",
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "propertyID": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Property ID"
+        },
+        "url": {
+          "anyOf": [
+            {
+              "format": "uri",
+              "maxLength": 2083,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "URL"
+        },
+        "value": {
+          "title": "Value",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "value"
+      ],
+      "title": "Identifier",
+      "type": "object"
+    },
+    "IdentifierStrain": {
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "propertyID": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Property ID"
+        },
+        "source": {
+          "description": "JSON path to source object",
+          "pattern": "^\\/sources\\/\\d+$",
+          "title": "Source",
+          "type": "string"
+        },
+        "url": {
+          "anyOf": [
+            {
+              "format": "uri",
+              "maxLength": 2083,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "URL"
+        },
+        "value": {
+          "title": "Value",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "value",
+        "source"
+      ],
+      "title": "IdentifierStrain",
+      "type": "object"
+    },
+    "Isolation": {
+      "description": "Isolation event information",
+      "properties": {
+        "date": {
+          "anyOf": [
+            {
+              "pattern": "^(?:\\d{4}[-\\._]?\\d{0,2}[-\\._]?\\d{0,2})?/?(?:\\d{4}[-\\._]?\\d{0,2}[-\\._]?\\d{0,2})?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Date"
+        },
+        "isolatedAt": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Organization"
+            },
+            {
+              "$ref": "#/$defs/Person"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Isolated At"
+        },
+        "source": {
+          "description": "JSON path to source object",
+          "pattern": "^\\/sources\\/\\d+$",
+          "title": "Source",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source"
+      ],
+      "title": "Isolation",
+      "type": "object"
+    },
+    "IsolationTag": {
+      "properties": {
+        "level1": {
+          "title": "Level 1",
+          "type": "string"
+        },
+        "level2": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Level 2"
+        },
+        "level3": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Level 3"
+        }
+      },
+      "required": [
+        "level1"
+      ],
+      "title": "IsolationTag",
+      "type": "object"
+    },
+    "Legal": {
+      "description": "Legal information of the strain",
+      "properties": {
+        "dualUse": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Dual Use"
+        },
+        "gmo": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "GMO"
+        },
+        "gmoInformation": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "GMO Information"
+        },
+        "gras": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "GRAS"
+        },
+        "nagoyaRestrictions": {
+          "$ref": "#/$defs/NagoyaRestrictions",
+          "title": "Nagoya Protocol Restrictions"
+        },
+        "qps": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "QPS"
+        },
+        "quarantineEU": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Quarantine EU"
+        },
+        "source": {
+          "description": "JSON path to source object",
+          "pattern": "^\\/sources\\/\\d+$",
+          "title": "Source",
+          "type": "string"
+        }
+      },
+      "required": [
+        "nagoyaRestrictions",
+        "source"
+      ],
+      "title": "Legal",
+      "type": "object"
+    },
+    "Literature": {
+      "description": "Connected Literature information",
+      "properties": {
+        "author": {
+          "items": {
+            "$ref": "#/$defs/Person"
+          },
+          "title": "Author",
+          "type": "array"
+        },
+        "datePublished": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Date Published"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        },
+        "publisher": {
+          "items": {
+            "$ref": "#/$defs/Organization"
+          },
+          "title": "Publisher",
+          "type": "array"
+        },
+        "source": {
+          "description": "JSON path to source object",
+          "pattern": "^\\/sources\\/\\d+$",
+          "title": "Source",
+          "type": "string"
+        },
+        "url": {
+          "anyOf": [
+            {
+              "format": "uri",
+              "maxLength": 2083,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "URL"
+        }
+      },
+      "required": [
+        "source"
+      ],
+      "title": "Literature",
+      "type": "object"
+    },
+    "Location": {
+      "description": "Location object",
+      "properties": {
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Description"
+        },
+        "geo": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/GeoPoint"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Geo"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        }
+      },
+      "title": "Location",
+      "type": "object"
+    },
+    "Metabolite": {
+      "description": "Information about tested Metabolites",
+      "properties": {
+        "alternateName": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Alternate Name",
+          "type": "array"
+        },
+        "identifier": {
+          "items": {
+            "$ref": "#/$defs/Identifier"
+          },
+          "title": "Identifier",
+          "type": "array"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name of Chemical Substance"
+        },
+        "source": {
+          "description": "JSON path to source object",
+          "pattern": "^\\/sources\\/\\d+$",
+          "title": "Source",
+          "type": "string"
+        },
+        "tests": {
+          "items": {
+            "$ref": "#/$defs/MetaboliteTest"
+          },
+          "title": "Tests",
+          "type": "array"
+        }
+      },
+      "required": [
+        "source"
+      ],
+      "title": "Metabolite",
+      "type": "object"
+    },
+    "MetaboliteTest": {
+      "properties": {
+        "active": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Active"
+        },
+        "kindOfUtilization": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Kind Of Utilization"
+        },
+        "protocol": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Protocol"
+        },
+        "type": {
+          "$ref": "#/$defs/MetaboliteTestType",
+          "title": "Type"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "title": "MetaboliteTest",
+      "type": "object"
+    },
+    "MetaboliteTestType": {
+      "description": "Valid metabolite test types\n\nAttributes:\n    utilization: Utilization\n    production: Production",
+      "enum": [
+        "utilization",
+        "production"
+      ],
+      "title": "MetaboliteTestType",
+      "type": "string"
+    },
+    "Morph": {
+      "description": "Valid morph types for fungi\n\nAttributes:\n    yeast: yeast\n    filamentous: filamentous",
+      "enum": [
+        "yeast",
+        "filamentous"
+      ],
+      "title": "Morph",
+      "type": "string"
+    },
+    "Motility": {
+      "description": "Information on motility of a Strain",
+      "properties": {
+        "flagellum": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Flagellum"
+        },
+        "flagellumArrangement": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/FlagellumArrangement"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Flagellum Arrangement"
+        },
+        "gliding": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Gliding"
+        },
+        "motile": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Motile"
+        },
+        "source": {
+          "description": "JSON path to source object",
+          "pattern": "^\\/sources\\/\\d+$",
+          "title": "Source",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source"
+      ],
+      "title": "Motility",
+      "type": "object"
+    },
+    "MultiCell": {
+      "description": "MultiCell ability of the strain",
+      "properties": {
+        "multiCellComplexForming": {
+          "title": "Multi Cell Complex Forming",
+          "type": "boolean"
+        },
+        "source": {
+          "description": "JSON path to source object",
+          "pattern": "^\\/sources\\/\\d+$",
+          "title": "Source",
+          "type": "string"
+        }
+      },
+      "required": [
+        "multiCellComplexForming",
+        "source"
+      ],
+      "title": "MultiCell",
+      "type": "object"
+    },
+    "NagoyaRestrictions": {
+      "description": "Valid values of Nagoya protocol information\n\nAttributes:\n    no_restrictions: No known restrictions under the Nagoya protocol\n    documents_available: Documents providing proof of legal access and terms of use available at the collection\n    contact_collection: Strain probably in scope, please contact the culture collection",
+      "enum": [
+        "No known restrictions under the Nagoya protocol",
+        "Documents providing proof of legal access and terms of use available at the collection",
+        "Strain probably in scope, please contact the culture collection"
+      ],
+      "title": "NagoyaRestrictions",
+      "type": "string"
+    },
+    "OrganismType": {
+      "description": "Valid organism types\n\nAttributes:\n    algae: Algae\n    archaea: Archaea\n    bacteria: Bacteria\n    fungi: Fungi\n    protist: Protist",
+      "enum": [
+        "Algae",
+        "Archaea",
+        "Bacteria",
+        "Fungi",
+        "Protist"
+      ],
+      "title": "OrganismType",
+      "type": "string"
+    },
+    "Organization": {
+      "description": "Individual Entity of a Organization",
+      "properties": {
+        "address": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Address"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Address"
+        },
+        "email": {
+          "anyOf": [
+            {
+              "format": "email",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Email"
+        },
+        "identifier": {
+          "items": {
+            "$ref": "#/$defs/Identifier"
+          },
+          "title": "Identifier",
+          "type": "array"
+        },
+        "legalName": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Legal Name"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "url": {
+          "anyOf": [
+            {
+              "format": "uri",
+              "maxLength": 2083,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "URL"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "title": "Organization",
+      "type": "object"
+    },
+    "OtherMedia": {
+      "description": "A Media object e.g. Photo, Video, Document, etc",
+      "properties": {
+        "additionalType": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Additional Type"
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Description"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        },
+        "source": {
+          "description": "JSON path to source object",
+          "pattern": "^\\/sources\\/\\d+$",
+          "title": "Source",
+          "type": "string"
+        },
+        "url": {
+          "anyOf": [
+            {
+              "format": "uri",
+              "maxLength": 2083,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "URL"
+        },
+        "usageInfo": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Usage Information"
+        }
+      },
+      "required": [
+        "source"
+      ],
+      "title": "OtherMedia",
+      "type": "object"
+    },
+    "OxygenRelation": {
+      "description": "OxygenRelation of the strain",
+      "properties": {
+        "oxygenRelation": {
+          "title": "Oxygen Relation",
+          "type": "string"
+        },
+        "source": {
+          "description": "JSON path to source object",
+          "pattern": "^\\/sources\\/\\d+$",
+          "title": "Source",
+          "type": "string"
+        }
+      },
+      "required": [
+        "oxygenRelation",
+        "source"
+      ],
+      "title": "OxygenRelation",
+      "type": "object"
+    },
+    "Pathogen": {
+      "description": "Pathogen, defining Host, pathogenicity and under what classification",
+      "properties": {
+        "classification": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Classification"
+        },
+        "host": {
+          "$ref": "#/$defs/Host"
+        },
+        "pathogen": {
+          "$ref": "#/$defs/PathogenLevel",
+          "title": "Pathogen"
+        },
+        "source": {
+          "description": "JSON path to source object",
+          "pattern": "^\\/sources\\/\\d+$",
+          "title": "Source",
+          "type": "string"
+        }
+      },
+      "required": [
+        "host",
+        "pathogen",
+        "source"
+      ],
+      "title": "Pathogen",
+      "type": "object"
+    },
+    "PathogenLevel": {
+      "description": "Valid pathogen levels\n\nAttributes:\n    no: no pathogen\n    opportunistic: opportunistic\n    obligate: obligate",
+      "enum": [
+        "no pathogen",
+        "opportunistic",
+        "obligate"
+      ],
+      "title": "PathogenLevel",
+      "type": "string"
+    },
+    "Person": {
+      "description": "Person - also Basis for every Individual Entity (e.g. Organization)",
+      "properties": {
+        "identifier": {
+          "items": {
+            "$ref": "#/$defs/Identifier"
+          },
+          "title": "Identifier",
+          "type": "array"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "title": "Person",
+      "type": "object"
+    },
+    "PersonRole": {
+      "description": "Valid roles for persons related to strain\n\nAttributes:\n    sampler: sampler\n    isolator: isolator\n    other: other",
+      "enum": [
+        "sampler",
+        "isolator",
+        "other"
+      ],
+      "title": "PersonRole",
+      "type": "string"
+    },
+    "Restriction": {
+      "description": "Valid supply forms\n\nAttributes:\n    no_restrictions: No known restrictions apply\n    no_commercial: Only for non-commercial purposes\n    agreement: For commercial development a special agreement is requested",
+      "enum": [
+        "No known restrictions apply",
+        "Only for non-commercial purposes",
+        "For commercial development a special agreement is requested"
+      ],
+      "title": "Restriction",
+      "type": "string"
+    },
+    "Sample": {
+      "description": "Information on the Sampling event of that Strain",
+      "properties": {
+        "country": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Country"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Country"
+        },
+        "date": {
+          "anyOf": [
+            {
+              "pattern": "^(?:\\d{4}[-\\._]?\\d{0,2}[-\\._]?\\d{0,2})?/?(?:\\d{4}[-\\._]?\\d{0,2}[-\\._]?\\d{0,2})?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Date"
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Description"
+        },
+        "locationCreated": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Location"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Location Created"
+        },
+        "source": {
+          "description": "JSON path to source object",
+          "pattern": "^\\/sources\\/\\d+$",
+          "title": "Source",
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "$ref": "#/$defs/IsolationTag"
+          },
+          "title": "Isolation Source Tags",
+          "type": "array"
+        }
+      },
+      "required": [
+        "source"
+      ],
+      "title": "Sample",
+      "type": "object"
+    },
+    "ScientificName": {
+      "properties": {
+        "author": {
+          "title": "Author",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "author"
+      ],
+      "title": "ScientificName",
+      "type": "object"
+    },
+    "Sequence": {
+      "description": "Information on a Sequence",
+      "properties": {
+        "accessionNumber": {
+          "title": "Accession Number",
+          "type": "string"
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Description"
+        },
+        "length": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Length"
+        },
+        "level": {
+          "$ref": "#/$defs/SequenceLevel",
+          "title": "Level"
+        },
+        "source": {
+          "description": "JSON path to source object",
+          "pattern": "^\\/sources\\/\\d+$",
+          "title": "Source",
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/$defs/SequenceType",
+          "title": "Type"
+        },
+        "url": {
+          "items": {
+            "format": "uri",
+            "maxLength": 2083,
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "URL",
+          "type": "array"
+        }
+      },
+      "required": [
+        "type",
+        "level",
+        "accessionNumber",
+        "source"
+      ],
+      "title": "Sequence",
+      "type": "object"
+    },
+    "SequenceLevel": {
+      "enum": [
+        "genome",
+        "identifier sequence",
+        "gene",
+        "artificial",
+        "other"
+      ],
+      "title": "SequenceLevel",
+      "type": "string"
+    },
+    "SequenceType": {
+      "description": "Valid sequence types\n\nAttributes:\n    nucleotide: Nucleotide\n    protein: Protein",
+      "enum": [
+        "nucleotide",
+        "protein"
+      ],
+      "title": "SequenceType",
+      "type": "string"
+    },
+    "Size": {
+      "description": "size object, use only for micro and millimeter",
+      "properties": {
+        "maximal": {
+          "title": "Maximal",
+          "type": "number"
+        },
+        "minimal": {
+          "title": "Minimal",
+          "type": "number"
+        },
+        "source": {
+          "description": "JSON path to source object",
+          "pattern": "^\\/sources\\/\\d+$",
+          "title": "Source",
+          "type": "string"
+        },
+        "unit": {
+          "$ref": "#/$defs/SizeUnit",
+          "title": "Unit"
+        }
+      },
+      "required": [
+        "minimal",
+        "maximal",
+        "unit",
+        "source"
+      ],
+      "title": "Size",
+      "type": "object"
+    },
+    "SizeUnit": {
+      "description": "Valid size options for microbes\n\nAttributes:\n    \u00b5m: \u00b5m\n    mm: mm",
+      "enum": [
+        "\u00b5m",
+        "mm"
+      ],
+      "title": "SizeUnit",
+      "type": "string"
+    },
+    "Spore": {
+      "description": "Spore information about one Strain",
+      "properties": {
+        "source": {
+          "description": "JSON path to source object",
+          "pattern": "^\\/sources\\/\\d+$",
+          "title": "Source",
+          "type": "string"
+        },
+        "sporeBuilding": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "sporeBuilding"
+        },
+        "sporeEjection": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Spore Ejection"
+        },
+        "typeOfSpore": {
+          "$ref": "#/$defs/SporeType",
+          "title": "Type Of Spore"
+        }
+      },
+      "required": [
+        "typeOfSpore",
+        "source"
+      ],
+      "title": "Spore",
+      "type": "object"
+    },
+    "SporeType": {
+      "description": "Valid spore types\n\nAttributes:\n    spore: spore\n    endospore: endospore",
+      "enum": [
+        "spore",
+        "endospore"
+      ],
+      "title": "SporeType",
+      "type": "string"
+    },
+    "Staining": {
+      "description": "Stainings tested on the strain",
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "source": {
+          "description": "JSON path to source object",
+          "pattern": "^\\/sources\\/\\d+$",
+          "title": "Source",
+          "type": "string"
+        },
+        "value": {
+          "$ref": "#/$defs/StainingValue",
+          "title": "Value"
+        }
+      },
+      "required": [
+        "name",
+        "value",
+        "source"
+      ],
+      "title": "Staining",
+      "type": "object"
+    },
+    "StainingValue": {
+      "description": "Valid staining test results\n\nAttributes:\n    pos: positive\n    neg: negative\n    var: variable",
+      "enum": [
+        "positive",
+        "negative",
+        "variable"
+      ],
+      "title": "StainingValue",
+      "type": "string"
+    },
+    "SupplyForm": {
+      "description": "Valid supply forms\n\nAttributes:\n    agar: Agar\n    cryo: Cryo\n    dry: Dry ice\n    liquid: Liquid medium\n    lyo: Lyophilization\n    oil: Oil\n    water: Water\n    dna: DNA",
+      "enum": [
+        "Agar",
+        "Cryo",
+        "Dry ice",
+        "Liquid medium",
+        "Lyo",
+        "Oil",
+        "Water",
+        "DNA"
+      ],
+      "title": "SupplyForm",
+      "type": "string"
+    },
+    "Taxon": {
+      "description": "A class to take all information about a taxon for the new microbial data standard.",
+      "properties": {
+        "alternateName": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Alternate Name",
+          "type": "array"
+        },
+        "identifier": {
+          "items": {
+            "$ref": "#/$defs/Identifier"
+          },
+          "title": "Identifier",
+          "type": "array"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "parentTaxon": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Taxon"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Parent Taxon"
+        },
+        "sameAs": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Same As",
+          "type": "array"
+        },
+        "scientificName": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ScientificName"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Scientific Name"
+        },
+        "taxonRank": {
+          "$ref": "#/$defs/TaxonRank",
+          "title": "Taxon Rank"
+        },
+        "taxonStatus": {
+          "$ref": "#/$defs/TaxonStatus",
+          "title": "Taxon Status"
+        }
+      },
+      "required": [
+        "name",
+        "taxonRank",
+        "taxonStatus"
+      ],
+      "title": "Taxon",
+      "type": "object"
+    },
+    "TaxonRank": {
+      "description": "Valid ranks of taxonomy\n\nAttributes:\n    subspecies: subspecies\n    species: species\n    section: section\n    genus: genus\n    family: family\n    order: order\n    tax_class: class\n    phylum: phylum\n    domain: domain",
+      "enum": [
+        "subspecies",
+        "species",
+        "section",
+        "genus",
+        "family",
+        "order",
+        "class",
+        "phylum",
+        "domain"
+      ],
+      "title": "TaxonRank",
+      "type": "string"
+    },
+    "TaxonStatus": {
+      "description": "Valid taxon status\n\nAttributes:\n    proposed: Proposed\n    valid: Validly published\n    valid_synonym: Validly published synonym",
+      "enum": [
+        "proposed",
+        "validly published",
+        "validly published synonym"
+      ],
+      "title": "TaxonStatus",
+      "type": "string"
+    },
+    "TaxonWithSource": {
+      "properties": {
+        "alternateName": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Alternate Name",
+          "type": "array"
+        },
+        "identifier": {
+          "items": {
+            "$ref": "#/$defs/Identifier"
+          },
+          "title": "Identifier",
+          "type": "array"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "parentTaxon": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/TaxonWithSource"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Parent Taxon"
+        },
+        "sameAs": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Same As",
+          "type": "array"
+        },
+        "scientificName": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ScientificName"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Scientific Name"
+        },
+        "source": {
+          "description": "JSON path to source object",
+          "pattern": "^\\/sources\\/\\d+$",
+          "title": "Source",
+          "type": "string"
+        },
+        "taxonRank": {
+          "$ref": "#/$defs/TaxonRank",
+          "title": "Taxon Rank"
+        },
+        "taxonStatus": {
+          "$ref": "#/$defs/TaxonStatus",
+          "title": "Taxon Status"
+        }
+      },
+      "required": [
+        "name",
+        "taxonRank",
+        "taxonStatus",
+        "source"
+      ],
+      "title": "TaxonWithSource",
+      "type": "object"
+    },
+    "Tolerance": {
+      "description": "Tolerance information - e.g. antibiotic resistance",
+      "properties": {
+        "alternateName": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Alternate Name",
+          "type": "array"
+        },
+        "identifier": {
+          "items": {
+            "$ref": "#/$defs/Identifier"
+          },
+          "title": "Identifier",
+          "type": "array"
+        },
+        "mic": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "MIC"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name of Chemical Substance"
+        },
+        "reaction": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reaction"
+        },
+        "source": {
+          "description": "JSON path to source object",
+          "pattern": "^\\/sources\\/\\d+$",
+          "title": "Source",
+          "type": "string"
+        },
+        "tests": {
+          "items": {
+            "$ref": "#/$defs/ToleranceTest"
+          },
+          "title": "Tests",
+          "type": "array"
+        },
+        "unit": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ConcentrationUnit"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Unit"
+        }
+      },
+      "required": [
+        "source"
+      ],
+      "title": "Tolerance",
+      "type": "object"
+    },
+    "ToleranceReaction": {
+      "description": "Valid tolerance reactions\n\nAttributes:\n    Sensitive: No tolerance\n    Resistant: High tolerance\n    Intermediate: Not assignable",
+      "enum": [
+        "sensitive",
+        "resistant",
+        "intermediate"
+      ],
+      "title": "ToleranceReaction",
+      "type": "string"
+    },
+    "ToleranceTest": {
+      "properties": {
+        "concentration": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Concentration"
+        },
+        "reaction": {
+          "$ref": "#/$defs/ToleranceReaction",
+          "title": "Reaction"
+        },
+        "unit": {
+          "$ref": "#/$defs/ConcentrationUnit",
+          "title": "Unit"
+        }
+      },
+      "required": [
+        "reaction",
+        "unit"
+      ],
+      "title": "ToleranceTest",
+      "type": "object"
+    },
+    "TypeStrain": {
+      "properties": {
+        "source": {
+          "description": "JSON path to source object",
+          "pattern": "^\\/sources\\/\\d+$",
+          "title": "Source",
+          "type": "string"
+        },
+        "typeStrain": {
+          "title": "Type Strain",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "typeStrain",
+        "source"
+      ],
+      "title": "TypeStrain",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Microbe - main class of the new microbial data standard",
+  "properties": {
+    "bioSafety": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/BioSafety"
+      },
+      "title": "Bio Safety",
+      "type": "array"
+    },
+    "cellLength": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/Size"
+      },
+      "title": "Cell Length",
+      "type": "array"
+    },
+    "cellShape": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/CellShape"
+      },
+      "title": "Cell Shape",
+      "type": "array"
+    },
+    "cellWidth": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/Size"
+      },
+      "title": "Cell Width",
+      "type": "array"
+    },
+    "collections": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/Collection"
+      },
+      "title": "Collections",
+      "type": "array"
+    },
+    "colony": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/Colony"
+      },
+      "title": "Colony",
+      "type": "array"
+    },
+    "connectedPersons": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/ConnectedPerson"
+      },
+      "title": "Connected Persons",
+      "type": "array"
+    },
+    "cultivationMedia": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/CultivationMedia"
+      },
+      "title": "Cultivation Media",
+      "type": "array"
+    },
+    "enzymes": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/Enzyme"
+      },
+      "title": "Enzymes",
+      "type": "array"
+    },
+    "fattyAcidProfiles": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/FattyAcidProfile"
+      },
+      "title": "Fatty Acid Profile",
+      "type": "array"
+    },
+    "gcContent": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/GCContent"
+      },
+      "title": "GC Content",
+      "type": "array"
+    },
+    "halophily": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/Halophil"
+      },
+      "title": "Halophily",
+      "type": "array"
+    },
+    "hemolysis": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/Hemolysis"
+      },
+      "title": "Hemolysis",
+      "type": "array"
+    },
+    "id": {
+      "description": "Unique identification number of the dataset",
+      "title": "ID",
+      "type": "integer"
+    },
+    "identifier": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/IdentifierStrain"
+      },
+      "title": "Identifier",
+      "type": "array"
+    },
+    "isolation": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/Isolation"
+      },
+      "title": "Isolation",
+      "type": "array"
+    },
+    "knownApplications": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/Application"
+      },
+      "title": "Known Applications",
+      "type": "array"
+    },
+    "lastUpdate": {
+      "description": "Time of last update of the dataset",
+      "format": "date-time",
+      "title": "lastUpdate",
+      "type": "string"
+    },
+    "legal": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/Legal"
+      },
+      "title": "Legal",
+      "type": "array"
+    },
+    "literature": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/Literature"
+      },
+      "title": "Literature",
+      "type": "array"
+    },
+    "metabolites": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/Metabolite"
+      },
+      "title": "Metabolites",
+      "type": "array"
+    },
+    "morphType": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Morph"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Applicable to fungi only",
+      "title": "Morph Type"
+    },
+    "motility": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/Motility"
+      },
+      "title": "Motility",
+      "type": "array"
+    },
+    "multiCellComplexForming": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/MultiCell"
+      },
+      "title": "Multi Cell Complex Forming",
+      "type": "array"
+    },
+    "organismType": {
+      "$ref": "#/$defs/OrganismType",
+      "description": "",
+      "title": "Organism Type"
+    },
+    "otherMedia": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/OtherMedia"
+      },
+      "title": "Other Media",
+      "type": "array"
+    },
+    "oxygenRelation": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/OxygenRelation"
+      },
+      "title": "Oxygen Relation",
+      "type": "array"
+    },
+    "pH": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/Growth_Literal__pH___"
+      },
+      "title": "pH",
+      "type": "array"
+    },
+    "pathogenicity": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/Pathogen"
+      },
+      "title": "pathogenicity",
+      "type": "array"
+    },
+    "sample": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/Sample"
+      },
+      "title": "Sample",
+      "type": "array"
+    },
+    "sequences": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/Sequence"
+      },
+      "title": "Sequences",
+      "type": "array"
+    },
+    "sources": {
+      "description": "",
+      "items": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/Literature"
+          },
+          {
+            "$ref": "#/$defs/Organization"
+          },
+          {
+            "$ref": "#/$defs/Person"
+          }
+        ]
+      },
+      "title": "Source",
+      "type": "array"
+    },
+    "sporeFormation": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/Spore"
+      },
+      "title": "Spore Formation",
+      "type": "array"
+    },
+    "stainings": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/Staining"
+      },
+      "title": "Stainings",
+      "type": "array"
+    },
+    "taxon": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/TaxonWithSource"
+      },
+      "title": "Taxon",
+      "type": "array"
+    },
+    "temperature": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/Growth_Literal__C___"
+      },
+      "title": "Temperature",
+      "type": "array"
+    },
+    "tolerances": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/Tolerance"
+      },
+      "title": "Tolerances",
+      "type": "array"
+    },
+    "typeStrain": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/TypeStrain"
+      },
+      "title": "Type Strain",
+      "type": "array"
+    },
+    "unifiedTaxon": {
+      "$ref": "#/$defs/Taxon",
+      "description": "Evaluated and updated taxonomy",
+      "title": "Unified Taxon"
+    },
+    "unifiedTypeStrain": {
+      "description": "Is this strain type for unified species",
+      "title": "Unified Type Strain",
+      "type": "boolean"
+    },
+    "wallConstituents": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/CellWall"
+      },
+      "title": "Wall Constituents",
+      "type": "array"
+    }
+  },
+  "required": [
+    "id",
+    "organismType",
+    "unifiedTypeStrain",
+    "unifiedTaxon",
+    "sources"
+  ],
+  "title": "Microbe",
+  "type": "object"
+}

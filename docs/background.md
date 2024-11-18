@@ -3,8 +3,7 @@
 ## Microbial strains and culture collections
 
 When a scientist isolates a microorganism (e.g. Bacteria, Yeast, ...) the isolate and all
-clones of it is called from now on a strain. If the strain is of a new taxon or the strain
-should be referenced in a publication it will get deposited at a culture collection.
+clones of it is called from now on a strain. If the strain can be deposited at culture collections.
 Culture collections are BRC's (Biological resource centers) and the collections provide
 access to the biological resources (the microbial strains) for researchers and/or
 industry. Every culture collection gives each strain in their collection a unique
@@ -13,14 +12,14 @@ identification number (aka culture collection number (CCNo)).
 ## Number of microbial strains
 There are more than 800 culture collections world wide according to
 [WDCM](https://ccinfo.wdcm.org/), with a combined number of more than 4 million
-microbial cultures. The combined number of microbial strains is unknown because one strain
+microbial **cultures**. A culture is a strain at a culture collection.
+The combined number of microbial **strains** is unknown because one strain
 can be deposited in multiple culture collections and there is no complete matching of the
 microbial resources of all culture collections.
-[StrainInfo](https://straininfo.dsmz.de) is trying to accumulate the unique culture
-collection resources to strains.
-There is also [BacDive](https://bacdive.de/) the largest database for standardized
-bacterial information that accumulates cultures that occur at multiple culture collections
-to strains, but this is only for bacteria and archaea.
+[StrainInfo](https://straininfo.dsmz.de) is trying to provide an overview on which culture belongs to which strain.
+There is also [BacDive](https://bacdive.de/), the largest database for standardized
+bacterial information, that accumulates cultures and associated biological knowledge
+to strains.
 
 ## Standardized microbial data
 In a lot of cases culture collection provide an online catalogue of their available

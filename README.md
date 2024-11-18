@@ -1,22 +1,28 @@
 [![Documentation Status](https://img.shields.io/badge/docs-GitHub-blue.svg?style=flat-square)](https://LeibnizDSMZ.github.io/microbial-data-standard/)
 
+*Please note that this project is still in development*
+
+
 # Microbial Data Standard
 
 This project defines a new microbial data standard for culture collection strain data.
-
+The new microbial data standard is part of the work of WP6 of the [Bioindustry 4.0](https://bioindustry4.hub.inrae.fr/) project.
 
 ## Technical information
 
-The data model presented here is implemented with the use of
-[pydantic](https://pydantic.dev).
+First there is a data model written in [pydantic](https://pydantic.dev).
 
 Also included in the project is the JSON-schema file of the new data standard.
+You find the JSON schema in  `schema/microbe_schema.json`.
 
-This project is initiated by Work Package 6 of the Bioindustry 4.0 (funded by the EU).
+If you want to report a bug, contribute to the project or suggest new features, please contact the project owner.
 
-If you want to report a bug, contribute to the project or suggest new features, please open a issue or contact the project owner.
 
 ## How to use
+
+The here provided data model an schema are for data validation.
+
+These examples are for using the pydantic data model:
 
 Import:
 ```python
