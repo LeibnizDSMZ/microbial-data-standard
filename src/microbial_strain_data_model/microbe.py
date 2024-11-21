@@ -1,5 +1,4 @@
 from pydantic import BaseModel, ConfigDict, Field
-from pydantic_extra_types.pendulum_dt import DateTime
 
 
 from microbial_strain_data_model.classes.application import Application
@@ -51,20 +50,6 @@ class Microbe(BaseModel):
     """Microbe - main class of the new microbial data standard"""
 
     # single data points
-    id: int = Field(
-        title="ID",
-        alias="id",
-        description="Unique identification number of the dataset",
-        frozen=True,
-    )
-
-    last_update: DateTime = Field(
-        default_factory=lambda: DateTime.now(),
-        title="lastUpdate",
-        alias="lastUpdate",
-        description="Time of last update of the dataset",
-        frozen=True,
-    )
 
     organism_type: OrganismType = Field(
         title="Organism Type", alias="organismType", description="", frozen=True
@@ -89,13 +74,13 @@ class Microbe(BaseModel):
         default_factory=list, title="Type Strain", alias="typeStrain", description=""
     )
 
-    # maybe single data points
-
     unified_taxon: Taxon = Field(
         title="Unified Taxon",
         alias="unifiedTaxon",
         description="Evaluated and updated taxonomy",
     )
+
+    # lists of data objects
 
     taxon: list[TaxonWithSource] = Field(
         default_factory=list, title="Taxon", alias="taxon", description=""
@@ -108,8 +93,6 @@ class Microbe(BaseModel):
     isolation: list[Isolation] = Field(
         default_factory=list, title="Isolation", alias="isolation", description=""
     )
-
-    # lists of data objects
 
     legal: list[Legal] = Field(
         default_factory=list, title="Legal", alias="legal", description=""
