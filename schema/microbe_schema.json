@@ -3012,11 +3012,6 @@
       "title": "Hemolysis",
       "type": "array"
     },
-    "id": {
-      "description": "Unique identification number of the dataset",
-      "title": "ID",
-      "type": "integer"
-    },
     "identifier": {
       "description": "",
       "items": {
@@ -3040,12 +3035,6 @@
       },
       "title": "Known Applications",
       "type": "array"
-    },
-    "lastUpdate": {
-      "description": "Time of last update of the dataset",
-      "format": "date-time",
-      "title": "lastUpdate",
-      "type": "string"
     },
     "legal": {
       "description": "",
@@ -3239,7 +3228,6 @@
     }
   },
   "required": [
-    "id",
     "organismType",
     "unifiedTypeStrain",
     "unifiedTaxon",
