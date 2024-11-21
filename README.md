@@ -20,9 +20,9 @@ If you want to report a bug, contribute to the project or suggest new features, 
 
 ## How to use
 
-The here provided data model an schema are for data validation.
+The provided data model and schema are for data validation.
 
-These examples are for using the pydantic data model:
+Examples for using the pydantic data model:
 
 Import:
 ```python
