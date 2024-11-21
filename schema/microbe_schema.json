@@ -3084,7 +3084,7 @@
         }
       ],
       "default": null,
-      "description": "Applicable to fungi only",
+      "description": "Applicable and required for fungi only",
       "title": "Morph Type"
     },
     "motility": {
@@ -3223,14 +3223,30 @@
       "type": "array"
     },
     "unifiedTaxon": {
-      "$ref": "#/$defs/Taxon",
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Taxon"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
       "description": "Evaluated and updated taxonomy",
       "title": "Unified Taxon"
     },
     "unifiedTypeStrain": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
       "description": "Is this strain type for unified species",
-      "title": "Unified Type Strain",
-      "type": "boolean"
+      "title": "Unified Type Strain"
     },
     "wallConstituents": {
       "description": "",
@@ -3243,8 +3259,8 @@
   },
   "required": [
     "organismType",
-    "unifiedTypeStrain",
-    "unifiedTaxon",
+    "typeStrain",
+    "taxon",
     "sources"
   ],
   "title": "Microbe",

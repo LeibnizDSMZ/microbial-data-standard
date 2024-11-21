@@ -16,11 +16,6 @@ yeast
 filamentous
 }
 
-class `TypeStrain`{
-typeStrain: boolean
-source: string
-}
-
 class `Taxon`{
 name: string
 taxonRank: TaxonRank
@@ -62,6 +57,11 @@ url: string | null
 class `ScientificName`{
 name: string
 author: string
+}
+
+class `TypeStrain`{
+typeStrain: boolean
+source: string
 }
 
 class `TaxonWithSource`{
@@ -588,9 +588,9 @@ source: string
 class `Microbe`{
 organismType: OrganismType
 morphType: Morph | null
-unifiedTypeStrain: boolean
+unifiedTypeStrain: boolean | null
+unifiedTaxon: Taxon | null
 typeStrain: array[TypeStrain]
-unifiedTaxon: Taxon
 taxon: array[TaxonWithSource]
 sample: array[Sample]
 isolation: array[Isolation]
@@ -628,13 +628,13 @@ sources:
 
 `Microbe` ..> `OrganismType`
 `Microbe` ..> `Morph`
-`Microbe` ..> `TypeStrain`
 `Microbe` ..> `Taxon`
 `Taxon` ..> `TaxonRank`
 `Taxon` ..> `TaxonStatus`
 `Taxon` ..> `Identifier`
 `Taxon` ..> `ScientificName`
 `Taxon` ..> `Taxon`
+`Microbe` ..> `TypeStrain`
 `Microbe` ..> `TaxonWithSource`
 `TaxonWithSource` ..> `TaxonRank`
 `TaxonWithSource` ..> `TaxonStatus`
