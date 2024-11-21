@@ -59,22 +59,20 @@ class Microbe(BaseModel):
         default=None,
         title="Morph Type",
         alias="morphType",
-        description="Applicable to fungi only",
+        description="Applicable and required for fungi only",
         frozen=True,
     )
 
-    unified_type_strain: bool = Field(
+    unified_type_strain: bool | None = Field(
+        default=None,
         title="Unified Type Strain",
         alias="unifiedTypeStrain",
         description="Is this strain type for unified species",
         frozen=True,
     )
 
-    type_strain: list[TypeStrain] = Field(
-        default_factory=list, title="Type Strain", alias="typeStrain", description=""
-    )
-
-    unified_taxon: Taxon = Field(
+    unified_taxon: Taxon | None = Field(
+        default=None,
         title="Unified Taxon",
         alias="unifiedTaxon",
         description="Evaluated and updated taxonomy",
@@ -82,9 +80,11 @@ class Microbe(BaseModel):
 
     # lists of data objects
 
-    taxon: list[TaxonWithSource] = Field(
-        default_factory=list, title="Taxon", alias="taxon", description=""
+    type_strain: list[TypeStrain] = Field(
+        title="Type Strain", alias="typeStrain", description=""
     )
+
+    taxon: list[TaxonWithSource] = Field(title="Taxon", alias="taxon", description="")
 
     sample: list[Sample] = Field(
         default_factory=list, title="Sample", alias="sample", description=""
