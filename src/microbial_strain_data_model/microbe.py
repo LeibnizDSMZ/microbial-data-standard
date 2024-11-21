@@ -33,7 +33,7 @@ from microbial_strain_data_model.classes.isolation import Isolation
 from microbial_strain_data_model.classes.motility import Motility
 from microbial_strain_data_model.classes.sample import Sample
 from microbial_strain_data_model.classes.sequence import Sequence
-from microbial_strain_data_model.classes.size import Size
+from microbial_strain_data_model.classes.size import CellSize
 from microbial_strain_data_model.classes.spore import Spore
 from microbial_strain_data_model.classes.stainings import Staining
 from microbial_strain_data_model.classes.taxon import Taxon, TaxonWithSource, TypeStrain
@@ -116,12 +116,8 @@ class Microbe(BaseModel):
         description="",
     )
 
-    cell_length: list[Size] = Field(
-        default_factory=list, title="Cell Length", alias="cellLength", description=""
-    )
-
-    cell_width: list[Size] = Field(
-        default_factory=list, title="Cell Width", alias="cellWidth", description=""
+    cell_size: list[CellSize] = Field(
+        default_factory=list, title="Cell Size", alias="cellSize", description=""
     )
 
     motility: list[Motility] = Field(

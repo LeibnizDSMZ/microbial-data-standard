@@ -203,11 +203,16 @@ multiCellComplexForming: boolean
 source: string
 }
 
+class `CellSize`{
+cellLength: Size
+cellWidth: Size
+source: string
+}
+
 class `Size`{
 minimal: number
 maximal: number
 unit: SizeUnit
-source: string
 }
 
 class `SizeUnit`{
@@ -232,7 +237,7 @@ Monotrichous polar
 }
 
 class `Colony`{
-size: number | null
+size: Size | null
 color: ColonyColor | null
 source: string
 }
@@ -593,8 +598,7 @@ legal: array[Legal]
 cellShape: array[CellShape]
 oxygenRelation: array[OxygenRelation]
 multiCellComplexForming: array[MultiCell]
-cellLength: array[Size]
-cellWidth: array[Size]
+cellSize: array[CellSize]
 motility: array[Motility]
 colony: array[Colony]
 sporeFormation: array[Spore]
@@ -656,12 +660,14 @@ sources:
 `Microbe` ..> `CellShape`
 `Microbe` ..> `OxygenRelation`
 `Microbe` ..> `MultiCell`
-`Microbe` ..> `Size`
+`Microbe` ..> `CellSize`
+`CellSize` ..> `Size`
 `Size` ..> `SizeUnit`
-`Microbe` ..> `Size`
+`CellSize` ..> `Size`
 `Microbe` ..> `Motility`
 `Motility` ..> `FlagellumArrangement`
 `Microbe` ..> `Colony`
+`Colony` ..> `Size`
 `Colony` ..> `ColonyColor`
 `Microbe` ..> `Spore`
 `Spore` ..> `SporeType`

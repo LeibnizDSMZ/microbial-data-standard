@@ -172,6 +172,34 @@
       "title": "CellShape",
       "type": "object"
     },
+    "CellSize": {
+      "description": "object to hold cell size information",
+      "properties": {
+        "cellLength": {
+          "$ref": "#/$defs/Size",
+          "description": "",
+          "title": "Cell Length"
+        },
+        "cellWidth": {
+          "$ref": "#/$defs/Size",
+          "description": "",
+          "title": "Cell Width"
+        },
+        "source": {
+          "description": "JSON path to source object",
+          "pattern": "^\\/sources\\/\\d+$",
+          "title": "Source",
+          "type": "string"
+        }
+      },
+      "required": [
+        "cellLength",
+        "cellWidth",
+        "source"
+      ],
+      "title": "CellSize",
+      "type": "object"
+    },
     "CellWall": {
       "description": "Cell Wall constituent - ChemSubstance + percent of CellWall",
       "properties": {
@@ -433,8 +461,7 @@
         "size": {
           "anyOf": [
             {
-              "exclusiveMinimum": 0.0,
-              "type": "number"
+              "$ref": "#/$defs/Size"
             },
             {
               "type": "null"
@@ -2448,18 +2475,14 @@
       "description": "size object, use only for micro and millimeter",
       "properties": {
         "maximal": {
+          "exclusiveMinimum": 0.0,
           "title": "Maximal",
           "type": "number"
         },
         "minimal": {
+          "exclusiveMinimum": 0.0,
           "title": "Minimal",
           "type": "number"
-        },
-        "source": {
-          "description": "JSON path to source object",
-          "pattern": "^\\/sources\\/\\d+$",
-          "title": "Source",
-          "type": "string"
         },
         "unit": {
           "$ref": "#/$defs/SizeUnit",
@@ -2469,8 +2492,7 @@
       "required": [
         "minimal",
         "maximal",
-        "unit",
-        "source"
+        "unit"
       ],
       "title": "Size",
       "type": "object"
@@ -2916,14 +2938,6 @@
       "title": "Bio Safety",
       "type": "array"
     },
-    "cellLength": {
-      "description": "",
-      "items": {
-        "$ref": "#/$defs/Size"
-      },
-      "title": "Cell Length",
-      "type": "array"
-    },
     "cellShape": {
       "description": "",
       "items": {
@@ -2932,12 +2946,12 @@
       "title": "Cell Shape",
       "type": "array"
     },
-    "cellWidth": {
+    "cellSize": {
       "description": "",
       "items": {
-        "$ref": "#/$defs/Size"
+        "$ref": "#/$defs/CellSize"
       },
-      "title": "Cell Width",
+      "title": "Cell Size",
       "type": "array"
     },
     "collections": {
