@@ -7,12 +7,10 @@ what the data in this schema look like.
 
 ```JSON
 {
-    "id": 2,
-    "last_update": "2024-07-16T00:00:00Z",
     "organism_type": "Fungi",
     "morph_type": "yeast",
-    "type_strain": true,
-    "taxon": {
+    "unified_type_strain": true,
+    "unified_taxon": {
         "name": "Candida albicans",
         "rank": "species",
         "status": "validly published",
