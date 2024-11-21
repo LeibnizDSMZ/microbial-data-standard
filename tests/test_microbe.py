@@ -7,7 +7,6 @@ from microbial_strain_data_model.microbe import Microbe
 @pytest.fixture()
 def micro():
     return Microbe(
-        id=1,
         organismType=OrganismType.bacteria,
         unifiedTypeStrain=False,
         sample=[
@@ -39,5 +38,4 @@ def micro():
 
 
 def test_microbe(micro) -> None:
-    assert micro.id == 1
     assert micro.organism_type == "Bacteria"

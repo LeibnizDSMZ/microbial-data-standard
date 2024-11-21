@@ -581,8 +581,6 @@ source: string
 }
 
 class `Microbe`{
-id: integer
-lastUpdate: string
 organismType: OrganismType
 morphType: Morph | null
 unifiedTypeStrain: boolean
