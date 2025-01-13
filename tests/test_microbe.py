@@ -4,7 +4,7 @@ import pytest
 from microbial_strain_data_model.microbe import Microbe
 
 
-@pytest.fixture()
+@pytest.fixture
 def micro():
     return Microbe(
         organismType=OrganismType.bacteria,

@@ -32,14 +32,17 @@ class IsolationTag(BaseModel):
 class Sample(BaseModel):
     """Information on the Sampling event of that Strain"""
 
-    date: Annotated[
-        str,
-        StringConstraints(
-            strip_whitespace=True,
-            to_upper=True,
-            pattern=r"^(?:\d{4}[-\._]?\d{0,2}[-\._]?\d{0,2})?/?(?:\d{4}[-\._]?\d{0,2}[-\._]?\d{0,2})?$",
-        ),
-    ] | None = Field(default=None, title="Date", alias="date")
+    date: (
+        Annotated[
+            str,
+            StringConstraints(
+                strip_whitespace=True,
+                to_upper=True,
+                pattern=r"^(?:\d{4}[-\._]?\d{0,2}[-\._]?\d{0,2})?/?(?:\d{4}[-\._]?\d{0,2}[-\._]?\d{0,2})?$",
+            ),
+        ]
+        | None
+    ) = Field(default=None, title="Date", alias="date")
     country: Country | None = Field(default=None, title="Country", alias="country")
     description: str | None = Field(
         default=None, title="Description", alias="description"
