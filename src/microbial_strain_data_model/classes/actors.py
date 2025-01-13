@@ -52,18 +52,21 @@ class Collection(Organization):
     axenic: bool | None = Field(
         default=None, title="Axenic Culture", alias="axenicCulture"
     )
-    supply_forms: list[SupplyForm] | None = Field(
+    supply_forms: list[SupplyForm] = Field(
         default_factory=list, title="Supply Forms", alias="supplyForms"
     )
     history: str | None = Field(default=None, title="History", alias="history")
-    date: Annotated[
-        str,
-        StringConstraints(
-            strip_whitespace=True,
-            to_upper=True,
-            pattern=r"^(?:\d{4}[-\._]?\d{0,2}[-\._]?\d{0,2})?/?(?:\d{4}[-\._]?\d{0,2}[-\._]?\d{0,2})?$",
-        ),
-    ] | None = Field(default=None, title="Deposition Date", alias="depositionDate")
+    date: (
+        Annotated[
+            str,
+            StringConstraints(
+                strip_whitespace=True,
+                to_upper=True,
+                pattern=r"^(?:\d{4}[-\._]?\d{0,2}[-\._]?\d{0,2})?/?(?:\d{4}[-\._]?\d{0,2}[-\._]?\d{0,2})?$",
+            ),
+        ]
+        | None
+    ) = Field(default=None, title="Deposition Date", alias="depositionDate")
     depositor: Person | None = Field(default=None, title="Depositor", alias="depositor")
     source: Annotated[str, StringConstraints(pattern=r"^\/sources\/\d+$")] = Field(
         title="Source", alias="source", description="JSON path to source object"
