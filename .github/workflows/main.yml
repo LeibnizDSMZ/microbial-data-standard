@@ -41,7 +41,7 @@ jobs:
     - name: Install dependencies
       run: |
         sudo mkdir -p $CU_HOME && sudo chown runner -R $CU_HOME
-        sudo apt install -y libedit-dev curl make git-lfs libsqlite3-dev
+        sudo apt install -y libedit-dev curl make git-lfs libsqlite3-dev libbz2-dev liblzma-dev
         curl https://pyenv.run | PYENV_ROOT=$CU_HOME/$PY_DIR bash
         echo "$CU_HOME/$PY_DIR/bin" >> $GITHUB_PATH
         echo "$CU_HOME/$PY_DIR/shims" >> $GITHUB_PATH
