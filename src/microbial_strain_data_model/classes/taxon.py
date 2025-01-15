@@ -1,13 +1,22 @@
 from typing import Self
 from typing_extensions import Annotated
 
-from pydantic import BaseModel, Field, StringConstraints
+from pydantic import BaseModel, ConfigDict, Field, StringConstraints
 
 from microbial_strain_data_model.classes.enums import TaxonRank, TaxonStatus
 from microbial_strain_data_model.classes.identifier import Identifier
 
 
 class TypeStrain(BaseModel):
+    """Information if a strain is the type strain of its species"""
+
+    model_config = ConfigDict(
+        strict=True,
+        extra="forbid",
+        revalidate_instances="always",
+        str_strip_whitespace=True,
+    )
+
     type_strain: bool = Field(title="Type Strain", alias="typeStrain")
     source: Annotated[str, StringConstraints(pattern=r"^\/sources\/\d+$")] = Field(
         title="Source", alias="source", description="JSON path to source object"
@@ -15,6 +24,15 @@ class TypeStrain(BaseModel):
 
 
 class ScientificName(BaseModel):
+    """Scientific name"""
+
+    model_config = ConfigDict(
+        strict=True,
+        extra="forbid",
+        revalidate_instances="always",
+        str_strip_whitespace=True,
+    )
+
     name: str = Field(title="Name", alias="name")
     author: str = Field(title="Author", alias="author")
 
@@ -23,6 +41,13 @@ class Taxon(BaseModel):
     """
     A class to take all information about a taxon for the new microbial data standard.
     """
+
+    model_config = ConfigDict(
+        strict=True,
+        extra="forbid",
+        revalidate_instances="always",
+        str_strip_whitespace=True,
+    )
 
     name: str = Field(title="Name", alias="name")
     rank: TaxonRank = Field(title="Taxon Rank", alias="taxonRank")
@@ -41,6 +66,15 @@ class Taxon(BaseModel):
 
 
 class TaxonWithSource(Taxon):
+    """Taxon class with source information"""
+
+    model_config = ConfigDict(
+        strict=True,
+        extra="forbid",
+        revalidate_instances="always",
+        str_strip_whitespace=True,
+    )
+
     source: Annotated[str, StringConstraints(pattern=r"^\/sources\/\d+$")] = Field(
         title="Source", alias="source", description="JSON path to source object"
     )

@@ -1,12 +1,19 @@
 from typing import Self
 from typing_extensions import Annotated
-from pydantic import BaseModel, Field, model_validator, StringConstraints
+from pydantic import BaseModel, ConfigDict, Field, model_validator, StringConstraints
 
 from microbial_strain_data_model.classes.chemicalsubstance import FattyAcid
 
 
 class FattyAcidProfile(BaseModel):
     """Full Fatty Acid Profile"""
+
+    model_config = ConfigDict(
+        strict=True,
+        extra="forbid",
+        revalidate_instances="always",
+        str_strip_whitespace=True,
+    )
 
     profile: list[FattyAcid] = Field(
         default_factory=list, title="Profile", alias="profile"

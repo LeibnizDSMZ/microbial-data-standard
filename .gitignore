@@ -203,3 +203,4 @@ test.json
 schema.json
 *.xlsx
 .vscode
+merge_test.py

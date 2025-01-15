@@ -1,11 +1,18 @@
 from typing_extensions import Annotated
-from pydantic import BaseModel, Field, StringConstraints
+from pydantic import BaseModel, ConfigDict, Field, StringConstraints
 
 from microbial_strain_data_model.classes.actors import Organization, Person
 
 
 class Isolation(BaseModel):
     """Isolation event information"""
+
+    model_config = ConfigDict(
+        strict=True,
+        extra="forbid",
+        revalidate_instances="always",
+        str_strip_whitespace=True,
+    )
 
     date: (
         Annotated[
