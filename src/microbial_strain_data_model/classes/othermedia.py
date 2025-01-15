@@ -1,11 +1,25 @@
 from typing_extensions import Annotated
-from pydantic import BaseModel, Field, HttpUrl, model_validator, StringConstraints
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    Field,
+    HttpUrl,
+    model_validator,
+    StringConstraints,
+)
 
 from microbial_strain_data_model.utils.functions import check_not_completely_empty
 
 
 class OtherMedia(BaseModel):
     """A Media object e.g. Photo, Video, Document, etc"""
+
+    model_config = ConfigDict(
+        strict=True,
+        extra="forbid",
+        revalidate_instances="always",
+        str_strip_whitespace=True,
+    )
 
     url: HttpUrl | None = Field(default=None, title="URL", alias="url")
     name: str | None = Field(default=None, title="Name", alias="name")

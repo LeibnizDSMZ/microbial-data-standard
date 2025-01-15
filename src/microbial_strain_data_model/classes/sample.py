@@ -1,5 +1,5 @@
 from typing_extensions import Annotated, Self
-from pydantic import BaseModel, Field, StringConstraints, model_validator
+from pydantic import BaseModel, ConfigDict, Field, StringConstraints, model_validator
 from anytree.resolver import Resolver, ChildResolverError
 
 from microbial_strain_data_model.data.isolation_sources_tree import root
@@ -8,6 +8,15 @@ from microbial_strain_data_model.classes.location import Location
 
 
 class IsolationTag(BaseModel):
+    """Isolation tag system, original used by BacDive"""
+
+    model_config = ConfigDict(
+        strict=True,
+        extra="forbid",
+        revalidate_instances="always",
+        str_strip_whitespace=True,
+    )
+
     level_1: str = Field(title="Level 1", alias="level1")
     level_2: str | None = Field(default=None, title="Level 2", alias="level2")
     level_3: str | None = Field(default=None, title="Level 3", alias="level3")
@@ -31,6 +40,13 @@ class IsolationTag(BaseModel):
 
 class Sample(BaseModel):
     """Information on the Sampling event of that Strain"""
+
+    model_config = ConfigDict(
+        strict=True,
+        extra="forbid",
+        revalidate_instances="always",
+        str_strip_whitespace=True,
+    )
 
     date: (
         Annotated[

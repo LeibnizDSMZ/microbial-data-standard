@@ -1,6 +1,6 @@
 from typing import Generic, TypeVar
 from typing_extensions import Annotated
-from pydantic import BaseModel, Field, StringConstraints
+from pydantic import BaseModel, ConfigDict, Field, StringConstraints
 
 
 T = TypeVar("T")
@@ -8,6 +8,13 @@ T = TypeVar("T")
 
 class GrowthRange(BaseModel, Generic[T]):
     """Single grow condition test"""
+
+    model_config = ConfigDict(
+        strict=True,
+        extra="forbid",
+        revalidate_instances="always",
+        str_strip_whitespace=True,
+    )
 
     minimal: float | None = Field(default=None, title="Minimal", alias="minimal")
     maximal: float | None = Field(default=None, title="Maximal", alias="maximal")
@@ -17,6 +24,13 @@ class GrowthRange(BaseModel, Generic[T]):
 
 class Growth(BaseModel, Generic[T]):
     """Optimal and tested information about growing a Strain"""
+
+    model_config = ConfigDict(
+        strict=True,
+        extra="forbid",
+        revalidate_instances="always",
+        str_strip_whitespace=True,
+    )
 
     optimal: float | None = Field(default=None, title="Optimal", alias="optimal")
     minimal: float | None = Field(default=None, title="Minimal", alias="minimal")

@@ -1,5 +1,12 @@
 from typing_extensions import Annotated, Self
-from pydantic import BaseModel, Field, HttpUrl, StringConstraints, model_validator
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    Field,
+    HttpUrl,
+    StringConstraints,
+    model_validator,
+)
 from pydantic_extra_types.pendulum_dt import Date
 
 from microbial_strain_data_model.classes.actors import Organization, Person
@@ -7,6 +14,13 @@ from microbial_strain_data_model.classes.actors import Organization, Person
 
 class Literature(BaseModel):
     """Connected Literature information"""
+
+    model_config = ConfigDict(
+        strict=True,
+        extra="forbid",
+        revalidate_instances="always",
+        str_strip_whitespace=True,
+    )
 
     name: str | None = Field(default=None, title="Name", alias="name")
     url: HttpUrl | None = Field(default=None, title="URL", alias="url")

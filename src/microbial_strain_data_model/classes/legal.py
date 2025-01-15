@@ -1,11 +1,18 @@
 from typing_extensions import Annotated
-from pydantic import BaseModel, Field, StringConstraints
+from pydantic import BaseModel, ConfigDict, Field, StringConstraints
 
 from microbial_strain_data_model.classes.enums import NagoyaRestrictions
 
 
 class Legal(BaseModel):
     """Legal information of the strain"""
+
+    model_config = ConfigDict(
+        strict=True,
+        extra="forbid",
+        revalidate_instances="always",
+        str_strip_whitespace=True,
+    )
 
     dual_use: bool | None = Field(default=None, title="Dual Use", alias="dualUse")
     quarantine: bool | None = Field(
