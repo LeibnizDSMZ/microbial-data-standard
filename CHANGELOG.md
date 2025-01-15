@@ -1,3 +1,9 @@
+## v0.1.1 (2025-01-15)
+
+### Fix
+
+- set model config for every class
+
 ## v0.1.0 (2025-01-13)
 
 ### Feat
