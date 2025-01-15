@@ -23,8 +23,6 @@ setup:
 	$(POETRY) env remove --all
 	$(POETRY) config virtualenvs.in-project true
 	$(POETRY) env use `pyenv which python`
-	$(POETRY) self add poetry-plugin-export
-	$(POETRY) self add poetry-plugin-shell
 
 uninstall:
 	pyenv local $(PYV)
