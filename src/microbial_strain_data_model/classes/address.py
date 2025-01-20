@@ -16,7 +16,9 @@ class Address(BaseModel):
         str_strip_whitespace=True,
     )
 
-    country: CountryAlpha2 | None = Field(title="Country", alias="addressCountry")
+    country: CountryAlpha2 | None = Field(
+        default=None, title="Country", alias="addressCountry"
+    )
     locality: str | None = Field(default=None, title="Locality", alias="addressLocality")
     region: str | None = Field(default=None, title="Region", alias="addressRegion")
     post_office_box_number: str | None = Field(

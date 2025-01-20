@@ -12,8 +12,8 @@ class CultivationMedia(BaseModel):
         str_strip_whitespace=True,
     )
 
-    name: str | None = Field(default=None, title="Name", alias="name")
-    url: HttpUrl | None = Field(title="URL", alias="url")
+    name: str = Field(title="Name", alias="name")
+    url: HttpUrl | None = Field(default=None, title="URL", alias="url")
     reagents: list[str] = Field(
         default_factory=list, title="Reagent Used", alias="reagentUsed"
     )
