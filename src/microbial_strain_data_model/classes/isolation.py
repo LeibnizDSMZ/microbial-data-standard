@@ -2,6 +2,7 @@ from typing_extensions import Annotated
 from pydantic import BaseModel, ConfigDict, Field, StringConstraints
 
 from microbial_strain_data_model.classes.actors import Organization, Person
+from microbial_strain_data_model.classes.sourcestring import SourceString
 
 
 class Isolation(BaseModel):
@@ -28,6 +29,6 @@ class Isolation(BaseModel):
     isolator: Organization | Person | None = Field(
         default=None, title="Isolated At", alias="isolatedAt"
     )
-    source: Annotated[str, StringConstraints(pattern=r"^\/sources\/\d+$")] = Field(
-        title="Source", alias="source", description="JSON path to source object"
+    source: list[SourceString] = Field(
+        title="Source", alias="source", description="List of JSON paths to source object"
     )

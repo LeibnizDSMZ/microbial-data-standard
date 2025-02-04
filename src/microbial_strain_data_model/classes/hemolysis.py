@@ -1,7 +1,8 @@
-from typing_extensions import Annotated
-from pydantic import BaseModel, ConfigDict, Field, StringConstraints
+from pydantic import BaseModel, ConfigDict, Field
 
 from microbial_strain_data_model.classes.enums import HemolysisBlood, HemolysisType
+
+from microbial_strain_data_model.classes.sourcestring import SourceString
 
 
 class Hemolysis(BaseModel):
@@ -16,6 +17,6 @@ class Hemolysis(BaseModel):
 
     blood: HemolysisBlood = Field(title="Blood", alias="blood")
     hemolysis: HemolysisType = Field(title="Hemolysis Type", alias="hemolysisType")
-    source: Annotated[str, StringConstraints(pattern=r"^\/sources\/\d+$")] = Field(
-        title="Source", alias="source", description="JSON path to source object"
+    source: list[SourceString] = Field(
+        title="Source", alias="source", description="List of JSON paths to source object"
     )

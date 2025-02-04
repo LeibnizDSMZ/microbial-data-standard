@@ -1,7 +1,8 @@
-from typing_extensions import Annotated
-from pydantic import BaseModel, ConfigDict, Field, StringConstraints
+from pydantic import BaseModel, ConfigDict, Field
 
 from microbial_strain_data_model.classes.enums import Host, PathogenLevel
+
+from microbial_strain_data_model.classes.sourcestring import SourceString
 
 
 class Pathogen(BaseModel):
@@ -19,6 +20,6 @@ class Pathogen(BaseModel):
     classification: str | None = Field(
         default=None, title="Classification", alias="classification"
     )
-    source: Annotated[str, StringConstraints(pattern=r"^\/sources\/\d+$")] = Field(
-        title="Source", alias="source", description="JSON path to source object"
+    source: list[SourceString] = Field(
+        title="Source", alias="source", description="List of JSON paths to source object"
     )

@@ -8,13 +8,13 @@ from microbial_strain_data_model.microbe import Microbe
 def micro():
     return Microbe(
         organismType=OrganismType.bacteria,
-        typeStrain=[{"typeStrain": False, "source": "/sources/0"}],
+        typeStrain=[{"typeStrain": False, "source": ["/sources/0"]}],
         sample=[
             {
                 "tags": [
                     {"level1": "#Host", "level2": "#Fishes", "level3": "#Zebrafish"}
                 ],
-                "source": "/sources/0",
+                "source": ["/sources/0"],
             }
         ],
         taxon=[
@@ -22,12 +22,12 @@ def micro():
                 "name": "Somename",
                 "taxonRank": TaxonRank.species,
                 "taxonStatus": TaxonStatus.valid,
-                "source": "/sources/0",
+                "source": ["/sources/0"],
             }
         ],
-        otherMedia=[{"url": None, "name": "test", "source": "/sources/0"}],
+        otherMedia=[{"url": None, "name": "test", "source": ["/sources/0"]}],
         fattyAcidProfiles=[
-            {"profile": [{"percent": 10.0}], "temperature": 10, "source": "/sources/0"}
+            {"profile": [{"percent": 10.0}], "temperature": 10, "source": ["/sources/0"]}
         ],
         sources=[
             {

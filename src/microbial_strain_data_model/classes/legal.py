@@ -1,7 +1,7 @@
-from typing_extensions import Annotated
-from pydantic import BaseModel, ConfigDict, Field, StringConstraints
+from pydantic import BaseModel, ConfigDict, Field
 
 from microbial_strain_data_model.classes.enums import NagoyaRestrictions
+from microbial_strain_data_model.classes.sourcestring import SourceString
 
 
 class Legal(BaseModel):
@@ -27,6 +27,6 @@ class Legal(BaseModel):
     gmo_information: str | None = Field(
         default=None, title="GMO Information", alias="gmoInformation"
     )
-    source: Annotated[str, StringConstraints(pattern=r"^\/sources\/\d+$")] = Field(
-        title="Source", alias="source", description="JSON path to source object"
+    source: list[SourceString] = Field(
+        title="Source", alias="source", description="List of JSON paths to source object"
     )

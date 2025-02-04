@@ -1,7 +1,8 @@
-from typing_extensions import Annotated
-from pydantic import BaseModel, ConfigDict, Field, StringConstraints, PositiveFloat
+from pydantic import BaseModel, ConfigDict, Field, PositiveFloat
 
 from microbial_strain_data_model.classes.enums import SizeUnit
+
+from microbial_strain_data_model.classes.sourcestring import SourceString
 
 
 class Size(BaseModel):
@@ -31,6 +32,6 @@ class CellSize(BaseModel):
 
     cell_length: Size = Field(title="Cell Length", alias="cellLength", description="")
     cell_width: Size = Field(title="Cell Width", alias="cellWidth", description="")
-    source: Annotated[str, StringConstraints(pattern=r"^\/sources\/\d+$")] = Field(
-        title="Source", alias="source", description="JSON path to source object"
+    source: list[SourceString] = Field(
+        title="Source", alias="source", description="List of JSON paths to source object"
     )

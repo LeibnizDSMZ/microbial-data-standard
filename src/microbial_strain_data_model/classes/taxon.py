@@ -1,10 +1,11 @@
 from typing import Self
-from typing_extensions import Annotated
 
-from pydantic import BaseModel, ConfigDict, Field, StringConstraints
+from pydantic import BaseModel, ConfigDict, Field
 
 from microbial_strain_data_model.classes.enums import TaxonRank, TaxonStatus
 from microbial_strain_data_model.classes.identifier import Identifier
+
+from microbial_strain_data_model.classes.sourcestring import SourceString
 
 
 class TypeStrain(BaseModel):
@@ -18,8 +19,8 @@ class TypeStrain(BaseModel):
     )
 
     type_strain: bool = Field(title="Type Strain", alias="typeStrain")
-    source: Annotated[str, StringConstraints(pattern=r"^\/sources\/\d+$")] = Field(
-        title="Source", alias="source", description="JSON path to source object"
+    source: list[SourceString] = Field(
+        title="Source", alias="source", description="List of JSON paths to source object"
     )
 
 
@@ -75,6 +76,6 @@ class TaxonWithSource(Taxon):
         str_strip_whitespace=True,
     )
 
-    source: Annotated[str, StringConstraints(pattern=r"^\/sources\/\d+$")] = Field(
-        title="Source", alias="source", description="JSON path to source object"
+    source: list[SourceString] = Field(
+        title="Source", alias="source", description="List of JSON paths to source object"
     )

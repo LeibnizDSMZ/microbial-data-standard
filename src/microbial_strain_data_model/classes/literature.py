@@ -1,15 +1,15 @@
-from typing_extensions import Annotated, Self
+from typing_extensions import Self
 from pydantic import (
     BaseModel,
     ConfigDict,
     Field,
     HttpUrl,
-    StringConstraints,
     model_validator,
 )
 from pydantic_extra_types.pendulum_dt import Date
 
 from microbial_strain_data_model.classes.actors import Organization, Person
+from microbial_strain_data_model.classes.sourcestring import SourceString
 
 
 class Literature(BaseModel):
@@ -29,8 +29,8 @@ class Literature(BaseModel):
     publisher: list[Organization] = Field(
         default_factory=list, title="Publisher", alias="publisher"
     )
-    source: Annotated[str, StringConstraints(pattern=r"^\/sources\/\d+$")] = Field(
-        title="Source", alias="source", description="JSON path to source object"
+    source: list[SourceString] = Field(
+        title="Source", alias="source", description="List of JSON paths to source object"
     )
 
     @model_validator(mode="after")
