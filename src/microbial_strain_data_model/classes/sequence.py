@@ -1,7 +1,8 @@
-from typing_extensions import Annotated
-from pydantic import BaseModel, ConfigDict, Field, HttpUrl, StringConstraints
+from pydantic import BaseModel, ConfigDict, Field, HttpUrl
 
 from microbial_strain_data_model.classes.enums import SequenceLevel, SequenceType
+
+from microbial_strain_data_model.classes.sourcestring import SourceString
 
 
 class Sequence(BaseModel):
@@ -22,6 +23,6 @@ class Sequence(BaseModel):
     )
     length: str | None = Field(default=None, title="Length", alias="length")
     url: list[HttpUrl] = Field(default_factory=list, title="URL", alias="url")
-    source: Annotated[str, StringConstraints(pattern=r"^\/sources\/\d+$")] = Field(
-        title="Source", alias="source", description="JSON path to source object"
+    source: list[SourceString] = Field(
+        title="Source", alias="source", description="List of JSON paths to source object"
     )

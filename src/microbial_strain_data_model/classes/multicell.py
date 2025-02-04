@@ -1,5 +1,6 @@
-from typing_extensions import Annotated
-from pydantic import BaseModel, ConfigDict, Field, StringConstraints
+from pydantic import BaseModel, ConfigDict, Field
+
+from microbial_strain_data_model.classes.sourcestring import SourceString
 
 
 class MultiCell(BaseModel):
@@ -15,6 +16,6 @@ class MultiCell(BaseModel):
     multi_cell: bool = Field(
         title="Multi Cell Complex Forming", alias="multiCellComplexForming"
     )
-    source: Annotated[str, StringConstraints(pattern=r"^\/sources\/\d+$")] = Field(
-        title="Source", alias="source", description="JSON path to source object"
+    source: list[SourceString] = Field(
+        title="Source", alias="source", description="List of JSON paths to source object"
     )

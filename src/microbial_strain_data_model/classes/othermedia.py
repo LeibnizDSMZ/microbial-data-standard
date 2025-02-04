@@ -1,14 +1,13 @@
-from typing_extensions import Annotated
 from pydantic import (
     BaseModel,
     ConfigDict,
     Field,
     HttpUrl,
     model_validator,
-    StringConstraints,
 )
 
 from microbial_strain_data_model.utils.functions import check_not_completely_empty
+from microbial_strain_data_model.classes.sourcestring import SourceString
 
 
 class OtherMedia(BaseModel):
@@ -30,8 +29,8 @@ class OtherMedia(BaseModel):
     additional_type: str | None = Field(
         default=None, title="Additional Type", alias="additionalType"
     )
-    source: Annotated[str, StringConstraints(pattern=r"^\/sources\/\d+$")] = Field(
-        title="Source", alias="source", description="JSON path to source object"
+    source: list[SourceString] = Field(
+        title="Source", alias="source", description="List of JSON paths to source object"
     )
 
     _check_values = model_validator(mode="after")(check_not_completely_empty)

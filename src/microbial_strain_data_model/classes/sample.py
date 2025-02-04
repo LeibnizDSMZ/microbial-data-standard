@@ -6,6 +6,8 @@ from microbial_strain_data_model.data.isolation_sources_tree import root
 from microbial_strain_data_model.classes.country import Country
 from microbial_strain_data_model.classes.location import Location
 
+from microbial_strain_data_model.classes.sourcestring import SourceString
+
 
 class IsolationTag(BaseModel):
     """Isolation tag system, original used by BacDive"""
@@ -69,6 +71,6 @@ class Sample(BaseModel):
     tags: list[IsolationTag] = Field(
         default_factory=list, title="Isolation Source Tags", alias="tags"
     )
-    source: Annotated[str, StringConstraints(pattern=r"^\/sources\/\d+$")] = Field(
-        title="Source", alias="source", description="JSON path to source object"
+    source: list[SourceString] = Field(
+        title="Source", alias="source", description="List of JSON paths to source object"
     )

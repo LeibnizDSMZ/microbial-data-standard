@@ -1,9 +1,10 @@
-from typing_extensions import Annotated
-from pydantic import BaseModel, ConfigDict, Field, model_validator, StringConstraints
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from microbial_strain_data_model.classes.enums import ColonyColor
 from microbial_strain_data_model.classes.size import Size
 from microbial_strain_data_model.utils.functions import check_not_completely_empty
+
+from microbial_strain_data_model.classes.sourcestring import SourceString
 
 
 class Colony(BaseModel):
@@ -20,8 +21,8 @@ class Colony(BaseModel):
     color: ColonyColor | None = Field(
         default=None, title="Color of Colony", alias="color"
     )
-    source: Annotated[str, StringConstraints(pattern=r"^\/sources\/\d+$")] = Field(
-        title="Source", alias="source", description="JSON path to source object"
+    source: list[SourceString] = Field(
+        title="Source", alias="source", description="List of JSON paths to source object"
     )
 
     _check_values = model_validator(mode="after")(check_not_completely_empty)

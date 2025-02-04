@@ -3,10 +3,12 @@ from microbial_strain_data_model.classes.enums import ConcentrationUnit
 from microbial_strain_data_model.classes.metabolitetest import MetaboliteTest
 from microbial_strain_data_model.utils.functions import check_not_completely_empty
 
-from pydantic import BaseModel, ConfigDict, Field, model_validator, StringConstraints
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from microbial_strain_data_model.classes.growrange import Growth
 from microbial_strain_data_model.classes.identifier import Identifier
+
+from microbial_strain_data_model.classes.sourcestring import SourceString
 
 
 class ChemicalSubstance(BaseModel):
@@ -45,8 +47,8 @@ class CellWall(ChemicalSubstance):
     percent: Annotated[float, Field(ge=0, le=100)] | None = Field(
         default=None, title="Percent", alias="percent"
     )
-    source: Annotated[str, StringConstraints(pattern=r"^\/sources\/\d+$")] = Field(
-        title="Source", alias="source", description="JSON path to source object"
+    source: list[SourceString] = Field(
+        title="Source", alias="source", description="List of JSON paths to source object"
     )
 
 
@@ -76,8 +78,8 @@ class Halophil(Growth[ConcentrationUnit], ChemicalSubstance):
         str_strip_whitespace=True,
     )
 
-    source: Annotated[str, StringConstraints(pattern=r"^\/sources\/\d+$")] = Field(
-        title="Source", alias="source", description="JSON path to source object"
+    source: list[SourceString] = Field(
+        title="Source", alias="source", description="List of JSON paths to source object"
     )
 
 
@@ -94,6 +96,6 @@ class Metabolite(ChemicalSubstance):
     tests: list[MetaboliteTest] = Field(
         default_factory=list, title="Tests", alias="tests"
     )
-    source: Annotated[str, StringConstraints(pattern=r"^\/sources\/\d+$")] = Field(
-        title="Source", alias="source", description="JSON path to source object"
+    source: list[SourceString] = Field(
+        title="Source", alias="source", description="List of JSON paths to source object"
     )

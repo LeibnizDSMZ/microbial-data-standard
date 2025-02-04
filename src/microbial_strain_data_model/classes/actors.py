@@ -4,6 +4,8 @@ from microbial_strain_data_model.classes.address import Address
 from microbial_strain_data_model.classes.enums import PersonRole, Restriction, SupplyForm
 from microbial_strain_data_model.classes.identifier import Identifier
 
+from microbial_strain_data_model.classes.sourcestring import SourceString
+
 
 class Person(BaseModel):
     """Person - also Basis for every Individual Entity (e.g. Organization)"""
@@ -32,8 +34,8 @@ class ConnectedPerson(Person):
     )
 
     role: PersonRole | None = Field(default=None, title="Role", alias="role")
-    source: Annotated[str, StringConstraints(pattern=r"^\/sources\/\d+$")] = Field(
-        title="Source", alias="source", description="JSON path to source object"
+    source: list[SourceString] = Field(
+        title="Source", alias="source", description="List of JSON paths to source object"
     )
 
 
@@ -96,6 +98,6 @@ class Collection(Organization):
         | None
     ) = Field(default=None, title="Deposition Date", alias="depositionDate")
     depositor: Person | None = Field(default=None, title="Depositor", alias="depositor")
-    source: Annotated[str, StringConstraints(pattern=r"^\/sources\/\d+$")] = Field(
-        title="Source", alias="source", description="JSON path to source object"
+    source: list[SourceString] = Field(
+        title="Source", alias="source", description="List of JSON paths to source object"
     )

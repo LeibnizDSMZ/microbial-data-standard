@@ -1,6 +1,8 @@
 from typing_extensions import Annotated
 from pydantic import BaseModel, ConfigDict, StringConstraints, Field, HttpUrl
 
+from microbial_strain_data_model.classes.sourcestring import SourceString
+
 
 class Enzyme(BaseModel):
     """Information about one enzyme"""
@@ -28,6 +30,6 @@ class Enzyme(BaseModel):
         default_factory=list, title="Alternate Name", alias="alternateName"
     )
     active: bool | None = Field(default=None, title="Active", alias="active")
-    source: Annotated[str, StringConstraints(pattern=r"^\/sources\/\d+$")] = Field(
-        title="Source", alias="source", description="JSON path to source object"
+    source: list[SourceString] = Field(
+        title="Source", alias="source", description="List of JSON paths to source object"
     )

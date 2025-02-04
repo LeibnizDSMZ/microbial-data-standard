@@ -1,5 +1,6 @@
-from typing_extensions import Annotated
-from pydantic import BaseModel, ConfigDict, Field, HttpUrl, StringConstraints
+from pydantic import BaseModel, ConfigDict, Field, HttpUrl
+
+from microbial_strain_data_model.classes.sourcestring import SourceString
 
 
 class BioSafety(BaseModel):
@@ -17,6 +18,6 @@ class BioSafety(BaseModel):
         default=None, title="Classification", alias="classification"
     )
     url: HttpUrl | None = Field(default=None, title="URL", alias="url")
-    source: Annotated[str, StringConstraints(pattern=r"^\/sources\/\d+$")] = Field(
-        title="Source", alias="source", description="JSON path to source object"
+    source: list[SourceString] = Field(
+        title="Source", alias="source", description="List of JSON paths to source object"
     )
