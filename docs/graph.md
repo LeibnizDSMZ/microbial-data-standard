@@ -457,7 +457,7 @@ gamma
 }
 
 class `CultivationMedia`{
-name: string | null
+name: string
 url: string | null
 reagentUsed: string
 source: string
@@ -562,7 +562,7 @@ availability: boolean | null
 catalogUrl: string | null
 restrictionsOnUse: Restriction | null
 axenicCulture: boolean | null
-supplyForms: array | null
+supplyForms: array[SupplyForm]
 history: string | null
 depositionDate: string | null
 depositor: Person | null
@@ -574,6 +574,18 @@ class `Restriction`{
 No known restrictions apply
 Only for non-commercial purposes
 For commercial development a special agreement is requested
+}
+
+class `SupplyForm`{
+<<enumeration>>
+Agar
+Cryo
+Dry ice
+Liquid medium
+Lyo
+Oil
+Water
+DNA
 }
 
 class `OtherMedia`{
@@ -722,6 +734,7 @@ sources:
 `Collection` ..> `Identifier`
 `Collection` ..> `Address`
 `Collection` ..> `Restriction`
+`Collection` ..> `SupplyForm`
 `Collection` ..> `Person`
 `Microbe` ..> `OtherMedia`
 ```

@@ -1,6 +1,7 @@
 {
   "$defs": {
     "Address": {
+      "additionalProperties": false,
       "description": "Address object comparable to schema.org PostalAddress",
       "properties": {
         "addressCountry": {
@@ -13,6 +14,7 @@
               "type": "null"
             }
           ],
+          "default": null,
           "title": "Country"
         },
         "addressLocality": {
@@ -76,13 +78,11 @@
           "title": "Street Address"
         }
       },
-      "required": [
-        "addressCountry"
-      ],
       "title": "Address",
       "type": "object"
     },
     "Application": {
+      "additionalProperties": false,
       "description": "Application of the strain",
       "properties": {
         "application": {
@@ -90,10 +90,13 @@
           "type": "string"
         },
         "source": {
-          "description": "JSON path to source object",
-          "pattern": "^\\/sources\\/\\d+$",
+          "description": "List of JSON paths to source object",
+          "items": {
+            "pattern": "^\\/sources\\/\\d+$",
+            "type": "string"
+          },
           "title": "Source",
-          "type": "string"
+          "type": "array"
         }
       },
       "required": [
@@ -104,6 +107,7 @@
       "type": "object"
     },
     "BioSafety": {
+      "additionalProperties": false,
       "description": "Biosafety classification",
       "properties": {
         "classification": {
@@ -123,10 +127,13 @@
           "type": "string"
         },
         "source": {
-          "description": "JSON path to source object",
-          "pattern": "^\\/sources\\/\\d+$",
+          "description": "List of JSON paths to source object",
+          "items": {
+            "pattern": "^\\/sources\\/\\d+$",
+            "type": "string"
+          },
           "title": "Source",
-          "type": "string"
+          "type": "array"
         },
         "url": {
           "anyOf": [
@@ -152,6 +159,7 @@
       "type": "object"
     },
     "CellShape": {
+      "additionalProperties": false,
       "description": "Cell shape of the strain",
       "properties": {
         "cellShape": {
@@ -159,10 +167,13 @@
           "type": "string"
         },
         "source": {
-          "description": "JSON path to source object",
-          "pattern": "^\\/sources\\/\\d+$",
+          "description": "List of JSON paths to source object",
+          "items": {
+            "pattern": "^\\/sources\\/\\d+$",
+            "type": "string"
+          },
           "title": "Source",
-          "type": "string"
+          "type": "array"
         }
       },
       "required": [
@@ -173,6 +184,7 @@
       "type": "object"
     },
     "CellSize": {
+      "additionalProperties": false,
       "description": "object to hold cell size information",
       "properties": {
         "cellLength": {
@@ -186,10 +198,13 @@
           "title": "Cell Width"
         },
         "source": {
-          "description": "JSON path to source object",
-          "pattern": "^\\/sources\\/\\d+$",
+          "description": "List of JSON paths to source object",
+          "items": {
+            "pattern": "^\\/sources\\/\\d+$",
+            "type": "string"
+          },
           "title": "Source",
-          "type": "string"
+          "type": "array"
         }
       },
       "required": [
@@ -201,6 +216,7 @@
       "type": "object"
     },
     "CellWall": {
+      "additionalProperties": false,
       "description": "Cell Wall constituent - ChemSubstance + percent of CellWall",
       "properties": {
         "alternateName": {
@@ -244,10 +260,13 @@
           "title": "Percent"
         },
         "source": {
-          "description": "JSON path to source object",
-          "pattern": "^\\/sources\\/\\d+$",
+          "description": "List of JSON paths to source object",
+          "items": {
+            "pattern": "^\\/sources\\/\\d+$",
+            "type": "string"
+          },
           "title": "Source",
-          "type": "string"
+          "type": "array"
         }
       },
       "required": [
@@ -257,6 +276,7 @@
       "type": "object"
     },
     "Collection": {
+      "additionalProperties": false,
       "description": "Information about one culture collection",
       "properties": {
         "address": {
@@ -400,24 +420,20 @@
           "title": "Restrictions On Use"
         },
         "source": {
-          "description": "JSON path to source object",
-          "pattern": "^\\/sources\\/\\d+$",
+          "description": "List of JSON paths to source object",
+          "items": {
+            "pattern": "^\\/sources\\/\\d+$",
+            "type": "string"
+          },
           "title": "Source",
-          "type": "string"
+          "type": "array"
         },
         "supplyForms": {
-          "anyOf": [
-            {
-              "items": {
-                "$ref": "#/$defs/SupplyForm"
-              },
-              "type": "array"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "title": "Supply Forms"
+          "items": {
+            "$ref": "#/$defs/SupplyForm"
+          },
+          "title": "Supply Forms",
+          "type": "array"
         },
         "url": {
           "anyOf": [
@@ -444,6 +460,7 @@
       "type": "object"
     },
     "Colony": {
+      "additionalProperties": false,
       "description": "Colony information of a microorganism/strain",
       "properties": {
         "color": {
@@ -471,10 +488,13 @@
           "title": "Size of Colony"
         },
         "source": {
-          "description": "JSON path to source object",
-          "pattern": "^\\/sources\\/\\d+$",
+          "description": "List of JSON paths to source object",
+          "items": {
+            "pattern": "^\\/sources\\/\\d+$",
+            "type": "string"
+          },
           "title": "Source",
-          "type": "string"
+          "type": "array"
         }
       },
       "required": [
@@ -515,6 +535,7 @@
       "type": "string"
     },
     "ConnectedPerson": {
+      "additionalProperties": false,
       "description": "Connected Person = Person + Role",
       "properties": {
         "identifier": {
@@ -541,10 +562,13 @@
           "title": "Role"
         },
         "source": {
-          "description": "JSON path to source object",
-          "pattern": "^\\/sources\\/\\d+$",
+          "description": "List of JSON paths to source object",
+          "items": {
+            "pattern": "^\\/sources\\/\\d+$",
+            "type": "string"
+          },
           "title": "Source",
-          "type": "string"
+          "type": "array"
         }
       },
       "required": [
@@ -555,6 +579,7 @@
       "type": "object"
     },
     "Country": {
+      "additionalProperties": false,
       "description": "Country information, mostly on nagoya protocol",
       "properties": {
         "cartagenaProtocolParty": {
@@ -669,19 +694,12 @@
       "type": "string"
     },
     "CultivationMedia": {
+      "additionalProperties": false,
       "description": "Cultivation media, use links to Media Dive or other resources",
       "properties": {
         "name": {
-          "anyOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Name"
+          "title": "Name",
+          "type": "string"
         },
         "reagentUsed": {
           "items": {
@@ -691,10 +709,13 @@
           "type": "array"
         },
         "source": {
-          "description": "JSON path to source object",
-          "pattern": "^\\/sources\\/\\d+$",
+          "description": "List of JSON paths to source object",
+          "items": {
+            "pattern": "^\\/sources\\/\\d+$",
+            "type": "string"
+          },
           "title": "Source",
-          "type": "string"
+          "type": "array"
         },
         "url": {
           "anyOf": [
@@ -708,17 +729,19 @@
               "type": "null"
             }
           ],
+          "default": null,
           "title": "URL"
         }
       },
       "required": [
-        "url",
+        "name",
         "source"
       ],
       "title": "CultivationMedia",
       "type": "object"
     },
     "Enzyme": {
+      "additionalProperties": false,
       "description": "Information about one enzyme",
       "properties": {
         "active": {
@@ -759,10 +782,13 @@
           "title": "Name"
         },
         "source": {
-          "description": "JSON path to source object",
-          "pattern": "^\\/sources\\/\\d+$",
+          "description": "List of JSON paths to source object",
+          "items": {
+            "pattern": "^\\/sources\\/\\d+$",
+            "type": "string"
+          },
           "title": "Source",
-          "type": "string"
+          "type": "array"
         },
         "url": {
           "anyOf": [
@@ -789,6 +815,7 @@
       "type": "object"
     },
     "FattyAcid": {
+      "additionalProperties": false,
       "description": "Single Fatty Acid - used in Fatty Acid Profile",
       "properties": {
         "alternateName": {
@@ -848,6 +875,7 @@
       "type": "object"
     },
     "FattyAcidProfile": {
+      "additionalProperties": false,
       "description": "Full Fatty Acid Profile",
       "properties": {
         "library": {
@@ -894,10 +922,13 @@
           "title": "Software"
         },
         "source": {
-          "description": "JSON path to source object",
-          "pattern": "^\\/sources\\/\\d+$",
+          "description": "List of JSON paths to source object",
+          "items": {
+            "pattern": "^\\/sources\\/\\d+$",
+            "type": "string"
+          },
           "title": "Source",
-          "type": "string"
+          "type": "array"
         },
         "temperature": {
           "anyOf": [
@@ -929,6 +960,7 @@
       "type": "string"
     },
     "GCContent": {
+      "additionalProperties": false,
       "description": "GC content of the microorganism",
       "properties": {
         "method": {
@@ -944,10 +976,13 @@
           "title": "Method"
         },
         "source": {
-          "description": "JSON path to source object",
-          "pattern": "^\\/sources\\/\\d+$",
+          "description": "List of JSON paths to source object",
+          "items": {
+            "pattern": "^\\/sources\\/\\d+$",
+            "type": "string"
+          },
           "title": "Source",
-          "type": "string"
+          "type": "array"
         },
         "value": {
           "maximum": 100.0,
@@ -964,6 +999,7 @@
       "type": "object"
     },
     "GeoPoint": {
+      "additionalProperties": false,
       "description": "Geopoint / Coordinate object",
       "properties": {
         "elevation": {
@@ -1011,6 +1047,7 @@
       "type": "object"
     },
     "GrowthRange_ConcentrationUnit_": {
+      "additionalProperties": false,
       "properties": {
         "growth": {
           "title": "Growth",
@@ -1052,6 +1089,7 @@
       "type": "object"
     },
     "GrowthRange_Literal__C___": {
+      "additionalProperties": false,
       "properties": {
         "growth": {
           "title": "Growth",
@@ -1083,9 +1121,6 @@
         },
         "unit": {
           "const": "C",
-          "enum": [
-            "C"
-          ],
           "title": "Unit",
           "type": "string"
         }
@@ -1098,6 +1133,7 @@
       "type": "object"
     },
     "GrowthRange_Literal__pH___": {
+      "additionalProperties": false,
       "properties": {
         "growth": {
           "title": "Growth",
@@ -1129,9 +1165,6 @@
         },
         "unit": {
           "const": "pH",
-          "enum": [
-            "pH"
-          ],
           "title": "Unit",
           "type": "string"
         }
@@ -1144,6 +1177,7 @@
       "type": "object"
     },
     "Growth_Literal__C___": {
+      "additionalProperties": false,
       "properties": {
         "maximal": {
           "anyOf": [
@@ -1182,10 +1216,13 @@
           "title": "Optimal"
         },
         "source": {
-          "description": "JSON path to source object",
-          "pattern": "^\\/sources\\/\\d+$",
+          "description": "List of JSON paths to source object",
+          "items": {
+            "pattern": "^\\/sources\\/\\d+$",
+            "type": "string"
+          },
           "title": "Source",
-          "type": "string"
+          "type": "array"
         },
         "tested": {
           "items": {
@@ -1196,9 +1233,6 @@
         },
         "unit": {
           "const": "C",
-          "enum": [
-            "C"
-          ],
           "title": "Unit",
           "type": "string"
         }
@@ -1211,6 +1245,7 @@
       "type": "object"
     },
     "Growth_Literal__pH___": {
+      "additionalProperties": false,
       "properties": {
         "maximal": {
           "anyOf": [
@@ -1249,10 +1284,13 @@
           "title": "Optimal"
         },
         "source": {
-          "description": "JSON path to source object",
-          "pattern": "^\\/sources\\/\\d+$",
+          "description": "List of JSON paths to source object",
+          "items": {
+            "pattern": "^\\/sources\\/\\d+$",
+            "type": "string"
+          },
           "title": "Source",
-          "type": "string"
+          "type": "array"
         },
         "tested": {
           "items": {
@@ -1263,9 +1301,6 @@
         },
         "unit": {
           "const": "pH",
-          "enum": [
-            "pH"
-          ],
           "title": "Unit",
           "type": "string"
         }
@@ -1278,6 +1313,7 @@
       "type": "object"
     },
     "Halophil": {
+      "additionalProperties": false,
       "description": "Halophily abilities of a Strain",
       "properties": {
         "alternateName": {
@@ -1343,10 +1379,13 @@
           "title": "Optimal"
         },
         "source": {
-          "description": "JSON path to source object",
-          "pattern": "^\\/sources\\/\\d+$",
+          "description": "List of JSON paths to source object",
+          "items": {
+            "pattern": "^\\/sources\\/\\d+$",
+            "type": "string"
+          },
           "title": "Source",
-          "type": "string"
+          "type": "array"
         },
         "tested": {
           "items": {
@@ -1367,6 +1406,7 @@
       "type": "object"
     },
     "Hemolysis": {
+      "additionalProperties": false,
       "description": "Hemolysis of bloods",
       "properties": {
         "blood": {
@@ -1378,10 +1418,13 @@
           "title": "Hemolysis Type"
         },
         "source": {
-          "description": "JSON path to source object",
-          "pattern": "^\\/sources\\/\\d+$",
+          "description": "List of JSON paths to source object",
+          "items": {
+            "pattern": "^\\/sources\\/\\d+$",
+            "type": "string"
+          },
           "title": "Source",
-          "type": "string"
+          "type": "array"
         }
       },
       "required": [
@@ -1428,6 +1471,7 @@
       "type": "string"
     },
     "Identifier": {
+      "additionalProperties": false,
       "description": "Identifier of every Kind, compare to schema.org PropertyValue class",
       "properties": {
         "name": {
@@ -1474,6 +1518,7 @@
       "type": "object"
     },
     "IdentifierStrain": {
+      "additionalProperties": false,
       "properties": {
         "name": {
           "title": "Name",
@@ -1492,10 +1537,13 @@
           "title": "Property ID"
         },
         "source": {
-          "description": "JSON path to source object",
-          "pattern": "^\\/sources\\/\\d+$",
+          "description": "List of JSON paths to source object",
+          "items": {
+            "pattern": "^\\/sources\\/\\d+$",
+            "type": "string"
+          },
           "title": "Source",
-          "type": "string"
+          "type": "array"
         },
         "url": {
           "anyOf": [
@@ -1526,6 +1574,7 @@
       "type": "object"
     },
     "Isolation": {
+      "additionalProperties": false,
       "description": "Isolation event information",
       "properties": {
         "date": {
@@ -1557,10 +1606,13 @@
           "title": "Isolated At"
         },
         "source": {
-          "description": "JSON path to source object",
-          "pattern": "^\\/sources\\/\\d+$",
+          "description": "List of JSON paths to source object",
+          "items": {
+            "pattern": "^\\/sources\\/\\d+$",
+            "type": "string"
+          },
           "title": "Source",
-          "type": "string"
+          "type": "array"
         }
       },
       "required": [
@@ -1570,6 +1622,8 @@
       "type": "object"
     },
     "IsolationTag": {
+      "additionalProperties": false,
+      "description": "Isolation tag system, original used by BacDive",
       "properties": {
         "level1": {
           "title": "Level 1",
@@ -1607,6 +1661,7 @@
       "type": "object"
     },
     "Legal": {
+      "additionalProperties": false,
       "description": "Legal information of the strain",
       "properties": {
         "dualUse": {
@@ -1686,10 +1741,13 @@
           "title": "Quarantine EU"
         },
         "source": {
-          "description": "JSON path to source object",
-          "pattern": "^\\/sources\\/\\d+$",
+          "description": "List of JSON paths to source object",
+          "items": {
+            "pattern": "^\\/sources\\/\\d+$",
+            "type": "string"
+          },
           "title": "Source",
-          "type": "string"
+          "type": "array"
         }
       },
       "required": [
@@ -1700,6 +1758,7 @@
       "type": "object"
     },
     "Literature": {
+      "additionalProperties": false,
       "description": "Connected Literature information",
       "properties": {
         "author": {
@@ -1742,10 +1801,13 @@
           "type": "array"
         },
         "source": {
-          "description": "JSON path to source object",
-          "pattern": "^\\/sources\\/\\d+$",
+          "description": "List of JSON paths to source object",
+          "items": {
+            "pattern": "^\\/sources\\/\\d+$",
+            "type": "string"
+          },
           "title": "Source",
-          "type": "string"
+          "type": "array"
         },
         "url": {
           "anyOf": [
@@ -1770,6 +1832,7 @@
       "type": "object"
     },
     "Location": {
+      "additionalProperties": false,
       "description": "Location object",
       "properties": {
         "description": {
@@ -1813,6 +1876,7 @@
       "type": "object"
     },
     "Metabolite": {
+      "additionalProperties": false,
       "description": "Information about tested Metabolites",
       "properties": {
         "alternateName": {
@@ -1842,10 +1906,13 @@
           "title": "Name of Chemical Substance"
         },
         "source": {
-          "description": "JSON path to source object",
-          "pattern": "^\\/sources\\/\\d+$",
+          "description": "List of JSON paths to source object",
+          "items": {
+            "pattern": "^\\/sources\\/\\d+$",
+            "type": "string"
+          },
           "title": "Source",
-          "type": "string"
+          "type": "array"
         },
         "tests": {
           "items": {
@@ -1862,6 +1929,7 @@
       "type": "object"
     },
     "MetaboliteTest": {
+      "additionalProperties": false,
       "properties": {
         "active": {
           "anyOf": [
@@ -1929,6 +1997,7 @@
       "type": "string"
     },
     "Motility": {
+      "additionalProperties": false,
       "description": "Information on motility of a Strain",
       "properties": {
         "flagellum": {
@@ -1980,10 +2049,13 @@
           "title": "Motile"
         },
         "source": {
-          "description": "JSON path to source object",
-          "pattern": "^\\/sources\\/\\d+$",
+          "description": "List of JSON paths to source object",
+          "items": {
+            "pattern": "^\\/sources\\/\\d+$",
+            "type": "string"
+          },
           "title": "Source",
-          "type": "string"
+          "type": "array"
         }
       },
       "required": [
@@ -1993,6 +2065,7 @@
       "type": "object"
     },
     "MultiCell": {
+      "additionalProperties": false,
       "description": "MultiCell ability of the strain",
       "properties": {
         "multiCellComplexForming": {
@@ -2000,10 +2073,13 @@
           "type": "boolean"
         },
         "source": {
-          "description": "JSON path to source object",
-          "pattern": "^\\/sources\\/\\d+$",
+          "description": "List of JSON paths to source object",
+          "items": {
+            "pattern": "^\\/sources\\/\\d+$",
+            "type": "string"
+          },
           "title": "Source",
-          "type": "string"
+          "type": "array"
         }
       },
       "required": [
@@ -2036,6 +2112,7 @@
       "type": "string"
     },
     "Organization": {
+      "additionalProperties": false,
       "description": "Individual Entity of a Organization",
       "properties": {
         "address": {
@@ -2109,6 +2186,7 @@
       "type": "object"
     },
     "OtherMedia": {
+      "additionalProperties": false,
       "description": "A Media object e.g. Photo, Video, Document, etc",
       "properties": {
         "additionalType": {
@@ -2148,10 +2226,13 @@
           "title": "Name"
         },
         "source": {
-          "description": "JSON path to source object",
-          "pattern": "^\\/sources\\/\\d+$",
+          "description": "List of JSON paths to source object",
+          "items": {
+            "pattern": "^\\/sources\\/\\d+$",
+            "type": "string"
+          },
           "title": "Source",
-          "type": "string"
+          "type": "array"
         },
         "url": {
           "anyOf": [
@@ -2188,6 +2269,7 @@
       "type": "object"
     },
     "OxygenRelation": {
+      "additionalProperties": false,
       "description": "OxygenRelation of the strain",
       "properties": {
         "oxygenRelation": {
@@ -2195,10 +2277,13 @@
           "type": "string"
         },
         "source": {
-          "description": "JSON path to source object",
-          "pattern": "^\\/sources\\/\\d+$",
+          "description": "List of JSON paths to source object",
+          "items": {
+            "pattern": "^\\/sources\\/\\d+$",
+            "type": "string"
+          },
           "title": "Source",
-          "type": "string"
+          "type": "array"
         }
       },
       "required": [
@@ -2209,6 +2294,7 @@
       "type": "object"
     },
     "Pathogen": {
+      "additionalProperties": false,
       "description": "Pathogen, defining Host, pathogenicity and under what classification",
       "properties": {
         "classification": {
@@ -2231,10 +2317,13 @@
           "title": "Pathogen"
         },
         "source": {
-          "description": "JSON path to source object",
-          "pattern": "^\\/sources\\/\\d+$",
+          "description": "List of JSON paths to source object",
+          "items": {
+            "pattern": "^\\/sources\\/\\d+$",
+            "type": "string"
+          },
           "title": "Source",
-          "type": "string"
+          "type": "array"
         }
       },
       "required": [
@@ -2256,6 +2345,7 @@
       "type": "string"
     },
     "Person": {
+      "additionalProperties": false,
       "description": "Person - also Basis for every Individual Entity (e.g. Organization)",
       "properties": {
         "identifier": {
@@ -2297,6 +2387,7 @@
       "type": "string"
     },
     "Sample": {
+      "additionalProperties": false,
       "description": "Information on the Sampling event of that Strain",
       "properties": {
         "country": {
@@ -2349,10 +2440,13 @@
           "title": "Location Created"
         },
         "source": {
-          "description": "JSON path to source object",
-          "pattern": "^\\/sources\\/\\d+$",
+          "description": "List of JSON paths to source object",
+          "items": {
+            "pattern": "^\\/sources\\/\\d+$",
+            "type": "string"
+          },
           "title": "Source",
-          "type": "string"
+          "type": "array"
         },
         "tags": {
           "items": {
@@ -2369,6 +2463,8 @@
       "type": "object"
     },
     "ScientificName": {
+      "additionalProperties": false,
+      "description": "Scientific name",
       "properties": {
         "author": {
           "title": "Author",
@@ -2387,6 +2483,7 @@
       "type": "object"
     },
     "Sequence": {
+      "additionalProperties": false,
       "description": "Information on a Sequence",
       "properties": {
         "accessionNumber": {
@@ -2422,10 +2519,13 @@
           "title": "Level"
         },
         "source": {
-          "description": "JSON path to source object",
-          "pattern": "^\\/sources\\/\\d+$",
+          "description": "List of JSON paths to source object",
+          "items": {
+            "pattern": "^\\/sources\\/\\d+$",
+            "type": "string"
+          },
           "title": "Source",
-          "type": "string"
+          "type": "array"
         },
         "type": {
           "$ref": "#/$defs/SequenceType",
@@ -2472,6 +2572,7 @@
       "type": "string"
     },
     "Size": {
+      "additionalProperties": false,
       "description": "size object, use only for micro and millimeter",
       "properties": {
         "maximal": {
@@ -2507,13 +2608,17 @@
       "type": "string"
     },
     "Spore": {
+      "additionalProperties": false,
       "description": "Spore information about one Strain",
       "properties": {
         "source": {
-          "description": "JSON path to source object",
-          "pattern": "^\\/sources\\/\\d+$",
+          "description": "List of JSON paths to source object",
+          "items": {
+            "pattern": "^\\/sources\\/\\d+$",
+            "type": "string"
+          },
           "title": "Source",
-          "type": "string"
+          "type": "array"
         },
         "sporeBuilding": {
           "anyOf": [
@@ -2561,6 +2666,7 @@
       "type": "string"
     },
     "Staining": {
+      "additionalProperties": false,
       "description": "Stainings tested on the strain",
       "properties": {
         "name": {
@@ -2568,10 +2674,13 @@
           "type": "string"
         },
         "source": {
-          "description": "JSON path to source object",
-          "pattern": "^\\/sources\\/\\d+$",
+          "description": "List of JSON paths to source object",
+          "items": {
+            "pattern": "^\\/sources\\/\\d+$",
+            "type": "string"
+          },
           "title": "Source",
-          "type": "string"
+          "type": "array"
         },
         "value": {
           "$ref": "#/$defs/StainingValue",
@@ -2612,6 +2721,7 @@
       "type": "string"
     },
     "Taxon": {
+      "additionalProperties": false,
       "description": "A class to take all information about a taxon for the new microbial data standard.",
       "properties": {
         "alternateName": {
@@ -2707,6 +2817,8 @@
       "type": "string"
     },
     "TaxonWithSource": {
+      "additionalProperties": false,
+      "description": "Taxon class with source information",
       "properties": {
         "alternateName": {
           "items": {
@@ -2758,10 +2870,13 @@
           "title": "Scientific Name"
         },
         "source": {
-          "description": "JSON path to source object",
-          "pattern": "^\\/sources\\/\\d+$",
+          "description": "List of JSON paths to source object",
+          "items": {
+            "pattern": "^\\/sources\\/\\d+$",
+            "type": "string"
+          },
           "title": "Source",
-          "type": "string"
+          "type": "array"
         },
         "taxonRank": {
           "$ref": "#/$defs/TaxonRank",
@@ -2782,6 +2897,7 @@
       "type": "object"
     },
     "Tolerance": {
+      "additionalProperties": false,
       "description": "Tolerance information - e.g. antibiotic resistance",
       "properties": {
         "alternateName": {
@@ -2835,10 +2951,13 @@
           "title": "Reaction"
         },
         "source": {
-          "description": "JSON path to source object",
-          "pattern": "^\\/sources\\/\\d+$",
+          "description": "List of JSON paths to source object",
+          "items": {
+            "pattern": "^\\/sources\\/\\d+$",
+            "type": "string"
+          },
           "title": "Source",
-          "type": "string"
+          "type": "array"
         },
         "tests": {
           "items": {
@@ -2877,6 +2996,8 @@
       "type": "string"
     },
     "ToleranceTest": {
+      "additionalProperties": false,
+      "description": "Tested tolerance of compound",
       "properties": {
         "concentration": {
           "anyOf": [
@@ -2907,12 +3028,17 @@
       "type": "object"
     },
     "TypeStrain": {
+      "additionalProperties": false,
+      "description": "Information if a strain is the type strain of its species",
       "properties": {
         "source": {
-          "description": "JSON path to source object",
-          "pattern": "^\\/sources\\/\\d+$",
+          "description": "List of JSON paths to source object",
+          "items": {
+            "pattern": "^\\/sources\\/\\d+$",
+            "type": "string"
+          },
           "title": "Source",
-          "type": "string"
+          "type": "array"
         },
         "typeStrain": {
           "title": "Type Strain",
