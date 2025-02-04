@@ -1,3 +1,13 @@
+## v0.2.0 (2025-02-04)
+
+### Feat
+
+- source now list of sourcestrings
+
+### Fix
+
+- solve "None" fields are not required
+
 ## v0.1.1 (2025-01-15)
 
 ### Fix
