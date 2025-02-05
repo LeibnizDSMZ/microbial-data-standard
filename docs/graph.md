@@ -71,7 +71,7 @@ taxonStatus: TaxonStatus
 identifier: array[Identifier]
 scientificName: ScientificName | null
 alternateName: string
-parentTaxon: TaxonWithSource | null
+parentTaxon: Taxon | null
 sameAs: string
 source: string
 }
@@ -652,7 +652,7 @@ sources:
 `TaxonWithSource` ..> `TaxonStatus`
 `TaxonWithSource` ..> `Identifier`
 `TaxonWithSource` ..> `ScientificName`
-`TaxonWithSource` ..> `TaxonWithSource`
+`TaxonWithSource` ..> `Taxon`
 `Microbe` ..> `Sample`
 `Sample` ..> `Country`
 `Country` ..> `CountryHistoricalAlpha2`
