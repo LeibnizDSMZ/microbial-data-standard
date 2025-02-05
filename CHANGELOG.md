@@ -1,3 +1,9 @@
+## v0.2.1 (2025-02-05)
+
+### Fix
+
+- fix parent field in TaxonWithSource by overwriting
+
 ## v0.2.0 (2025-02-04)
 
 ### Feat

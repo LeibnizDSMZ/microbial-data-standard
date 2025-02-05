@@ -78,7 +78,7 @@ packages = [
 ]
 readme = "README.md"
 repository = "https://gitlab.int.dsmz.de/bioindustry-4/microbial_strain_data_model"
-version = "0.2.0"
+version = "0.2.1"
 
 [tool.poetry.dependencies]
 anytree = ">=2.12, <3"
