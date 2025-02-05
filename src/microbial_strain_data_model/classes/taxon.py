@@ -75,9 +75,9 @@ class TaxonWithSource(Taxon):
         revalidate_instances="always",
         str_strip_whitespace=True,
     )
-
     # overwriting the 'parent' field inherited by Taxon
     parent: Taxon | None = Field(default=None, title="Parent Taxon", alias="parentTaxon")  # type: ignore
+
     source: list[SourceString] = Field(
         title="Source", alias="source", description="List of JSON paths to source object"
     )
