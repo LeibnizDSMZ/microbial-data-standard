@@ -4,6 +4,7 @@
 /configs/src/
 .ruff_cache/
 .VSCodeCounter/
+/main.py
 
 # https://github.com/github/gitignore
 # CC0 1.0 Universal

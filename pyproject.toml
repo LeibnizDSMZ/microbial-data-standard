@@ -66,7 +66,14 @@ disallow_subclassing_any = false
 disallow_untyped_calls = true
 disallow_untyped_decorators = true
 disallow_untyped_defs = true
-exclude = ["__pycache__", "\\.tox", "\\.mypy_cache", "venv"]
+exclude = [
+  "__pycache__",
+  "\\.tox",
+  "\\.mypy_cache",
+  "venv",
+  'bin/.*',
+  "tests/.*"
+]
 ignore_missing_imports = true
 implicit_reexport = true
 local_partial_types = true

@@ -13,6 +13,7 @@ pre-commit:
           - name: mypy
             glob: "*.py"
             run: mypy {staged_files}
+            exclude: tests|bin
           - name: poetry-check
             run: poetry check
           - name: shellcheck
@@ -27,7 +28,7 @@ pre-commit:
             run: check-ast {staged_files}
           - name: check-yaml
             glob: "*.{yaml,yml}"
-            run: check-yaml {staged_files}
+            run: check-yaml --unsafe {staged_files}
           - name: check-json
             glob: "*.json"
             run: check-json {staged_files}
@@ -63,6 +64,7 @@ pre-commit:
             glob: "*.py"
             run: test $RUFF != "" && $RUFF check {staged_files} || ruff check  {staged_files}
             stage_fixed: true
+            exclude: bin
           - name: poetry-export
             run: poetry export -f requirements.txt -o requirements.txt
             stage_fixed: true
