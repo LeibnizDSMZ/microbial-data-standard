@@ -2841,7 +2841,7 @@
         "parentTaxon": {
           "anyOf": [
             {
-              "$ref": "#/$defs/TaxonWithSource"
+              "$ref": "#/$defs/Taxon"
             },
             {
               "type": "null"
