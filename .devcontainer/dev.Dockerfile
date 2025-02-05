@@ -1,6 +1,6 @@
 FROM docker.io/rockylinux:9
 
-ARG USERNAME=vscode
+ARG USERNAME=devu
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 ARG WORK_DIR=/workspace
@@ -28,8 +28,9 @@ RUN git config --global --add safe.directory $WORK_DIR
 
 RUN mkdir -p $WORK_DIR && \
     chown $USERNAME:$USERNAME -R $WORK_DIR && \
+    mkdir -p "${HOME}/.local/bin" && \
     chown $USERNAME:$USERNAME -R $HOME
 
 USER $USERNAME
 
-ENTRYPOINT ["/bin/sh", "/entrypoint.sh"]
+ENTRYPOINT ["sleep", "infinity"]

@@ -1,0 +1,90 @@
+output:
+- summary
+- execution_info
+pre-commit:
+  piped: true
+  jobs:
+    - name: check
+      group:
+        parallel: true
+        jobs:
+          - name: tox
+            run: tox
+          - name: mypy
+            glob: "*.py"
+            run: mypy {staged_files}
+          - name: poetry-check
+            run: poetry check
+          - name: shellcheck
+            glob: "*.sh"
+            run: shellcheck {staged_files}
+          - name: codespell
+            glob: "*.py"
+            run: codespell {staged_files}
+          # pre-commit-hooks checks
+          - name: check-ast
+            glob: "*.py"
+            run: check-ast {staged_files}
+          - name: check-yaml
+            glob: "*.{yaml,yml}"
+            run: check-yaml {staged_files}
+          - name: check-json
+            glob: "*.json"
+            run: check-json {staged_files}
+          - name: check-toml
+            glob: "*.{toml,tml}"
+            run: check-toml {staged_files}
+          - name: check-merge-conflict
+            run: check-merge-conflict {staged_files}
+          - name: check-added-large-files
+            exclude: tests/media/.+
+            run: check-added-large-files {staged_files}
+          - name: detect-private-key
+            run: detect-private-key {staged_files}
+          - name: check-case-conflict
+            run: check-case-conflict {staged_files}
+          - name: check-symlinks
+            run: check-symlinks {staged_files}
+          - name: check-executables-have-shebangs
+            glob: "*.sh"
+            run: check-executables-have-shebangs {staged_files}
+          - name: check-shebang-scripts-are-executable
+            glob: "*.sh"
+            run: check-shebang-scripts-are-executable {staged_files}
+    - name: fix
+      group:
+        piped: true
+        jobs:
+          - name: black
+            glob: "*.py"
+            run: black {staged_files}
+            stage_fixed: true
+          - name: ruff
+            glob: "*.py"
+            run: test $RUFF != "" && $RUFF check {staged_files} || ruff check  {staged_files}
+            stage_fixed: true
+          - name: poetry-export
+            run: poetry export -f requirements.txt -o requirements.txt
+            stage_fixed: true
+          - name: poetry-export-dev
+            run: poetry export --only=dev -f requirements.txt -o configs/dev/requirements.dev.txt
+            stage_fixed: true
+          - name: pretty-format-json
+            glob: "*.json"
+            run: pretty-format-json --autofix {staged_files} || echo "json formatted"
+            stage_fixed: true
+          - name: mixed-line-ending
+            run: mixed-line-ending -f auto {staged_files} || echo "fixed mle"
+            stage_fixed: true
+          - name: trailing-whitespace
+            run: trailing-whitespace-fixer --markdown-linebreak-ext=md {staged_files} || echo "fixed whitespaces"
+            stage_fixed: true
+          - name: end-of-file
+            exclude: requirements(.*)?.txt
+            run: end-of-file-fixer {staged_files} || echo "fixed eof"
+            stage_fixed: true
+commit-msg:
+  piped: true
+  commands:
+    commitizen:
+      run: cat {1} | cz check
