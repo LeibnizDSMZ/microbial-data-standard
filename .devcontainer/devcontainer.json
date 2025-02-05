@@ -36,7 +36,7 @@
   ],
   "name": "microbial_strain_data_model",
   "postAttachCommand": "make dev",
-  "remoteUser": "vscode",
+  "remoteUser": "devu",
   "runServices": [
     "dev"
   ],

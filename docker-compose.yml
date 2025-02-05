@@ -1,6 +1,10 @@
-version: '3'
 services:
   deploy:
     build:
       context: .
       dockerfile: ./Dockerfile
+      args:
+        - USERNAME=devu
+        - USER_UID=1000
+        - USER_GID=1000
+        - WORK_DIR=/workspacee

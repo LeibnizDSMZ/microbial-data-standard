@@ -1,10 +1,10 @@
 POETRY = $(HOME)/.local/bin/poetry
-PYV = 3.11
+PYV = 3.13
 
 dev: setup
 	$(POETRY) install --with test,docs,dev
-	$(POETRY) run pre-commit clean
-	$(POETRY) run pre-commit install
+	$(POETRY) run lefthook uninstall | echo "lefthook not installed"
+	$(POETRY) run lefthook install
 	bash bin/deploy/post.sh
 
 tests: setup
@@ -17,12 +17,15 @@ docs: setup
 	$(POETRY) install --with docs --without test,dev
 
 setup:
+	git lfs install || echo '[FAIL] git-lfs could not be installed'
 	pyenv install $(PYV) -s
 	pyenv local $(PYV)
 	curl -sSL https://install.python-poetry.org | python3 -
 	$(POETRY) env remove --all
 	$(POETRY) config virtualenvs.in-project true
+	$(POETRY) config virtualenvs.create true
 	$(POETRY) env use `pyenv which python`
+	$(POETRY) run pip install --upgrade pip
 
 uninstall:
 	pyenv local $(PYV)
@@ -32,7 +35,7 @@ runAct:
 	$(POETRY) shell
 
 runChecks:
-	$(POETRY) run pre-commit run --all-files
+	$(POETRY) run lefthook run pre-commit --all-files -f
 
 runDocs:
 	$(POETRY) run mkdocs build -f configs/dev/mkdocs.yml -d ../../public
@@ -61,18 +64,7 @@ export_runLock:
 	$(POETRY) lock
 
 export_runUpdate:
-	$(POETRY) run pre-commit autoupdate \
-	--repo https://github.com/python-poetry/poetry \
-	--repo https://github.com/pre-commit/pre-commit-hooks \
-	--repo https://github.com/psf/black \
-	--repo https://github.com/charliermarsh/ruff-pre-commit \
-	--repo https://github.com/pre-commit/mirrors-mypy \
-	--repo https://github.com/jendrikseipp/vulture \
-	--repo https://github.com/macisamuele/language-formatters-pre-commit-hooks \
-	--repo https://github.com/codespell-project/codespell \
-	--repo https://github.com/shellcheck-py/shellcheck-py \
-	--repo https://github.com/commitizen-tools/commitizen
-	$(POETRY) update
+	$(POETRY) update --with test,docs,dev
 
 com commit:
 	$(POETRY) run cz commit

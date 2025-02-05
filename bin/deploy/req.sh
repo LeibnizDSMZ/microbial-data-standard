@@ -3,7 +3,7 @@
 echo "update"
 dnf -y update
 echo "installing requirements"
-dnf -y install python3 python3-pip git make wget
+dnf -y install python3 python3-pip git git-lfs make wget coreutils-single rust cargo
 dnf -y group install "Development Tools"
 dnf -y install bzip2-devel ncurses-devel libffi-devel \
     readline-devel openssl-devel sqlite-devel tk-devel
