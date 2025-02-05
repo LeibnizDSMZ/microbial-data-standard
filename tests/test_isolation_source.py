@@ -17,24 +17,24 @@ def test_isolation_tag_system_3():
 
 
 def test_no_data():
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match=r".*"):
         sample.IsolationTag()
 
 
 def test_wrong_category_1():
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match=r".*"):
         sample.IsolationTag(level1="#StarWars", level2="#Terrestrial", level3="#Geologic")
 
 
 def test_wrong_category_2():
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match=r".*"):
         sample.IsolationTag(
             level1="#Environmental", level2="#StarWars", level3="#Geologic"
         )
 
 
 def test_wrong_category_3():
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match=r".*"):
         sample.IsolationTag(
             level1="#Environmental", level2="#Terrestrial", level3="#StarWars"
         )
