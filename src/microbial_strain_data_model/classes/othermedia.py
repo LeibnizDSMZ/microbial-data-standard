@@ -20,17 +20,13 @@ class OtherMedia(BaseModel):
         str_strip_whitespace=True,
     )
 
-    url: HttpUrl | None = Field(default=None, title="URL", alias="url")
-    name: str | None = Field(default=None, title="Name", alias="name")
-    description: str | None = Field(
-        default=None, title="Description", alias="description"
-    )
-    usage: str | None = Field(default=None, title="Usage Information", alias="usageInfo")
-    additional_type: str | None = Field(
-        default=None, title="Additional Type", alias="additionalType"
-    )
+    url: HttpUrl | None = Field(default=None, title="URL")
+    name: str | None = Field(default=None, title="Name")
+    description: str | None = Field(default=None, title="Description")
+    usageInfo: str | None = Field(default=None, title="Usage Information")
+    additionalType: str | None = Field(default=None, title="Additional Type")
     source: list[SourceString] = Field(
-        title="Source", alias="source", description="List of JSON paths to source object"
+        title="Source", description="List of JSON paths to source object"
     )
 
     _check_values = model_validator(mode="after")(check_not_completely_empty)

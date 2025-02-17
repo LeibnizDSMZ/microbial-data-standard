@@ -16,10 +16,10 @@ class GrowthRange(BaseModel, Generic[T]):
         str_strip_whitespace=True,
     )
 
-    minimal: float | None = Field(default=None, title="Minimal", alias="minimal")
-    maximal: float | None = Field(default=None, title="Maximal", alias="maximal")
+    minimal: float | None = Field(default=None, title="Minimal")
+    maximal: float | None = Field(default=None, title="Maximal")
     unit: T
-    growth: bool = Field(title="Growth", alias="growth")
+    growth: bool = Field(title="Growth")
 
 
 class Growth(BaseModel, Generic[T]):
@@ -32,13 +32,11 @@ class Growth(BaseModel, Generic[T]):
         str_strip_whitespace=True,
     )
 
-    optimal: float | None = Field(default=None, title="Optimal", alias="optimal")
-    minimal: float | None = Field(default=None, title="Minimal", alias="minimal")
-    maximal: float | None = Field(default=None, title="Maximal", alias="maximal")
+    optimal: float | None = Field(default=None, title="Optimal")
+    minimal: float | None = Field(default=None, title="Minimal")
+    maximal: float | None = Field(default=None, title="Maximal")
     unit: T
-    tests: list[GrowthRange[T]] = Field(
-        default_factory=list, title="Tests", alias="tested"
-    )
+    tests: list[GrowthRange[T]] = Field(default_factory=list, title="Tests")
     source: list[SourceString] = Field(
-        title="Source", alias="source", description="List of JSON paths to source object"
+        title="Source", description="List of JSON paths to source object"
     )

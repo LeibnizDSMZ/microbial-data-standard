@@ -14,19 +14,13 @@ class Legal(BaseModel):
         str_strip_whitespace=True,
     )
 
-    dual_use: bool | None = Field(default=None, title="Dual Use", alias="dualUse")
-    quarantine: bool | None = Field(
-        default=None, title="Quarantine EU", alias="quarantineEU"
-    )
-    nagoya: NagoyaRestrictions = Field(
-        title="Nagoya Protocol Restrictions", alias="nagoyaRestrictions"
-    )
-    QPS: bool | None = Field(default=None, title="QPS", alias="qps")
-    GRAS: bool | None = Field(default=None, title="GRAS", alias="gras")
-    gmo: bool | None = Field(default=None, title="GMO", alias="gmo")
-    gmo_information: str | None = Field(
-        default=None, title="GMO Information", alias="gmoInformation"
-    )
+    dualUse: bool | None = Field(default=None, title="Dual Use")
+    quarantineEU: bool | None = Field(default=None, title="Quarantine EU")
+    nagoyaRestrictions: NagoyaRestrictions = Field(title="Nagoya Protocol Restrictions")
+    qps: bool | None = Field(default=None, title="QPS")
+    gras: bool | None = Field(default=None, title="GRAS")
+    gmo: bool | None = Field(default=None, title="GMO")
+    gmoInformation: str | None = Field(default=None, title="GMO Information")
     source: list[SourceString] = Field(
-        title="Source", alias="source", description="List of JSON paths to source object"
+        title="Source", description="List of JSON paths to source object"
     )

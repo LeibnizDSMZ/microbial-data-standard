@@ -25,10 +25,8 @@ class Isolation(BaseModel):
             ),
         ]
         | None
-    ) = Field(default=None, title="Date", alias="date")
-    isolator: Organization | Person | None = Field(
-        default=None, title="Isolated At", alias="isolatedAt"
-    )
+    ) = Field(default=None, title="Date")
+    isolatedAt: Organization | Person | None = Field(default=None, title="Isolated At")
     source: list[SourceString] = Field(
-        title="Source", alias="source", description="List of JSON paths to source object"
+        title="Source", description="List of JSON paths to source object"
     )

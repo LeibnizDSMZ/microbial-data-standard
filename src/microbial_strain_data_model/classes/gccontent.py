@@ -14,10 +14,8 @@ class GCContent(BaseModel):
         str_strip_whitespace=True,
     )
 
-    method: str | None = Field(default=None, title="Method", alias="method")
-    value: Annotated[float, Field(ge=0, le=100)] = Field(
-        title="Percent Value", alias="value"
-    )
+    method: str | None = Field(default=None, title="Method")
+    value: Annotated[float, Field(ge=0, le=100)] = Field(title="Percent Value")
     source: list[SourceString] = Field(
-        title="Source", alias="source", description="List of JSON paths to source object"
+        title="Source", description="List of JSON paths to source object"
     )

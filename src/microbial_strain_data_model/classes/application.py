@@ -13,7 +13,7 @@ class Application(BaseModel):
         str_strip_whitespace=True,
     )
 
-    application: str = Field(title="Application", alias="application")
+    application: str = Field(title="Application")
     source: list[SourceString] = Field(
-        title="Source", alias="source", description="List of JSON paths to source object"
+        title="Source", description="List of JSON paths to source object"
     )

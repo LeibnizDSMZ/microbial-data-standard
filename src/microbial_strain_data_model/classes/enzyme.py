@@ -14,22 +14,19 @@ class Enzyme(BaseModel):
         str_strip_whitespace=True,
     )
 
-    name: str | None = Field(default=None, title="Name", alias="name")
-    ec_num: Annotated[
+    name: str | None = Field(default=None, title="Name")
+    hasECNumber: Annotated[
         str,
         StringConstraints(
             strip_whitespace=True, to_upper=True, pattern=r"(?:EC)? ?\d+\.\d+\.\d+\.n?\d+"
         ),
     ] = Field(
         title="EC Number",
-        alias="hasECNumber",
         description="An EC number like defined by the Enzyme Commission",
     )
-    url: HttpUrl | None = Field(default=None, title="URL", alias="url", description="URL")
-    alternate_name: list[str] = Field(
-        default_factory=list, title="Alternate Name", alias="alternateName"
-    )
-    active: bool | None = Field(default=None, title="Active", alias="active")
+    url: HttpUrl | None = Field(default=None, title="URL", description="URL")
+    alternateName: list[str] = Field(default_factory=list, title="Alternate Name")
+    active: bool | None = Field(default=None, title="Active")
     source: list[SourceString] = Field(
-        title="Source", alias="source", description="List of JSON paths to source object"
+        title="Source", description="List of JSON paths to source object"
     )

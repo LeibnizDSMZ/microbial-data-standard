@@ -15,8 +15,8 @@ class Hemolysis(BaseModel):
         str_strip_whitespace=True,
     )
 
-    blood: HemolysisBlood = Field(title="Blood", alias="blood")
-    hemolysis: HemolysisType = Field(title="Hemolysis Type", alias="hemolysisType")
+    blood: HemolysisBlood = Field(title="Blood")
+    hemolysisType: HemolysisType = Field(title="Hemolysis Type")
     source: list[SourceString] = Field(
-        title="Source", alias="source", description="List of JSON paths to source object"
+        title="Source", description="List of JSON paths to source object"
     )

@@ -17,10 +17,8 @@ class Person(BaseModel):
         str_strip_whitespace=True,
     )
 
-    name: str = Field(title="Name", alias="name")
-    identifier: list[Identifier] = Field(
-        default_factory=list, title="Identifier", alias="identifier"
-    )
+    name: str = Field(title="Name")
+    identifier: list[Identifier] = Field(default_factory=list, title="Identifier")
 
 
 class ConnectedPerson(Person):
@@ -33,9 +31,9 @@ class ConnectedPerson(Person):
         str_strip_whitespace=True,
     )
 
-    role: PersonRole | None = Field(default=None, title="Role", alias="role")
+    role: PersonRole | None = Field(default=None, title="Role")
     source: list[SourceString] = Field(
-        title="Source", alias="source", description="List of JSON paths to source object"
+        title="Source", description="List of JSON paths to source object"
     )
 
 
@@ -49,14 +47,12 @@ class Organization(BaseModel):
         str_strip_whitespace=True,
     )
 
-    name: str = Field(title="Name", alias="name")
-    identifier: list[Identifier] = Field(
-        default_factory=list, title="Identifier", alias="identifier"
-    )
-    legal_name: str | None = Field(default=None, title="Legal Name", alias="legalName")
-    address: Address | None = Field(default=None, title="Address", alias="address")
-    url: HttpUrl | None = Field(default=None, title="URL", alias="url")
-    email: EmailStr | None = Field(default=None, title="Email", alias="email")
+    name: str = Field(title="Name")
+    identifier: list[Identifier] = Field(default_factory=list, title="Identifier")
+    legalName: str | None = Field(default=None, title="Legal Name")
+    address: Address | None = Field(default=None, title="Address")
+    url: HttpUrl | None = Field(default=None, title="URL")
+    email: EmailStr | None = Field(default=None, title="Email")
 
 
 class Collection(Organization):
@@ -69,24 +65,16 @@ class Collection(Organization):
         str_strip_whitespace=True,
     )
 
-    resource_num: str = Field(title="Resource Number", alias="resourceNumber")
-    available: bool | None = Field(
-        default=None, title="Availability", alias="availability"
+    resourceNumber: str = Field(title="Resource Number")
+    available: bool | None = Field(default=None, title="Availability")
+    catalogUrl: HttpUrl | None = Field(default=None, title="Catalog URL")
+    restrictionsOnUse: Restriction | None = Field(
+        default=None, title="Restrictions On Use"
     )
-    catalog_link: HttpUrl | None = Field(
-        default=None, title="Catalog URL", alias="catalogUrl"
-    )
-    restrictions: Restriction | None = Field(
-        default=None, title="Restrictions On Use", alias="restrictionsOnUse"
-    )
-    axenic: bool | None = Field(
-        default=None, title="Axenic Culture", alias="axenicCulture"
-    )
-    supply_forms: list[SupplyForm] = Field(
-        default_factory=list, title="Supply Forms", alias="supplyForms"
-    )
-    history: str | None = Field(default=None, title="History", alias="history")
-    date: (
+    axenicCulture: bool | None = Field(default=None, title="Axenic Culture")
+    supplyForms: list[SupplyForm] = Field(default_factory=list, title="Supply Forms")
+    history: str | None = Field(default=None, title="History")
+    depositionDate: (
         Annotated[
             str,
             StringConstraints(
@@ -96,8 +84,8 @@ class Collection(Organization):
             ),
         ]
         | None
-    ) = Field(default=None, title="Deposition Date", alias="depositionDate")
-    depositor: Person | None = Field(default=None, title="Depositor", alias="depositor")
+    ) = Field(default=None, title="Deposition Date")
+    depositor: Person | None = Field(default=None, title="Depositor")
     source: list[SourceString] = Field(
-        title="Source", alias="source", description="List of JSON paths to source object"
+        title="Source", description="List of JSON paths to source object"
     )

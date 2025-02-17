@@ -16,15 +16,11 @@ class FattyAcidProfile(BaseModel):
         str_strip_whitespace=True,
     )
 
-    profile: list[FattyAcid] = Field(
-        default_factory=list, title="Profile", alias="profile"
-    )
-    temperature: int | None = Field(
-        default=None, title="Temperature", alias="temperature"
-    )
-    medium: str | None = Field(default=None, title="Medium", alias="medium")
-    library: str | None = Field(default=None, title="Library", alias="library")
-    software: str | None = Field(default=None, title="Software", alias="software")
+    profile: list[FattyAcid] = Field(default_factory=list, title="Profile")
+    temperature: int | None = Field(default=None, title="Temperature")
+    medium: str | None = Field(default=None, title="Medium")
+    library: str | None = Field(default=None, title="Library")
+    software: str | None = Field(default=None, title="Software")
 
     @model_validator(mode="after")
     def ensure_list_not_empty(self) -> Self:
@@ -33,5 +29,5 @@ class FattyAcidProfile(BaseModel):
         return self
 
     source: list[SourceString] = Field(
-        title="Source", alias="source", description="List of JSON paths to source object"
+        title="Source", description="List of JSON paths to source object"
     )

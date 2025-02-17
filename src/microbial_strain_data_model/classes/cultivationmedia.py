@@ -13,11 +13,9 @@ class CultivationMedia(BaseModel):
         str_strip_whitespace=True,
     )
 
-    name: str = Field(title="Name", alias="name")
-    url: HttpUrl | None = Field(default=None, title="URL", alias="url")
-    reagents: list[str] = Field(
-        default_factory=list, title="Reagent Used", alias="reagentUsed"
-    )
+    name: str = Field(title="Name")
+    url: HttpUrl | None = Field(default=None, title="URL")
+    reagentUsed: list[str] = Field(default_factory=list, title="Reagent Used")
     source: list[SourceString] = Field(
-        title="Source", alias="source", description="List of JSON paths to source object"
+        title="Source", description="List of JSON paths to source object"
     )

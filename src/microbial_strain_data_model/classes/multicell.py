@@ -13,9 +13,7 @@ class MultiCell(BaseModel):
         str_strip_whitespace=True,
     )
 
-    multi_cell: bool = Field(
-        title="Multi Cell Complex Forming", alias="multiCellComplexForming"
-    )
+    multiCellComplexForming: bool = Field(title="Multi Cell Complex Forming")
     source: list[SourceString] = Field(
-        title="Source", alias="source", description="List of JSON paths to source object"
+        title="Source", description="List of JSON paths to source object"
     )

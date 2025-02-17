@@ -15,14 +15,12 @@ class Sequence(BaseModel):
         str_strip_whitespace=True,
     )
 
-    type: SequenceType = Field(title="Type", alias="type")
-    level: SequenceLevel = Field(title="Level", alias="level")
-    accession: str = Field(title="Accession Number", alias="accessionNumber")
-    description: str | None = Field(
-        default=None, title="Description", alias="description"
-    )
-    length: str | None = Field(default=None, title="Length", alias="length")
-    url: list[HttpUrl] = Field(default_factory=list, title="URL", alias="url")
+    type: SequenceType = Field(title="Type")
+    level: SequenceLevel = Field(title="Level")
+    accessionNumber: str = Field(title="Accession Number")
+    description: str | None = Field(default=None, title="Description")
+    length: str | None = Field(default=None, title="Length")
+    url: list[HttpUrl] = Field(default_factory=list, title="URL")
     source: list[SourceString] = Field(
-        title="Source", alias="source", description="List of JSON paths to source object"
+        title="Source", description="List of JSON paths to source object"
     )

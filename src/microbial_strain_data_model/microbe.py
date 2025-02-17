@@ -51,190 +51,165 @@ class Microbe(BaseModel):
 
     # single data points
 
-    organism_type: OrganismType = Field(
-        title="Organism Type", alias="organismType", description="", frozen=True
-    )
+    organismType: OrganismType = Field(title="Organism Type", description="", frozen=True)
 
-    morph_type: Morph | None = Field(
+    morphType: Morph | None = Field(
         default=None,
         title="Morph Type",
-        alias="morphType",
         description="Applicable and required for fungi only",
         frozen=True,
     )
 
-    unified_type_strain: bool | None = Field(
+    unifiedTypeStrain: bool | None = Field(
         default=None,
         title="Unified Type Strain",
-        alias="unifiedTypeStrain",
         description="Is this strain type for unified species",
         frozen=True,
     )
 
-    unified_taxon: Taxon | None = Field(
+    unifiedTaxon: Taxon | None = Field(
         default=None,
         title="Unified Taxon",
-        alias="unifiedTaxon",
         description="Evaluated and updated taxonomy",
     )
 
     # lists of data objects
 
-    type_strain: list[TypeStrain] = Field(
-        title="Type Strain", alias="typeStrain", description=""
-    )
+    typeStrain: list[TypeStrain] = Field(title="Type Strain", description="")
 
-    taxon: list[TaxonWithSource] = Field(title="Taxon", alias="taxon", description="")
+    taxon: list[TaxonWithSource] = Field(title="Taxon", description="")
 
-    sample: list[Sample] = Field(
-        default_factory=list, title="Sample", alias="sample", description=""
-    )
+    sample: list[Sample] = Field(default_factory=list, title="Sample", description="")
 
     isolation: list[Isolation] = Field(
-        default_factory=list, title="Isolation", alias="isolation", description=""
+        default_factory=list, title="Isolation", description=""
     )
 
-    legal: list[Legal] = Field(
-        default_factory=list, title="Legal", alias="legal", description=""
+    legal: list[Legal] = Field(default_factory=list, title="Legal", description="")
+
+    cellShape: list[CellShape] = Field(
+        default_factory=list, title="Cell Shape", description=""
     )
 
-    cell_shape: list[CellShape] = Field(
-        default_factory=list, title="Cell Shape", alias="cellShape", description=""
-    )
-
-    oxygen_relation: list[OxygenRelation] = Field(
+    oxygenRelation: list[OxygenRelation] = Field(
         default_factory=list,
         title="Oxygen Relation",
-        alias="oxygenRelation",
         description="",
     )
 
-    multi_cell_complex_forming: list[MultiCell] = Field(
+    multiCellComplexForming: list[MultiCell] = Field(
         default_factory=list,
         title="Multi Cell Complex Forming",
-        alias="multiCellComplexForming",
         description="",
     )
 
-    cell_size: list[CellSize] = Field(
-        default_factory=list, title="Cell Size", alias="cellSize", description=""
+    cellSize: list[CellSize] = Field(
+        default_factory=list, title="Cell Size", description=""
     )
 
     motility: list[Motility] = Field(
-        default_factory=list, title="Motility", alias="motility", description=""
+        default_factory=list, title="Motility", description=""
     )
 
-    colony: list[Colony] = Field(
-        default_factory=list, title="Colony", alias="colony", description=""
-    )
+    colony: list[Colony] = Field(default_factory=list, title="Colony", description="")
 
-    spore_formation: list[Spore] = Field(
+    sporeFormation: list[Spore] = Field(
         default_factory=list,
         title="Spore Formation",
-        alias="sporeFormation",
         description="",
     )
 
     temperature: list[Growth[CelsiusUnit]] = Field(
-        default_factory=list, title="Temperature", alias="temperature", description=""
+        default_factory=list, title="Temperature", description=""
     )
 
-    ph: list[Growth[PHUnit]] = Field(
-        default_factory=list, title="pH", alias="pH", description=""
-    )
+    ph: list[Growth[PHUnit]] = Field(default_factory=list, title="pH", description="")
 
     identifier: list[IdentifierStrain] = Field(
-        default_factory=list, title="Identifier", alias="identifier", description=""
+        default_factory=list, title="Identifier", description=""
     )
 
-    connected_persons: list[ConnectedPerson] = Field(
+    connectedPersons: list[ConnectedPerson] = Field(
         default_factory=list,
         title="Connected Persons",
-        alias="connectedPersons",
         description="",
     )
 
     pathogenicity: list[Pathogen] = Field(
-        default_factory=list, title="pathogenicity", alias="pathogenicity", description=""
+        default_factory=list, title="pathogenicity", description=""
     )
 
-    bio_safety: list[BioSafety] = Field(
-        default_factory=list, title="Bio Safety", alias="bioSafety", description=""
+    bioSafety: list[BioSafety] = Field(
+        default_factory=list, title="Bio Safety", description=""
     )
 
     sequences: list[Sequence] = Field(
-        default_factory=list, title="Sequences", alias="sequences", description=""
+        default_factory=list, title="Sequences", description=""
     )
 
-    gc_content: list[GCContent] = Field(
-        default_factory=list, title="GC Content", alias="gcContent", description=""
+    gcContent: list[GCContent] = Field(
+        default_factory=list, title="GC Content", description=""
     )
 
     literature: list[Literature] = Field(
-        default_factory=list, title="Literature", alias="literature", description=""
+        default_factory=list, title="Literature", description=""
     )
 
-    wall_constituents: list[CellWall] = Field(
+    wallConstituents: list[CellWall] = Field(
         default_factory=list,
         title="Wall Constituents",
-        alias="wallConstituents",
         description="",
     )
 
-    fatty_acid_profiles: list[FattyAcidProfile] = Field(
+    fattyAcidProfiles: list[FattyAcidProfile] = Field(
         default_factory=list,
         title="Fatty Acid Profile",
-        alias="fattyAcidProfiles",
         description="",
     )
 
     stainings: list[Staining] = Field(
-        default_factory=list, title="Stainings", alias="stainings", description=""
+        default_factory=list, title="Stainings", description=""
     )
 
     hemolysis: list[Hemolysis] = Field(
-        default_factory=list, title="Hemolysis", alias="hemolysis", description=""
+        default_factory=list, title="Hemolysis", description=""
     )
 
-    cultivation_media: list[CultivationMedia] = Field(
+    cultivationMedia: list[CultivationMedia] = Field(
         default_factory=list,
         title="Cultivation Media",
-        alias="cultivationMedia",
         description="",
     )
 
     halophily: list[Halophil] = Field(
-        default_factory=list, title="Halophily", alias="halophily", description=""
+        default_factory=list, title="Halophily", description=""
     )
 
     tolerances: list[Tolerance] = Field(
-        default_factory=list, title="Tolerances", alias="tolerances", description=""
+        default_factory=list, title="Tolerances", description=""
     )
 
-    enzymes: list[Enzyme] = Field(
-        default_factory=list, title="Enzymes", alias="enzymes", description=""
-    )
+    enzymes: list[Enzyme] = Field(default_factory=list, title="Enzymes", description="")
     metabolites: list[Metabolite] = Field(
-        default_factory=list, title="Metabolites", alias="metabolites", description=""
+        default_factory=list, title="Metabolites", description=""
     )
 
-    known_applications: list[Application] = Field(
+    knownApplications: list[Application] = Field(
         default_factory=list,
         title="Known Applications",
-        alias="knownApplications",
         description="",
     )
 
     collections: list[Collection] = Field(
-        default_factory=list, title="Collections", alias="collections", description=""
+        default_factory=list, title="Collections", description=""
     )
 
-    other_media: list[OtherMedia] = Field(
-        default_factory=list, title="Other Media", alias="otherMedia", description=""
+    otherMedia: list[OtherMedia] = Field(
+        default_factory=list, title="Other Media", description=""
     )
 
     sources: list[Literature | Organization | Person] = Field(
-        title="Source", alias="sources", description=""
+        title="Source", description=""
     )
 
     model_config = ConfigDict(
