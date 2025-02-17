@@ -16,11 +16,9 @@ class ToleranceTest(BaseModel):
         str_strip_whitespace=True,
     )
 
-    reaction: ToleranceReaction = Field(title="Reaction", alias="reaction")
-    concentration: str | None = Field(
-        default=None, title="Concentration", alias="concentration"
-    )
-    unit: ConcentrationUnit = Field(title="Unit", alias="unit")
+    reaction: ToleranceReaction = Field(title="Reaction")
+    concentration: str | None = Field(default=None, title="Concentration")
+    unit: ConcentrationUnit = Field(title="Unit")
 
 
 class Tolerance(ChemicalSubstance):
@@ -33,10 +31,10 @@ class Tolerance(ChemicalSubstance):
         str_strip_whitespace=True,
     )
 
-    reaction: str | None = Field(default=None, title="Reaction", alias="reaction")
-    mic: str | None = Field(default=None, title="MIC", alias="mic")
-    unit: ConcentrationUnit | None = Field(default=None, title="Unit", alias="unit")
-    tests: list[ToleranceTest] = Field(default_factory=list, title="Tests", alias="tests")
+    reaction: str | None = Field(default=None, title="Reaction")
+    mic: str | None = Field(default=None, title="MIC")
+    unit: ConcentrationUnit | None = Field(default=None, title="Unit")
+    tests: list[ToleranceTest] = Field(default_factory=list, title="Tests")
     source: list[SourceString] = Field(
-        title="Source", alias="source", description="List of JSON paths to source object"
+        title="Source", description="List of JSON paths to source object"
     )

@@ -22,15 +22,13 @@ class Literature(BaseModel):
         str_strip_whitespace=True,
     )
 
-    name: str | None = Field(default=None, title="Name", alias="name")
-    url: HttpUrl | None = Field(default=None, title="URL", alias="url")
-    date: Date | None = Field(default=None, title="Date Published", alias="datePublished")
-    author: list[Person] = Field(default_factory=list, title="Author", alias="author")
-    publisher: list[Organization] = Field(
-        default_factory=list, title="Publisher", alias="publisher"
-    )
+    name: str | None = Field(default=None, title="Name")
+    url: HttpUrl | None = Field(default=None, title="URL")
+    datePublished: Date | None = Field(default=None, title="Date Published")
+    author: list[Person] = Field(default_factory=list, title="Author")
+    publisher: list[Organization] = Field(default_factory=list, title="Publisher")
     source: list[SourceString] = Field(
-        title="Source", alias="source", description="List of JSON paths to source object"
+        title="Source", description="List of JSON paths to source object"
     )
 
     @model_validator(mode="after")

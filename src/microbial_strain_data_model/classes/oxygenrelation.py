@@ -13,7 +13,7 @@ class OxygenRelation(BaseModel):
         str_strip_whitespace=True,
     )
 
-    relation: str = Field(title="Oxygen Relation", alias="oxygenRelation")
+    oxygenRelation: str = Field(title="Oxygen Relation")
     source: list[SourceString] = Field(
-        title="Source", alias="source", description="List of JSON paths to source object"
+        title="Source", description="List of JSON paths to source object"
     )

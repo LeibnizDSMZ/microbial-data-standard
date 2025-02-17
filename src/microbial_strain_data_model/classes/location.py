@@ -14,10 +14,10 @@ class GeoPoint(BaseModel):
         str_strip_whitespace=True,
     )
 
-    latitude: Latitude = Field(title="Latitude", alias="latitude")
-    longitude: Longitude = Field(title="Longitude", alias="longitude")
-    elevation: float | None = Field(default=None, title="Elevation", alias="elevation")
-    precision: float | None = Field(default=None, title="Precision", alias="precision")
+    latitude: Latitude = Field(title="Latitude")
+    longitude: Longitude = Field(title="Longitude")
+    elevation: float | None = Field(default=None, title="Elevation")
+    precision: float | None = Field(default=None, title="Precision")
 
 
 class Location(BaseModel):
@@ -30,10 +30,8 @@ class Location(BaseModel):
         str_strip_whitespace=True,
     )
 
-    name: str | None = Field(default=None, title="Name", alias="name")
-    description: str | None = Field(
-        default=None, title="Description", alias="description"
-    )
-    geo: GeoPoint | None = Field(default=None, title="Geo", alias="geo")
+    name: str | None = Field(default=None, title="Name")
+    description: str | None = Field(default=None, title="Description")
+    geo: GeoPoint | None = Field(default=None, title="Geo")
 
     _check_values = model_validator(mode="after")(check_not_completely_empty)

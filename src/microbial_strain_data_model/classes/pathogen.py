@@ -15,11 +15,9 @@ class Pathogen(BaseModel):
         str_strip_whitespace=True,
     )
 
-    host: Host = Field(title="Host", alias="host")
-    pathogen: PathogenLevel = Field(title="Pathogen", alias="pathogen")
-    classification: str | None = Field(
-        default=None, title="Classification", alias="classification"
-    )
+    host: Host = Field(title="Host")
+    pathogen: PathogenLevel = Field(title="Pathogen")
+    classification: str | None = Field(default=None, title="Classification")
     source: list[SourceString] = Field(
-        title="Source", alias="source", description="List of JSON paths to source object"
+        title="Source", description="List of JSON paths to source object"
     )

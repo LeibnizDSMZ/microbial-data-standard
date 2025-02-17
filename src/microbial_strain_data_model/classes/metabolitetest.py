@@ -12,9 +12,7 @@ class MetaboliteTest(BaseModel):
         str_strip_whitespace=True,
     )
 
-    type: MetaboliteTestType = Field(title="Type", alias="type")
-    active: bool | None = Field(default=None, title="Active", alias="active")
-    protocol: str | None = Field(default=None, title="Protocol", alias="protocol")
-    utilization: str | None = Field(
-        default=None, title="Kind Of Utilization", alias="kindOfUtilization"
-    )
+    type: MetaboliteTestType = Field(title="Type")
+    active: bool | None = Field(default=None, title="Active")
+    protocol: str | None = Field(default=None, title="Protocol")
+    kindOfUtilization: str | None = Field(default=None, title="Kind Of Utilization")

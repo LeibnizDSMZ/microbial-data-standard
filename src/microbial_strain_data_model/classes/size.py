@@ -15,9 +15,9 @@ class Size(BaseModel):
         str_strip_whitespace=True,
     )
 
-    min: PositiveFloat = Field(title="Minimal", alias="minimal")
-    max: PositiveFloat = Field(title="Maximal", alias="maximal")
-    unit: SizeUnit = Field(title="Unit", alias="unit")
+    minimal: PositiveFloat = Field(title="Minimal")
+    maximal: PositiveFloat = Field(title="Maximal")
+    unit: SizeUnit = Field(title="Unit")
 
 
 class CellSize(BaseModel):
@@ -30,8 +30,8 @@ class CellSize(BaseModel):
         str_strip_whitespace=True,
     )
 
-    cell_length: Size = Field(title="Cell Length", alias="cellLength", description="")
-    cell_width: Size = Field(title="Cell Width", alias="cellWidth", description="")
+    cellLength: Size = Field(title="Cell Length", description="")
+    cellWidth: Size = Field(title="Cell Width", description="")
     source: list[SourceString] = Field(
-        title="Source", alias="source", description="List of JSON paths to source object"
+        title="Source", description="List of JSON paths to source object"
     )

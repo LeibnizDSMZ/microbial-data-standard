@@ -14,12 +14,12 @@ class Motility(BaseModel):
         str_strip_whitespace=True,
     )
 
-    motile: bool | None = Field(default=None, title="Motile", alias="motile")
-    flagellum: bool | None = Field(default=None, title="Flagellum", alias="flagellum")
-    flag_arr: FlagellumArrangement | None = Field(
-        default=None, title="Flagellum Arrangement", alias="flagellumArrangement"
+    motile: bool | None = Field(default=None, title="Motile")
+    flagellum: bool | None = Field(default=None, title="Flagellum")
+    flagellumArrangement: FlagellumArrangement | None = Field(
+        default=None, title="Flagellum Arrangement"
     )
-    gliding: bool | None = Field(default=None, title="Gliding", alias="gliding")
+    gliding: bool | None = Field(default=None, title="Gliding")
     source: list[SourceString] = Field(
-        title="Source", alias="source", description="List of JSON paths to source object"
+        title="Source", description="List of JSON paths to source object"
     )

@@ -17,12 +17,10 @@ class Colony(BaseModel):
         str_strip_whitespace=True,
     )
 
-    size: Size | None = Field(default=None, title="Size of Colony", alias="size")
-    color: ColonyColor | None = Field(
-        default=None, title="Color of Colony", alias="color"
-    )
+    size: Size | None = Field(default=None, title="Size of Colony")
+    color: ColonyColor | None = Field(default=None, title="Color of Colony")
     source: list[SourceString] = Field(
-        title="Source", alias="source", description="List of JSON paths to source object"
+        title="Source", description="List of JSON paths to source object"
     )
 
     _check_values = model_validator(mode="after")(check_not_completely_empty)

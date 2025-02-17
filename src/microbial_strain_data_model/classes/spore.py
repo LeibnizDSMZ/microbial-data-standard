@@ -15,13 +15,9 @@ class Spore(BaseModel):
         str_strip_whitespace=True,
     )
 
-    building: bool | None = Field(
-        default=None, title="sporeBuilding", alias="sporeBuilding"
-    )
-    type: SporeType = Field(title="Type Of Spore", alias="typeOfSpore")
-    ejection: str | None = Field(
-        default=None, title="Spore Ejection", alias="sporeEjection"
-    )
+    sporeBuilding: bool | None = Field(default=None, title="sporeBuilding")
+    typeOfSpore: SporeType = Field(title="Type Of Spore")
+    sporeEjection: str | None = Field(default=None, title="Spore Ejection")
     source: list[SourceString] = Field(
-        title="Source", alias="source", description="List of JSON paths to source object"
+        title="Source", description="List of JSON paths to source object"
     )

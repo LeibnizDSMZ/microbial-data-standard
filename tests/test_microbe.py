@@ -40,5 +40,15 @@ def micro():
     )
 
 
-def test_microbe(micro) -> None:
-    assert micro.organism_type == "Bacteria"
+def test_microbe(micro: Microbe) -> None:
+    assert micro.organismType == "Bacteria"
+
+
+def test_populate_new_class(micro: Microbe) -> None:
+    new_micro = Microbe(
+        organismType=micro.organismType,
+        typeStrain=micro.typeStrain,
+        taxon=micro.taxon,
+        sources=micro.sources,
+    )
+    assert new_micro

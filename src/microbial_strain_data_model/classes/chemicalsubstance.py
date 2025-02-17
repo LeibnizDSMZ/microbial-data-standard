@@ -21,15 +21,9 @@ class ChemicalSubstance(BaseModel):
         str_strip_whitespace=True,
     )
 
-    name: str | None = Field(
-        default=None, title="Name of Chemical Substance", alias="name"
-    )
-    identifier: list[Identifier] = Field(
-        default_factory=list, title="Identifier", alias="identifier"
-    )
-    alternate_name: list[str] = Field(
-        default_factory=list, title="Alternate Name", alias="alternateName"
-    )
+    name: str | None = Field(default=None, title="Name of Chemical Substance")
+    identifier: list[Identifier] = Field(default_factory=list, title="Identifier")
+    alternateName: list[str] = Field(default_factory=list, title="Alternate Name")
 
     _check_values = model_validator(mode="after")(check_not_completely_empty)
 
@@ -45,10 +39,10 @@ class CellWall(ChemicalSubstance):
     )
 
     percent: Annotated[float, Field(ge=0, le=100)] | None = Field(
-        default=None, title="Percent", alias="percent"
+        default=None, title="Percent"
     )
     source: list[SourceString] = Field(
-        title="Source", alias="source", description="List of JSON paths to source object"
+        title="Source", description="List of JSON paths to source object"
     )
 
 
@@ -63,9 +57,9 @@ class FattyAcid(ChemicalSubstance):
     )
 
     percent: Annotated[float, Field(ge=0, le=100)] | None = Field(
-        default=None, title="Percent", alias="percent"
+        default=None, title="Percent"
     )
-    ecl: str | None = Field(default=None, title="ECL", alias="ecl")
+    ecl: str | None = Field(default=None, title="ECL")
 
 
 class Halophil(Growth[ConcentrationUnit], ChemicalSubstance):
@@ -79,7 +73,7 @@ class Halophil(Growth[ConcentrationUnit], ChemicalSubstance):
     )
 
     source: list[SourceString] = Field(
-        title="Source", alias="source", description="List of JSON paths to source object"
+        title="Source", description="List of JSON paths to source object"
     )
 
 
@@ -93,9 +87,7 @@ class Metabolite(ChemicalSubstance):
         str_strip_whitespace=True,
     )
 
-    tests: list[MetaboliteTest] = Field(
-        default_factory=list, title="Tests", alias="tests"
-    )
+    tests: list[MetaboliteTest] = Field(default_factory=list, title="Tests")
     source: list[SourceString] = Field(
-        title="Source", alias="source", description="List of JSON paths to source object"
+        title="Source", description="List of JSON paths to source object"
     )

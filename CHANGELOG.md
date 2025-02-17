@@ -1,3 +1,18 @@
+## v0.3.0 (2025-02-17)
+
+### Feat
+
+- source now list of sourcestrings
+
+### Fix
+
+- solve "None" fields are not required
+
+### Refactor
+
+- remove aliases and rename variables for more consistency
+- improve checks
+
 ## v0.2.1 (2025-02-05)
 
 ### Fix

@@ -18,22 +18,18 @@ class Country(BaseModel):
     )
 
     name: CountryAlpha2 | CountryHistoricalAlpha2 | CountryOtherCodes = Field(
-        title="Country Name (ISO 2 Letter Code)", alias="name"
+        title="Country Name (ISO 2 Letter Code)"
     )
-    identifier: list[Identifier] = Field(
-        default_factory=list, title="Identifier", alias="identifier"
+    identifier: list[Identifier] = Field(default_factory=list, title="Identifier")
+    conventionOfBiologicalDiversityParty: bool | None = Field(
+        default=None, title="Is Convention Of Biological Diversity Party"
     )
-    cbd_party: bool | None = Field(
-        default=None,
-        title="Is Convention Of Biological Diversity Party",
-        alias="conventionOfBiologicalDiversityParty",
+    cartagenaProtocolParty: bool | None = Field(
+        default=None, title="Is Cartagena Protocol Party"
     )
-    cartagena_party: bool | None = Field(
-        default=None, title="Is Cartagena Protocol Party", alias="cartagenaProtocolParty"
+    nagoyaProtocolParty: bool | None = Field(
+        default=None, title="Is Nagoya Protocol Party"
     )
-    nagoya_party: bool | None = Field(
-        default=None, title="Is Nagoya Protocol Party", alias="nagoyaProtocolParty"
-    )
-    kuala_lumpur_party: bool | None = Field(
-        default=None, title="Is Nagoya Kuala Lumpur Party", alias="nagoyaKualaLumpurParty"
+    nagoyaKualaLumpurParty: bool | None = Field(
+        default=None, title="Is Nagoya Kuala Lumpur Party"
     )

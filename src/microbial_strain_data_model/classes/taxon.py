@@ -18,9 +18,9 @@ class TypeStrain(BaseModel):
         str_strip_whitespace=True,
     )
 
-    type_strain: bool = Field(title="Type Strain", alias="typeStrain")
+    typeStrain: bool = Field(title="Type Strain")
     source: list[SourceString] = Field(
-        title="Source", alias="source", description="List of JSON paths to source object"
+        title="Source", description="List of JSON paths to source object"
     )
 
 
@@ -34,8 +34,8 @@ class ScientificName(BaseModel):
         str_strip_whitespace=True,
     )
 
-    name: str = Field(title="Name", alias="name")
-    author: str = Field(title="Author", alias="author")
+    name: str = Field(title="Name")
+    author: str = Field(title="Author")
 
 
 class Taxon(BaseModel):
@@ -50,20 +50,14 @@ class Taxon(BaseModel):
         str_strip_whitespace=True,
     )
 
-    name: str = Field(title="Name", alias="name")
-    rank: TaxonRank = Field(title="Taxon Rank", alias="taxonRank")
-    status: TaxonStatus = Field(title="Taxon Status", alias="taxonStatus")
-    identifier: list[Identifier] = Field(
-        default_factory=list, title="Identifier", alias="identifier"
-    )
-    scientific: ScientificName | None = Field(
-        default=None, title="Scientific Name", alias="scientificName"
-    )
-    alternate_name: list[str] = Field(
-        default_factory=list, title="Alternate Name", alias="alternateName"
-    )
-    parent: Self | None = Field(default=None, title="Parent Taxon", alias="parentTaxon")
-    same_as: list[str] = Field(default_factory=list, title="Same As", alias="sameAs")
+    name: str = Field(title="Name")
+    taxonRank: TaxonRank = Field(title="Taxon Rank")
+    taxonStatus: TaxonStatus = Field(title="Taxon Status")
+    identifier: list[Identifier] = Field(default_factory=list, title="Identifier")
+    scientificName: ScientificName | None = Field(default=None, title="Scientific Name")
+    alternateName: list[str] = Field(default_factory=list, title="Alternate Name")
+    parentTaxon: Self | None = Field(default=None, title="Parent Taxon")
+    sameAs: list[str] = Field(default_factory=list, title="Same As")
 
 
 class TaxonWithSource(Taxon):
@@ -76,8 +70,8 @@ class TaxonWithSource(Taxon):
         str_strip_whitespace=True,
     )
     # overwriting the 'parent' field inherited by Taxon
-    parent: Taxon | None = Field(default=None, title="Parent Taxon", alias="parentTaxon")  # type: ignore
+    parentTaxon: Taxon | None = Field(default=None, title="Parent Taxon")  # type: ignore
 
     source: list[SourceString] = Field(
-        title="Source", alias="source", description="List of JSON paths to source object"
+        title="Source", description="List of JSON paths to source object"
     )

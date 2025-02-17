@@ -15,8 +15,8 @@ class Staining(BaseModel):
         str_strip_whitespace=True,
     )
 
-    name: str = Field(title="Name", alias="name")
-    value: StainingValue = Field(title="Value", alias="value")
+    name: str = Field(title="Name")
+    value: StainingValue = Field(title="Value")
     source: list[SourceString] = Field(
-        title="Source", alias="source", description="List of JSON paths to source object"
+        title="Source", description="List of JSON paths to source object"
     )

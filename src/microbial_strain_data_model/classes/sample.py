@@ -19,15 +19,15 @@ class IsolationTag(BaseModel):
         str_strip_whitespace=True,
     )
 
-    level_1: str = Field(title="Level 1", alias="level1")
-    level_2: str | None = Field(default=None, title="Level 2", alias="level2")
-    level_3: str | None = Field(default=None, title="Level 3", alias="level3")
+    level1: str = Field(title="Level 1")
+    level2: str | None = Field(default=None, title="Level 2")
+    level3: str | None = Field(default=None, title="Level 3")
 
     @model_validator(mode="after")
     def check_isolation_tag(self) -> Self:
         resolver = Resolver("name")
-        path = "" + self.level_1
-        for x in [self.level_2, self.level_3]:
+        path = "" + self.level1
+        for x in [self.level2, self.level3]:
             if isinstance(x, str):
                 path += "/"
                 path += x
@@ -60,17 +60,11 @@ class Sample(BaseModel):
             ),
         ]
         | None
-    ) = Field(default=None, title="Date", alias="date")
-    country: Country | None = Field(default=None, title="Country", alias="country")
-    description: str | None = Field(
-        default=None, title="Description", alias="description"
-    )
-    location: Location | None = Field(
-        default=None, title="Location Created", alias="locationCreated"
-    )
-    tags: list[IsolationTag] = Field(
-        default_factory=list, title="Isolation Source Tags", alias="tags"
-    )
+    ) = Field(default=None, title="Date")
+    country: Country | None = Field(default=None, title="Country")
+    description: str | None = Field(default=None, title="Description")
+    locationCreated: Location | None = Field(default=None, title="Location Created")
+    tags: list[IsolationTag] = Field(default_factory=list, title="Isolation Source Tags")
     source: list[SourceString] = Field(
-        title="Source", alias="source", description="List of JSON paths to source object"
+        title="Source", description="List of JSON paths to source object"
     )
