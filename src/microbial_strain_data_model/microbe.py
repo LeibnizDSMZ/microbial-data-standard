@@ -35,7 +35,7 @@ from microbial_strain_data_model.classes.sample import Sample
 from microbial_strain_data_model.classes.sequence import Sequence
 from microbial_strain_data_model.classes.size import CellSize
 from microbial_strain_data_model.classes.spore import Spore
-from microbial_strain_data_model.classes.stainings import Staining
+from microbial_strain_data_model.classes.staining import Staining
 from microbial_strain_data_model.classes.taxon import Taxon, TaxonWithSource, TypeStrain
 from microbial_strain_data_model.classes.tolerance import Tolerance
 from microbial_strain_data_model.classes.enums import (

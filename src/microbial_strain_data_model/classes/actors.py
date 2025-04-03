@@ -53,6 +53,7 @@ class Organization(BaseModel):
     address: Address | None = Field(default=None, title="Address")
     url: HttpUrl | None = Field(default=None, title="URL")
     email: EmailStr | None = Field(default=None, title="Email")
+    logo: HttpUrl | None = Field(default=None, title="Logo")
 
 
 class Collection(Organization):

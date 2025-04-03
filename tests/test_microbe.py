@@ -32,8 +32,8 @@ def micro():
         sources=[
             {
                 "name": "DSMZ",
-                "legalName": "Leibniz Institut: Deutsche Sammlung für "
-                "Microorganismen und Zellkulturen, GmbH",
+                "legalName": "Leibniz Institut: Deutsche Sammlung für Microorganismen "
+                "und Zellkulturen, GmbH",
                 "address": {"addressCountry": "DE"},
             }
         ],
