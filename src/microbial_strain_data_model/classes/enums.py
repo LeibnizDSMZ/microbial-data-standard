@@ -311,6 +311,17 @@ class SequenceType(str, Enum):
 
 
 class SequenceLevel(str, Enum):
+    """
+    Valid sequence level categories
+
+    Attributes:
+        genome: genome
+        id_sequence: identifier sequence
+        gene: gene
+        artificial: artificial
+        other: other
+    """
+
     genome = "genome"
     id_sequence = "identifier sequence"
     gene = "gene"
