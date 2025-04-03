@@ -1,3 +1,9 @@
+---
+hide:
+  - navigation
+  - toc
+---
+
 ``` mermaid
 classDiagram
 direction LR
@@ -154,6 +160,7 @@ legalName: string | null
 address: Address | null
 url: string | null
 email: string | null
+logo: string | null
 }
 
 class `Address`{
@@ -178,6 +185,7 @@ qps: boolean | null
 gras: boolean | null
 gmo: boolean | null
 gmoInformation: string | null
+otherRestrictions: array[microbial_strain_data_model__classes__legal__Restriction]
 source: string
 }
 
@@ -186,6 +194,13 @@ class `NagoyaRestrictions`{
 No known restrictions under the Nagoya protocol
 Documents providing proof of legal access and terms of use available at the collection
 Strain probably in scope, please contact the culture collection
+}
+
+class `microbial_strain_data_model__classes__legal__Restriction`{
+name: string
+country: Country | null
+authority: string | null
+value: string
 }
 
 class `CellShape`{
@@ -276,7 +291,7 @@ optimal: number | null
 minimal: number | null
 maximal: number | null
 unit: string
-tested: array[GrowthRange[C]]
+tests: array[GrowthRange[C]]
 source: string
 }
 
@@ -292,7 +307,7 @@ optimal: number | null
 minimal: number | null
 maximal: number | null
 unit: string
-tested: array[GrowthRange[pH]]
+tests: array[GrowthRange[pH]]
 source: string
 }
 
@@ -471,7 +486,7 @@ optimal: number | null
 minimal: number | null
 maximal: number | null
 unit: ConcentrationUnit
-tested: array[GrowthRange_ConcentrationUnit_]
+tests: array[GrowthRange_ConcentrationUnit_]
 source: string
 }
 
@@ -557,10 +572,11 @@ legalName: string | null
 address: Address | null
 url: string | null
 email: string | null
+logo: string | null
 resourceNumber: string
-availability: boolean | null
+available: boolean | null
 catalogUrl: string | null
-restrictionsOnUse: Restriction | null
+restrictionsOnUse: microbial_strain_data_model__classes__enums__Restriction | null
 axenicCulture: boolean | null
 supplyForms: array[SupplyForm]
 history: string | null
@@ -569,7 +585,7 @@ depositor: Person | null
 source: string
 }
 
-class `Restriction`{
+class `microbial_strain_data_model__classes__enums__Restriction`{
 <<enumeration>>
 No known restrictions apply
 Only for non-commercial purposes
@@ -615,7 +631,7 @@ motility: array[Motility]
 colony: array[Colony]
 sporeFormation: array[Spore]
 temperature: array[Growth[C]]
-pH: array[Growth[pH]]
+ph: array[Growth[pH]]
 identifier: array[IdentifierStrain]
 connectedPersons: array[ConnectedPerson]
 pathogenicity: array[Pathogen]
@@ -669,6 +685,8 @@ sources:
 `Person` ..> `Identifier`
 `Microbe` ..> `Legal`
 `Legal` ..> `NagoyaRestrictions`
+`Legal` ..> `microbial_strain_data_model__classes__legal__Restriction`
+`microbial_strain_data_model__classes__legal__Restriction` ..> `Country`
 `Microbe` ..> `CellShape`
 `Microbe` ..> `OxygenRelation`
 `Microbe` ..> `MultiCell`
@@ -733,7 +751,7 @@ sources:
 `Microbe` ..> `Collection`
 `Collection` ..> `Identifier`
 `Collection` ..> `Address`
-`Collection` ..> `Restriction`
+`Collection` ..> `microbial_strain_data_model__classes__enums__Restriction`
 `Collection` ..> `SupplyForm`
 `Collection` ..> `Person`
 `Microbe` ..> `OtherMedia`
