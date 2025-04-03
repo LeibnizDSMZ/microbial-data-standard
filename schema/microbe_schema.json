@@ -291,7 +291,7 @@
           "default": null,
           "title": "Address"
         },
-        "availability": {
+        "available": {
           "anyOf": [
             {
               "type": "boolean"
@@ -399,6 +399,21 @@
           "default": null,
           "title": "Legal Name"
         },
+        "logo": {
+          "anyOf": [
+            {
+              "format": "uri",
+              "maxLength": 2083,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Logo"
+        },
         "name": {
           "title": "Name",
           "type": "string"
@@ -410,7 +425,7 @@
         "restrictionsOnUse": {
           "anyOf": [
             {
-              "$ref": "#/$defs/Restriction"
+              "$ref": "#/$defs/microbial_strain_data_model__classes__enums__Restriction"
             },
             {
               "type": "null"
@@ -1224,7 +1239,7 @@
           "title": "Source",
           "type": "array"
         },
-        "tested": {
+        "tests": {
           "items": {
             "$ref": "#/$defs/GrowthRange_Literal__C___"
           },
@@ -1292,7 +1307,7 @@
           "title": "Source",
           "type": "array"
         },
-        "tested": {
+        "tests": {
           "items": {
             "$ref": "#/$defs/GrowthRange_Literal__pH___"
           },
@@ -1387,7 +1402,7 @@
           "title": "Source",
           "type": "array"
         },
-        "tested": {
+        "tests": {
           "items": {
             "$ref": "#/$defs/GrowthRange_ConcentrationUnit_"
           },
@@ -1715,6 +1730,13 @@
         "nagoyaRestrictions": {
           "$ref": "#/$defs/NagoyaRestrictions",
           "title": "Nagoya Protocol Restrictions"
+        },
+        "otherRestrictions": {
+          "items": {
+            "$ref": "#/$defs/microbial_strain_data_model__classes__legal__Restriction"
+          },
+          "title": "Other Restrictions",
+          "type": "array"
         },
         "qps": {
           "anyOf": [
@@ -2159,6 +2181,21 @@
           "default": null,
           "title": "Legal Name"
         },
+        "logo": {
+          "anyOf": [
+            {
+              "format": "uri",
+              "maxLength": 2083,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Logo"
+        },
         "name": {
           "title": "Name",
           "type": "string"
@@ -2376,16 +2413,6 @@
       "title": "PersonRole",
       "type": "string"
     },
-    "Restriction": {
-      "description": "Valid supply forms\n\nAttributes:\n    no_restrictions: No known restrictions apply\n    no_commercial: Only for non-commercial purposes\n    agreement: For commercial development a special agreement is requested",
-      "enum": [
-        "No known restrictions apply",
-        "Only for non-commercial purposes",
-        "For commercial development a special agreement is requested"
-      ],
-      "title": "Restriction",
-      "type": "string"
-    },
     "Sample": {
       "additionalProperties": false,
       "description": "Information on the Sampling event of that Strain",
@@ -2552,6 +2579,7 @@
       "type": "object"
     },
     "SequenceLevel": {
+      "description": "Valid sequence level categories\n\nAttributes:\n    genome: genome\n    id_sequence: identifier sequence\n    gene: gene\n    artificial: artificial\n    other: other",
       "enum": [
         "genome",
         "identifier sequence",
@@ -3051,6 +3079,62 @@
       ],
       "title": "TypeStrain",
       "type": "object"
+    },
+    "microbial_strain_data_model__classes__enums__Restriction": {
+      "description": "Valid supply forms\n\nAttributes:\n    no_restrictions: No known restrictions apply\n    no_commercial: Only for non-commercial purposes\n    agreement: For commercial development a special agreement is requested",
+      "enum": [
+        "No known restrictions apply",
+        "Only for non-commercial purposes",
+        "For commercial development a special agreement is requested"
+      ],
+      "title": "Restriction",
+      "type": "string"
+    },
+    "microbial_strain_data_model__classes__legal__Restriction": {
+      "additionalProperties": false,
+      "description": "Description",
+      "properties": {
+        "authority": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "The responsible authority",
+          "title": "Authority"
+        },
+        "country": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Country"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Country"
+        },
+        "name": {
+          "description": "Name of the restriction",
+          "title": "Name",
+          "type": "string"
+        },
+        "value": {
+          "title": "Value",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "value"
+      ],
+      "title": "Restriction",
+      "type": "object"
     }
   },
   "additionalProperties": false,
@@ -3250,20 +3334,20 @@
       "title": "Oxygen Relation",
       "type": "array"
     },
-    "pH": {
-      "description": "",
-      "items": {
-        "$ref": "#/$defs/Growth_Literal__pH___"
-      },
-      "title": "pH",
-      "type": "array"
-    },
     "pathogenicity": {
       "description": "",
       "items": {
         "$ref": "#/$defs/Pathogen"
       },
       "title": "pathogenicity",
+      "type": "array"
+    },
+    "ph": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/Growth_Literal__pH___"
+      },
+      "title": "pH",
       "type": "array"
     },
     "sample": {

@@ -9,6 +9,10 @@ theme:
     repo: fontawesome/brands/git-alt
   palette:
     scheme: bi_light
+  features:
+    - navigation.tabs
+    - navigation.top
+    - toc.integrate
 
 extra_css:
 - stylesheets/extra.css
@@ -53,15 +57,17 @@ markdown_extensions:
 docs_dir: ../../docs
 
 nav:
-- About: index.md
-- Background: background.md
+- About:
+  - index.md
+  - Microbial Data: background.md
+  - Technical Concept: technical.md
+  - License: license.md
+- Python:
+  - Microbe Class: python/microbe.md
+  - Sub Classes: python/sub_classes.md
 - Graph: graph.md
 - Examples: examples/
 - Data Schema: schema/
-- Python:
-  - Main Class: python/microbe.md
-  - Sub Classes: python/sub_classes.md
-- License: license.md
 
 
 copyright: Copyright &copy; 2024 Julius Witte, Leibniz Institute DSMZ-German Collection of Microorganisms and Cell Cultures GmbH, Maintained by the WP6 Team of the  <a href="https://bioindustry4.hub.inrae.fr/">Bioindustry 4.0 project</a>
