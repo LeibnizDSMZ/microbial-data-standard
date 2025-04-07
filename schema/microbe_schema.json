@@ -3392,7 +3392,7 @@
       "title": "Spore Formation",
       "type": "array"
     },
-    "stainings": {
+    "staining": {
       "description": "",
       "items": {
         "$ref": "#/$defs/Staining"

@@ -22,6 +22,8 @@ There is also [BacDive](https://bacdive.de/), the largest database for standardi
 bacterial information, that accumulates cultures and associated biological knowledge
 to strains.
 
+![image](stylesheets/standard.png)
+
 ### Standardized microbial data
 In a lot of cases culture collection provide an online catalogue of their available
 strains (e.g.
@@ -34,7 +36,9 @@ all of these collection do hold their data in different formats. There is no ove
 standardization of microbial strain data in use, even if there have been attempts to
 introduce standards to microbial strain data (MCL, CABRI, MINE, ...)
 
-### Why now a new standard?
+![image](stylesheets/sdd.png)
+
+### Why a new standard?
 The EU project **Bioindustry 4.0** brings together experts from multiple culture
 collections, research infrastructures and microbial databases. The goal is to implement
 a new strain discovery database that integrates the data from the [DSMZ](https://dsmz.de),

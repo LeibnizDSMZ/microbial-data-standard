@@ -61,13 +61,15 @@ nav:
   - index.md
   - Microbial Data: background.md
   - Technical Concept: technical.md
+  - Call to Action: call.md
   - License: license.md
+- Data Schema: schema/
 - Python:
   - Microbe Class: python/microbe.md
   - Sub Classes: python/sub_classes.md
 - Graph: graph.md
 - Examples: examples/
-- Data Schema: schema/
+
 
 
 copyright: Copyright &copy; 2024 Julius Witte, Leibniz Institute DSMZ-German Collection of Microorganisms and Cell Cultures GmbH, Maintained by the WP6 Team of the  <a href="https://bioindustry4.hub.inrae.fr/">Bioindustry 4.0 project</a>
