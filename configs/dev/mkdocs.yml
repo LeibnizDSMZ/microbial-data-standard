@@ -4,7 +4,7 @@ site_author: WP6 of Bioindustry 4.0 (funded by the EU)
 
 theme:
   name: material
-  logo: stylesheets/transparent_white_thick.png
+  logo: stylesheets/transparent_white_t.png
   icon:
     repo: fontawesome/brands/git-alt
   palette:
