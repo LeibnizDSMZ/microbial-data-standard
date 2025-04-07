@@ -10,7 +10,7 @@ from microbial_strain_data_model.microbe import Microbe
 
 
 def write_documentation(name, title, type, format, description, id, is_req):
-    f_path = Path(f"/workspace/docs/schema/{id.split('.')[0]}. {name.split('.')[0]}.md")
+    f_path = Path(f"docs/schema/{id.split('.')[0]}. {name.split('.')[0]}.md")
     with open(f_path, "a") as f_out:
         f_out.write("---\n")
         f_out.write(f"## {id} {name}\n")
@@ -37,7 +37,7 @@ def write_documentation(name, title, type, format, description, id, is_req):
 
 def parse_schema() -> None:
     mi = Microbe.model_json_schema()
-    main_schema_path = Path("/workspace/schema/microbe_schema.json")
+    main_schema_path = Path("schema/microbe_schema.json")
     with main_schema_path.open("w") as f_out:
         f_out.write(json.dumps(mi, indent=2))
 
@@ -133,7 +133,7 @@ def export_excel(data_struc):
 
 
 def clear_docs_schema():
-    for file in Path("/workspace/docs/schema").glob("*.md"):
+    for file in Path("docs/schema").glob("*.md"):
         file.unlink()
 
 
