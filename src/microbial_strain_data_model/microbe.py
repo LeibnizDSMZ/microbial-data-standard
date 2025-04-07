@@ -167,7 +167,7 @@ class Microbe(BaseModel):
         description="",
     )
 
-    stainings: list[Staining] = Field(
+    staining: list[Staining] = Field(
         default_factory=list, title="Stainings", description=""
     )
 
