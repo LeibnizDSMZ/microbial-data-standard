@@ -76,17 +76,17 @@ pre-commit:
             run: pretty-format-json --autofix {staged_files} || echo "json formatted"
             stage_fixed: true
           - name: mixed-line-ending
-            exclude: "*.png"
+            exclude: '.*\.png'
             run: mixed-line-ending -f auto {staged_files} || echo "fixed mle"
             stage_fixed: true
           - name: trailing-whitespace
-            exclude: "*.png"
+            exclude: '.*\.png'
             run: trailing-whitespace-fixer --markdown-linebreak-ext=md {staged_files} || echo "fixed whitespaces"
             stage_fixed: true
           - name: end-of-file
             exclude:
               - requirements*.txt
-              - "*.png"
+              - '.*\.png'
             run: end-of-file-fixer {staged_files} || echo "fixed eof"
             stage_fixed: true
 commit-msg:
