@@ -23,7 +23,9 @@ def write_mermaid(classes, links):
                             f_out.write(f"{x}\n")
                     else:
                         f_out.write(
-                            f"{field_name}: {type.replace('_Literal__', '[').replace('___', ']')}\n"
+                            f"{field_name}: {type.replace('_Literal__', '[').replace('___', ']')}\n".replace(
+                                " \n", "\n"
+                            )
                         )
                 f_out.write("}\n\n")
 
@@ -91,7 +93,7 @@ def parse_schema(schema):
 
 
 if __name__ == "__main__":
-    schema_path = Path("/workspace/schema/microbe_schema.json")
+    schema_path = Path("schema/microbe_schema.json")
     with open(schema_path, "r") as schema_file:
         schema = json.load(schema_file)
     classes, links = parse_schema(schema)
