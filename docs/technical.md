@@ -5,7 +5,7 @@ We want the standard to hold all necessary information on a single strain in a s
 This way data exchange is simplified and all data that belongs together stays together.
 
 ### 2. Full traceability
-Every datapoint in the a file about a strain originates from a source. Sources can be
+Every datapoint in a file about a strain originates from a source. Sources can be
 Persons or Organizations. The new standard will link every datapoint to the source of
 information.
 
@@ -54,7 +54,7 @@ The source pointers in each datapoint indicate which source in the
 By tracking the source of information for each datapoint, we want to achieve that
 every data provider gets credit for their provided data. Furthermore by comparing the data
 from different sources with each other data quality will improve drastically.
-Incorrect data can easier be spotted and corrected or mutations in strains
+Incorrect data can easily be spotted and corrected or mutations in strains
 can be found.
 
 ### 3. Aligning with schema.org and bioschemas

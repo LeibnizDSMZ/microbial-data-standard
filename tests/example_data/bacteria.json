@@ -1,0 +1,1569 @@
+{
+  "bioSafety": [
+    {
+      "classification": "German classification",
+      "riskgroup": "1",
+      "source": [
+        "/sources/0"
+      ],
+      "url": "https://www.baua.de/EN/Service/Legislative-texts-and-technical-rules/Rules/TRBA/TRBA-466.html"
+    },
+    {
+      "classification": "Japan classification",
+      "riskgroup": "1",
+      "source": [
+        "/sources/0"
+      ],
+      "url": null
+    }
+  ],
+  "cellShape": [
+    {
+      "cellShape": "coccus",
+      "source": [
+        "/sources/0"
+      ]
+    }
+  ],
+  "cellSize": [
+    {
+      "cellLength": {
+        "maximal": 2.2,
+        "minimal": 1.3,
+        "unit": "\u00b5m"
+      },
+      "cellWidth": {
+        "maximal": 0.8,
+        "minimal": 0.5,
+        "unit": "\u00b5m"
+      },
+      "source": [
+        "/sources/0"
+      ]
+    }
+  ],
+  "collections": [
+    {
+      "address": null,
+      "available": true,
+      "axenicCulture": true,
+      "catalogUrl": null,
+      "depositionDate": null,
+      "depositor": null,
+      "email": null,
+      "history": "<- KCTC <- J.-W. Bae, KRIBB",
+      "identifier": [
+        {
+          "name": "ROR",
+          "propertyID": "https://www.wikidata.org/wiki/Property:P6782",
+          "url": null,
+          "value": "https://ror.org/02tyer376"
+        }
+      ],
+      "legalName": "Leibniz-Institut DSMZ-Deutsche Sammlung von Mikroorganismen und Zellkulturen GmbH",
+      "name": "DSMZ",
+      "resourceNumber": "DSMZ 20543",
+      "restrictionsOnUse": null,
+      "source": [
+        "/sources/0"
+      ],
+      "supplyForms": [
+        "Lyo",
+        "Agar",
+        "DNA"
+      ],
+      "url": "https://www.dsmz.de/"
+    },
+    {
+      "address": null,
+      "available": true,
+      "axenicCulture": true,
+      "catalogUrl": null,
+      "depositionDate": null,
+      "depositor": null,
+      "email": null,
+      "history": "<- AH Eggerth",
+      "identifier": [
+        {
+          "name": "ROR",
+          "propertyID": "https://www.wikidata.org/wiki/Property:P6782",
+          "url": null,
+          "value": "https://ror.org/03thhhv76"
+        }
+      ],
+      "legalName": "American Type Culture Collection",
+      "name": "ATCC",
+      "resourceNumber": "ATCC 8486",
+      "restrictionsOnUse": null,
+      "source": [
+        "/sources/0"
+      ],
+      "supplyForms": [
+        "Lyo"
+      ],
+      "url": "https://www.atcc.org/"
+    },
+    {
+      "address": null,
+      "available": true,
+      "axenicCulture": true,
+      "catalogUrl": null,
+      "depositionDate": null,
+      "depositor": null,
+      "email": null,
+      "history": "<-- STAFF 1027 <-- ATCC 8486 <-- A. H. Eggerth",
+      "identifier": [
+        {
+          "name": "ROR",
+          "propertyID": "https://www.wikidata.org/wiki/Property:P6782",
+          "url": null,
+          "value": "https://ror.org/00s05em53"
+        }
+      ],
+      "legalName": "RIKEN BioResource Research Center",
+      "name": "JCM",
+      "resourceNumber": "JCM 9978",
+      "restrictionsOnUse": null,
+      "source": [
+        "/sources/0"
+      ],
+      "supplyForms": [
+        "Lyo",
+        "Agar"
+      ],
+      "url": "https://jcm.brc.riken.jp/en/"
+    },
+    {
+      "address": null,
+      "available": true,
+      "axenicCulture": true,
+      "catalogUrl": null,
+      "depositionDate": null,
+      "depositor": null,
+      "email": null,
+      "history": "<-- T. Mitsuoka <-- ATCC 8486 <-- A. H. Eggerth",
+      "identifier": [
+        {
+          "name": "ROR",
+          "propertyID": "https://www.wikidata.org/wiki/Property:P6782",
+          "url": null,
+          "value": "https://ror.org/00s05em53"
+        }
+      ],
+      "legalName": "RIKEN BioResource Research Center",
+      "name": "JCM",
+      "resourceNumber": "JCM 6421",
+      "restrictionsOnUse": null,
+      "source": [
+        "/sources/0"
+      ],
+      "supplyForms": [
+        "Lyo",
+        "Agar"
+      ],
+      "url": "https://jcm.brc.riken.jp/en/"
+    },
+    {
+      "address": null,
+      "available": true,
+      "axenicCulture": true,
+      "catalogUrl": null,
+      "depositionDate": null,
+      "depositor": null,
+      "email": null,
+      "history": "<- JH Kim <- ATCC <- AH Eggerth, `Bacteroides limosus`",
+      "identifier": [
+        {
+          "name": "ROR",
+          "propertyID": "https://www.wikidata.org/wiki/Property:P6782",
+          "url": null,
+          "value": "https://ror.org/03ep23f07"
+        }
+      ],
+      "legalName": "Korea Research Institute of Bioscience and Biotechnology",
+      "name": "Korean Collection for Type Cultures",
+      "resourceNumber": "KCTC 3266",
+      "restrictionsOnUse": null,
+      "source": [
+        "/sources/0"
+      ],
+      "supplyForms": [
+        "Lyo",
+        "Agar"
+      ],
+      "url": "http://www.kribb.re.kr/eng/"
+    },
+    {
+      "address": null,
+      "available": true,
+      "axenicCulture": true,
+      "catalogUrl": null,
+      "depositionDate": null,
+      "depositor": null,
+      "email": null,
+      "history": "<- DSM <- ATCC <- A.H.Eggerth",
+      "identifier": [
+        {
+          "name": "ROR",
+          "propertyID": "https://www.wikidata.org/wiki/Property:P6782",
+          "url": null,
+          "value": "https://ror.org/01tm6cn81"
+        }
+      ],
+      "legalName": "University Of Gothenburg",
+      "name": "Culture Collection University Of Gothenburg",
+      "resourceNumber": "CCUG 16793",
+      "restrictionsOnUse": null,
+      "source": [
+        "/sources/0"
+      ],
+      "supplyForms": [],
+      "url": "https://www.ccug.se/"
+    },
+    {
+      "address": null,
+      "available": true,
+      "axenicCulture": true,
+      "catalogUrl": null,
+      "depositionDate": null,
+      "depositor": null,
+      "email": null,
+      "history": "1994, ATCC <- A.H. Eggerth, Bacteroides limosus",
+      "identifier": [
+        {
+          "name": "ROR",
+          "propertyID": "https://www.wikidata.org/wiki/Property:P6782",
+          "url": null,
+          "value": "https://ror.org/0495fxg12"
+        }
+      ],
+      "legalName": "Biological Resource Center of Institut Pasteur (CRBIP)",
+      "name": "Collection of Institut Pasteur",
+      "resourceNumber": "CIP 104169",
+      "restrictionsOnUse": null,
+      "source": [
+        "/sources/0"
+      ],
+      "supplyForms": [],
+      "url": "https://catalogue-crbip.pasteur.fr/"
+    }
+  ],
+  "colony": [],
+  "connectedPersons": [
+    {
+      "identifier": [
+        {
+          "name": "ORCiD",
+          "propertyID": "https://www.wikidata.org/wiki/Property:P496",
+          "url": null,
+          "value": "https://orcid.org/0000-0001-6433-5270"
+        }
+      ],
+      "name": "J.-W. Bae",
+      "role": "isolator",
+      "source": [
+        "/sources/0"
+      ]
+    }
+  ],
+  "cultivationMedia": [
+    {
+      "name": "PYG MEDIUM (MODIFIED) (DSMZ Medium 104)",
+      "reagentUsed": [
+        "Yeast extract",
+        "Peptone",
+        "Glucose",
+        "Trypticase peptone",
+        "Beef extract",
+        "L-Cysteine HCl x H2O",
+        "NaHCO3",
+        "NaCl",
+        "KH2PO4",
+        "K2HPO4",
+        "MgSO4 x 7 H2O",
+        "CaCl2 x 2 H2O",
+        "Hemin",
+        "Ethanol",
+        "Resazurin",
+        "Tween 80",
+        "Vitamin K1",
+        "NaOH",
+        "Distilled water"
+      ],
+      "source": [
+        "/sources/0"
+      ],
+      "url": "https://mediadive.dsmz.de/medium/104?bacdive=5432"
+    },
+    {
+      "name": "CIP Medium 187",
+      "reagentUsed": [],
+      "source": [
+        "/sources/0"
+      ],
+      "url": "https://catalogue-crbip.pasteur.fr/fiche_milieu.xhtml?crbip=187"
+    }
+  ],
+  "enzymes": [
+    {
+      "active": true,
+      "alternateName": [
+        "acid phosphatase",
+        "tartrate-resistant acid phosphatase",
+        "prostatic acid phosphatase",
+        "tracp",
+        "acpase",
+        "uteroferrin",
+        "tracp 5b",
+        "phosphatidic acid phosphatase",
+        "tracp5b"
+      ],
+      "hasECNumber": "3.1.3.2",
+      "name": "acid phosphatase",
+      "source": [
+        "/sources/0"
+      ],
+      "url": "https://www.brenda-enzymes.org/enzyme.php?ecno=3.1.3.2"
+    },
+    {
+      "active": true,
+      "alternateName": [
+        "ap",
+        "alkaline phosphatase",
+        "bone alkaline phosphatase",
+        "placental alkaline phosphatase",
+        "alpase",
+        "apase",
+        "intestinal alkaline phosphatase",
+        "tnsalp",
+        "phosphomonoesterase",
+        "secreted alkaline phosphatase"
+      ],
+      "hasECNumber": "3.1.3.1",
+      "name": "alkaline phosphatase",
+      "source": [
+        "/sources/0"
+      ],
+      "url": "https://www.brenda-enzymes.org/enzyme.php?ecno=3.1.3.1"
+    },
+    {
+      "active": false,
+      "alternateName": [
+        "chymotrypsin",
+        "alpha-chymotrypsin",
+        "bovine alpha-chymotrypsin",
+        "chymotrypsin a",
+        "alpha-ct",
+        "chymotrypsin b",
+        "chtp",
+        "alpha chymotrypsin",
+        "alpha-chymotrypsin a",
+        "chymotrypsin ii"
+      ],
+      "hasECNumber": "3.4.21.1",
+      "name": "alpha-chymotrypsin",
+      "source": [
+        "/sources/0"
+      ],
+      "url": "https://www.brenda-enzymes.org/enzyme.php?ecno=3.4.21.1"
+    },
+    {
+      "active": false,
+      "alternateName": [
+        "alpha-l-fucosidase",
+        "acid hydrolase",
+        "fuca1",
+        "serum alpha-l-fucosidase",
+        "serum afu",
+        "alpha-fuc",
+        "fuca2",
+        "alf1_wf",
+        "alpha-l-fucosidase i",
+        "alphafuc"
+      ],
+      "hasECNumber": "3.2.1.51",
+      "name": "alpha-fucosidase",
+      "source": [
+        "/sources/0"
+      ],
+      "url": "https://www.brenda-enzymes.org/enzyme.php?ecno=3.2.1.51"
+    },
+    {
+      "active": false,
+      "alternateName": [
+        "arginine deiminase",
+        "arginine dihydrolase",
+        "ppadi",
+        "arginine-degrading enzyme",
+        "l-arginine deiminase",
+        "arca-1",
+        "lymphocyte blastogenesis inhibitory factor",
+        "paadi",
+        "streptococcal acid glycoprotein"
+      ],
+      "hasECNumber": "3.5.3.6",
+      "name": "arginine dihydrolase",
+      "source": [
+        "/sources/0"
+      ],
+      "url": "https://www.brenda-enzymes.org/enzyme.php?ecno=3.5.3.6"
+    },
+    {
+      "active": true,
+      "alternateName": [
+        "beta-galactosidase",
+        "beta-gal",
+        "beta-d-galactosidase",
+        "senescence-associated beta-galactosidase",
+        "endo-beta-galactosidase",
+        "bglap",
+        "sa-beta-gal",
+        "acid beta-galactosidase",
+        "beta galactosidase",
+        "betagal"
+      ],
+      "hasECNumber": "3.2.1.23",
+      "name": "beta-galactosidase",
+      "source": [
+        "/sources/0"
+      ],
+      "url": "https://www.brenda-enzymes.org/enzyme.php?ecno=3.2.1.23"
+    }
+  ],
+  "fattyAcidProfiles": [
+    {
+      "library": "BHIBLA",
+      "medium": "blood Agar",
+      "profile": [
+        {
+          "alternateName": [],
+          "ecl": "14.621",
+          "identifier": [],
+          "name": "C15:0 ISO",
+          "percent": 31.9
+        },
+        {
+          "alternateName": [],
+          "ecl": "16",
+          "identifier": [],
+          "name": "C16:0",
+          "percent": 14.0
+        },
+        {
+          "alternateName": [],
+          "ecl": "16.481",
+          "identifier": [],
+          "name": "C17:1 ISO I/C16:0 DMA",
+          "percent": 9.7
+        },
+        {
+          "alternateName": [],
+          "ecl": "14.711",
+          "identifier": [],
+          "name": "C15:0 ANTEISO",
+          "percent": 6.7
+        },
+        {
+          "alternateName": [],
+          "ecl": "17.724",
+          "identifier": [],
+          "name": "C18:2 \u03c96,9c/C18:0 ANTE",
+          "percent": 5.4
+        },
+        {
+          "alternateName": [],
+          "ecl": "15.117",
+          "identifier": [],
+          "name": "C14:0 ISO 3OH",
+          "percent": 5.3
+        },
+        {
+          "alternateName": [],
+          "ecl": "14",
+          "identifier": [],
+          "name": "C14:0",
+          "percent": 4.2
+        },
+        {
+          "alternateName": [],
+          "ecl": "14.966",
+          "identifier": [],
+          "name": "unknown 14.966",
+          "percent": 3.9
+        },
+        {
+          "alternateName": [],
+          "ecl": "18.177",
+          "identifier": [],
+          "name": "unknown 18.177",
+          "percent": 3.3
+        }
+      ],
+      "software": "Sherlock 6.1",
+      "source": [
+        "/sources/0"
+      ],
+      "temperature": 37
+    }
+  ],
+  "gcContent": [
+    {
+      "method": "thermal denaturion, midpoint method (Tm)",
+      "source": [
+        "/sources/0"
+      ],
+      "value": 47.8
+    }
+  ],
+  "halophily": [
+    {
+      "alternateName": [
+        "Table salt",
+        "sodium chloride",
+        "ClNa"
+      ],
+      "identifier": [
+        {
+          "name": "PubChem",
+          "propertyID": "https://wikidata.org/wiki/Property:P662",
+          "url": "https://pubchem.ncbi.nlm.nih.gov/compound/5234",
+          "value": "5234"
+        },
+        {
+          "name": "ChEBI",
+          "propertyID": "https://wikidata.org/wiki/Property:P683",
+          "url": "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:26710",
+          "value": "CHEBI:26710"
+        }
+      ],
+      "maximal": null,
+      "minimal": null,
+      "name": "Sodium Chloride",
+      "optimal": 0.0,
+      "source": [
+        "/sources/0"
+      ],
+      "tests": [
+        {
+          "growth": true,
+          "maximal": 1.0,
+          "minimal": 0.0,
+          "unit": "g/g%"
+        }
+      ],
+      "unit": "g/g%"
+    }
+  ],
+  "hemolysis": [
+    {
+      "blood": "sheep",
+      "hemolysisType": "alpha",
+      "source": [
+        "/sources/0"
+      ]
+    },
+    {
+      "blood": "horse",
+      "hemolysisType": "beta",
+      "source": [
+        "/sources/0"
+      ]
+    }
+  ],
+  "identifier": [
+    {
+      "name": "CCNO",
+      "propertyID": null,
+      "source": [
+        "/sources/0"
+      ],
+      "url": null,
+      "value": "DSM 20543"
+    },
+    {
+      "name": "CCNO",
+      "propertyID": null,
+      "source": [
+        "/sources/0"
+      ],
+      "url": null,
+      "value": "ATCC 8486"
+    },
+    {
+      "name": "CCNO",
+      "propertyID": null,
+      "source": [
+        "/sources/0"
+      ],
+      "url": null,
+      "value": "NCIB 9763"
+    },
+    {
+      "name": "CCNO",
+      "propertyID": null,
+      "source": [
+        "/sources/0"
+      ],
+      "url": null,
+      "value": "CCUG 16793"
+    },
+    {
+      "name": "CCNO",
+      "propertyID": null,
+      "source": [
+        "/sources/0"
+      ],
+      "url": null,
+      "value": "JCM 6421"
+    },
+    {
+      "name": "CCNO",
+      "propertyID": null,
+      "source": [
+        "/sources/0"
+      ],
+      "url": null,
+      "value": "BCRC 14401"
+    },
+    {
+      "name": "CCNO",
+      "propertyID": null,
+      "source": [
+        "/sources/0"
+      ],
+      "url": null,
+      "value": "CIP 104169"
+    },
+    {
+      "name": "CCNO",
+      "propertyID": null,
+      "source": [
+        "/sources/0"
+      ],
+      "url": null,
+      "value": "JCM 9978"
+    },
+    {
+      "name": "CCNO",
+      "propertyID": null,
+      "source": [
+        "/sources/0"
+      ],
+      "url": null,
+      "value": "KCTC 3266"
+    },
+    {
+      "name": "CCNO",
+      "propertyID": null,
+      "source": [
+        "/sources/0"
+      ],
+      "url": null,
+      "value": "NCIMB 9763"
+    },
+    {
+      "name": "Designation",
+      "propertyID": null,
+      "source": [
+        "/sources/0"
+      ],
+      "url": null,
+      "value": "STAFF 1027"
+    },
+    {
+      "name": "BacDiveID",
+      "propertyID": "https://www.wikidata.org/wiki/Property:P2946",
+      "source": [
+        "/sources/0"
+      ],
+      "url": "https://bacdive.dsmz.de/strain/5432",
+      "value": "5432"
+    },
+    {
+      "name": "SI-ID",
+      "propertyID": null,
+      "source": [
+        "/sources/0"
+      ],
+      "url": "https://straininfo.dsmz.de/strain/34969",
+      "value": "34969"
+    }
+  ],
+  "isolation": [
+    {
+      "date": null,
+      "isolatedAt": {
+        "address": null,
+        "email": null,
+        "identifier": [
+          {
+            "name": "ROR",
+            "propertyID": "https://www.wikidata.org/wiki/Property:P6782",
+            "url": null,
+            "value": "https://ror.org/03ep23f07"
+          }
+        ],
+        "legalName": null,
+        "name": "Korea Research Institute of Bioscience and Biotechnology",
+        "url": null
+      },
+      "source": [
+        "/sources/0"
+      ]
+    }
+  ],
+  "knownApplications": [
+    {
+      "application": "Production of substance x",
+      "source": [
+        "/sources/0"
+      ]
+    },
+    {
+      "application": "Degradation of substance y",
+      "source": [
+        "/sources/0"
+      ]
+    }
+  ],
+  "legal": [
+    {
+      "dualUse": false,
+      "gmo": false,
+      "gmoInformation": null,
+      "gras": false,
+      "nagoyaRestrictions": "No known restrictions under the Nagoya protocol",
+      "qps": false,
+      "quarantineEU": null,
+      "source": [
+        "/sources/0"
+      ]
+    }
+  ],
+  "literature": [
+    {
+      "author": [],
+      "datePublished": null,
+      "name": "Something",
+      "publisher": [],
+      "source": [
+        "/sources/0"
+      ],
+      "url": "https://doi.org/10.1128/JB.30.3.277-299.1935"
+    },
+    {
+      "author": [],
+      "datePublished": null,
+      "name": "Something different",
+      "publisher": [],
+      "source": [
+        "/sources/0"
+      ],
+      "url": "https://doi.org/10.1128/AEM.62.4.1242-1247.1996"
+    },
+    {
+      "author": [],
+      "datePublished": null,
+      "name": "Something completely different",
+      "publisher": [],
+      "source": [
+        "/sources/0"
+      ],
+      "url": "https://doi.org/10.1099/00207713-44-4-787"
+    }
+  ],
+  "metabolites": [
+    {
+      "alternateName": [
+        "L-alanine",
+        "Alinine",
+        "2-Aminopropanoic acid",
+        "2-aminopropanoic acid",
+        "Alanine"
+      ],
+      "identifier": [
+        {
+          "name": "ChEBI",
+          "propertyID": "https://wikidata.org/wiki/Property:P683",
+          "url": "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:16449",
+          "value": "CHEBI:16449"
+        },
+        {
+          "name": "PubChem",
+          "propertyID": "https://wikidata.org/wiki/Property:P662",
+          "url": "https://pubchem.ncbi.nlm.nih.gov/compound/5950",
+          "value": "5950"
+        }
+      ],
+      "name": "alanine",
+      "source": [
+        "/sources/0"
+      ],
+      "tests": [
+        {
+          "active": true,
+          "kindOfUtilization": null,
+          "protocol": null,
+          "type": "utilization"
+        }
+      ]
+    },
+    {
+      "alternateName": [
+        "L-asparagine",
+        "asparagine"
+      ],
+      "identifier": [
+        {
+          "name": "ChEBI",
+          "propertyID": "https://wikidata.org/wiki/Property:P683",
+          "url": "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:22653",
+          "value": "CHEBI:22653"
+        },
+        {
+          "name": "PubChem",
+          "propertyID": "https://wikidata.org/wiki/Property:P662",
+          "url": "https://pubchem.ncbi.nlm.nih.gov/compound/6267",
+          "value": "6267"
+        }
+      ],
+      "name": "asparagine",
+      "source": [
+        "/sources/0"
+      ],
+      "tests": [
+        {
+          "active": true,
+          "kindOfUtilization": null,
+          "protocol": null,
+          "type": "production"
+        },
+        {
+          "active": true,
+          "kindOfUtilization": null,
+          "protocol": null,
+          "type": "utilization"
+        }
+      ]
+    },
+    {
+      "alternateName": [
+        "aspartate(1-)",
+        "hydrogen aspartate",
+        "2-ammoniosuccinate",
+        "2-ammoniobutanedioate",
+        "aspartic acid monoanion",
+        "CHEBI:35391",
+        "FT-0653860",
+        "FT-0657391"
+      ],
+      "identifier": [
+        {
+          "name": "ChEBI",
+          "propertyID": "https://wikidata.org/wiki/Property:P683",
+          "url": "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:35391",
+          "value": "CHEBI:35391"
+        },
+        {
+          "name": "PubChem",
+          "propertyID": "https://wikidata.org/wiki/Property:P662",
+          "url": "https://pubchem.ncbi.nlm.nih.gov/compound/5460542",
+          "value": "5460542"
+        }
+      ],
+      "name": "aspartate",
+      "source": [
+        "/sources/0"
+      ],
+      "tests": [
+        {
+          "active": true,
+          "kindOfUtilization": null,
+          "protocol": null,
+          "type": "utilization"
+        }
+      ]
+    },
+    {
+      "alternateName": [
+        "aminate",
+        "formate",
+        "formiate",
+        "formic acid, ion(1\u2212)",
+        "formylate",
+        "HCO2 anion",
+        "hydrogen carboxylate",
+        "methanoate"
+      ],
+      "identifier": [
+        {
+          "name": "ChEBI",
+          "propertyID": "https://wikidata.org/wiki/Property:P683",
+          "url": "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:15740",
+          "value": "CHEBI:15740"
+        }
+      ],
+      "name": "formate",
+      "source": [
+        "/sources/0"
+      ],
+      "tests": [
+        {
+          "active": true,
+          "kindOfUtilization": null,
+          "protocol": null,
+          "type": "utilization"
+        }
+      ]
+    },
+    {
+      "alternateName": [
+        "DL-glucose",
+        "Glc",
+        "Glucose",
+        "Glukose"
+      ],
+      "identifier": [
+        {
+          "name": "ChEBI",
+          "propertyID": "https://wikidata.org/wiki/Property:P683",
+          "url": "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:17234",
+          "value": "CHEBI:17234"
+        }
+      ],
+      "name": "glucose",
+      "source": [
+        "/sources/0"
+      ],
+      "tests": [
+        {
+          "active": true,
+          "kindOfUtilization": null,
+          "protocol": null,
+          "type": "utilization"
+        }
+      ]
+    },
+    {
+      "alternateName": [
+        "glutamate(2\u2212)",
+        "glutamic acid dianion"
+      ],
+      "identifier": [
+        {
+          "name": "ChEBI",
+          "propertyID": "https://wikidata.org/wiki/Property:P683",
+          "url": "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:29987",
+          "value": "CHEBI:29987"
+        }
+      ],
+      "name": "glutamate(2-)",
+      "source": [
+        "/sources/0"
+      ],
+      "tests": [
+        {
+          "active": true,
+          "kindOfUtilization": null,
+          "protocol": null,
+          "type": "utilization"
+        }
+      ]
+    },
+    {
+      "alternateName": [
+        "[NO3]\u2212",
+        "nitrate",
+        "NITRATE ION",
+        "NO3\u2212",
+        "nitrate(1\u2212)",
+        "NO3",
+        "CHEMBL186200",
+        "NITRATO",
+        "trioxonitrate(1-)"
+      ],
+      "identifier": [
+        {
+          "name": "ChEBI",
+          "propertyID": "https://wikidata.org/wiki/Property:P683",
+          "url": "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:17632",
+          "value": "CHEBI:17632"
+        },
+        {
+          "name": "PubChem",
+          "propertyID": "https://wikidata.org/wiki/Property:P662",
+          "url": "https://pubchem.ncbi.nlm.nih.gov/compound/943",
+          "value": "943"
+        }
+      ],
+      "name": "nitrate",
+      "source": [
+        "/sources/0"
+      ],
+      "tests": [
+        {
+          "active": true,
+          "kindOfUtilization": null,
+          "protocol": null,
+          "type": "utilization"
+        }
+      ]
+    },
+    {
+      "alternateName": [
+        "[NO3]\u2212",
+        "nitrate",
+        "NITRATE ION",
+        "NO3\u2212",
+        "nitrate(1\u2212)",
+        "NO3",
+        "CHEMBL186200",
+        "NITRATO",
+        "trioxonitrate(1-)"
+      ],
+      "identifier": [
+        {
+          "name": "ChEBI",
+          "propertyID": "https://wikidata.org/wiki/Property:P683",
+          "url": "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:17632",
+          "value": "CHEBI:17632"
+        },
+        {
+          "name": "PubChem",
+          "propertyID": "https://wikidata.org/wiki/Property:P662",
+          "url": "https://pubchem.ncbi.nlm.nih.gov/compound/943",
+          "value": "943"
+        }
+      ],
+      "name": "indole",
+      "source": [
+        "/sources/0"
+      ],
+      "tests": [
+        {
+          "active": false,
+          "kindOfUtilization": null,
+          "protocol": null,
+          "type": "production"
+        }
+      ]
+    }
+  ],
+  "morphType": null,
+  "motility": [
+    {
+      "flagellum": true,
+      "flagellumArrangement": null,
+      "gliding": false,
+      "motile": true,
+      "source": [
+        "/sources/0"
+      ]
+    }
+  ],
+  "multiCellComplexForming": [
+    {
+      "multiCellComplexForming": true,
+      "source": [
+        "/sources/0"
+      ]
+    }
+  ],
+  "organismType": "Bacteria",
+  "otherMedia": [
+    {
+      "additionalType": "image",
+      "description": "Electron microscopic image",
+      "name": "EM_DSM_14619_1.jpg",
+      "source": [
+        "/sources/0"
+      ],
+      "url": "https://cdn.dsmz.de/images/strain/2979/EM_DSM_14619_1.jpg",
+      "usageInfo": null
+    }
+  ],
+  "oxygenRelation": [
+    {
+      "oxygenRelation": "anaerobe",
+      "source": [
+        "/sources/0"
+      ]
+    }
+  ],
+  "pathogenicity": [
+    {
+      "classification": "German classification",
+      "host": "human",
+      "pathogen": "opportunistic",
+      "source": [
+        "/sources/0"
+      ]
+    },
+    {
+      "classification": "German classification",
+      "host": "animal",
+      "pathogen": "no pathogen",
+      "source": [
+        "/sources/0"
+      ]
+    },
+    {
+      "classification": "German classification",
+      "host": "plant",
+      "pathogen": "no pathogen",
+      "source": [
+        "/sources/0"
+      ]
+    }
+  ],
+  "ph": [
+    {
+      "maximal": null,
+      "minimal": null,
+      "optimal": 7.0,
+      "source": [
+        "/sources/0"
+      ],
+      "tests": [
+        {
+          "growth": true,
+          "maximal": 9.0,
+          "minimal": 6.0,
+          "unit": "pH"
+        }
+      ],
+      "unit": "pH"
+    }
+  ],
+  "sample": [
+    {
+      "country": null,
+      "date": "/2011-09-12",
+      "description": "soil of landfill site",
+      "locationCreated": {
+        "description": null,
+        "geo": {
+          "elevation": null,
+          "latitude": 36.03901723905223,
+          "longitude": 129.365704500591,
+          "precision": null
+        },
+        "name": "Pohang"
+      },
+      "source": [
+        "/sources/0"
+      ],
+      "tags": [
+        {
+          "level1": "#Environmental",
+          "level2": "#Terrestrial",
+          "level3": "#Soil"
+        }
+      ]
+    }
+  ],
+  "sequences": [
+    {
+      "accessionNumber": "LC019782",
+      "description": "Eubacterium limosum gene for 16S ribosomal RNA, partial sequence, strain: JCM 9978",
+      "identifier": [
+        {
+          "name": "NCBI",
+          "value": "https://www.ncbi.nlm.nih.gov/nuccore/LC019782"
+        },
+        {
+          "name": "EBI",
+          "value": "https://www.ebi.ac.uk/ena/browser/view/LC019782"
+        }
+      ],
+      "length": "1425",
+      "level": "identifier sequence",
+      "source": [
+        "/sources/0"
+      ],
+      "type": "nucleotide"
+    },
+    {
+      "accessionNumber": "M59120",
+      "description": "Eubacterium limosum strain ATCC 8486 16S ribosomal RNA gene, partial sequence",
+      "identifier": [
+        {
+          "name": "NCBI",
+          "value": "https://www.ncbi.nlm.nih.gov/nuccore/M59120"
+        },
+        {
+          "name": "EBI",
+          "value": "https://www.ebi.ac.uk/ena/browser/view/M59120"
+        },
+        {
+          "name": "silva",
+          "value": "https://www.arb-silva.de/browser/ssu/M59120"
+        }
+      ],
+      "length": "1525",
+      "level": "identifier sequence",
+      "source": [
+        "/sources/0"
+      ],
+      "type": "nucleotide"
+    },
+    {
+      "accessionNumber": "AB595134",
+      "description": "Eubacterium limosum gene for 16S ribosomal RNA, partial sequence, strain: JCM 6421",
+      "identifier": [
+        {
+          "name": "NCBI",
+          "value": "https://www.ncbi.nlm.nih.gov/nuccore/AB595134"
+        },
+        {
+          "name": "EBI",
+          "value": "https://www.ebi.ac.uk/ena/browser/view/AB595134"
+        },
+        {
+          "name": "silva",
+          "value": "https://www.arb-silva.de/browser/ssu/AB595134"
+        }
+      ],
+      "length": "1484",
+      "level": "identifier sequence",
+      "source": [
+        "/sources/0"
+      ],
+      "type": "nucleotide"
+    },
+    {
+      "accessionNumber": "GCA_000807675",
+      "description": "Eubacterium limosum ATCC 8486",
+      "identifier": [
+        {
+          "name": "NCBI",
+          "value": "https://www.ncbi.nlm.nih.gov/assembly/GCA_000807675"
+        },
+        {
+          "name": "EBI",
+          "value": "https://www.ebi.ac.uk/ena/browser/view/GCA_000807675"
+        }
+      ],
+      "length": null,
+      "level": "genome",
+      "source": [
+        "/sources/0"
+      ],
+      "type": "nucleotide"
+    },
+    {
+      "accessionNumber": "1736.3",
+      "description": "Eubacterium limosum ATCC 8480",
+      "identifier": [
+        {
+          "name": "BV-BRC",
+          "value": "https://www.patricbrc.org/view/Genome/1736.3"
+        }
+      ],
+      "length": null,
+      "level": "gene",
+      "source": [
+        "/sources/0"
+      ],
+      "type": "nucleotide"
+    },
+    {
+      "accessionNumber": "2814123220",
+      "description": "Eubacterium limosum ATCC 8486",
+      "identifier": [
+        {
+          "name": "JGI",
+          "value": "https://img.jgi.doe.gov/cgi-bin/m/main.cgi?section=TaxonDetail&page=taxonDetail&taxon_oid=2814123220"
+        }
+      ],
+      "length": null,
+      "level": "genome",
+      "source": [
+        "/sources/0"
+      ],
+      "type": "nucleotide"
+    }
+  ],
+  "sources": [
+    {
+      "address": null,
+      "email": null,
+      "identifier": [
+        {
+          "name": "ROR",
+          "propertyID": "https://www.wikidata.org/wiki/Property:P6782",
+          "url": null,
+          "value": "https://ror.org/02tyer376"
+        }
+      ],
+      "legalName": "Leibniz-Institut DSMZ-Deutsche Sammlung von Mikroorganismen und Zellkulturen GmbH",
+      "name": "BacDive",
+      "url": "https://bacdive.dsmz.de/strain/2904"
+    }
+  ],
+  "sporeFormation": [
+    {
+      "source": [
+        "/sources/0"
+      ],
+      "sporeBuilding": true,
+      "sporeEjection": null,
+      "typeOfSpore": "endospore"
+    }
+  ],
+  "staining": [
+    {
+      "name": "Gram stain",
+      "source": [
+        "/sources/0"
+      ],
+      "value": "negative"
+    }
+  ],
+  "taxon": [
+    {
+      "alternateName": [
+        "Butyribacterium limosum",
+        "Bacteroides limosus"
+      ],
+      "identifier": [
+        {
+          "name": "LPSN",
+          "propertyID": "https://www.wikidata.org/wiki/Property:P1991",
+          "url": "https://lpsn.dsmz.de/species/eubacterium-limosum",
+          "value": "https://lpsn.dsmz.de/species/eubacterium-limosum"
+        },
+        {
+          "name": "NCBI:txid",
+          "propertyID": "https://www.wikidata.org/wiki/Property:P685",
+          "url": "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=1736",
+          "value": "1736"
+        }
+      ],
+      "name": "Eubacterium limosum",
+      "parentTaxon": {
+        "alternateName": [],
+        "identifier": [
+          {
+            "name": "LPSN",
+            "propertyID": "https://www.wikidata.org/wiki/Property:P1991",
+            "url": "https://lpsn.dsmz.de/genus/eubacterium",
+            "value": "https://lpsn.dsmz.de/genus/eubacterium"
+          }
+        ],
+        "name": "Eubacterium",
+        "parentTaxon": null,
+        "sameAs": [],
+        "scientificName": {
+          "author": "Pr\u00e9vot 1938 (Approved Lists 1980)",
+          "name": "Eubacterium"
+        },
+        "taxonRank": "genus",
+        "taxonStatus": "validly published"
+      },
+      "sameAs": [
+        "https://www.gbif.org/species/3226415/metrics"
+      ],
+      "scientificName": {
+        "author": "(Eggerth 1935) Pr\u00e9vot 1938 (Approved Lists 1980)",
+        "name": "Eubacterium limosum"
+      },
+      "source": [
+        "/sources/0"
+      ],
+      "taxonRank": "species",
+      "taxonStatus": "validly published"
+    }
+  ],
+  "temperature": [
+    {
+      "maximal": null,
+      "minimal": null,
+      "optimal": 37.0,
+      "source": [
+        "/sources/0"
+      ],
+      "tests": [
+        {
+          "growth": true,
+          "maximal": 39.0,
+          "minimal": 30.0,
+          "unit": "C"
+        },
+        {
+          "growth": false,
+          "maximal": 43.0,
+          "minimal": 45.0,
+          "unit": "C"
+        }
+      ],
+      "unit": "C"
+    }
+  ],
+  "tolerances": [
+    {
+      "alternateName": [
+        "1-N-(L(\u2212)-\u03b3-amino-\u03b1-hydroxybutyryl)kanamycin A",
+        "Amikacin",
+        "O-3-amino-3-deoxy-\u03b1-D-glucopyranosyl-(1\u21924)-O-(6-amino-6-deoxy-\u03b1-D-glucopyranosyl-(1\u21926))-N3-(4-amino-L-2-hydroxybutyryl)-2-deoxy-L-streptamine"
+      ],
+      "identifier": [
+        {
+          "name": "ChEBI",
+          "propertyID": "https://wikidata.org/wiki/Property:P683",
+          "url": "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:2637",
+          "value": "CHEBI:2637"
+        }
+      ],
+      "mic": null,
+      "name": "amikacin",
+      "reaction": null,
+      "source": [
+        "/sources/0"
+      ],
+      "tests": [
+        {
+          "concentration": "30",
+          "reaction": "sensitive",
+          "unit": "g/L"
+        }
+      ],
+      "unit": null
+    },
+    {
+      "alternateName": [
+        "AP",
+        "AMP",
+        "ABPC",
+        "Ampicillin",
+        "ampicillin acid",
+        "ampicillin anhydrous"
+      ],
+      "identifier": [
+        {
+          "name": "ChEBI",
+          "propertyID": "https://wikidata.org/wiki/Property:P683",
+          "url": "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:28971",
+          "value": "CHEBI:28971"
+        }
+      ],
+      "mic": null,
+      "name": "ampicillin",
+      "reaction": null,
+      "source": [
+        "/sources/0"
+      ],
+      "tests": [
+        {
+          "concentration": "10",
+          "reaction": "resistant",
+          "unit": "g/L"
+        }
+      ],
+      "unit": null
+    },
+    {
+      "alternateName": [
+        "Sharox",
+        "Zinacef Danmark",
+        "Cefuroxim",
+        "Cefuroxime",
+        "Cephuroxime"
+      ],
+      "identifier": [
+        {
+          "name": "ChEBI",
+          "propertyID": "https://wikidata.org/wiki/Property:P683",
+          "url": "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:3515",
+          "value": "CHEBI:3515"
+        }
+      ],
+      "mic": null,
+      "name": "cefuroxime",
+      "reaction": null,
+      "source": [
+        "/sources/0"
+      ],
+      "tests": [
+        {
+          "concentration": "30",
+          "reaction": "intermediate",
+          "unit": "g/L"
+        }
+      ],
+      "unit": null
+    }
+  ],
+  "typeStrain": [
+    {
+      "source": [
+        "/sources/0"
+      ],
+      "typeStrain": true
+    }
+  ],
+  "unifiedTaxon": {
+    "alternateName": [
+      "Butyribacterium limosum",
+      "Bacteroides limosus"
+    ],
+    "identifier": [
+      {
+        "name": "LPSN",
+        "propertyID": "https://www.wikidata.org/wiki/Property:P1991",
+        "url": "https://lpsn.dsmz.de/species/eubacterium-limosum",
+        "value": "https://lpsn.dsmz.de/species/eubacterium-limosum"
+      },
+      {
+        "name": "NCBI:txid",
+        "propertyID": "https://www.wikidata.org/wiki/Property:P685",
+        "url": "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=1736",
+        "value": "1736"
+      }
+    ],
+    "name": "Eubacterium limosum",
+    "parentTaxon": {
+      "alternateName": [],
+      "identifier": [
+        {
+          "name": "LPSN",
+          "propertyID": "https://www.wikidata.org/wiki/Property:P1991",
+          "url": "https://lpsn.dsmz.de/genus/eubacterium",
+          "value": "https://lpsn.dsmz.de/genus/eubacterium"
+        }
+      ],
+      "name": "Eubacterium",
+      "parentTaxon": null,
+      "sameAs": [],
+      "scientificName": {
+        "author": "Pr\u00e9vot 1938 (Approved Lists 1980)",
+        "name": "Eubacterium"
+      },
+      "taxonRank": "genus",
+      "taxonStatus": "validly published"
+    },
+    "sameAs": [
+      "https://www.gbif.org/species/3226415/metrics"
+    ],
+    "scientificName": {
+      "author": "(Eggerth 1935) Pr\u00e9vot 1938 (Approved Lists 1980)",
+      "name": "Eubacterium limosum"
+    },
+    "taxonRank": "species",
+    "taxonStatus": "validly published"
+  },
+  "unifiedTypeStrain": true,
+  "wallConstituents": [
+    {
+      "alternateName": [
+        "B2alpha {L-Ser} [L-Orn] D-Glu-D-Lys(D-Orn)"
+      ],
+      "identifier": [],
+      "name": "B04",
+      "percent": null,
+      "source": [
+        "/sources/0"
+      ]
+    }
+  ]
+}

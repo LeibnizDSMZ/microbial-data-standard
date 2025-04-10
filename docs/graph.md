@@ -379,7 +379,7 @@ level: SequenceLevel
 accessionNumber: string
 description: string | null
 length: string | null
-url: string
+identifier: array[Identifier]
 source: string
 }
 
@@ -716,6 +716,7 @@ sources:
 `Microbe` ..> `Sequence`
 `Sequence` ..> `SequenceType`
 `Sequence` ..> `SequenceLevel`
+`Sequence` ..> `Identifier`
 `Microbe` ..> `GCContent`
 `Microbe` ..> `Literature`
 `Literature` ..> `Person`

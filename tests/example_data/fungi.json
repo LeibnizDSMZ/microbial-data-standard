@@ -1,0 +1,878 @@
+{
+  "applications": [
+    {
+      "application": "US Patent 3,726,763",
+      "source": "/sources/0"
+    },
+    {
+      "application": "production of citric acid",
+      "source": "/sources/0"
+    }
+  ],
+  "bio_safety": [
+    {
+      "classification": "German classification",
+      "group": "2",
+      "source": "/sources/0",
+      "url": "https://www.baua.de/EN/Service/Legislative-texts-and-technical-rules/Rules/TRBA/TRBA-466.html"
+    }
+  ],
+  "cell_length": [
+    {
+      "max": 7.0,
+      "min": 2.0,
+      "source": "/sources/0",
+      "unit": "\u00b5m"
+    }
+  ],
+  "cell_motility": [
+    {
+      "flag_arr": null,
+      "flagellum": null,
+      "gliding": null,
+      "motile": false,
+      "source": "/sources/0"
+    }
+  ],
+  "cell_shape": [
+    {
+      "cell_shape": "round",
+      "source": "/sources/0"
+    }
+  ],
+  "cell_wall": [
+    {
+      "alternate_name": [
+        "D-Glc",
+        "D-Glucopyranose",
+        "D-Glucopyranoside",
+        "D-Glucose",
+        "Glc",
+        "Glucopyranose",
+        "Glucopyranoside",
+        "Glucose",
+        "dextrose",
+        "2280-44-6",
+        "Grape sugar"
+      ],
+      "identifier": [
+        {
+          "name": "PubChem",
+          "property": "https://wikidata.org/wiki/Property:P662",
+          "url": "https://pubchem.ncbi.nlm.nih.gov/compound/5793",
+          "value": "5793"
+        },
+        {
+          "name": "ChEBI",
+          "property": "https://wikidata.org/wiki/Property:P683",
+          "url": "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:4167",
+          "value": "CHEBI:4167"
+        }
+      ],
+      "name": "glucose",
+      "percent": null,
+      "source": "/sources/0"
+    },
+    {
+      "alternate_name": [
+        "D-Man",
+        "D-Mannopyranose",
+        "D-Mannopyranoside",
+        "D-Mannose",
+        "Man",
+        "Mannopyranose",
+        "Mannopyranoside",
+        "Mannose",
+        "Carubinose",
+        "Seminose"
+      ],
+      "identifier": [
+        {
+          "name": "PubChem",
+          "property": "https://wikidata.org/wiki/Property:P662",
+          "url": "https://pubchem.ncbi.nlm.nih.gov/compound/18950",
+          "value": "18950"
+        },
+        {
+          "name": "ChEBI",
+          "property": "https://wikidata.org/wiki/Property:P683",
+          "url": "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:4208",
+          "value": "CHEBI:4208"
+        }
+      ],
+      "name": "mannose",
+      "percent": null,
+      "source": "/sources/0"
+    }
+  ],
+  "cell_width": [
+    {
+      "max": 3.0,
+      "min": 1.0,
+      "source": "/sources/0",
+      "unit": "\u00b5m"
+    }
+  ],
+  "collections": [
+    {
+      "address": null,
+      "available": true,
+      "axenic": true,
+      "catalog_link": null,
+      "date": null,
+      "depositor": null,
+      "email": null,
+      "history": null,
+      "identifier": [
+        {
+          "name": "ROR",
+          "property": "https://www.wikidata.org/wiki/Property:P6782",
+          "url": null,
+          "value": "https://ror.org/030a5r161"
+        }
+      ],
+      "legal_name": "Westerdijk Fungal Biodiversity Institute",
+      "name": "CBS",
+      "resource_num": "CBS 562",
+      "restrictions": null,
+      "source": "/sources/0",
+      "supply_forms": [
+        "Lyo",
+        "Agar"
+      ],
+      "url": "https://wi.knaw.nl/"
+    },
+    {
+      "address": null,
+      "available": true,
+      "axenic": true,
+      "catalog_link": null,
+      "date": null,
+      "depositor": null,
+      "email": null,
+      "history": "ATCC <-- CBS <-- JE Mackinnon 572",
+      "identifier": [
+        {
+          "name": "ROR",
+          "property": "https://www.wikidata.org/wiki/Property:P6782",
+          "url": null,
+          "value": "https://ror.org/03thhhv76"
+        }
+      ],
+      "legal_name": "American Type Culture Collection",
+      "name": "ATCC",
+      "resource_num": "ATCC 18804",
+      "restrictions": null,
+      "source": "/sources/0",
+      "supply_forms": [
+        "Lyo"
+      ],
+      "url": "http://www.atcc.org/"
+    },
+    {
+      "address": null,
+      "available": true,
+      "axenic": true,
+      "catalog_link": null,
+      "date": null,
+      "depositor": null,
+      "email": null,
+      "history": "CECT, 1987 < NCYC, 1960 < CBS < Mackinnon, J.E. No. 572",
+      "identifier": [
+        {
+          "name": "ROR",
+          "property": "https://www.wikidata.org/wiki/Property:P6782",
+          "url": null,
+          "value": "https://ror.org/043nxc105"
+        }
+      ],
+      "legal_name": "Universitat de Val\u00e8ncia",
+      "name": "CECT",
+      "resource_num": "CECT 1002",
+      "restrictions": null,
+      "source": "/sources/0",
+      "supply_forms": [
+        "Lyo",
+        "Agar",
+        "DNA"
+      ],
+      "url": "https://www.uv.es/"
+    }
+  ],
+  "colony": [],
+  "connected_persons": [],
+  "cultivation_media": [
+    {
+      "name": "GPYA",
+      "reagents": [
+        "glucose",
+        "peptone",
+        "yeast extract",
+        "agar",
+        "distilled water"
+      ],
+      "source": "/sources/0",
+      "url": null
+    }
+  ],
+  "enzymes": [],
+  "fatty_acid_profiles": [],
+  "gc": [
+    {
+      "method": null,
+      "source": "/sources/0",
+      "value": 33.5
+    }
+  ],
+  "halophily": [
+    {
+      "alternate_name": [
+        "Table salt",
+        "sodium chloride",
+        "ClNa"
+      ],
+      "identifier": [
+        {
+          "name": "PubChem",
+          "property": "https://wikidata.org/wiki/Property:P662",
+          "url": "https://pubchem.ncbi.nlm.nih.gov/compound/5234",
+          "value": "5234"
+        },
+        {
+          "name": "ChEBI",
+          "property": "https://wikidata.org/wiki/Property:P683",
+          "url": "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:26710",
+          "value": "CHEBI:26710"
+        }
+      ],
+      "maximal": null,
+      "minimal": null,
+      "name": "Sodium Chloride",
+      "optimal": null,
+      "source": "/sources/0",
+      "tests": [
+        {
+          "growth": true,
+          "maximal": 10.0,
+          "minimal": 10.0,
+          "unit": "v/v%"
+        },
+        {
+          "growth": false,
+          "maximal": 16.0,
+          "minimal": 16.0,
+          "unit": "v/v%"
+        }
+      ],
+      "unit": "unknown"
+    }
+  ],
+  "hemolysis": [],
+  "identifier": [
+    {
+      "name": "CCNO",
+      "property": null,
+      "source": "/sources/0",
+      "url": null,
+      "value": "ATCC 18804"
+    },
+    {
+      "name": "CCNO",
+      "property": null,
+      "source": "/sources/0",
+      "url": null,
+      "value": "CBS 562"
+    },
+    {
+      "name": "CCNO",
+      "property": null,
+      "source": "/sources/0",
+      "url": null,
+      "value": "CCRC 20512"
+    },
+    {
+      "name": "CCNO",
+      "property": null,
+      "source": "/sources/0",
+      "url": null,
+      "value": "CECT 1002"
+    },
+    {
+      "name": "CCNO",
+      "property": null,
+      "source": "/sources/0",
+      "url": null,
+      "value": "DBVPG 6133"
+    },
+    {
+      "name": "CCNO",
+      "property": null,
+      "source": "/sources/0",
+      "url": null,
+      "value": "IFO 1385"
+    },
+    {
+      "name": "CCNO",
+      "property": null,
+      "source": "/sources/0",
+      "url": null,
+      "value": "IGC 3436"
+    },
+    {
+      "name": "CCNO",
+      "property": null,
+      "source": "/sources/0",
+      "url": null,
+      "value": "JCM 1542"
+    },
+    {
+      "name": "CCNO",
+      "property": null,
+      "source": "/sources/0",
+      "url": null,
+      "value": "KCTC 7270"
+    },
+    {
+      "name": "CCNO",
+      "property": null,
+      "source": "/sources/0",
+      "url": null,
+      "value": "NCYC 597"
+    },
+    {
+      "name": "CCNO",
+      "property": null,
+      "source": "/sources/0",
+      "url": null,
+      "value": "NRRL Y-12983"
+    },
+    {
+      "name": "CCNO",
+      "property": null,
+      "source": "/sources/0",
+      "url": null,
+      "value": "PYCC 3436"
+    },
+    {
+      "name": "Designation",
+      "property": null,
+      "source": "/sources/0",
+      "url": null,
+      "value": "DBVPG 6133"
+    },
+    {
+      "name": "TheYeastsStrain",
+      "property": null,
+      "source": "/sources/0",
+      "url": "https://theyeasts.org/page/yeasts-strains-display/309",
+      "value": "309"
+    },
+    {
+      "name": "SI-ID",
+      "property": null,
+      "source": "/sources/0",
+      "url": "https://straininfo.dsmz.de/strain/14077",
+      "value": "14077"
+    }
+  ],
+  "isolation": [
+    {
+      "date": null,
+      "isolator": null,
+      "source": "/sources/0"
+    }
+  ],
+  "legal": [
+    {
+      "GRAS": false,
+      "QPS": false,
+      "dual_use": false,
+      "gmo": false,
+      "gmo_information": null,
+      "nagoya": "No known restrictions under the Nagoya protocol",
+      "quarantine": null,
+      "source": "/sources/0"
+    }
+  ],
+  "literature": [
+    {
+      "author": [],
+      "date": null,
+      "name": null,
+      "publisher": [],
+      "source": "/sources/0",
+      "url": "https://doi.org/10.1099/00207713-51-4-1593"
+    },
+    {
+      "author": [],
+      "date": null,
+      "name": null,
+      "publisher": [],
+      "source": "/sources/0",
+      "url": "https://doi.org/10.1128/JCM.42.12.5624-5635.2004"
+    },
+    {
+      "author": [],
+      "date": null,
+      "name": null,
+      "publisher": [],
+      "source": "/sources/0",
+      "url": "https://doi.org/10.1128/jcm.35.5.1216-1223.1997"
+    },
+    {
+      "author": [],
+      "date": null,
+      "name": null,
+      "publisher": [],
+      "source": "/sources/0",
+      "url": "https://doi.org/10.1099/13500872-141-7-1523"
+    },
+    {
+      "author": [],
+      "date": null,
+      "name": null,
+      "publisher": [],
+      "source": "/sources/0",
+      "url": "https://doi.org/10.1007/BF02049775"
+    },
+    {
+      "author": [],
+      "date": null,
+      "name": null,
+      "publisher": [],
+      "source": "/sources/0",
+      "url": "https://doi.org/10.1016/S0723-2020(99)80030-7"
+    },
+    {
+      "author": [],
+      "date": null,
+      "name": null,
+      "publisher": [],
+      "source": "/sources/0",
+      "url": "https://doi.org/10.1128/JCM.37.6.1985-1993.1999"
+    }
+  ],
+  "metabolites": [
+    {
+      "alternate_name": [
+        "D-Glc",
+        "D-Glucopyranose",
+        "D-Glucopyranoside",
+        "D-Glucose",
+        "Glc",
+        "Glucopyranose",
+        "Glucopyranoside",
+        "Glucose"
+      ],
+      "identifier": [
+        {
+          "name": "ChEBI",
+          "property": "https://wikidata.org/wiki/Property:P683",
+          "url": "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:4167",
+          "value": " CHEBI:4167"
+        },
+        {
+          "name": "PubChem",
+          "property": "https://wikidata.org/wiki/Property:P662",
+          "url": "https://pubchem.ncbi.nlm.nih.gov/compound/5793",
+          "value": "5793"
+        }
+      ],
+      "name": "D-Glucose",
+      "source": "/sources/0",
+      "tests": [
+        {
+          "active": true,
+          "protocol": "F1",
+          "type": "utilization",
+          "utilization": null
+        },
+        {
+          "active": true,
+          "protocol": "C1",
+          "type": "utilization",
+          "utilization": null
+        }
+      ]
+    },
+    {
+      "alternate_name": [
+        "sucrose",
+        "57-50-1",
+        "saccharose",
+        "sugar",
+        "Table sugar",
+        "Cane sugar",
+        "White sugar",
+        "D-Sucrose"
+      ],
+      "identifier": [
+        {
+          "name": "ChEBI",
+          "property": "https://wikidata.org/wiki/Property:P683",
+          "url": "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:17992",
+          "value": " CHEBI:17992"
+        },
+        {
+          "name": "PubChem",
+          "property": "https://wikidata.org/wiki/Property:P662",
+          "url": "https://pubchem.ncbi.nlm.nih.gov/compound/5988",
+          "value": "5988"
+        }
+      ],
+      "name": "Sucrose",
+      "source": "/sources/0",
+      "tests": [
+        {
+          "active": false,
+          "protocol": "F5",
+          "type": "utilization",
+          "utilization": null
+        },
+        {
+          "active": true,
+          "protocol": "C1",
+          "type": "utilization",
+          "utilization": null
+        }
+      ]
+    },
+    {
+      "alternate_name": [
+        "L-Sor",
+        "L-Sorbopyranose",
+        "L-Sorbopyranoside",
+        "L-Sorbose",
+        "L-Xylo-Hex-2-ulo-Pyranose",
+        "L-Xylo-Hexopyran-2-ulose",
+        "Sor",
+        "Sorbopyranose",
+        "Sorbopyranoside",
+        "Sorbose"
+      ],
+      "identifier": [
+        {
+          "name": "ChEBI",
+          "property": "https://wikidata.org/wiki/Property:P683",
+          "url": "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:48649",
+          "value": " CHEBI:48649"
+        },
+        {
+          "name": "PubChem",
+          "property": "https://wikidata.org/wiki/Property:P662",
+          "url": "https://pubchem.ncbi.nlm.nih.gov/compound/439192",
+          "value": "439192"
+        }
+      ],
+      "name": "L-Sorbose",
+      "source": "/sources/0",
+      "tests": [
+        {
+          "active": true,
+          "protocol": "C3",
+          "type": "utilization",
+          "utilization": null
+        }
+      ]
+    }
+  ],
+  "morph_type": "yeast",
+  "multi_cell": [
+    {
+      "multi_cell": false,
+      "source": "/sources/0"
+    }
+  ],
+  "organism_type": "Fungi",
+  "other_media": [
+    {
+      "additional_type": null,
+      "description": "C albicans visualised using scanning electron microscopy. Scanning electrom microscopy was performed at CenSE, IISc, Bangalore",
+      "name": "SEM of C. albicans",
+      "source": "/sources/0",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/a/a8/SEM_of_C_albicans.tif",
+      "usage": "Vader1941 at English Wikipedia, CC BY-SA 4.0"
+    }
+  ],
+  "oxygen": [
+    {
+      "relation": "aerobe",
+      "source": "/sources/0"
+    }
+  ],
+  "pathogenicity": [
+    {
+      "classification": null,
+      "host": "human",
+      "pathogen": "obligate",
+      "source": "/sources/0"
+    }
+  ],
+  "ph": [
+    {
+      "maximal": null,
+      "minimal": null,
+      "optimal": null,
+      "source": "/sources/0",
+      "tests": [],
+      "unit": "pH"
+    }
+  ],
+  "sample": [
+    {
+      "country": null,
+      "date": "/1987-06-11",
+      "description": "Skin of man with interdigital mycosis",
+      "location": {
+        "description": "",
+        "geo": {
+          "elevation": null,
+          "latitude": -34.883611,
+          "longitude": -56.181944,
+          "precision": null
+        },
+        "name": "Montevideo"
+      },
+      "source": "/sources/0",
+      "tags": []
+    }
+  ],
+  "sequences": [
+    {
+      "accession": "AY497682",
+      "description": "Candida albicans strain CBS 562 26S ribosomal RNA gene, partial sequence",
+      "length": "525",
+      "level": "identifier sequence",
+      "source": "/sources/0",
+      "type": "nucleotide",
+      "url": [
+        "https://www.ncbi.nlm.nih.gov/nuccore/AY497682"
+      ]
+    },
+    {
+      "accession": "JN882343",
+      "description": "Candida albicans strain NRRL Y-12983 18S ribosomal RNA gene, partial sequence; internal transcribed spacer 1, 5.8S ribosomal RNA gene, and internal transcribed spacer 2, complete sequence; and 28S ribosomal RNA gene, partial sequence",
+      "length": "498",
+      "level": "identifier sequence",
+      "source": "/sources/0",
+      "type": "nucleotide",
+      "url": [
+        "https://www.ncbi.nlm.nih.gov/nuccore/JN882343"
+      ]
+    },
+    {
+      "accession": "JN882349",
+      "description": "Candida albicans strain NRRL Y-12983 28S ribosomal RNA gene, partial sequence",
+      "length": "546",
+      "level": "identifier sequence",
+      "source": "/sources/0",
+      "type": "nucleotide",
+      "url": [
+        "https://www.ncbi.nlm.nih.gov/nuccore/JN882349"
+      ]
+    },
+    {
+      "accession": "CAU45776",
+      "description": "Candida albicans 26S ribosomal RNA gene, partial sequence",
+      "length": "546",
+      "level": "identifier sequence",
+      "source": "/sources/0",
+      "type": "nucleotide",
+      "url": [
+        "https://www.ncbi.nlm.nih.gov/nuccore/CAU45776"
+      ]
+    },
+    {
+      "accession": "GCA_015344825",
+      "description": "Genome assembly ASM1534482",
+      "length": "",
+      "level": "genome",
+      "source": "/sources/0",
+      "type": "nucleotide",
+      "url": [
+        "https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_015344825"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "address": null,
+      "email": null,
+      "identifier": [
+        {
+          "name": "ROR",
+          "property": "https://www.wikidata.org/wiki/Property:P6782",
+          "url": null,
+          "value": "https://ror.org/030a5r161"
+        }
+      ],
+      "legal_name": "Westerdijk Fungal Biodiversity Institute",
+      "name": "CBS",
+      "resource_id": null,
+      "url": "https://wi.knaw.nl/page/fungal_display/309"
+    }
+  ],
+  "spore": [
+    {
+      "building": null,
+      "ejection": null,
+      "source": "/sources/0",
+      "type": "spore"
+    }
+  ],
+  "stainings": [
+    {
+      "name": "Diazonium Blue B reaction",
+      "source": "/sources/0",
+      "value": "negative"
+    }
+  ],
+  "temperature": [
+    {
+      "maximal": null,
+      "minimal": null,
+      "optimal": 25.0,
+      "source": "/sources/0",
+      "tests": [],
+      "unit": "C"
+    }
+  ],
+  "tolerances": [
+    {
+      "alternate_name": [
+        "5-FC",
+        "5FC",
+        "5-Fluorocystosine",
+        "5-Fluorocytosine",
+        "Ancobon (TN)",
+        "Ancobon"
+      ],
+      "identifier": [
+        {
+          "name": "ChEBI",
+          "property": "https://wikidata.org/wiki/Property:P683",
+          "url": "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:5100",
+          "value": "CHEBI:5100"
+        },
+        {
+          "name": "PubChem",
+          "property": "https://wikidata.org/wiki/Property:P662",
+          "url": "https://pubchem.ncbi.nlm.nih.gov/compound/3366",
+          "value": "3366"
+        }
+      ],
+      "mic": "0.124",
+      "name": "flucytosine",
+      "reaction": "senisitive",
+      "source": "/sources/0",
+      "tests": [],
+      "unit": null
+    },
+    {
+      "alternate_name": [
+        "Amphotericine B",
+        "AMPH-B",
+        "Liposomal Amphotericin B",
+        "SCHEMBL1648719",
+        "CHEMBL4785395"
+      ],
+      "identifier": [
+        {
+          "name": "ChEBI",
+          "property": "https://wikidata.org/wiki/Property:P683",
+          "url": "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:2682",
+          "value": "CHEBI:2682"
+        },
+        {
+          "name": "PubChem",
+          "property": "https://wikidata.org/wiki/Property:P662",
+          "url": "https://pubchem.ncbi.nlm.nih.gov/compound/14956",
+          "value": "14956"
+        }
+      ],
+      "mic": "0.03",
+      "name": "amphotericin B",
+      "reaction": "senisitive",
+      "source": "/sources/0",
+      "tests": [],
+      "unit": null
+    },
+    {
+      "alternate_name": [
+        "Caspofungin"
+      ],
+      "identifier": [
+        {
+          "name": "ChEBI",
+          "property": "https://wikidata.org/wiki/Property:P683",
+          "url": "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:474180",
+          "value": "CHEBI:474180"
+        }
+      ],
+      "mic": "8",
+      "name": "caspofungin",
+      "reaction": "resistant",
+      "source": "/sources/0",
+      "tests": [],
+      "unit": null
+    }
+  ],
+  "unified_taxon": {
+    "alternate_name": [],
+    "identifier": [
+      {
+        "name": "NCBI:txid",
+        "property": "https://www.wikidata.org/wiki/Property:P685",
+        "url": "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=5476",
+        "value": "5476"
+      },
+      {
+        "name": "MycoBank",
+        "property": "https://www.wikidata.org/wiki/Property:P962",
+        "url": "https://www.mycobank.org/page/Name%20details%20page/106232",
+        "value": "256187"
+      }
+    ],
+    "name": "Candida albicans",
+    "parent": {
+      "alternate_name": [
+        "Oidium albicans, C.P. Robin (1853)",
+        "Myceloblastanon albicans, (C.P. Robin, 1928)"
+      ],
+      "identifier": [
+        {
+          "name": "NCBI:txid",
+          "property": "https://www.wikidata.org/wiki/Property:P685",
+          "url": "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=5475",
+          "value": "5475"
+        },
+        {
+          "name": "MycoBank",
+          "property": "https://www.wikidata.org/wiki/Property:P962",
+          "url": "https://www.mycobank.org/page/Name%20details%20page/56219",
+          "value": "7487"
+        }
+      ],
+      "name": "Candida",
+      "parent": null,
+      "rank": "genus",
+      "same_as": [],
+      "scientific": {
+        "author": "Berkhout 1923",
+        "name": "Candida"
+      },
+      "status": "validly published"
+    },
+    "rank": "species",
+    "same_as": [
+      "https://www.ncbi.nlm.nih.gov/datasets/taxonomy/5475/",
+      "https://en.wikipedia.org/wiki/Candida_albicans"
+    ],
+    "scientific": {
+      "author": "(Robin) Berkhout 1923",
+      "name": "Candida albicans"
+    },
+    "status": "validly published"
+  },
+  "unified_type_strain": true
+}

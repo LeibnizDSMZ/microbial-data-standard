@@ -2529,6 +2529,13 @@
           "default": null,
           "title": "Description"
         },
+        "identifier": {
+          "items": {
+            "$ref": "#/$defs/Identifier"
+          },
+          "title": "Identifier",
+          "type": "array"
+        },
         "length": {
           "anyOf": [
             {
@@ -2557,16 +2564,6 @@
         "type": {
           "$ref": "#/$defs/SequenceType",
           "title": "Type"
-        },
-        "url": {
-          "items": {
-            "format": "uri",
-            "maxLength": 2083,
-            "minLength": 1,
-            "type": "string"
-          },
-          "title": "URL",
-          "type": "array"
         }
       },
       "required": [
