@@ -16,7 +16,7 @@ The new microbial data standard is defined as a data model written in [pydantic]
 The model is used for data validation and to generate a JSON schema file,
 also describing the microbial data standard.
 
-The JSON-schema file is also prebuild and included in this project.
+The JSON-schema file is also prebuilt and included in this project.
 You find the JSON schema in  `schema/microbe_schema.json`. The JSON schema will also be
 used for data validation and will be used in any non python environments for data validation.
 

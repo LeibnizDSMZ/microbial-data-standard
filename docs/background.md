@@ -25,14 +25,14 @@ to strains.
 ![image](stylesheets/standard.png)
 
 ### Standardized microbial data
-In a lot of cases culture collection provide an online catalogue of their available
+In a lot of cases culture collections provide an online catalogue of their available
 strains (e.g.
 [DSMZ](https://www.dsmz.de/collection/catalogue/microorganisms/catalogue),
 [CECT](https://www.uv.es/uvweb/spanish-type-culture-collection/en/cect/strains/culture-media-catalogue-/strains-search-engine-1285892802374.html),
 [Westerdijk Institute](https://wi.knaw.nl/fungal_table)).
 The information about the strains in these catalogues are often lacking deeper biological
 knowledge, even if this knowledge is available at the collection. Another issue is that
-all of these collection do hold their data in different formats. There is no overarching
+all of these collections hold their data in different formats. There is no overarching
 standardization of microbial strain data in use, even if there have been attempts to
 introduce standards to microbial strain data (MCL, CABRI, MINE, ...)
 
@@ -44,7 +44,7 @@ collections, research infrastructures and microbial databases. The goal is to im
 a new strain discovery database that integrates the data from the [DSMZ](https://dsmz.de),
 [CECT](https://www.uv.es/uvweb/spanish-type-culture-collection/en/spanish-type-culture-collection/cect-a-reserve-microbial-diversity-1285872233521/Recurs.html?id=1286053036934)
 and the [Westerdijk Institute](https://wi.knaw.nl/). The goal is to provide a unified
-**Strain Discovery Database** to search for strains by there biological traits
+**Strain Discovery Database** to search for strains by their biological traits
 independently from the culture collections catalogues that provide the strains.
 To reach this goal we have to define a standard to hold, share and compare the strain
 data from different institutes.

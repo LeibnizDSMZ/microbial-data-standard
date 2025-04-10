@@ -22,7 +22,10 @@ def write_documentation(name, title, type, format, description, id, is_req):
         if description:
             f_out.write(f"Description:\n")
             for line in description.splitlines():
-                f_out.write(f"> {line}  \n")
+                if len(line) < 2:
+                    f_out.write(">\n")
+                else:
+                    f_out.write(f"> {line}  \n")
             f_out.write("\n")
         f_out.write(f"**{type}**\n\n")
         if format:
@@ -137,7 +140,18 @@ def clear_docs_schema():
         file.unlink()
 
 
+def clean_end_of_files():
+    for file in Path("docs/schema").glob("*.md"):
+        lines = []
+        with open(file, "r") as f_in:
+            lines = f_in.readlines()[:-1]
+        with open(file, "w") as f_out:
+            for line in lines:
+                f_out.write(line)
+
+
 if __name__ == "__main__":
     clear_docs_schema()
     data_structure = parse_schema()
     export_excel(data_structure)
+    clean_end_of_files()
