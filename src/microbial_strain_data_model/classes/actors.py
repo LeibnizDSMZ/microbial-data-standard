@@ -72,6 +72,7 @@ class Collection(Organization):
     restrictionsOnUse: Restriction | None = Field(
         default=None, title="Restrictions On Use"
     )
+    policyUrl: HttpUrl | None = Field(default=None, title="Policy URL")
     axenicCulture: bool | None = Field(default=None, title="Axenic Culture")
     supplyForms: list[SupplyForm] = Field(default_factory=list, title="Supply Forms")
     history: str | None = Field(default=None, title="History")
