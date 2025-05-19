@@ -64,3 +64,5 @@ and systems by implementing fields and structures like they are found in
 [bioschemas](https://bioschemas.org/).
 Data fields that are not defined in those schemas are added to the standard wherever
 needed, but with similar structure to schemas.
+
+Join now! See [Call To Action](call.md) for further details.
