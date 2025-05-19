@@ -7,18 +7,16 @@
 
 # Microbial Data Standard
 
-This project defines a new microbial data standard for culture collection strain data.
-The new microbial data standard is part of the work of WP6 of the [Bioindustry 4.0](https://bioindustry4.hub.inrae.fr/) project.
+This project defines a new microbial data standard for all data describing a microbial strain.
+The new microbial data standard is part of the work of WP6 of the [Bioindustry 4.0](https://www.bioindustry4.eu/) project.
 
 ### Basic information
 
 The new microbial data standard is defined as a data model written in [pydantic](https://pydantic.dev).
-The model is used for data validation and to generate a JSON schema file,
-also describing the microbial data standard.
+The model is used for data validation and to generate a JSON schema file, describing the microbial data standard.
 
-The JSON-schema file is also prebuilt and included in this project.
-You find the JSON schema in  `schema/microbe_schema.json`. The JSON schema will also be
-used for data validation and will be used in any non python environments for data validation.
+The JSON-schema file is prebuilt and included in this project. You find the JSON schema in
+`schema/microbe_schema.json`. The JSON schema will be used for data validation.
 
 If you want to report a bug, contribute to the project or suggest new features, please contact the project owner.
 
@@ -26,6 +24,7 @@ If you want to report a bug, contribute to the project or suggest new features, 
 ### How to use
 
 The provided data model and schema are for data validation.
+
 
 Examples for using the pydantic data model:
 

@@ -61,7 +61,7 @@ nav:
   - index.md
   - Microbial Data: background.md
   - Technical Concept: technical.md
-  - Call to Action: call.md
+  #- Call To Action: call.md
   - License: license.md
 - Data Schema: schema/
 - Python:
@@ -69,10 +69,10 @@ nav:
   - Sub Classes: python/sub_classes.md
 - Graph: graph.md
 - Examples: examples/
+- Call To Action: call.md
 
 
-
-copyright: Copyright &copy; 2024 Julius Witte, Leibniz Institute DSMZ-German Collection of Microorganisms and Cell Cultures GmbH, Maintained by the WP6 Team of the  <a href="https://bioindustry4.hub.inrae.fr/">Bioindustry 4.0 project</a>
+copyright: Copyright &copy; 2024 Julius Witte, Leibniz Institute DSMZ-German Collection of Microorganisms and Cell Cultures GmbH, Maintained by the WP6 Team of the  <a href="https://www.bioindustry4.eu/">Bioindustry 4.0 project</a>
 
 extra:
   social:
