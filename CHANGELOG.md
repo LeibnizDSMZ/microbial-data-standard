@@ -1,3 +1,21 @@
+## v0.4.0 (2025-05-19)
+
+### Feat
+
+- add policyURL to Collection class
+- replace url with identifier in sequence, fixed test data, fixed make buildSchema
+- rename stainings to staining
+
+### Fix
+
+- fix lfs
+- add docstring to "sequenceLevel" enum class
+- **field-changes**: add new class restrictions and some field changes
+
+### Refactor
+
+- improve checks
+
 ## v0.3.0 (2025-02-17)
 
 ### Feat
