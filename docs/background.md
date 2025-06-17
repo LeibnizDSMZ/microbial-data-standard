@@ -3,7 +3,7 @@
 ### Microbial strains in culture collections
 
 Here, we define a microbial strain as all clones derived from a pure isolate, sharing
-identical phenotypic characteristics and a 100% (look up numbers, might be 99,99) genomic
+identical phenotypic characteristics and a 99,99% genomic
 identity. To preserve and distribute important microbial strains, they are deposited in
 culture collections that provide access for researchers and industry. An instance of a
 strain at a culture collection is called deposit and gets a unique identification number,
