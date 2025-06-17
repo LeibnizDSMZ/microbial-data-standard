@@ -19,6 +19,10 @@ extra_css:
 
 plugins:
 - search
+- exclude-search:
+    exclude:
+      graph.md
+      examples/*
 - autorefs
 - literate-nav:
     nav_file: README.md

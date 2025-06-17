@@ -116,6 +116,7 @@ mkdocs-literate-nav = ">=0.6, <1"
 mkdocs-material = ">=9.5,<10"
 mkdocstrings = ">=0.27,<1"
 mkdocstrings-python = ">=1.13,<2"
+mkdocs-exclude-search = "0.6.6"
 
 [tool.poetry.group.test]
 optional = true
