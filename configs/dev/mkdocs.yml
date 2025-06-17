@@ -21,8 +21,8 @@ plugins:
 - search
 - exclude-search:
     exclude:
-      graph.md
-      examples/*
+      - graph.md
+      - examples/*
 - autorefs
 - literate-nav:
     nav_file: README.md
