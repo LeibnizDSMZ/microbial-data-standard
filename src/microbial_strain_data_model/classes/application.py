@@ -13,7 +13,9 @@ class Application(BaseModel):
         str_strip_whitespace=True,
     )
 
-    application: str = Field(title="Application")
+    application: str = Field(
+        title="Application", description="Name of the application or patent"
+    )
     source: list[SourceString] = Field(
         title="Source", description="List of JSON paths to source object"
     )
