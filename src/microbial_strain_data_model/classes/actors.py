@@ -8,7 +8,7 @@ from microbial_strain_data_model.classes.sourcestring import SourceString
 
 
 class Person(BaseModel):
-    """Person - also Basis for every Individual Entity (e.g. Organization)"""
+    """Person"""
 
     model_config = ConfigDict(
         strict=True,
@@ -17,7 +17,7 @@ class Person(BaseModel):
         str_strip_whitespace=True,
     )
 
-    name: str = Field(title="Name")
+    name: str = Field(title="Name", description="Name of the person")
     identifier: list[Identifier] = Field(default_factory=list, title="Identifier")
 
 
@@ -47,13 +47,25 @@ class Organization(BaseModel):
         str_strip_whitespace=True,
     )
 
-    name: str = Field(title="Name")
-    identifier: list[Identifier] = Field(default_factory=list, title="Identifier")
-    legalName: str | None = Field(default=None, title="Legal Name")
-    address: Address | None = Field(default=None, title="Address")
-    url: HttpUrl | None = Field(default=None, title="URL")
-    email: EmailStr | None = Field(default=None, title="Email")
-    logo: HttpUrl | None = Field(default=None, title="Logo")
+    name: str = Field(title="Name", description="Short name of the organization")
+    identifier: list[Identifier] = Field(
+        default_factory=list,
+        title="Identifier",
+        description="Identifiers of the organization, e.g. ROR",
+    )
+    legalName: str | None = Field(
+        default=None,
+        title="Legal Name",
+        description="Full legal name of the organization",
+    )
+    address: Address | None = Field(
+        default=None, title="Address", description="Address of the organization"
+    )
+    url: HttpUrl | None = Field(default=None, title="URL", description="Link to homepage")
+    email: EmailStr | None = Field(
+        default=None, title="Email", description="Contact email"
+    )
+    logo: HttpUrl | None = Field(default=None, title="Logo", description="Link to logo")
 
 
 class Collection(Organization):
@@ -66,16 +78,38 @@ class Collection(Organization):
         str_strip_whitespace=True,
     )
 
-    resourceNumber: str = Field(title="Resource Number")
-    available: bool | None = Field(default=None, title="Availability")
-    catalogUrl: HttpUrl | None = Field(default=None, title="Catalog URL")
-    restrictionsOnUse: Restriction | None = Field(
-        default=None, title="Restrictions On Use"
+    resourceNumber: str = Field(
+        title="Resource Number", description="The CCNO of the strain at this collection"
     )
-    policyUrl: HttpUrl | None = Field(default=None, title="Policy URL")
-    axenicCulture: bool | None = Field(default=None, title="Axenic Culture")
-    supplyForms: list[SupplyForm] = Field(default_factory=list, title="Supply Forms")
-    history: str | None = Field(default=None, title="History")
+    available: bool | None = Field(
+        default=None,
+        title="Availability",
+        description="Is the strain in the current catalog",
+    )
+    catalogUrl: HttpUrl | None = Field(
+        default=None, title="Catalog URL", description="Link to catalog"
+    )
+    restrictionsOnUse: Restriction | None = Field(
+        default=None,
+        title="Restrictions On Use",
+        description="Restrictions of use by the collection",
+    )
+    policyUrl: HttpUrl | None = Field(
+        default=None, title="Policy URL", description="Link to collections policy"
+    )
+    axenicCulture: bool | None = Field(
+        default=None,
+        title="Axenic Culture",
+        description="Is the culture pure or mixed with other microbes",
+    )
+    supplyForms: list[SupplyForm] = Field(
+        default_factory=list,
+        title="Supply Forms",
+        description="How the strain are available",
+    )
+    history: str | None = Field(
+        default=None, title="History", description="Exchange history of the strain"
+    )
     depositionDate: (
         Annotated[
             str,
@@ -86,8 +120,21 @@ class Collection(Organization):
             ),
         ]
         | None
-    ) = Field(default=None, title="Deposition Date")
-    depositor: Person | None = Field(default=None, title="Depositor")
+    ) = Field(
+        default=None,
+        title="Deposition Date",
+        description="Date of deposition at this collection",
+    )
+    depositor: Person | None = Field(
+        default=None,
+        title="Depositor",
+        description="Person who deposited the strain at this collection",
+    )
+    depositedAs: str | None = Field(
+        default=None,
+        title="Deposited as",
+        description="The CCNO or designation before deposition",
+    )
     source: list[SourceString] = Field(
         title="Source", description="List of JSON paths to source object"
     )

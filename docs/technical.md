@@ -59,10 +59,21 @@ can be found and the respective dataset can be demerged.
 
 ### 3. Aligning with schema.org and bioschemas
 This new data standard tries to improve the interoperability with other use cases
-and systems by implementing fields and structures like they are found in
+and systems by implementing fields and structures similar to
 [schema.org](https://schema.org) and
 [bioschemas](https://bioschemas.org/).
-Data fields that are not defined in those schemas are added to the standard wherever
-needed, but with similar structure to schemas.
+
+### 4. Related data points
+Other microbial data standards have no possibility to define conditions which are e.g. related to a test result.
+
+For example:
+A strain that grows on Medium Y, which has a pH of 7, at 25°C, in a aerobic environment needs time X to double.
+This results in the most data standards in 5 different singular results like: grows on Y, grows at pH 7 and so on.
+But if we change the conditions the strain may grows faster or slower at a different temperature or pH or medium. Maybe the strain produces different compounds in a different aerobic environment.
+
+As this data is very specific and small changes can have massive impacts at results this
+data standard aim to solve the issue by providing a way to capture the conditions under which a test was performed.
+The solution is **related data points**.
+
 
 Join now! See [Call To Action](call.md) for further details.
