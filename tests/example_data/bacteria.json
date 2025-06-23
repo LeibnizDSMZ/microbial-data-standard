@@ -558,6 +558,9 @@
           "growth": true,
           "maximal": 1.0,
           "minimal": 0.0,
+          "relatedData": [
+            "/relatedData/0"
+          ],
           "unit": "g/g%"
         }
       ],
@@ -1095,6 +1098,9 @@
   "oxygenRelation": [
     {
       "oxygenRelation": "anaerobe",
+      "relatedData": [
+        "/relatedData/0"
+      ],
       "source": [
         "/sources/0"
       ]
