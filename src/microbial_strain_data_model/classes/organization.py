@@ -114,6 +114,9 @@ class Collection(Organization):
     mtaFile: HttpUrl | None = Field(
         default=None, title="MTA file", description="Link to MTA file"
     )
+    absFile: HttpUrl | None = Field(
+        default=None, title="ABS related file", description="Link to ABS file"
+    )
     source: list[SourceString] = Field(
         title="Source", description="List of JSON paths to source object"
     )
