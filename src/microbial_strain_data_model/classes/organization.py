@@ -1,40 +1,11 @@
 from typing_extensions import Annotated
 from pydantic import BaseModel, ConfigDict, Field, HttpUrl, EmailStr, StringConstraints
 from microbial_strain_data_model.classes.address import Address
-from microbial_strain_data_model.classes.enums import PersonRole, Restriction, SupplyForm
+from microbial_strain_data_model.classes.enums import Restriction, SupplyForm
 from microbial_strain_data_model.classes.identifier import Identifier
 
+from microbial_strain_data_model.classes.person import Person
 from microbial_strain_data_model.classes.sourcestring import SourceString
-
-
-class Person(BaseModel):
-    """Person"""
-
-    model_config = ConfigDict(
-        strict=True,
-        extra="forbid",
-        revalidate_instances="always",
-        str_strip_whitespace=True,
-    )
-
-    name: str = Field(title="Name", description="Name of the person")
-    identifier: list[Identifier] = Field(default_factory=list, title="Identifier")
-
-
-class ConnectedPerson(Person):
-    """Connected Person = Person + Role"""
-
-    model_config = ConfigDict(
-        strict=True,
-        extra="forbid",
-        revalidate_instances="always",
-        str_strip_whitespace=True,
-    )
-
-    role: PersonRole | None = Field(default=None, title="Role")
-    source: list[SourceString] = Field(
-        title="Source", description="List of JSON paths to source object"
-    )
 
 
 class Organization(BaseModel):
@@ -134,6 +105,14 @@ class Collection(Organization):
         default=None,
         title="Deposited as",
         description="The CCNO or designation before deposition",
+    )
+    registeredCollection: bool | None = Field(
+        default=None,
+        title="Registered Collection",
+        description="Registered collection status of this collection",
+    )
+    mtaFile: HttpUrl | None = Field(
+        default=None, title="MTA file", description="Link to MTA file"
     )
     source: list[SourceString] = Field(
         title="Source", description="List of JSON paths to source object"
