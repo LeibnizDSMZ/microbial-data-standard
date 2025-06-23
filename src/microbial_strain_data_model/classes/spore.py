@@ -2,7 +2,7 @@ from pydantic import BaseModel, ConfigDict, Field
 
 from microbial_strain_data_model.classes.enums import SporeType
 
-from microbial_strain_data_model.classes.sourcestring import SourceString
+from microbial_strain_data_model.classes.sourcestring import SourceLink
 
 
 class Spore(BaseModel):
@@ -18,6 +18,6 @@ class Spore(BaseModel):
     sporeBuilding: bool | None = Field(default=None, title="sporeBuilding")
     typeOfSpore: SporeType = Field(title="Type Of Spore")
     sporeEjection: str | None = Field(default=None, title="Spore Ejection")
-    source: list[SourceString] = Field(
+    source: list[SourceLink] = Field(
         title="Source", description="List of JSON paths to source object"
     )

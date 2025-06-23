@@ -3,7 +3,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from microbial_strain_data_model.classes.chemicalsubstance import ChemicalSubstance
 from microbial_strain_data_model.classes.enums import ConcentrationUnit, ToleranceReaction
 
-from microbial_strain_data_model.classes.sourcestring import SourceString
+from microbial_strain_data_model.classes.sourcestring import SourceLink
 
 
 class ToleranceTest(BaseModel):
@@ -35,6 +35,6 @@ class Tolerance(ChemicalSubstance):
     mic: str | None = Field(default=None, title="MIC")
     unit: ConcentrationUnit | None = Field(default=None, title="Unit")
     tests: list[ToleranceTest] = Field(default_factory=list, title="Tests")
-    source: list[SourceString] = Field(
+    source: list[SourceLink] = Field(
         title="Source", description="List of JSON paths to source object"
     )

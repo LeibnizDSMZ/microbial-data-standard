@@ -1,6 +1,6 @@
 from pydantic import BaseModel, ConfigDict, Field, HttpUrl
 
-from microbial_strain_data_model.classes.sourcestring import SourceString
+from microbial_strain_data_model.classes.sourcestring import SourceLink
 
 
 class Identifier(BaseModel):
@@ -28,6 +28,6 @@ class IdentifierStrain(Identifier):
         str_strip_whitespace=True,
     )
 
-    source: list[SourceString] = Field(
+    source: list[SourceLink] = Field(
         title="Source", description="List of JSON paths to source object"
     )

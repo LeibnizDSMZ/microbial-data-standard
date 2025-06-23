@@ -2,7 +2,7 @@ from pydantic import BaseModel, ConfigDict, Field, PositiveFloat
 
 from microbial_strain_data_model.classes.enums import SizeUnit
 
-from microbial_strain_data_model.classes.sourcestring import SourceString
+from microbial_strain_data_model.classes.sourcestring import SourceLink
 
 
 class Size(BaseModel):
@@ -32,6 +32,6 @@ class CellSize(BaseModel):
 
     cellLength: Size = Field(title="Cell Length", description="")
     cellWidth: Size = Field(title="Cell Width", description="")
-    source: list[SourceString] = Field(
+    source: list[SourceLink] = Field(
         title="Source", description="List of JSON paths to source object"
     )

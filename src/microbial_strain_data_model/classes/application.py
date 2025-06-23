@@ -1,6 +1,6 @@
 from pydantic import BaseModel, ConfigDict, Field
 
-from microbial_strain_data_model.classes.sourcestring import SourceString
+from microbial_strain_data_model.classes.sourcestring import SourceLink
 
 
 class Application(BaseModel):
@@ -16,6 +16,6 @@ class Application(BaseModel):
     application: str = Field(
         title="Application", description="Name of the application or patent"
     )
-    source: list[SourceString] = Field(
+    source: list[SourceLink] = Field(
         title="Source", description="List of JSON paths to source object"
     )

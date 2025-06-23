@@ -3,7 +3,7 @@ from pydantic import BaseModel, ConfigDict, Field, StringConstraints
 
 from microbial_strain_data_model.classes.organization import Organization
 from microbial_strain_data_model.classes.person import Person
-from microbial_strain_data_model.classes.sourcestring import SourceString
+from microbial_strain_data_model.classes.sourcestring import SourceLink
 
 
 class Isolation(BaseModel):
@@ -28,6 +28,6 @@ class Isolation(BaseModel):
         | None
     ) = Field(default=None, title="Date")
     isolatedAt: Organization | Person | None = Field(default=None, title="Isolated At")
-    source: list[SourceString] = Field(
+    source: list[SourceLink] = Field(
         title="Source", description="List of JSON paths to source object"
     )

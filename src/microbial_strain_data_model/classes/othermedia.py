@@ -7,7 +7,7 @@ from pydantic import (
 )
 
 from microbial_strain_data_model.utils.functions import check_not_completely_empty
-from microbial_strain_data_model.classes.sourcestring import SourceString
+from microbial_strain_data_model.classes.sourcestring import SourceLink
 
 
 class OtherMedia(BaseModel):
@@ -25,7 +25,7 @@ class OtherMedia(BaseModel):
     description: str | None = Field(default=None, title="Description")
     usageInfo: str | None = Field(default=None, title="Usage Information")
     additionalType: str | None = Field(default=None, title="Additional Type")
-    source: list[SourceString] = Field(
+    source: list[SourceLink] = Field(
         title="Source", description="List of JSON paths to source object"
     )
 

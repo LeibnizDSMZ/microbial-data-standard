@@ -1,6 +1,6 @@
 from pydantic import BaseModel, ConfigDict, Field, HttpUrl
 
-from microbial_strain_data_model.classes.sourcestring import SourceString
+from microbial_strain_data_model.classes.sourcestring import SourceLink
 
 
 class BioSafety(BaseModel):
@@ -16,6 +16,6 @@ class BioSafety(BaseModel):
     riskgroup: str = Field(title="Riskgroup")
     classification: str | None = Field(default=None, title="Classification")
     url: HttpUrl | None = Field(default=None, title="URL")
-    source: list[SourceString] = Field(
+    source: list[SourceLink] = Field(
         title="Source", description="List of JSON paths to source object"
     )

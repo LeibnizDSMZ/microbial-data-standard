@@ -4,7 +4,7 @@ from microbial_strain_data_model.classes.enums import ColonyColor
 from microbial_strain_data_model.classes.size import Size
 from microbial_strain_data_model.utils.functions import check_not_completely_empty
 
-from microbial_strain_data_model.classes.sourcestring import SourceString
+from microbial_strain_data_model.classes.sourcestring import SourceLink
 
 
 class Colony(BaseModel):
@@ -19,7 +19,7 @@ class Colony(BaseModel):
 
     size: Size | None = Field(default=None, title="Size of Colony")
     color: ColonyColor | None = Field(default=None, title="Color of Colony")
-    source: list[SourceString] = Field(
+    source: list[SourceLink] = Field(
         title="Source", description="List of JSON paths to source object"
     )
 

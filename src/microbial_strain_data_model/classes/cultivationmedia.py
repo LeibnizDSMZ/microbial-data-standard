@@ -1,6 +1,6 @@
 from pydantic import BaseModel, ConfigDict, Field, HttpUrl
 
-from microbial_strain_data_model.classes.sourcestring import SourceString
+from microbial_strain_data_model.classes.sourcestring import SourceLink
 
 
 class CultivationMedia(BaseModel):
@@ -16,6 +16,6 @@ class CultivationMedia(BaseModel):
     name: str = Field(title="Name")
     url: HttpUrl | None = Field(default=None, title="URL")
     reagentUsed: list[str] = Field(default_factory=list, title="Reagent Used")
-    source: list[SourceString] = Field(
+    source: list[SourceLink] = Field(
         title="Source", description="List of JSON paths to source object"
     )

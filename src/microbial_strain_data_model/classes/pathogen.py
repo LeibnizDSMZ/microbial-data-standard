@@ -2,7 +2,7 @@ from pydantic import BaseModel, ConfigDict, HttpUrl, Field
 
 from microbial_strain_data_model.classes.enums import Host, PathogenLevel
 
-from microbial_strain_data_model.classes.sourcestring import SourceString
+from microbial_strain_data_model.classes.sourcestring import SourceLink
 
 
 class Pathogen(BaseModel):
@@ -25,6 +25,6 @@ class Pathogen(BaseModel):
     url: HttpUrl | None = Field(
         default=None, title="URL", description="Link to classification document"
     )
-    source: list[SourceString] = Field(
+    source: list[SourceLink] = Field(
         title="Source", description="List of JSON paths to source object"
     )

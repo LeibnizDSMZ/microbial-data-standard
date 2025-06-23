@@ -1,7 +1,7 @@
 from typing import Generic, TypeVar
 from pydantic import BaseModel, ConfigDict, Field
 
-from microbial_strain_data_model.classes.sourcestring import SourceString
+from microbial_strain_data_model.classes.sourcestring import SourceLink
 
 T = TypeVar("T")
 
@@ -37,6 +37,6 @@ class Growth(BaseModel, Generic[T]):
     maximal: float | None = Field(default=None, title="Maximal")
     unit: T
     tests: list[GrowthRange[T]] = Field(default_factory=list, title="Tests")
-    source: list[SourceString] = Field(
+    source: list[SourceLink] = Field(
         title="Source", description="List of JSON paths to source object"
     )

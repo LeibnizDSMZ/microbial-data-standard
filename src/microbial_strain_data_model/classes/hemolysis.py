@@ -2,7 +2,7 @@ from pydantic import BaseModel, ConfigDict, Field
 
 from microbial_strain_data_model.classes.enums import HemolysisBlood, HemolysisType
 
-from microbial_strain_data_model.classes.sourcestring import SourceString
+from microbial_strain_data_model.classes.sourcestring import SourceLink
 
 
 class Hemolysis(BaseModel):
@@ -17,6 +17,6 @@ class Hemolysis(BaseModel):
 
     blood: HemolysisBlood = Field(title="Blood")
     hemolysisType: HemolysisType = Field(title="Hemolysis Type")
-    source: list[SourceString] = Field(
+    source: list[SourceLink] = Field(
         title="Source", description="List of JSON paths to source object"
     )

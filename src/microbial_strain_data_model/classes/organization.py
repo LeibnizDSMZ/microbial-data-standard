@@ -5,7 +5,7 @@ from microbial_strain_data_model.classes.enums import Restriction, SupplyForm
 from microbial_strain_data_model.classes.identifier import Identifier
 
 from microbial_strain_data_model.classes.person import Person
-from microbial_strain_data_model.classes.sourcestring import SourceString
+from microbial_strain_data_model.classes.sourcestring import SourceLink
 
 
 class Organization(BaseModel):
@@ -117,6 +117,6 @@ class Collection(Organization):
     absFile: HttpUrl | None = Field(
         default=None, title="ABS related file", description="Link to ABS file"
     )
-    source: list[SourceString] = Field(
+    source: list[SourceLink] = Field(
         title="Source", description="List of JSON paths to source object"
     )
