@@ -2,7 +2,7 @@ from pydantic import BaseModel, ConfigDict, Field
 
 from microbial_strain_data_model.classes.enums import StainingValue
 
-from microbial_strain_data_model.classes.sourcestring import SourceLink
+from microbial_strain_data_model.classes.links import SourceLink
 
 
 class Staining(BaseModel):

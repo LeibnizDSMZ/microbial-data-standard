@@ -10,7 +10,7 @@ from pydantic_extra_types.pendulum_dt import Date
 
 from microbial_strain_data_model.classes.organization import Organization
 from microbial_strain_data_model.classes.person import Person
-from microbial_strain_data_model.classes.sourcestring import SourceLink
+from microbial_strain_data_model.classes.links import SourceLink
 
 
 class Literature(BaseModel):

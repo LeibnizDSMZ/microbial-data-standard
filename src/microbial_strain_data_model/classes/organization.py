@@ -5,7 +5,7 @@ from microbial_strain_data_model.classes.enums import Restriction, SupplyForm
 from microbial_strain_data_model.classes.identifier import Identifier
 
 from microbial_strain_data_model.classes.person import Person
-from microbial_strain_data_model.classes.sourcestring import SourceLink
+from microbial_strain_data_model.classes.links import SourceLink
 
 
 class Organization(BaseModel):

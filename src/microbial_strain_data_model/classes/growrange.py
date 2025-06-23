@@ -1,7 +1,7 @@
 from typing import Generic, TypeVar
 from pydantic import BaseModel, ConfigDict, Field
 
-from microbial_strain_data_model.classes.sourcestring import SourceLink
+from microbial_strain_data_model.classes.links import SourceLink
 
 T = TypeVar("T")
 

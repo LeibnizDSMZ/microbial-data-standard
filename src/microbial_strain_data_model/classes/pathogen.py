@@ -2,7 +2,7 @@ from pydantic import BaseModel, ConfigDict, HttpUrl, Field
 
 from microbial_strain_data_model.classes.enums import Host, PathogenLevel
 
-from microbial_strain_data_model.classes.sourcestring import SourceLink
+from microbial_strain_data_model.classes.links import SourceLink
 
 
 class Pathogen(BaseModel):

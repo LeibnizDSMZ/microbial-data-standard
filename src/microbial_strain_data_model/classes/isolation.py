@@ -3,7 +3,7 @@ from pydantic import BaseModel, ConfigDict, Field, StringConstraints
 
 from microbial_strain_data_model.classes.organization import Organization
 from microbial_strain_data_model.classes.person import Person
-from microbial_strain_data_model.classes.sourcestring import SourceLink
+from microbial_strain_data_model.classes.links import SourceLink
 
 
 class Isolation(BaseModel):

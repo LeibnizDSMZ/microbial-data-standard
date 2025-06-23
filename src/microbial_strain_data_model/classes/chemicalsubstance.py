@@ -8,7 +8,7 @@ from pydantic import BaseModel, ConfigDict, Field, model_validator
 from microbial_strain_data_model.classes.growrange import Growth
 from microbial_strain_data_model.classes.identifier import Identifier
 
-from microbial_strain_data_model.classes.sourcestring import SourceLink
+from microbial_strain_data_model.classes.links import SourceLink
 
 
 class ChemicalSubstance(BaseModel):

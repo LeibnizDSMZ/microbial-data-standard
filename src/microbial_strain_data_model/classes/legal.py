@@ -1,7 +1,7 @@
 from pydantic import BaseModel, ConfigDict, Field
 
 from microbial_strain_data_model.classes.enums import NagoyaRestrictions
-from microbial_strain_data_model.classes.sourcestring import SourceLink
+from microbial_strain_data_model.classes.links import SourceLink
 from microbial_strain_data_model.classes.country import Country
 
 

@@ -7,7 +7,7 @@ from pydantic import (
 )
 
 from microbial_strain_data_model.utils.functions import check_not_completely_empty
-from microbial_strain_data_model.classes.sourcestring import SourceLink
+from microbial_strain_data_model.classes.links import SourceLink
 
 
 class OtherMedia(BaseModel):
