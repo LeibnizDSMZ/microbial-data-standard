@@ -1,4 +1,4 @@
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, HttpUrl, Field
 
 from microbial_strain_data_model.classes.enums import Host, PathogenLevel
 
@@ -15,9 +15,16 @@ class Pathogen(BaseModel):
         str_strip_whitespace=True,
     )
 
-    host: Host = Field(title="Host")
-    pathogen: PathogenLevel = Field(title="Pathogen")
-    classification: str | None = Field(default=None, title="Classification")
+    host: Host = Field(title="Host", description="Host organism or group")
+    pathogen: PathogenLevel = Field(
+        title="Pathogen", description="Frequency of pathogenicity"
+    )
+    classification: str | None = Field(
+        default=None, title="Classification", description="Type of classification"
+    )
+    url: HttpUrl | None = Field(
+        default=None, title="URL", description="Link to classification document"
+    )
     source: list[SourceString] = Field(
         title="Source", description="List of JSON paths to source object"
     )
