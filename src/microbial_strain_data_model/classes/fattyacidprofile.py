@@ -3,7 +3,7 @@ from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from microbial_strain_data_model.classes.chemicalsubstance import FattyAcid
 
-from microbial_strain_data_model.classes.sourcestring import SourceString
+from microbial_strain_data_model.classes.sourcestring import SourceLink
 
 
 class FattyAcidProfile(BaseModel):
@@ -28,6 +28,6 @@ class FattyAcidProfile(BaseModel):
             raise ValueError("Fatty Acis Profile must contain at least one Fatty Acid")
         return self
 
-    source: list[SourceString] = Field(
+    source: list[SourceLink] = Field(
         title="Source", description="List of JSON paths to source object"
     )

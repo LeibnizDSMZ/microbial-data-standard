@@ -1,7 +1,7 @@
 from pydantic import BaseModel, ConfigDict, Field
 
 from microbial_strain_data_model.classes.enums import NagoyaRestrictions
-from microbial_strain_data_model.classes.sourcestring import SourceString
+from microbial_strain_data_model.classes.sourcestring import SourceLink
 from microbial_strain_data_model.classes.country import Country
 
 
@@ -43,6 +43,6 @@ class Legal(BaseModel):
     otherRestrictions: list[Restriction] = Field(
         default_factory=list, title="Other Restrictions"
     )
-    source: list[SourceString] = Field(
+    source: list[SourceLink] = Field(
         title="Source", description="List of JSON paths to source object"
     )

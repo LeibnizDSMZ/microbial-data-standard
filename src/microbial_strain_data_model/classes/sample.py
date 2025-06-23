@@ -6,7 +6,7 @@ from microbial_strain_data_model.data.isolation_sources_tree import root
 from microbial_strain_data_model.classes.country import Country
 from microbial_strain_data_model.classes.location import Location
 
-from microbial_strain_data_model.classes.sourcestring import SourceString
+from microbial_strain_data_model.classes.sourcestring import SourceLink
 
 
 class IsolationTag(BaseModel):
@@ -65,6 +65,6 @@ class Sample(BaseModel):
     description: str | None = Field(default=None, title="Description")
     locationCreated: Location | None = Field(default=None, title="Location Created")
     tags: list[IsolationTag] = Field(default_factory=list, title="Isolation Source Tags")
-    source: list[SourceString] = Field(
+    source: list[SourceLink] = Field(
         title="Source", description="List of JSON paths to source object"
     )

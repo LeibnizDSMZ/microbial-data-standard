@@ -1,7 +1,7 @@
 from typing_extensions import Annotated
 from pydantic import BaseModel, ConfigDict, Field
 
-from microbial_strain_data_model.classes.sourcestring import SourceString
+from microbial_strain_data_model.classes.sourcestring import SourceLink
 
 
 class GCContent(BaseModel):
@@ -16,6 +16,6 @@ class GCContent(BaseModel):
 
     method: str | None = Field(default=None, title="Method")
     value: Annotated[float, Field(ge=0, le=100)] = Field(title="Percent Value")
-    source: list[SourceString] = Field(
+    source: list[SourceLink] = Field(
         title="Source", description="List of JSON paths to source object"
     )

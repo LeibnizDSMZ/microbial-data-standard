@@ -10,7 +10,7 @@ from pydantic_extra_types.pendulum_dt import Date
 
 from microbial_strain_data_model.classes.organization import Organization
 from microbial_strain_data_model.classes.person import Person
-from microbial_strain_data_model.classes.sourcestring import SourceString
+from microbial_strain_data_model.classes.sourcestring import SourceLink
 
 
 class Literature(BaseModel):
@@ -28,7 +28,7 @@ class Literature(BaseModel):
     datePublished: Date | None = Field(default=None, title="Date Published")
     author: list[Person] = Field(default_factory=list, title="Author")
     publisher: list[Organization] = Field(default_factory=list, title="Publisher")
-    source: list[SourceString] = Field(
+    source: list[SourceLink] = Field(
         title="Source", description="List of JSON paths to source object"
     )
 

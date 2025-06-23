@@ -5,7 +5,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from microbial_strain_data_model.classes.enums import TaxonRank, TaxonStatus
 from microbial_strain_data_model.classes.identifier import Identifier
 
-from microbial_strain_data_model.classes.sourcestring import SourceString
+from microbial_strain_data_model.classes.sourcestring import SourceLink
 
 
 class TypeStrain(BaseModel):
@@ -19,7 +19,7 @@ class TypeStrain(BaseModel):
     )
 
     typeStrain: bool = Field(title="Type Strain")
-    source: list[SourceString] = Field(
+    source: list[SourceLink] = Field(
         title="Source", description="List of JSON paths to source object"
     )
 
@@ -72,6 +72,6 @@ class TaxonWithSource(Taxon):
     # overwriting the 'parent' field inherited by Taxon
     parentTaxon: Taxon | None = Field(default=None, title="Parent Taxon")  # type: ignore
 
-    source: list[SourceString] = Field(
+    source: list[SourceLink] = Field(
         title="Source", description="List of JSON paths to source object"
     )

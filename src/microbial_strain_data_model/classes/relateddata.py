@@ -1,6 +1,6 @@
 from pydantic import BaseModel, ConfigDict, Field
 
-from microbial_strain_data_model.classes.sourcestring import SourceString
+from microbial_strain_data_model.classes.sourcestring import SourceLink
 
 
 class RelatedData(BaseModel):
@@ -18,6 +18,6 @@ class RelatedData(BaseModel):
         description="The kind or type of relation of the data points, e.g. "
         "growthCondition, testCondition, API20",
     )
-    source: list[SourceString] = Field(
+    source: list[SourceLink] = Field(
         title="Source", description="List of JSON paths to source object"
     )

@@ -1,7 +1,7 @@
 from pydantic import BaseModel, ConfigDict, Field
 
 from microbial_strain_data_model.classes.enums import FlagellumArrangement
-from microbial_strain_data_model.classes.sourcestring import SourceString
+from microbial_strain_data_model.classes.sourcestring import SourceLink
 
 
 class Motility(BaseModel):
@@ -20,6 +20,6 @@ class Motility(BaseModel):
         default=None, title="Flagellum Arrangement"
     )
     gliding: bool | None = Field(default=None, title="Gliding")
-    source: list[SourceString] = Field(
+    source: list[SourceLink] = Field(
         title="Source", description="List of JSON paths to source object"
     )

@@ -2,7 +2,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from microbial_strain_data_model.classes.enums import PersonRole
 from microbial_strain_data_model.classes.identifier import Identifier
 
-from microbial_strain_data_model.classes.sourcestring import SourceString
+from microbial_strain_data_model.classes.sourcestring import SourceLink
 
 
 class Person(BaseModel):
@@ -30,6 +30,6 @@ class ConnectedPerson(Person):
     )
 
     role: PersonRole | None = Field(default=None, title="Role")
-    source: list[SourceString] = Field(
+    source: list[SourceLink] = Field(
         title="Source", description="List of JSON paths to source object"
     )

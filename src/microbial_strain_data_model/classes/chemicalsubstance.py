@@ -8,7 +8,7 @@ from pydantic import BaseModel, ConfigDict, Field, model_validator
 from microbial_strain_data_model.classes.growrange import Growth
 from microbial_strain_data_model.classes.identifier import Identifier
 
-from microbial_strain_data_model.classes.sourcestring import SourceString
+from microbial_strain_data_model.classes.sourcestring import SourceLink
 
 
 class ChemicalSubstance(BaseModel):
@@ -41,7 +41,7 @@ class CellWall(ChemicalSubstance):
     percent: Annotated[float, Field(ge=0, le=100)] | None = Field(
         default=None, title="Percent"
     )
-    source: list[SourceString] = Field(
+    source: list[SourceLink] = Field(
         title="Source", description="List of JSON paths to source object"
     )
 
@@ -72,7 +72,7 @@ class Halophil(Growth[ConcentrationUnit], ChemicalSubstance):
         str_strip_whitespace=True,
     )
 
-    source: list[SourceString] = Field(
+    source: list[SourceLink] = Field(
         title="Source", description="List of JSON paths to source object"
     )
 
@@ -88,6 +88,6 @@ class Metabolite(ChemicalSubstance):
     )
 
     tests: list[MetaboliteTest] = Field(default_factory=list, title="Tests")
-    source: list[SourceString] = Field(
+    source: list[SourceLink] = Field(
         title="Source", description="List of JSON paths to source object"
     )
