@@ -3,7 +3,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from microbial_strain_data_model.classes.chemicalsubstance import ChemicalSubstance
 from microbial_strain_data_model.classes.enums import ConcentrationUnit, ToleranceReaction
 
-from microbial_strain_data_model.classes.links import SourceLink
+from microbial_strain_data_model.classes.links import RelationLink, SourceLink
 
 
 class ToleranceTest(BaseModel):
@@ -19,6 +19,11 @@ class ToleranceTest(BaseModel):
     reaction: ToleranceReaction = Field(title="Reaction")
     concentration: str | None = Field(default=None, title="Concentration")
     unit: ConcentrationUnit = Field(title="Unit")
+    relatedData: list[RelationLink] = Field(
+        default_factory=list,
+        title="Related Data",
+        description="JSON paths to relation object",
+    )
 
 
 class Tolerance(ChemicalSubstance):
