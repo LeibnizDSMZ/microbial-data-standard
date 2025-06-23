@@ -30,6 +30,7 @@ from microbial_strain_data_model.classes.person import (
 from microbial_strain_data_model.classes.identifier import IdentifierStrain
 from microbial_strain_data_model.classes.isolation import Isolation
 from microbial_strain_data_model.classes.motility import Motility
+from microbial_strain_data_model.classes.relateddata import RelatedData
 from microbial_strain_data_model.classes.sample import Sample
 from microbial_strain_data_model.classes.sequence import Sequence
 from microbial_strain_data_model.classes.size import CellSize
@@ -205,6 +206,10 @@ class Microbe(BaseModel):
 
     otherMedia: list[OtherMedia] = Field(
         default_factory=list, title="Other Media", description=""
+    )
+
+    relatedData: list[RelatedData] = Field(
+        default_factory=list, title="Related Data", description=""
     )
 
     sources: list[Literature | Organization | Person] = Field(
