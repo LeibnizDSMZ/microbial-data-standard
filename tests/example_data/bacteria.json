@@ -330,6 +330,9 @@
       ],
       "hasECNumber": "3.1.3.2",
       "name": "acid phosphatase",
+      "relatedData": [
+        "/relatedData/0"
+      ],
       "source": [
         "/sources/0"
       ],
@@ -817,6 +820,9 @@
           "active": true,
           "kindOfUtilization": null,
           "protocol": null,
+          "relatedData": [
+            "/relatedData/0"
+          ],
           "type": "utilization"
         }
       ]
