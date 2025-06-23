@@ -1,7 +1,7 @@
 from typing import Generic, TypeVar
 from pydantic import BaseModel, ConfigDict, Field
 
-from microbial_strain_data_model.classes.links import SourceLink
+from microbial_strain_data_model.classes.links import SourceLink, RelationLink
 
 T = TypeVar("T")
 
@@ -20,6 +20,11 @@ class GrowthRange(BaseModel, Generic[T]):
     maximal: float | None = Field(default=None, title="Maximal")
     unit: T
     growth: bool = Field(title="Growth")
+    relatedData: list[RelationLink] = Field(
+        default_factory=list,
+        title="Related Data",
+        description="JSON paths to relation object",
+    )
 
 
 class Growth(BaseModel, Generic[T]):
