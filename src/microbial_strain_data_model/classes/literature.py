@@ -8,7 +8,8 @@ from pydantic import (
 )
 from pydantic_extra_types.pendulum_dt import Date
 
-from microbial_strain_data_model.classes.actors import Organization, Person
+from microbial_strain_data_model.classes.organization import Organization
+from microbial_strain_data_model.classes.person import Person
 from microbial_strain_data_model.classes.sourcestring import SourceString
 
 

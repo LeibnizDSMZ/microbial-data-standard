@@ -19,13 +19,12 @@ from microbial_strain_data_model.classes.hemolysis import Hemolysis
 from microbial_strain_data_model.classes.legal import Legal
 from microbial_strain_data_model.classes.literature import Literature
 from microbial_strain_data_model.classes.multicell import MultiCell
+from microbial_strain_data_model.classes.organization import Collection, Organization
 from microbial_strain_data_model.classes.othermedia import OtherMedia
 from microbial_strain_data_model.classes.oxygenrelation import OxygenRelation
 from microbial_strain_data_model.classes.pathogen import Pathogen
-from microbial_strain_data_model.classes.actors import (
-    Collection,
+from microbial_strain_data_model.classes.person import (
     ConnectedPerson,
-    Organization,
     Person,
 )
 from microbial_strain_data_model.classes.identifier import IdentifierStrain
