@@ -1,10 +1,13 @@
 # Technical Concept
 
-### 1. One Strain - One File
-We want the standard to hold all necessary information on a single strain in a single file.
-In this way data exchange is simplified and all data that belongs together stays together.
+## 1. One Strain - One File
+As this new data standard is primarily intended for data exchange, the concept of
+‘One Strain, One File’ is being pursued.
+The focus here is on recording all relevant data of a microbial strain at once.
+This form of a data exchange format is intended to provide a low-friction solution for
+highly complex data, as all relevant information that belongs together always stays together.
 
-### 2. Full traceability
+## 2. Full traceability
 Every datapoint in a file originates from a source. Sources can be
 Persons or Organizations. The new standard will link every datapoint to the source of
 information.
@@ -57,19 +60,25 @@ from different sources, quality will improve drastically.
 Incorrect data can easily be spotted and corrected or mutations in strains
 can be found and the respective dataset can be demerged.
 
-### 3. Aligning with schema.org and bioschemas
+## 3. Aligning with schema.org and bioschemas
 This new data standard tries to improve the interoperability with other use cases
 and systems by implementing fields and structures similar to
 [schema.org](https://schema.org) and
 [bioschemas](https://bioschemas.org/).
 
-### 4. Related data points
-Other microbial data standards have no possibility to define conditions which are e.g. related to a test result.
+## 4. Related data points
+Other microbial data standards have no possibility to define that some data points are
+related to each other.
 
-For example:
-A strain that grows on Medium Y, which has a pH of 7, at 25°C, in a aerobic environment needs time X to double.
-This results in the most data standards in 5 different singular results like: grows on Y, grows at pH 7 and so on.
-But if we change the conditions the strain may grows faster or slower at a different temperature or pH or medium. Maybe the strain produces different compounds in a different aerobic environment.
+This data standard offers a solution to this, by providing the option of **related data points**.
+
+This can be used in many different ways. For example if a test series like an API test is
+performed on a strain, the results of each single test in the series will be put into the
+according category of this data standard. But to capture the information that a result
+is from this API test series, the result will be linked via "relatedData" to an object in
+the top level category "relatedData" which will provide a relation type. More than that
+all the the tests of the API strip have been performed at a e.g. defined temperature.  
+
 
 As this data is very specific and small changes can have massive impacts at results this
 data standard aim to solve the issue by providing a way to capture the conditions under which a test was performed.

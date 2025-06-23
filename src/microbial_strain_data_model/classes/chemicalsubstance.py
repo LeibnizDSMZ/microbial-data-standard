@@ -5,7 +5,7 @@ from microbial_strain_data_model.utils.functions import check_not_completely_emp
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
-from microbial_strain_data_model.classes.growrange import Growth
+from microbial_strain_data_model.classes.growthrange import Growth
 from microbial_strain_data_model.classes.identifier import Identifier
 
 from microbial_strain_data_model.classes.links import SourceLink
