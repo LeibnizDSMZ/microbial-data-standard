@@ -14,7 +14,7 @@ from microbial_strain_data_model.classes.cultivationmedia import CultivationMedi
 from microbial_strain_data_model.classes.enzyme import Enzyme
 from microbial_strain_data_model.classes.fattyacidprofile import FattyAcidProfile
 from microbial_strain_data_model.classes.gccontent import GCContent
-from microbial_strain_data_model.classes.growrange import Growth
+from microbial_strain_data_model.classes.growthrange import Growth
 from microbial_strain_data_model.classes.hemolysis import Hemolysis
 from microbial_strain_data_model.classes.legal import Legal
 from microbial_strain_data_model.classes.literature import Literature
