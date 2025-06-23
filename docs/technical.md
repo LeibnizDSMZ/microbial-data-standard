@@ -76,13 +76,8 @@ This can be used in many different ways. For example if a test series like an AP
 performed on a strain, the results of each single test in the series will be put into the
 according category of this data standard. But to capture the information that a result
 is from this API test series, the result will be linked via "relatedData" to an object in
-the top level category "relatedData" which will provide a relation type. More than that
-all the the tests of the API strip have been performed at a e.g. defined temperature.  
-
-
-As this data is very specific and small changes can have massive impacts at results this
-data standard aim to solve the issue by providing a way to capture the conditions under which a test was performed.
-The solution is **related data points**.
-
+the top level category "relatedData" which will provide the type of relation. Another
+possible use case is a relation type like "condition" where alle the data point of a
+specifically tested growth condition could be linked.
 
 Join now! See [Call To Action](call.md) for further details.
