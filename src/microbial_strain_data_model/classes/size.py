@@ -2,7 +2,7 @@ from pydantic import BaseModel, ConfigDict, Field, PositiveFloat
 
 from microbial_strain_data_model.classes.enums import SizeUnit
 
-from microbial_strain_data_model.classes.sourcestring import SourceLink
+from microbial_strain_data_model.classes.links import SourceLink
 
 
 class Size(BaseModel):

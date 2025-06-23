@@ -3,7 +3,7 @@ from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from microbial_strain_data_model.classes.chemicalsubstance import FattyAcid
 
-from microbial_strain_data_model.classes.sourcestring import SourceLink
+from microbial_strain_data_model.classes.links import SourceLink
 
 
 class FattyAcidProfile(BaseModel):

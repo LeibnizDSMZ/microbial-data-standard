@@ -1,7 +1,7 @@
 from typing_extensions import Annotated
 from pydantic import BaseModel, ConfigDict, StringConstraints, Field, HttpUrl
 
-from microbial_strain_data_model.classes.sourcestring import SourceLink
+from microbial_strain_data_model.classes.links import SourceLink
 
 
 class Enzyme(BaseModel):

@@ -6,7 +6,7 @@ from microbial_strain_data_model.data.isolation_sources_tree import root
 from microbial_strain_data_model.classes.country import Country
 from microbial_strain_data_model.classes.location import Location
 
-from microbial_strain_data_model.classes.sourcestring import SourceLink
+from microbial_strain_data_model.classes.links import SourceLink
 
 
 class IsolationTag(BaseModel):

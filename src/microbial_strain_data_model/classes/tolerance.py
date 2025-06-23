@@ -3,7 +3,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from microbial_strain_data_model.classes.chemicalsubstance import ChemicalSubstance
 from microbial_strain_data_model.classes.enums import ConcentrationUnit, ToleranceReaction
 
-from microbial_strain_data_model.classes.sourcestring import SourceLink
+from microbial_strain_data_model.classes.links import SourceLink
 
 
 class ToleranceTest(BaseModel):
