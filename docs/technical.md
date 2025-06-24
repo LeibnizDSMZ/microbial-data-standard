@@ -67,30 +67,33 @@ and systems by implementing fields and structures similar to
 [bioschemas](https://bioschemas.org/).
 
 ## 4. Related data points
-Other microbial data standards have no possibility to define that some data points are
+Other microbial data standards have no solution to define that data points are
 related to each other.
 
-This data standard offers a solution to this, by providing the option of **related data points**.
-
+This data standard offers a solution to this, by providing the option to define *relatedData*
+objects which can describe the type of relation. Other data objects, which have a *relatedData*
+list can point at those *relatedData* objects to define that they belong to this relation.
 
 
 When a test is performed on a strain, the environment conditions are fully controlled in
-most cases, as a change in the conditions can change the test result.
+most cases, as a change in the conditions can change the result of the test.
 The relation between the environment conditions and the test can be captured
-with the "relationData" links and object.
+with the *relatedData* links and object.
 ![image](stylesheets/growth_condition.png)
-In the example above all data that are related to the growth condition are linked to the
-growth condition object. Even the test result that was measured under the given conditions
-links to this relation object.
+In the example above all data points that are related to the growth condition are linked to the
+*relatedDate* object **Growth Condition**. Even the test result, which was measured under
+the given condition, points to this *relatedData* object.
 
-But a relation can be used in many different ways.
+But a connection can be used in many different ways.
 For example if a test series like an API test is performed on a strain,
 the results of each single test in the series will be put into the
 according category of this data standard. But to capture the information that a result
-is from this API test series, all the results will link via "relatedData" to the relation
+is from this API test series, all the results will link via *relatedData* to the relation
 object.
 
 ![image](stylesheets/API_results.png)
 
+As one data point can link to multiple *relatedData* objects, even complex combinations of
+relations can be captured.
 
 Join now! See [Call To Action](call.md) for further details.
