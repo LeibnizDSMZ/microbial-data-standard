@@ -1,3 +1,28 @@
+## v0.5.0 (2025-06-24)
+
+### Feat
+
+- add relatedData to fattyAcidProfile, Spore and Multicell
+- add relationData to Enzyme and OxygenRelation
+- add relatedData to CultivationMedia
+- add relatedData to metabolitetest and tolerancetest
+- add relatedData field to growthrange
+- add new data structure "relatedData"
+- add link to ABS files to collection
+- new fields in Organization + small restructure
+- URL field for pathogenicity documents
+- new fields and descriptions
+
+### Fix
+
+- pattern of RelationLink and test data bacteria
+
+### Refactor
+
+- rename growrange to growthrange
+- rename file sourcestring.py to links.py
+- rename sourceString to SourceLink
+
 ## v0.4.0 (2025-05-19)
 
 ### Feat
