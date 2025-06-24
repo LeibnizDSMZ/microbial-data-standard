@@ -210,11 +210,13 @@ source: string
 
 class `OxygenRelation`{
 oxygenRelation: string
+relatedData: string
 source: string
 }
 
 class `MultiCell`{
 multiCellComplexForming: boolean
+relatedData: string
 source: string
 }
 
@@ -277,6 +279,7 @@ class `Spore`{
 sporeBuilding: boolean | null
 typeOfSpore: SporeType
 sporeEjection: string | null
+relatedData: string
 source: string
 }
 
@@ -300,6 +303,7 @@ minimal: number | null
 maximal: number | null
 unit: string
 growth: boolean
+relatedData: string
 }
 
 class `Growth[pH]`{
@@ -316,6 +320,7 @@ minimal: number | null
 maximal: number | null
 unit: string
 growth: boolean
+relatedData: string
 }
 
 class `IdentifierStrain`{
@@ -344,6 +349,7 @@ class `Pathogen`{
 host: Host
 pathogen: PathogenLevel
 classification: string | null
+url: string | null
 source: string
 }
 
@@ -423,10 +429,9 @@ source: string
 
 class `FattyAcidProfile`{
 profile: array[FattyAcid]
-temperature: integer | null
-medium: string | null
 library: string | null
 software: string | null
+relatedData: string
 source: string
 }
 
@@ -476,6 +481,7 @@ name: string
 url: string | null
 reagentUsed: string
 source: string
+relatedData: string
 }
 
 class `Halophil`{
@@ -504,6 +510,7 @@ minimal: number | null
 maximal: number | null
 unit: ConcentrationUnit
 growth: boolean
+relatedData: string
 }
 
 class `Tolerance`{
@@ -521,6 +528,7 @@ class `ToleranceTest`{
 reaction: ToleranceReaction
 concentration: string | null
 unit: ConcentrationUnit
+relatedData: string
 }
 
 class `ToleranceReaction`{
@@ -536,6 +544,7 @@ hasECNumber: string
 url: string | null
 alternateName: string
 active: boolean | null
+relatedData: string
 source: string
 }
 
@@ -552,6 +561,7 @@ type: MetaboliteTestType
 active: boolean | null
 protocol: string | null
 kindOfUtilization: string | null
+relatedData: string
 }
 
 class `MetaboliteTestType`{
@@ -577,11 +587,16 @@ resourceNumber: string
 available: boolean | null
 catalogUrl: string | null
 restrictionsOnUse: microbial_strain_data_model__classes__enums__Restriction | null
+policyUrl: string | null
 axenicCulture: boolean | null
 supplyForms: array[SupplyForm]
 history: string | null
 depositionDate: string | null
 depositor: Person | null
+depositedAs: string | null
+registeredCollection: boolean | null
+mtaFile: string | null
+absFile: string | null
 source: string
 }
 
@@ -610,6 +625,11 @@ name: string | null
 description: string | null
 usageInfo: string | null
 additionalType: string | null
+source: string
+}
+
+class `RelatedData`{
+relation: string
 source: string
 }
 
@@ -651,6 +671,7 @@ metabolites: array[Metabolite]
 knownApplications: array[Application]
 collections: array[Collection]
 otherMedia: array[OtherMedia]
+relatedData: array[RelatedData]
 sources:
 }
 
@@ -756,4 +777,5 @@ sources:
 `Collection` ..> `SupplyForm`
 `Collection` ..> `Person`
 `Microbe` ..> `OtherMedia`
+`Microbe` ..> `RelatedData`
 ```
