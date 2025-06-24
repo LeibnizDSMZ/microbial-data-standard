@@ -446,7 +446,6 @@
   "fattyAcidProfiles": [
     {
       "library": "BHIBLA",
-      "medium": "blood Agar",
       "profile": [
         {
           "alternateName": [],
@@ -515,8 +514,7 @@
       "software": "Sherlock 6.1",
       "source": [
         "/sources/0"
-      ],
-      "temperature": 37
+      ]
     }
   ],
   "gcContent": [

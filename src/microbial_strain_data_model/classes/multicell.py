@@ -1,6 +1,6 @@
 from pydantic import BaseModel, ConfigDict, Field
 
-from microbial_strain_data_model.classes.links import SourceLink
+from microbial_strain_data_model.classes.links import RelationLink, SourceLink
 
 
 class MultiCell(BaseModel):
@@ -14,6 +14,11 @@ class MultiCell(BaseModel):
     )
 
     multiCellComplexForming: bool = Field(title="Multi Cell Complex Forming")
+    relatedData: list[RelationLink] = Field(
+        default_factory=list,
+        title="Related Data",
+        description="JSON paths to relation object",
+    )
     source: list[SourceLink] = Field(
         title="Source", description="List of JSON paths to source object"
     )
