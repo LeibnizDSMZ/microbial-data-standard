@@ -26,9 +26,7 @@ def micro():
             }
         ],
         otherMedia=[{"url": None, "name": "test", "source": ["/sources/0"]}],
-        fattyAcidProfiles=[
-            {"profile": [{"percent": 10.0}], "temperature": 10, "source": ["/sources/0"]}
-        ],
+        fattyAcidProfiles=[{"profile": [{"percent": 10.0}], "source": ["/sources/0"]}],
         sources=[
             {
                 "name": "DSMZ",
