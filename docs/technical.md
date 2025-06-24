@@ -90,7 +90,7 @@ according category of this data standard. But to capture the information that a 
 is from this API test series, all the results will link via "relatedData" to the relation
 object.
 
-![image](stylesheets/API_resukts.png)
+![image](stylesheets/API_results.png)
 
 
 Join now! See [Call To Action](call.md) for further details.
