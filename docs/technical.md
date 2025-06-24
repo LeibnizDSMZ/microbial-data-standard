@@ -72,12 +72,25 @@ related to each other.
 
 This data standard offers a solution to this, by providing the option of **related data points**.
 
-This can be used in many different ways. For example if a test series like an API test is
-performed on a strain, the results of each single test in the series will be put into the
+
+
+When a test is performed on a strain, the environment conditions are fully controlled in
+most cases, as a change in the conditions can change the test result.
+The relation between the environment conditions and the test can be captured
+with the "relationData" links and object.
+![image](stylesheets/growth_condition.png)
+In the example above all data that are related to the growth condition are linked to the
+growth condition object. Even the test result that was measured under the given conditions
+links to this relation object.
+
+But a relation can be used in many different ways.
+For example if a test series like an API test is performed on a strain,
+the results of each single test in the series will be put into the
 according category of this data standard. But to capture the information that a result
-is from this API test series, the result will be linked via "relatedData" to an object in
-the top level category "relatedData" which will provide the type of relation. Another
-possible use case is a relation type like "condition" where alle the data point of a
-specifically tested growth condition could be linked.
+is from this API test series, all the results will link via "relatedData" to the relation
+object.
+
+![image](stylesheets/API_resukts.png)
+
 
 Join now! See [Call To Action](call.md) for further details.
