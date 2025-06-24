@@ -86,6 +86,7 @@
       "description": "Application of the strain",
       "properties": {
         "application": {
+          "description": "Name of the application or patent",
           "title": "Application",
           "type": "string"
         },
@@ -248,8 +249,8 @@
         "percent": {
           "anyOf": [
             {
-              "maximum": 100.0,
-              "minimum": 0.0,
+              "maximum": 100,
+              "minimum": 0,
               "type": "number"
             },
             {
@@ -279,6 +280,22 @@
       "additionalProperties": false,
       "description": "Information about one culture collection",
       "properties": {
+        "absFile": {
+          "anyOf": [
+            {
+              "format": "uri",
+              "maxLength": 2083,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Link to ABS file",
+          "title": "ABS related file"
+        },
         "address": {
           "anyOf": [
             {
@@ -289,6 +306,7 @@
             }
           ],
           "default": null,
+          "description": "Address of the organization",
           "title": "Address"
         },
         "available": {
@@ -301,6 +319,7 @@
             }
           ],
           "default": null,
+          "description": "Is the strain in the current catalog",
           "title": "Availability"
         },
         "axenicCulture": {
@@ -313,6 +332,7 @@
             }
           ],
           "default": null,
+          "description": "Is the culture pure or mixed with other microbes",
           "title": "Axenic Culture"
         },
         "catalogUrl": {
@@ -328,7 +348,21 @@
             }
           ],
           "default": null,
+          "description": "Link to catalog",
           "title": "Catalog URL"
+        },
+        "depositedAs": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "The CCNO or designation before deposition",
+          "title": "Deposited as"
         },
         "depositionDate": {
           "anyOf": [
@@ -341,6 +375,7 @@
             }
           ],
           "default": null,
+          "description": "Date of deposition at this collection",
           "title": "Deposition Date"
         },
         "depositor": {
@@ -353,6 +388,7 @@
             }
           ],
           "default": null,
+          "description": "Person who deposited the strain at this collection",
           "title": "Depositor"
         },
         "email": {
@@ -366,6 +402,7 @@
             }
           ],
           "default": null,
+          "description": "Contact email",
           "title": "Email"
         },
         "history": {
@@ -378,9 +415,11 @@
             }
           ],
           "default": null,
+          "description": "Exchange history of the strain",
           "title": "History"
         },
         "identifier": {
+          "description": "Identifiers of the organization, e.g. ROR",
           "items": {
             "$ref": "#/$defs/Identifier"
           },
@@ -397,6 +436,7 @@
             }
           ],
           "default": null,
+          "description": "Full legal name of the organization",
           "title": "Legal Name"
         },
         "logo": {
@@ -412,13 +452,61 @@
             }
           ],
           "default": null,
+          "description": "Link to logo",
           "title": "Logo"
         },
+        "mtaFile": {
+          "anyOf": [
+            {
+              "format": "uri",
+              "maxLength": 2083,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Link to MTA file",
+          "title": "MTA file"
+        },
         "name": {
+          "description": "Short name of the organization",
           "title": "Name",
           "type": "string"
         },
+        "policyUrl": {
+          "anyOf": [
+            {
+              "format": "uri",
+              "maxLength": 2083,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Link to collections policy",
+          "title": "Policy URL"
+        },
+        "registeredCollection": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Registered collection status of this collection",
+          "title": "Registered Collection"
+        },
         "resourceNumber": {
+          "description": "The CCNO of the strain at this collection",
           "title": "Resource Number",
           "type": "string"
         },
@@ -432,6 +520,7 @@
             }
           ],
           "default": null,
+          "description": "Restrictions of use by the collection",
           "title": "Restrictions On Use"
         },
         "source": {
@@ -444,6 +533,7 @@
           "type": "array"
         },
         "supplyForms": {
+          "description": "How the strain are available",
           "items": {
             "$ref": "#/$defs/SupplyForm"
           },
@@ -463,6 +553,7 @@
             }
           ],
           "default": null,
+          "description": "Link to homepage",
           "title": "URL"
         }
       },
@@ -561,6 +652,7 @@
           "type": "array"
         },
         "name": {
+          "description": "Name of the person",
           "title": "Name",
           "type": "string"
         },
@@ -723,6 +815,15 @@
           "title": "Reagent Used",
           "type": "array"
         },
+        "relatedData": {
+          "description": "JSON paths to relation object",
+          "items": {
+            "pattern": "^\\/relatedData\\/\\d+$",
+            "type": "string"
+          },
+          "title": "Related Data",
+          "type": "array"
+        },
         "source": {
           "description": "List of JSON paths to source object",
           "items": {
@@ -795,6 +896,15 @@
           ],
           "default": null,
           "title": "Name"
+        },
+        "relatedData": {
+          "description": "JSON paths to relation object",
+          "items": {
+            "pattern": "^\\/relatedData\\/\\d+$",
+            "type": "string"
+          },
+          "title": "Related Data",
+          "type": "array"
         },
         "source": {
           "description": "List of JSON paths to source object",
@@ -874,8 +984,8 @@
         "percent": {
           "anyOf": [
             {
-              "maximum": 100.0,
-              "minimum": 0.0,
+              "maximum": 100,
+              "minimum": 0,
               "type": "number"
             },
             {
@@ -905,23 +1015,20 @@
           "default": null,
           "title": "Library"
         },
-        "medium": {
-          "anyOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Medium"
-        },
         "profile": {
           "items": {
             "$ref": "#/$defs/FattyAcid"
           },
           "title": "Profile",
+          "type": "array"
+        },
+        "relatedData": {
+          "description": "JSON paths to relation object",
+          "items": {
+            "pattern": "^\\/relatedData\\/\\d+$",
+            "type": "string"
+          },
+          "title": "Related Data",
           "type": "array"
         },
         "software": {
@@ -944,18 +1051,6 @@
           },
           "title": "Source",
           "type": "array"
-        },
-        "temperature": {
-          "anyOf": [
-            {
-              "type": "integer"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Temperature"
         }
       },
       "required": [
@@ -1000,8 +1095,8 @@
           "type": "array"
         },
         "value": {
-          "maximum": 100.0,
-          "minimum": 0.0,
+          "maximum": 100,
+          "minimum": 0,
           "title": "Percent Value",
           "type": "number"
         }
@@ -1092,6 +1187,15 @@
           "default": null,
           "title": "Minimal"
         },
+        "relatedData": {
+          "description": "JSON paths to relation object",
+          "items": {
+            "pattern": "^\\/relatedData\\/\\d+$",
+            "type": "string"
+          },
+          "title": "Related Data",
+          "type": "array"
+        },
         "unit": {
           "$ref": "#/$defs/ConcentrationUnit"
         }
@@ -1133,6 +1237,15 @@
           ],
           "default": null,
           "title": "Minimal"
+        },
+        "relatedData": {
+          "description": "JSON paths to relation object",
+          "items": {
+            "pattern": "^\\/relatedData\\/\\d+$",
+            "type": "string"
+          },
+          "title": "Related Data",
+          "type": "array"
         },
         "unit": {
           "const": "C",
@@ -1177,6 +1290,15 @@
           ],
           "default": null,
           "title": "Minimal"
+        },
+        "relatedData": {
+          "description": "JSON paths to relation object",
+          "items": {
+            "pattern": "^\\/relatedData\\/\\d+$",
+            "type": "string"
+          },
+          "title": "Related Data",
+          "type": "array"
         },
         "unit": {
           "const": "pH",
@@ -1989,6 +2111,15 @@
           "default": null,
           "title": "Protocol"
         },
+        "relatedData": {
+          "description": "JSON paths to relation object",
+          "items": {
+            "pattern": "^\\/relatedData\\/\\d+$",
+            "type": "string"
+          },
+          "title": "Related Data",
+          "type": "array"
+        },
         "type": {
           "$ref": "#/$defs/MetaboliteTestType",
           "title": "Type"
@@ -2094,6 +2225,15 @@
           "title": "Multi Cell Complex Forming",
           "type": "boolean"
         },
+        "relatedData": {
+          "description": "JSON paths to relation object",
+          "items": {
+            "pattern": "^\\/relatedData\\/\\d+$",
+            "type": "string"
+          },
+          "title": "Related Data",
+          "type": "array"
+        },
         "source": {
           "description": "List of JSON paths to source object",
           "items": {
@@ -2147,6 +2287,7 @@
             }
           ],
           "default": null,
+          "description": "Address of the organization",
           "title": "Address"
         },
         "email": {
@@ -2160,9 +2301,11 @@
             }
           ],
           "default": null,
+          "description": "Contact email",
           "title": "Email"
         },
         "identifier": {
+          "description": "Identifiers of the organization, e.g. ROR",
           "items": {
             "$ref": "#/$defs/Identifier"
           },
@@ -2179,6 +2322,7 @@
             }
           ],
           "default": null,
+          "description": "Full legal name of the organization",
           "title": "Legal Name"
         },
         "logo": {
@@ -2194,9 +2338,11 @@
             }
           ],
           "default": null,
+          "description": "Link to logo",
           "title": "Logo"
         },
         "name": {
+          "description": "Short name of the organization",
           "title": "Name",
           "type": "string"
         },
@@ -2213,6 +2359,7 @@
             }
           ],
           "default": null,
+          "description": "Link to homepage",
           "title": "URL"
         }
       },
@@ -2313,6 +2460,15 @@
           "title": "Oxygen Relation",
           "type": "string"
         },
+        "relatedData": {
+          "description": "JSON paths to relation object",
+          "items": {
+            "pattern": "^\\/relatedData\\/\\d+$",
+            "type": "string"
+          },
+          "title": "Related Data",
+          "type": "array"
+        },
         "source": {
           "description": "List of JSON paths to source object",
           "items": {
@@ -2344,13 +2500,16 @@
             }
           ],
           "default": null,
+          "description": "Type of classification",
           "title": "Classification"
         },
         "host": {
-          "$ref": "#/$defs/Host"
+          "$ref": "#/$defs/Host",
+          "description": "Host organism or group"
         },
         "pathogen": {
           "$ref": "#/$defs/PathogenLevel",
+          "description": "Frequency of pathogenicity",
           "title": "Pathogen"
         },
         "source": {
@@ -2361,6 +2520,22 @@
           },
           "title": "Source",
           "type": "array"
+        },
+        "url": {
+          "anyOf": [
+            {
+              "format": "uri",
+              "maxLength": 2083,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Link to classification document",
+          "title": "URL"
         }
       },
       "required": [
@@ -2383,7 +2558,7 @@
     },
     "Person": {
       "additionalProperties": false,
-      "description": "Person - also Basis for every Individual Entity (e.g. Organization)",
+      "description": "Person",
       "properties": {
         "identifier": {
           "items": {
@@ -2393,6 +2568,7 @@
           "type": "array"
         },
         "name": {
+          "description": "Name of the person",
           "title": "Name",
           "type": "string"
         }
@@ -2412,6 +2588,32 @@
       ],
       "title": "PersonRole",
       "type": "string"
+    },
+    "RelatedData": {
+      "additionalProperties": false,
+      "description": "RelatedData",
+      "properties": {
+        "relation": {
+          "description": "The kind or type of relation of the data points, e.g. growthCondition, testCondition, API20",
+          "title": "Relation",
+          "type": "string"
+        },
+        "source": {
+          "description": "List of JSON paths to source object",
+          "items": {
+            "pattern": "^\\/sources\\/\\d+$",
+            "type": "string"
+          },
+          "title": "Source",
+          "type": "array"
+        }
+      },
+      "required": [
+        "relation",
+        "source"
+      ],
+      "title": "RelatedData",
+      "type": "object"
     },
     "Sample": {
       "additionalProperties": false,
@@ -2601,12 +2803,12 @@
       "description": "size object, use only for micro and millimeter",
       "properties": {
         "maximal": {
-          "exclusiveMinimum": 0.0,
+          "exclusiveMinimum": 0,
           "title": "Maximal",
           "type": "number"
         },
         "minimal": {
-          "exclusiveMinimum": 0.0,
+          "exclusiveMinimum": 0,
           "title": "Minimal",
           "type": "number"
         },
@@ -2636,6 +2838,15 @@
       "additionalProperties": false,
       "description": "Spore information about one Strain",
       "properties": {
+        "relatedData": {
+          "description": "JSON paths to relation object",
+          "items": {
+            "pattern": "^\\/relatedData\\/\\d+$",
+            "type": "string"
+          },
+          "title": "Related Data",
+          "type": "array"
+        },
         "source": {
           "description": "List of JSON paths to source object",
           "items": {
@@ -3040,6 +3251,15 @@
           "$ref": "#/$defs/ToleranceReaction",
           "title": "Reaction"
         },
+        "relatedData": {
+          "description": "JSON paths to relation object",
+          "items": {
+            "pattern": "^\\/relatedData\\/\\d+$",
+            "type": "string"
+          },
+          "title": "Related Data",
+          "type": "array"
+        },
         "unit": {
           "$ref": "#/$defs/ConcentrationUnit",
           "title": "Unit"
@@ -3345,6 +3565,14 @@
         "$ref": "#/$defs/Growth_Literal__pH___"
       },
       "title": "pH",
+      "type": "array"
+    },
+    "relatedData": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/RelatedData"
+      },
+      "title": "Related Data",
       "type": "array"
     },
     "sample": {
