@@ -79,7 +79,9 @@ When a test is performed on a strain, the environment conditions are fully contr
 most cases, as a change in the conditions can change the result of the test.
 The relation between the environment conditions and the test can be captured
 with the *relatedData* links and object.
+
 ![image](stylesheets/growth_condition.png)
+
 In the example above all data points that are related to the growth condition are linked to the
 *relatedDate* object **Growth Condition**. Even the test result, which was measured under
 the given condition, points to this *relatedData* object.
