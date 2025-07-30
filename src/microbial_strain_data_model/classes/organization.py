@@ -94,7 +94,10 @@ class Collection(Organization):
     ) = Field(
         default=None,
         title="Deposition Date",
-        description="Date of deposition at this collection",
+        description="Date of Deposition, using date range format of dublin core: "
+        "'YYYY-MM-DD/YYYY-MM-DD' ether side can be empty defining an open "
+        "ended range, only the year is mandatory, e.g. '/1978' means before "
+        "1978",
     )
     depositor: Person | None = Field(
         default=None,

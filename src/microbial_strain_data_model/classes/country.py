@@ -18,7 +18,7 @@ class Country(BaseModel):
     )
 
     name: CountryAlpha2 | CountryHistoricalAlpha2 | CountryOtherCodes = Field(
-        title="Country Name (ISO 2 Letter Code)"
+        title="Country name", description="Country code, see ISO 3166-1 alpha-2"
     )
     identifier: list[Identifier] = Field(default_factory=list, title="Identifier")
     conventionOfBiologicalDiversityParty: bool | None = Field(

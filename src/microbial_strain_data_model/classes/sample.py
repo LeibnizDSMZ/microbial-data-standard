@@ -60,7 +60,13 @@ class Sample(BaseModel):
             ),
         ]
         | None
-    ) = Field(default=None, title="Date")
+    ) = Field(
+        default=None,
+        title="Date",
+        description="Date of Sampling, using date range format of dublin core: "
+        "'YYYY-MM-DD/YYYY-MM-DD' ether side can be empty defining an open ended "
+        "range, only the year is mandatory, e.g. '/1978' means before 1978",
+    )
     country: Country | None = Field(default=None, title="Country")
     description: str | None = Field(default=None, title="Description")
     locationCreated: Location | None = Field(default=None, title="Location Created")

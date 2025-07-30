@@ -16,10 +16,16 @@ class GrowthRange(BaseModel, Generic[T]):
         str_strip_whitespace=True,
     )
 
-    minimal: float | None = Field(default=None, title="Minimal")
-    maximal: float | None = Field(default=None, title="Maximal")
+    minimal: float | None = Field(
+        default=None, title="Minimal", description="Minimal value of tested range"
+    )
+    maximal: float | None = Field(
+        default=None, title="Maximal", description="Maximal value of tested range"
+    )
     unit: T
-    growth: bool = Field(title="Growth")
+    growth: bool = Field(
+        title="Growth", description="Does the strain grow within this range?"
+    )
     relatedData: list[RelationLink] = Field(
         default_factory=list,
         title="Related Data",
@@ -37,11 +43,21 @@ class Growth(BaseModel, Generic[T]):
         str_strip_whitespace=True,
     )
 
-    optimal: float | None = Field(default=None, title="Optimal")
-    minimal: float | None = Field(default=None, title="Minimal")
-    maximal: float | None = Field(default=None, title="Maximal")
+    optimal: float | None = Field(
+        default=None, title="Optimal", description="Single optimal growth value"
+    )
+    minimal: float | None = Field(
+        default=None, title="Minimal", description="Known minimal growth value"
+    )
+    maximal: float | None = Field(
+        default=None, title="Maximal", description="Known maximal growth value"
+    )
     unit: T
-    tests: list[GrowthRange[T]] = Field(default_factory=list, title="Tests")
+    tests: list[GrowthRange[T]] = Field(
+        default_factory=list,
+        title="Tests",
+        description="List of tests and if the strain grows in tested ranges",
+    )
     source: list[SourceLink] = Field(
         title="Source", description="List of JSON paths to source object"
     )

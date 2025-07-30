@@ -13,7 +13,7 @@ class CellShape(BaseModel):
         str_strip_whitespace=True,
     )
 
-    cellShape: str = Field(title="Cell Shape")
+    cellShape: str = Field(title="Cell Shape", description="The shape type the cells")
     source: list[SourceLink] = Field(
         title="Source", description="List of JSON paths to source object"
     )

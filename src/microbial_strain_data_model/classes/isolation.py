@@ -26,8 +26,21 @@ class Isolation(BaseModel):
             ),
         ]
         | None
-    ) = Field(default=None, title="Date")
-    isolatedAt: Organization | Person | None = Field(default=None, title="Isolated At")
+    ) = Field(
+        default=None,
+        title="Date",
+        description="Date of Isolation, using date range format of dublin core: "
+        "'YYYY-MM-DD/YYYY-MM-DD' ether side can be empty defining an open ended "
+        "range, only the year is mandatory, e.g. '/1978' means before 1978",
+    )
+    isolatedAt: Organization | None = Field(
+        default=None,
+        title="Isolated At",
+        description="Institute where the isolation happened",
+    )
+    isolator: Person | None = Field(
+        default=None, title="Isolator", description="Person who performed the isolation"
+    )
     source: list[SourceLink] = Field(
         title="Source", description="List of JSON paths to source object"
     )
