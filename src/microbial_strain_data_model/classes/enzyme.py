@@ -22,11 +22,17 @@ class Enzyme(BaseModel):
         ),
     ] = Field(
         title="EC Number",
-        description="An EC number like defined by the Enzyme Commission",
+        description="An EC number defined by the Enzyme Commission",
     )
-    url: HttpUrl | None = Field(default=None, title="URL", description="URL")
+    url: HttpUrl | None = Field(
+        default=None,
+        title="URL",
+        description="Uniform Resource Locator of a resource on the Internet",
+    )
     alternateName: list[str] = Field(default_factory=list, title="Alternate Name")
-    active: bool | None = Field(default=None, title="Active")
+    active: bool | None = Field(
+        default=None, title="Active", description="Is this enzyme active"
+    )
     relatedData: list[RelationLink] = Field(
         default_factory=list,
         title="Related Data",

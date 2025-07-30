@@ -469,7 +469,7 @@ class SourceType(str, Enum):
 
 class CurationMode(str, Enum):
     """
-    Source type options
+    Curation mode options
 
     Attributes:
         manual: manual

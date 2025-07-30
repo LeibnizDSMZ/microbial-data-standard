@@ -13,10 +13,18 @@ class Identifier(BaseModel):
         str_strip_whitespace=True,
     )
 
-    name: str = Field(title="Name")
-    value: str = Field(title="Value")
-    propertyID: str | None = Field(default=None, title="Property ID")
-    url: HttpUrl | None = Field(default=None, title="URL")
+    name: str = Field(title="Name", description="Name of the identifier")
+    value: str = Field(
+        title="Value", description="Value of the identifier (can also be a URL)"
+    )
+    propertyID: str | None = Field(
+        default=None, title="Property ID", description="See schema.org/propertyID"
+    )
+    url: HttpUrl | None = Field(
+        default=None,
+        title="URL",
+        description="Uniform Resource Locator of a resource on the Internet",
+    )
 
 
 class IdentifierStrain(Identifier):

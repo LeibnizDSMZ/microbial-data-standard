@@ -14,8 +14,15 @@ class GCContent(BaseModel):
         str_strip_whitespace=True,
     )
 
-    method: str | None = Field(default=None, title="Method")
-    value: Annotated[float, Field(ge=0, le=100)] = Field(title="Percent Value")
+    method: str | None = Field(
+        default=None,
+        title="Method",
+        description="Name of the method used to measure the GC content",
+    )
+    value: Annotated[float, Field(ge=0, le=100)] = Field(
+        title="Percent Value",
+        description="Percent value of how much percent of the DNA is GC pairs",
+    )
     source: list[SourceLink] = Field(
         title="Source", description="List of JSON paths to source object"
     )

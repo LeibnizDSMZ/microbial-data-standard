@@ -18,7 +18,9 @@ class Colony(BaseModel):
     )
 
     size: Size | None = Field(default=None, title="Size of Colony")
-    color: ColonyColor | None = Field(default=None, title="Color of Colony")
+    color: ColonyColor | None = Field(
+        default=None, title="Color of Colony", description="Color of the colony on the"
+    )
     source: list[SourceLink] = Field(
         title="Source", description="List of JSON paths to source object"
     )

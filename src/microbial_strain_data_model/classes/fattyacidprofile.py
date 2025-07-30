@@ -16,9 +16,17 @@ class FattyAcidProfile(BaseModel):
         str_strip_whitespace=True,
     )
 
-    profile: list[FattyAcid] = Field(default_factory=list, title="Profile")
-    library: str | None = Field(default=None, title="Library")
-    software: str | None = Field(default=None, title="Software")
+    profile: list[FattyAcid] = Field(
+        default_factory=list,
+        title="Profile",
+        description="List of fatty acids and their percentages",
+    )
+    library: str | None = Field(
+        default=None, title="Library", description="The used library"
+    )
+    software: str | None = Field(
+        default=None, title="Software", description="The used software"
+    )
     relatedData: list[RelationLink] = Field(
         default_factory=list,
         title="Related Data",

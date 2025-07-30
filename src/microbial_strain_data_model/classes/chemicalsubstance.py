@@ -21,9 +21,17 @@ class ChemicalSubstance(BaseModel):
         str_strip_whitespace=True,
     )
 
-    name: str | None = Field(default=None, title="Name of Chemical Substance")
+    name: str | None = Field(
+        default=None,
+        title="Name of Chemical Substance",
+        description="Valid scientific name",
+    )
     identifier: list[Identifier] = Field(default_factory=list, title="Identifier")
-    alternateName: list[str] = Field(default_factory=list, title="Alternate Name")
+    alternateName: list[str] = Field(
+        default_factory=list,
+        title="Alternate Name",
+        description="List of alternative names for this substance",
+    )
 
     _check_values = model_validator(mode="after")(check_not_completely_empty)
 
@@ -87,7 +95,11 @@ class Metabolite(ChemicalSubstance):
         str_strip_whitespace=True,
     )
 
-    tests: list[MetaboliteTest] = Field(default_factory=list, title="Tests")
+    tests: list[MetaboliteTest] = Field(
+        default_factory=list,
+        title="Tests",
+        description="List of performed tests on this metabolite",
+    )
     source: list[SourceLink] = Field(
         title="Source", description="List of JSON paths to source object"
     )

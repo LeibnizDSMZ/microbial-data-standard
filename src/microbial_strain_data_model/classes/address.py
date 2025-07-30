@@ -16,11 +16,21 @@ class Address(BaseModel):
         str_strip_whitespace=True,
     )
 
-    addressCountry: CountryAlpha2 | None = Field(default=None, title="Country")
-    addressLocality: str | None = Field(default=None, title="Locality")
-    addressRegion: str | None = Field(default=None, title="Region")
+    addressCountry: CountryAlpha2 | None = Field(
+        default=None, title="Country", description="Country code, see ISO 3166-1 alpha-2"
+    )
+    addressRegion: str | None = Field(
+        default=None, title="Region", description="Region within the country"
+    )
+    addressLocality: str | None = Field(
+        default=None, title="Locality", description="Locality within the region"
+    )
     postOfficeBoxNumber: str | None = Field(default=None, title="Post Office Box Number")
-    postalCode: str | None = Field(default=None, title="Post Code")
-    streetAddress: str | None = Field(default=None, title="Street Address")
+    postalCode: str | None = Field(default=None, title="Postal Code")
+    streetAddress: str | None = Field(
+        default=None,
+        title="Street Address",
+        description="Name of the street and number within street",
+    )
 
     _check_values = model_validator(mode="after")(check_not_completely_empty)
