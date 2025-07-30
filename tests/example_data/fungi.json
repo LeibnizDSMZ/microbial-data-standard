@@ -874,5 +874,6 @@
     },
     "status": "validly published"
   },
-  "unified_type_strain": true
+  "unified_type_strain": true,
+  "version": "0.6"
 }
