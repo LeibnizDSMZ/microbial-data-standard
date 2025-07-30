@@ -1,3 +1,5 @@
+from pydantic_extra_types.pendulum_dt import Date
+from typing import Literal
 from pydantic import BaseModel, ConfigDict, Field
 
 
@@ -19,14 +21,11 @@ from microbial_strain_data_model.classes.hemolysis import Hemolysis
 from microbial_strain_data_model.classes.legal import Legal
 from microbial_strain_data_model.classes.literature import Literature
 from microbial_strain_data_model.classes.multicell import MultiCell
-from microbial_strain_data_model.classes.organization import Collection, Organization
+from microbial_strain_data_model.classes.organization import Collection
 from microbial_strain_data_model.classes.othermedia import OtherMedia
 from microbial_strain_data_model.classes.oxygenrelation import OxygenRelation
 from microbial_strain_data_model.classes.pathogen import Pathogen
-from microbial_strain_data_model.classes.person import (
-    ConnectedPerson,
-    Person,
-)
+from microbial_strain_data_model.classes.person import ConnectedPerson
 from microbial_strain_data_model.classes.identifier import IdentifierStrain
 from microbial_strain_data_model.classes.isolation import Isolation
 from microbial_strain_data_model.classes.motility import Motility
@@ -34,6 +33,7 @@ from microbial_strain_data_model.classes.relateddata import RelatedData
 from microbial_strain_data_model.classes.sample import Sample
 from microbial_strain_data_model.classes.sequence import Sequence
 from microbial_strain_data_model.classes.size import CellSize
+from microbial_strain_data_model.classes.source import Source
 from microbial_strain_data_model.classes.spore import Spore
 from microbial_strain_data_model.classes.staining import Staining
 from microbial_strain_data_model.classes.taxon import Taxon, TaxonWithSource, TypeStrain
@@ -48,6 +48,10 @@ from microbial_strain_data_model.classes.enums import (
 
 class Microbe(BaseModel):
     """Microbe - main class of the new microbial data standard"""
+
+    version: Literal["0.6"]
+
+    creation_date: Date = Field(default_factory=Date.today)
 
     # single data points
 
@@ -212,9 +216,7 @@ class Microbe(BaseModel):
         default_factory=list, title="Related Data", description=""
     )
 
-    sources: list[Literature | Organization | Person] = Field(
-        title="Source", description=""
-    )
+    sources: list[Source] = Field(title="Sources", description="")
 
     model_config = ConfigDict(
         strict=True,

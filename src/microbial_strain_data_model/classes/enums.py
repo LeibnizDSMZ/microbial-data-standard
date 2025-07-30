@@ -450,3 +450,33 @@ class ToleranceReaction(str, Enum):
     sensitive = "sensitive"
     resistant = "resistant"
     intermediate = "intermediate"
+
+
+class SourceType(str, Enum):
+    """
+    Source type options
+
+    Attributes:
+        literature: literature
+        website: website
+        dataset: dataset
+    """
+
+    literature = "literature"
+    website = "website"
+    dataset = "dataset"
+
+
+class CurationMode(str, Enum):
+    """
+    Source type options
+
+    Attributes:
+        manual: manual
+        automated: automated
+        unknown: unknown
+    """
+
+    manual = "manual"
+    automated = "automated"
+    unknown = "unknown"

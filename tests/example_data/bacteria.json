@@ -1323,19 +1323,37 @@
   ],
   "sources": [
     {
-      "address": null,
-      "email": null,
-      "identifier": [
+      "author": [],
+      "datePublished": null,
+      "dateRecorded": "2025-06-24",
+      "identifiers": [],
+      "mode": "automated",
+      "name": "DSMZ internal database",
+      "publisher": [
         {
-          "name": "ROR",
-          "propertyID": "https://www.wikidata.org/wiki/Property:P6782",
-          "url": null,
-          "value": "https://ror.org/02tyer376"
+          "address": {
+            "addressCountry": "DE",
+            "addressLocality": "Braunschweig",
+            "postalCode": "38124",
+            "streetAddress": "Inhoffenstra\u00dfe 7B"
+          },
+          "email": "info@dsmz.de",
+          "identifier": [
+            {
+              "name": "ROR",
+              "propertyID": "https://www.wikidata.org/wiki/Property:P6782",
+              "url": null,
+              "value": "https://ror.org/02tyer376"
+            }
+          ],
+          "legalName": "Leibniz-Institut DSMZ-Deutsche Sammlung von Mikroorganismen und Zellkulturen GmbH",
+          "logo": "https://www.dsmz.de/fileadmin/templates/main/img/logo_en.svg",
+          "name": "DSMZ",
+          "url": "https://www.dsmz.de/"
         }
       ],
-      "legalName": "Leibniz-Institut DSMZ-Deutsche Sammlung von Mikroorganismen und Zellkulturen GmbH",
-      "name": "BacDive",
-      "url": "https://bacdive.dsmz.de/strain/2904"
+      "sourceType": "dataset",
+      "url": null
     }
   ],
   "sporeFormation": [
@@ -1599,6 +1617,7 @@
     "taxonStatus": "validly published"
   },
   "unifiedTypeStrain": true,
+  "version": "0.6",
   "wallConstituents": [
     {
       "alternateName": [
