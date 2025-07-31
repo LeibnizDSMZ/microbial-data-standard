@@ -13,7 +13,9 @@ class MultiCell(BaseModel):
         str_strip_whitespace=True,
     )
 
-    multiCellComplexForming: bool = Field(title="Multi Cell Complex Forming")
+    multiCellComplexForming: bool = Field(
+        title="Multi Cell Complex Forming", description="Do the cells form complexes"
+    )
     relatedData: list[RelationLink] = Field(
         default_factory=list,
         title="Related Data",

@@ -2,7 +2,6 @@ from typing_extensions import Annotated
 from pydantic import BaseModel, ConfigDict, Field, StringConstraints
 
 from microbial_strain_data_model.classes.organization import Organization
-from microbial_strain_data_model.classes.person import Person
 from microbial_strain_data_model.classes.links import SourceLink
 
 
@@ -37,9 +36,6 @@ class Isolation(BaseModel):
         default=None,
         title="Isolated At",
         description="Institute where the isolation happened",
-    )
-    isolator: Person | None = Field(
-        default=None, title="Isolator", description="Person who performed the isolation"
     )
     source: list[SourceLink] = Field(
         title="Source", description="List of JSON paths to source object"
