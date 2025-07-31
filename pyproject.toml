@@ -1,6 +1,6 @@
 [project]
 name = "microbial_strain_data_model"
-version = "0.5.0"
+version = "0.6.0"
 description = """Read strain data from microbiolgy DB and transforms them into JSONs"""
 readme = "README.md"
 authors = [{ name = "Julius Witte", email = "julius.witte@dsmz.de" }]
