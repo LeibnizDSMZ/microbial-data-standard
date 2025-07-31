@@ -15,8 +15,14 @@ class Person(BaseModel):
         str_strip_whitespace=True,
     )
 
-    name: str = Field(title="Name", description="Name of the person")
-    identifier: list[Identifier] = Field(default_factory=list, title="Identifier")
+    name: str = Field(
+        title="Name", description="Name of the person, preferable: [Last], [First]"
+    )
+    identifier: list[Identifier] = Field(
+        default_factory=list,
+        title="Identifier",
+        description="Person identifiers like ORCID",
+    )
 
 
 class ConnectedPerson(Person):

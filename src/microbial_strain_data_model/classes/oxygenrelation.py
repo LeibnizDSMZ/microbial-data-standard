@@ -13,7 +13,9 @@ class OxygenRelation(BaseModel):
         str_strip_whitespace=True,
     )
 
-    oxygenRelation: str = Field(title="Oxygen Relation")
+    oxygenRelation: str = Field(
+        title="Oxygen Relation", description="Aerobic, anaerobic etc."
+    )
     relatedData: list[RelationLink] = Field(
         default_factory=list,
         title="Related Data",

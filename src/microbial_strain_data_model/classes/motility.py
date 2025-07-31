@@ -14,12 +14,24 @@ class Motility(BaseModel):
         str_strip_whitespace=True,
     )
 
-    motile: bool | None = Field(default=None, title="Motile")
-    flagellum: bool | None = Field(default=None, title="Flagellum")
-    flagellumArrangement: FlagellumArrangement | None = Field(
-        default=None, title="Flagellum Arrangement"
+    motile: bool | None = Field(
+        default=None,
+        title="Motile",
+        description="Are the cells of this strain are motile",
     )
-    gliding: bool | None = Field(default=None, title="Gliding")
+    flagellum: bool | None = Field(
+        default=None, title="Flagellum", description="Do the cells have flagella"
+    )
+    flagellumArrangement: FlagellumArrangement | None = Field(
+        default=None,
+        title="Flagellum Arrangement",
+        description="How are the flagella arranged",
+    )
+    gliding: bool | None = Field(
+        default=None,
+        title="Gliding",
+        description="Cells can be motile by gliding instead of having flagella",
+    )
     source: list[SourceLink] = Field(
         title="Source", description="List of JSON paths to source object"
     )

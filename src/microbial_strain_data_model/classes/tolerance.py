@@ -17,8 +17,12 @@ class ToleranceTest(BaseModel):
     )
 
     reaction: ToleranceReaction = Field(title="Reaction")
-    concentration: str | None = Field(default=None, title="Concentration")
-    unit: ConcentrationUnit = Field(title="Unit")
+    concentration: str | None = Field(
+        default=None, title="Concentration", description="Concentration value"
+    )
+    unit: ConcentrationUnit = Field(
+        title="Unit", description="Unit of concentration e.g. g/ml"
+    )
     relatedData: list[RelationLink] = Field(
         default_factory=list,
         title="Related Data",
@@ -36,8 +40,10 @@ class Tolerance(ChemicalSubstance):
         str_strip_whitespace=True,
     )
 
-    reaction: str | None = Field(default=None, title="Reaction")
-    mic: str | None = Field(default=None, title="MIC")
+    reaction: ToleranceReaction | None = Field(default=None, title="Reaction")
+    mic: str | None = Field(
+        default=None, title="MIC", description="The minimal inhibitory concentration"
+    )
     unit: ConcentrationUnit | None = Field(default=None, title="Unit")
     tests: list[ToleranceTest] = Field(default_factory=list, title="Tests")
     source: list[SourceLink] = Field(

@@ -13,10 +13,24 @@ class MetaboliteTest(BaseModel):
         str_strip_whitespace=True,
     )
 
-    type: MetaboliteTestType = Field(title="Type")
-    active: bool | None = Field(default=None, title="Active")
-    protocol: str | None = Field(default=None, title="Protocol")
-    kindOfUtilization: str | None = Field(default=None, title="Kind Of Utilization")
+    type: MetaboliteTestType = Field(
+        title="Type",
+        description="The type of metabolic test, can be utilization or production",
+    )
+    active: bool | None = Field(
+        default=None,
+        title="Active",
+        description="Is the metabolite utilization or production active",
+    )
+    protocol: str | None = Field(
+        default=None, title="Protocol", description="What test was used"
+    )
+    kindOfUtilization: str | None = Field(
+        default=None,
+        title="Kind Of Utilization",
+        description="Only relevant if the type is utilization, "
+        "as there are multiple kinds of utilization",
+    )
     relatedData: list[RelationLink] = Field(
         default_factory=list,
         title="Related Data",

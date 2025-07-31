@@ -20,10 +20,18 @@ class OtherMedia(BaseModel):
         str_strip_whitespace=True,
     )
 
-    url: HttpUrl | None = Field(default=None, title="URL")
+    url: HttpUrl | None = Field(default=None, title="URL", description="Link to medium")
     name: str | None = Field(default=None, title="Name")
-    description: str | None = Field(default=None, title="Description")
-    usageInfo: str | None = Field(default=None, title="Usage Information")
+    description: str | None = Field(
+        default=None,
+        title="Description",
+        description="Description of the medium and the content in the medium",
+    )
+    usageInfo: str | None = Field(
+        default=None,
+        title="Usage Information",
+        description="License or other information on usage",
+    )
     additionalType: str | None = Field(default=None, title="Additional Type")
     source: list[SourceLink] = Field(
         title="Source", description="List of JSON paths to source object"

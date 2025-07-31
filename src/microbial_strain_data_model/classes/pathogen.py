@@ -15,12 +15,19 @@ class Pathogen(BaseModel):
         str_strip_whitespace=True,
     )
 
-    host: Host = Field(title="Host", description="Host organism or group")
+    host: Host = Field(
+        title="Host",
+        description="Organism or group of organisms that can be infected",
+    )
     pathogen: PathogenLevel = Field(
-        title="Pathogen", description="Frequency of pathogenicity"
+        title="Pathogen",
+        description="Frequency of pathogenicity: no pathogen, opportunistic or obligate",
     )
     classification: str | None = Field(
-        default=None, title="Classification", description="Type of classification"
+        default=None,
+        title="Classification",
+        description="Type of classification, e.g. German classification "
+        "or WHO classification",
     )
     url: HttpUrl | None = Field(
         default=None, title="URL", description="Link to classification document"
