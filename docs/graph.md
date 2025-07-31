@@ -135,8 +135,8 @@ geo: GeoPoint | null
 }
 
 class `GeoPoint`{
-latitude: number
-longitude: number
+latitude: number | string
+longitude: number | string
 elevation: number | null
 precision: number | null
 }
@@ -149,7 +149,7 @@ level3: string | null
 
 class `Isolation`{
 date: string | null
-isolatedAt: Organization | Person | null
+isolatedAt: Organization | null
 source: string
 }
 
@@ -165,16 +165,11 @@ logo: string | null
 
 class `Address`{
 addressCountry: string | null
-addressLocality: string | null
 addressRegion: string | null
+addressLocality: string | null
 postOfficeBoxNumber: string | null
 postalCode: string | null
 streetAddress: string | null
-}
-
-class `Person`{
-name: string
-identifier: array[Identifier]
 }
 
 class `Legal`{
@@ -201,6 +196,7 @@ name: string
 country: Country | null
 authority: string | null
 value: string
+url: string | null
 }
 
 class `CellShape`{
@@ -419,6 +415,11 @@ publisher: array[Organization]
 source: string
 }
 
+class `Person`{
+name: string
+identifier: array[Identifier]
+}
+
 class `CellWall`{
 name: string | null
 identifier: array[Identifier]
@@ -517,18 +518,11 @@ class `Tolerance`{
 name: string | null
 identifier: array[Identifier]
 alternateName: string
-reaction: string | null
+reaction: ToleranceReaction | null
 mic: string | null
 unit: ConcentrationUnit | null
 tests: array[ToleranceTest]
 source: string
-}
-
-class `ToleranceTest`{
-reaction: ToleranceReaction
-concentration: string | null
-unit: ConcentrationUnit
-relatedData: string
 }
 
 class `ToleranceReaction`{
@@ -536,6 +530,13 @@ class `ToleranceReaction`{
 sensitive
 resistant
 intermediate
+}
+
+class `ToleranceTest`{
+reaction: ToleranceReaction
+concentration: string | null
+unit: ConcentrationUnit
+relatedData: string
 }
 
 class `Enzyme`{
@@ -633,7 +634,35 @@ relation: string
 source: string
 }
 
+class `Source`{
+sourceType: SourceType
+mode: CurationMode
+name: string | null
+url: string | null
+identifiers: array[Identifier]
+datePublished: string | null
+dateRecorded: string
+author: array[Person]
+publisher: array[Organization]
+}
+
+class `SourceType`{
+<<enumeration>>
+literature
+website
+dataset
+}
+
+class `CurationMode`{
+<<enumeration>>
+manual
+automated
+unknown
+}
+
 class `Microbe`{
+version: string
+creation_date: string
 organismType: OrganismType
 morphType: Morph | null
 unifiedTypeStrain: boolean | null
@@ -672,7 +701,7 @@ knownApplications: array[Application]
 collections: array[Collection]
 otherMedia: array[OtherMedia]
 relatedData: array[RelatedData]
-sources:
+sources: array[Source]
 }
 
 `Microbe` ..> `OrganismType`
@@ -702,8 +731,6 @@ sources:
 `Isolation` ..> `Organization`
 `Organization` ..> `Identifier`
 `Organization` ..> `Address`
-`Isolation` ..> `Person`
-`Person` ..> `Identifier`
 `Microbe` ..> `Legal`
 `Legal` ..> `NagoyaRestrictions`
 `Legal` ..> `microbial_strain_data_model__classes__legal__Restriction`
@@ -741,6 +768,7 @@ sources:
 `Microbe` ..> `GCContent`
 `Microbe` ..> `Literature`
 `Literature` ..> `Person`
+`Person` ..> `Identifier`
 `Literature` ..> `Organization`
 `Microbe` ..> `CellWall`
 `CellWall` ..> `Identifier`
@@ -760,6 +788,7 @@ sources:
 `GrowthRange_ConcentrationUnit_` ..> `ConcentrationUnit`
 `Microbe` ..> `Tolerance`
 `Tolerance` ..> `Identifier`
+`Tolerance` ..> `ToleranceReaction`
 `Tolerance` ..> `ConcentrationUnit`
 `Tolerance` ..> `ToleranceTest`
 `ToleranceTest` ..> `ToleranceReaction`
@@ -778,4 +807,10 @@ sources:
 `Collection` ..> `Person`
 `Microbe` ..> `OtherMedia`
 `Microbe` ..> `RelatedData`
+`Microbe` ..> `Source`
+`Source` ..> `SourceType`
+`Source` ..> `CurationMode`
+`Source` ..> `Identifier`
+`Source` ..> `Person`
+`Source` ..> `Organization`
 ```
