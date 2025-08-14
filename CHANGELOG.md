@@ -1,3 +1,13 @@
+## v0.7.0 (2025-08-14)
+
+### Feat
+
+- **source**: new source class
+
+### Fix
+
+- fix typo in Source, make taxonRank and taxonStatus no longer required
+
 ## v0.6.0 (2025-07-31)
 
 ### Feat
