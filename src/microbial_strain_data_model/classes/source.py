@@ -22,7 +22,7 @@ class Source(BaseModel):
     mode: CurationMode = Field(title="Mode", description="Mode of curation", strict=False)
     name: str | None = Field(default=None, title="Name")
     url: HttpUrl | None = Field(default=None, title="URL")
-    identifiers: list[Identifier] = Field(default_factory=list, title="Identifier")
+    identifier: list[Identifier] = Field(default_factory=list, title="Identifier")
     datePublished: Date | None = Field(default=None, title="Date Published", strict=False)
     dateRecorded: Date = Field(
         default_factory=Date.today, title="Date Recorded", strict=False

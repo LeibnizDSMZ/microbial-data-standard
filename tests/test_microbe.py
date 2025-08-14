@@ -36,7 +36,7 @@ def micro():
                 "mode": "automated",
                 "name": "DSMZ internal database",
                 "url": None,
-                "identifiers": [],
+                "identifier": [],
                 "datePublished": "2024-12",
                 "dateRecorded": "2025-06-24",
                 "author": [],

@@ -51,8 +51,8 @@ class Taxon(BaseModel):
     )
 
     name: str = Field(title="Name")
-    taxonRank: TaxonRank = Field(title="Taxon Rank")
-    taxonStatus: TaxonStatus = Field(title="Taxon Status")
+    taxonRank: TaxonRank | None = Field(default=None, title="Taxon Rank")
+    taxonStatus: TaxonStatus | None = Field(default=None, title="Taxon Status")
     identifier: list[Identifier] = Field(default_factory=list, title="Identifier")
     scientificName: ScientificName | None = Field(default=None, title="Scientific Name")
     alternateName: list[str] = Field(default_factory=list, title="Alternate Name")
