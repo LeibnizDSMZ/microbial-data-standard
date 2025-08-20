@@ -480,3 +480,26 @@ class CurationMode(str, Enum):
     manual = "manual"
     automated = "automated"
     unknown = "unknown"
+
+
+class KindOfUtilization(str, Enum):
+    """
+    Types of utilization
+
+    Args:
+        assimilation: assimilation
+        buildsAcidFrom: builds acid from
+        degradation: degradation
+        energySource: energy source
+        fermentation: fermentation
+        hydrolysis:  hydrolysis
+        reduction:  reduction
+    """
+
+    assimilation = "assimilation"
+    buildsAcidFrom = "builds acid from"
+    degradation = "degradation"
+    energySource = "energy source"
+    fermentation = "fermentation"
+    hydrolysis = "hydrolysis"
+    reduction = "reduction"
