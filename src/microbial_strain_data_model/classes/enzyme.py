@@ -1,6 +1,7 @@
 from typing_extensions import Annotated
-from pydantic import BaseModel, ConfigDict, StringConstraints, Field, HttpUrl
+from pydantic import BaseModel, ConfigDict, StringConstraints, Field
 
+from microbial_strain_data_model.classes.identifier import Identifier
 from microbial_strain_data_model.classes.links import RelationLink, SourceLink
 
 
@@ -24,11 +25,7 @@ class Enzyme(BaseModel):
         title="EC Number",
         description="An EC number defined by the Enzyme Commission",
     )
-    url: HttpUrl | None = Field(
-        default=None,
-        title="URL",
-        description="Uniform Resource Locator of a resource on the Internet",
-    )
+    identifier: list[Identifier] = Field(default_factory=list, title="Identifier")
     alternateName: list[str] = Field(default_factory=list, title="Alternate Name")
     active: bool | None = Field(
         default=None, title="Active", description="Is this enzyme active"

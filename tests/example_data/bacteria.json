@@ -329,14 +329,19 @@
         "tracp5b"
       ],
       "hasECNumber": "3.1.3.2",
+      "identifier": [
+        {
+          "name": "Brenda",
+          "value": "https://www.brenda-enzymes.org/enzyme.php?ecno=3.1.3.2"
+        }
+      ],
       "name": "acid phosphatase",
       "relatedData": [
         "/relatedData/0"
       ],
       "source": [
         "/sources/0"
-      ],
-      "url": "https://www.brenda-enzymes.org/enzyme.php?ecno=3.1.3.2"
+      ]
     },
     {
       "active": true,
@@ -353,11 +358,16 @@
         "secreted alkaline phosphatase"
       ],
       "hasECNumber": "3.1.3.1",
+      "identifier": [
+        {
+          "name": "Brenda",
+          "value": "https://www.brenda-enzymes.org/enzyme.php?ecno=3.1.3.1"
+        }
+      ],
       "name": "alkaline phosphatase",
       "source": [
         "/sources/0"
-      ],
-      "url": "https://www.brenda-enzymes.org/enzyme.php?ecno=3.1.3.1"
+      ]
     },
     {
       "active": false,
@@ -374,11 +384,16 @@
         "chymotrypsin ii"
       ],
       "hasECNumber": "3.4.21.1",
+      "identifier": [
+        {
+          "name": "Brenda",
+          "value": "https://www.brenda-enzymes.org/enzyme.php?ecno=3.4.21.1"
+        }
+      ],
       "name": "alpha-chymotrypsin",
       "source": [
         "/sources/0"
-      ],
-      "url": "https://www.brenda-enzymes.org/enzyme.php?ecno=3.4.21.1"
+      ]
     },
     {
       "active": false,
@@ -395,11 +410,16 @@
         "alphafuc"
       ],
       "hasECNumber": "3.2.1.51",
+      "identifier": [
+        {
+          "name": "Brenda",
+          "value": "https://www.brenda-enzymes.org/enzyme.php?ecno=3.2.1.51"
+        }
+      ],
       "name": "alpha-fucosidase",
       "source": [
         "/sources/0"
-      ],
-      "url": "https://www.brenda-enzymes.org/enzyme.php?ecno=3.2.1.51"
+      ]
     },
     {
       "active": false,
@@ -415,11 +435,16 @@
         "streptococcal acid glycoprotein"
       ],
       "hasECNumber": "3.5.3.6",
+      "identifier": [
+        {
+          "name": "Brenda",
+          "value": "https://www.brenda-enzymes.org/enzyme.php?ecno=3.5.3.6"
+        }
+      ],
       "name": "arginine dihydrolase",
       "source": [
         "/sources/0"
-      ],
-      "url": "https://www.brenda-enzymes.org/enzyme.php?ecno=3.5.3.6"
+      ]
     },
     {
       "active": true,
@@ -436,11 +461,16 @@
         "betagal"
       ],
       "hasECNumber": "3.2.1.23",
+      "identifier": [
+        {
+          "name": "Brenda",
+          "value": "https://www.brenda-enzymes.org/enzyme.php?ecno=3.2.1.23"
+        }
+      ],
       "name": "beta-galactosidase",
       "source": [
         "/sources/0"
-      ],
-      "url": "https://www.brenda-enzymes.org/enzyme.php?ecno=3.2.1.23"
+      ]
     }
   ],
   "fattyAcidProfiles": [
