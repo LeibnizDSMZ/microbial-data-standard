@@ -503,3 +503,16 @@ class KindOfUtilization(str, Enum):
     fermentation = "fermentation"
     hydrolysis = "hydrolysis"
     reduction = "reduction"
+
+
+class GCMethod(str, Enum):
+    """
+    Methods for GC measurement
+
+    Args:
+        experimental: experimental
+        genomeSequence: genome sequence
+    """
+
+    experimental = "experimental"
+    genomeSequence = "genome sequence"

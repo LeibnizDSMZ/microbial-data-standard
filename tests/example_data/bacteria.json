@@ -549,7 +549,8 @@
   ],
   "gcContent": [
     {
-      "method": "thermal denaturion, midpoint method (Tm)",
+      "method": "experimental",
+      "noteMethod": "thermal denaturion, midpoint method (Tm)",
       "source": [
         "/sources/0"
       ],
