@@ -25,6 +25,11 @@ class Identifier(BaseModel):
         title="URL",
         description="Uniform Resource Locator of a resource on the Internet",
     )
+    logo: HttpUrl | None = Field(
+        default=None,
+        title="Logo",
+        description="Logo of the Identifier Organization (e.g. DOI, ORCID, ROR, ...)",
+    )
 
 
 class IdentifierStrain(Identifier):
