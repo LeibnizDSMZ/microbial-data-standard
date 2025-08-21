@@ -516,3 +516,30 @@ class GCMethod(str, Enum):
 
     experimental = "experimental"
     genomeSequence = "genome sequence"
+
+
+class OxygenTolerance(str, Enum):
+    """
+    How does the strain tolerate Oxygen
+
+    Args:
+        aerobe: aerobe
+        aerotolerant: aerotolerant
+        anaerobe: anaerobe
+        facultativeAerobe: facultative aerobe
+        facultativeAnaerobe: facultative anaerobe
+        microaerophile: microaerophile
+        microaerotolerant: microaerotolerant
+        obligateAerobe: obligate aerobe
+        obligateAnaerobe: obligate anaerobe
+    """
+
+    aerobe = "aerobe"
+    aerotolerant = "aerotolerant"
+    anaerobe = "anaerobe"
+    facultativeAerobe = "facultative aerobe"
+    facultativeAnaerobe = "facultative anaerobe"
+    microaerophile = "microaerophile"
+    microaerotolerant = "microaerotolerant"
+    obligateAerobe = "obligate aerobe"
+    obligateAnaerobe = "obligate anaerobe"

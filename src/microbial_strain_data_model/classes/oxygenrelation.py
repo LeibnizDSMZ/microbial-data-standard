@@ -1,5 +1,6 @@
 from pydantic import BaseModel, ConfigDict, Field
 
+from microbial_strain_data_model.classes.enums import OxygenTolerance
 from microbial_strain_data_model.classes.links import RelationLink, SourceLink
 
 
@@ -13,7 +14,7 @@ class OxygenRelation(BaseModel):
         str_strip_whitespace=True,
     )
 
-    oxygenRelation: str = Field(
+    oxygenRelation: OxygenTolerance = Field(
         title="Oxygen Relation", description="Aerobic, anaerobic etc."
     )
     relatedData: list[RelationLink] = Field(
