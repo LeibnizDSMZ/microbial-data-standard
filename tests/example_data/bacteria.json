@@ -1518,7 +1518,7 @@
       ],
       "tests": [
         {
-          "concentration": "30",
+          "concentration": 30,
           "reaction": "sensitive",
           "unit": "g/L"
         }
@@ -1550,7 +1550,7 @@
       ],
       "tests": [
         {
-          "concentration": "10",
+          "concentration": 10,
           "reaction": "resistant",
           "unit": "g/L"
         }
@@ -1581,7 +1581,7 @@
       ],
       "tests": [
         {
-          "concentration": "30",
+          "concentration": 30,
           "reaction": "intermediate",
           "unit": "g/L"
         }
