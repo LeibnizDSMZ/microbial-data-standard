@@ -1,6 +1,7 @@
 from typing_extensions import Annotated
 from pydantic import BaseModel, ConfigDict, Field
 
+from microbial_strain_data_model.classes.enums import GCMethod
 from microbial_strain_data_model.classes.links import SourceLink
 
 
@@ -14,10 +15,13 @@ class GCContent(BaseModel):
         str_strip_whitespace=True,
     )
 
-    method: str | None = Field(
+    method: GCMethod | None = Field(
         default=None,
         title="Method",
         description="Name of the method used to measure the GC content",
+    )
+    noteMethod: str | None = Field(
+        default=None, title="Note Method", description="Note about the used method"
     )
     value: Annotated[float, Field(ge=0, le=100)] = Field(
         title="Percent Value",

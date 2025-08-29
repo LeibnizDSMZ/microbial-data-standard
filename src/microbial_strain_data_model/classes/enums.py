@@ -1,9 +1,4 @@
 from enum import Enum
-from typing import Literal, TypeAlias
-
-
-CelsiusUnit: TypeAlias = Literal["C"]
-PHUnit: TypeAlias = Literal["pH"]
 
 
 # ruff: noqa: E501
@@ -282,21 +277,6 @@ class PathogenLevel(str, Enum):
     obligate = "obligate"
 
 
-class PersonRole(str, Enum):
-    """
-    Valid roles for persons related to strain
-
-    Attributes:
-        sampler: sampler
-        isolator: isolator
-        other: other
-    """
-
-    sampler = "sampler"
-    isolator = "isolator"
-    other = "other"
-
-
 class SequenceType(str, Enum):
     """
     Valid sequence types
@@ -480,3 +460,66 @@ class CurationMode(str, Enum):
     manual = "manual"
     automated = "automated"
     unknown = "unknown"
+
+
+class KindOfUtilization(str, Enum):
+    """
+    Types of utilization
+
+    Attributes:
+        assimilation: assimilation
+        buildsAcidFrom: builds acid from
+        degradation: degradation
+        energySource: energy source
+        fermentation: fermentation
+        hydrolysis:  hydrolysis
+        reduction:  reduction
+    """
+
+    assimilation = "assimilation"
+    buildsAcidFrom = "builds acid from"
+    degradation = "degradation"
+    energySource = "energy source"
+    fermentation = "fermentation"
+    hydrolysis = "hydrolysis"
+    reduction = "reduction"
+
+
+class GCMethod(str, Enum):
+    """
+    Methods for GC measurement
+
+    Attributes:
+        experimental: experimental
+        genomeSequence: genome sequence
+    """
+
+    experimental = "experimental"
+    genomeSequence = "genome sequence"
+
+
+class OxygenTolerance(str, Enum):
+    """
+    How does the strain tolerate Oxygen
+
+    Attributes:
+        aerobe: aerobe
+        aerotolerant: aerotolerant
+        anaerobe: anaerobe
+        facultativeAerobe: facultative aerobe
+        facultativeAnaerobe: facultative anaerobe
+        microaerophile: microaerophile
+        microaerotolerant: microaerotolerant
+        obligateAerobe: obligate aerobe
+        obligateAnaerobe: obligate anaerobe
+    """
+
+    aerobe = "aerobe"
+    aerotolerant = "aerotolerant"
+    anaerobe = "anaerobe"
+    facultativeAerobe = "facultative aerobe"
+    facultativeAnaerobe = "facultative anaerobe"
+    microaerophile = "microaerophile"
+    microaerotolerant = "microaerotolerant"
+    obligateAerobe = "obligate aerobe"
+    obligateAnaerobe = "obligate anaerobe"

@@ -1,18 +1,17 @@
 from microbial_strain_data_model.classes.enums import OrganismType
 from microbial_strain_data_model.classes.taxon import TaxonRank, TaxonStatus
 import pytest
-from microbial_strain_data_model.microbe import Microbe
+from microbial_strain_data_model.strain import Strain
 
 # ruff: noqa: E501
 
 
 @pytest.fixture
 def micro():
-    return Microbe(
-        version="0.6",
+    return Strain(
         organismType=OrganismType.bacteria,
         typeStrain=[{"typeStrain": False, "source": ["/sources/0"]}],
-        sample=[
+        origin=[
             {
                 "tags": [
                     {"level1": "#Host", "level2": "#Fishes", "level3": "#Zebrafish"}
@@ -68,13 +67,12 @@ def micro():
     )
 
 
-def test_microbe(micro: Microbe) -> None:
+def test_microbe(micro: Strain) -> None:
     assert micro.organismType == "Bacteria"
 
 
-def test_populate_new_class(micro: Microbe) -> None:
-    new_micro = Microbe(
-        version=micro.version,
+def test_populate_new_class(micro: Strain) -> None:
+    new_micro = Strain(
         organismType=micro.organismType,
         typeStrain=micro.typeStrain,
         taxon=micro.taxon,

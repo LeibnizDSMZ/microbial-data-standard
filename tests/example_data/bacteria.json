@@ -17,31 +17,6 @@
       "url": null
     }
   ],
-  "cellShape": [
-    {
-      "cellShape": "coccus",
-      "source": [
-        "/sources/0"
-      ]
-    }
-  ],
-  "cellSize": [
-    {
-      "cellLength": {
-        "maximal": 2.2,
-        "minimal": 1.3,
-        "unit": "\u00b5m"
-      },
-      "cellWidth": {
-        "maximal": 0.8,
-        "minimal": 0.5,
-        "unit": "\u00b5m"
-      },
-      "source": [
-        "/sources/0"
-      ]
-    }
-  ],
   "collections": [
     {
       "address": null,
@@ -255,24 +230,6 @@
       "url": "https://catalogue-crbip.pasteur.fr/"
     }
   ],
-  "colony": [],
-  "connectedPersons": [
-    {
-      "identifier": [
-        {
-          "name": "ORCiD",
-          "propertyID": "https://www.wikidata.org/wiki/Property:P496",
-          "url": null,
-          "value": "https://orcid.org/0000-0001-6433-5270"
-        }
-      ],
-      "name": "J.-W. Bae",
-      "role": "isolator",
-      "source": [
-        "/sources/0"
-      ]
-    }
-  ],
   "cultivationMedia": [
     {
       "name": "PYG MEDIUM (MODIFIED) (DSMZ Medium 104)",
@@ -329,14 +286,19 @@
         "tracp5b"
       ],
       "hasECNumber": "3.1.3.2",
+      "identifier": [
+        {
+          "name": "Brenda",
+          "value": "https://www.brenda-enzymes.org/enzyme.php?ecno=3.1.3.2"
+        }
+      ],
       "name": "acid phosphatase",
       "relatedData": [
         "/relatedData/0"
       ],
       "source": [
         "/sources/0"
-      ],
-      "url": "https://www.brenda-enzymes.org/enzyme.php?ecno=3.1.3.2"
+      ]
     },
     {
       "active": true,
@@ -353,11 +315,16 @@
         "secreted alkaline phosphatase"
       ],
       "hasECNumber": "3.1.3.1",
+      "identifier": [
+        {
+          "name": "Brenda",
+          "value": "https://www.brenda-enzymes.org/enzyme.php?ecno=3.1.3.1"
+        }
+      ],
       "name": "alkaline phosphatase",
       "source": [
         "/sources/0"
-      ],
-      "url": "https://www.brenda-enzymes.org/enzyme.php?ecno=3.1.3.1"
+      ]
     },
     {
       "active": false,
@@ -374,11 +341,16 @@
         "chymotrypsin ii"
       ],
       "hasECNumber": "3.4.21.1",
+      "identifier": [
+        {
+          "name": "Brenda",
+          "value": "https://www.brenda-enzymes.org/enzyme.php?ecno=3.4.21.1"
+        }
+      ],
       "name": "alpha-chymotrypsin",
       "source": [
         "/sources/0"
-      ],
-      "url": "https://www.brenda-enzymes.org/enzyme.php?ecno=3.4.21.1"
+      ]
     },
     {
       "active": false,
@@ -395,11 +367,16 @@
         "alphafuc"
       ],
       "hasECNumber": "3.2.1.51",
+      "identifier": [
+        {
+          "name": "Brenda",
+          "value": "https://www.brenda-enzymes.org/enzyme.php?ecno=3.2.1.51"
+        }
+      ],
       "name": "alpha-fucosidase",
       "source": [
         "/sources/0"
-      ],
-      "url": "https://www.brenda-enzymes.org/enzyme.php?ecno=3.2.1.51"
+      ]
     },
     {
       "active": false,
@@ -415,11 +392,16 @@
         "streptococcal acid glycoprotein"
       ],
       "hasECNumber": "3.5.3.6",
+      "identifier": [
+        {
+          "name": "Brenda",
+          "value": "https://www.brenda-enzymes.org/enzyme.php?ecno=3.5.3.6"
+        }
+      ],
       "name": "arginine dihydrolase",
       "source": [
         "/sources/0"
-      ],
-      "url": "https://www.brenda-enzymes.org/enzyme.php?ecno=3.5.3.6"
+      ]
     },
     {
       "active": true,
@@ -436,11 +418,16 @@
         "betagal"
       ],
       "hasECNumber": "3.2.1.23",
+      "identifier": [
+        {
+          "name": "Brenda",
+          "value": "https://www.brenda-enzymes.org/enzyme.php?ecno=3.2.1.23"
+        }
+      ],
       "name": "beta-galactosidase",
       "source": [
         "/sources/0"
-      ],
-      "url": "https://www.brenda-enzymes.org/enzyme.php?ecno=3.2.1.23"
+      ]
     }
   ],
   "fattyAcidProfiles": [
@@ -519,11 +506,61 @@
   ],
   "gcContent": [
     {
-      "method": "thermal denaturion, midpoint method (Tm)",
+      "method": "experimental",
+      "noteMethod": "thermal denaturion, midpoint method (Tm)",
       "source": [
         "/sources/0"
       ],
       "value": 47.8
+    }
+  ],
+  "growthConditions": [
+    {
+      "maximalPh": null,
+      "maximalTemperature": null,
+      "minimalPh": null,
+      "minimalTemperature": null,
+      "optimalPh": 7.0,
+      "optimalTemperature": 37.0,
+      "oxygenRelation": "anaerobe",
+      "source": [
+        "/sources/0"
+      ],
+      "testsPh": [
+        {
+          "growth": true,
+          "maximal": 9.0,
+          "minimal": 6.0
+        },
+        {
+          "growth": true,
+          "maximal": 7.0,
+          "minimal": 7.0,
+          "relatedData": [
+            "/relatedData/0"
+          ]
+        }
+      ],
+      "testsTemperature": [
+        {
+          "growth": true,
+          "maximal": 39.0,
+          "minimal": 30.0
+        },
+        {
+          "growth": false,
+          "maximal": 43.0,
+          "minimal": 45.0
+        },
+        {
+          "growth": true,
+          "maximal": 36,
+          "minimal": 36,
+          "relatedData": [
+            "/relatedData/0"
+          ]
+        }
+      ]
     }
   ],
   "halophily": [
@@ -561,8 +598,7 @@
           "minimal": 0.0,
           "relatedData": [
             "/relatedData/0"
-          ],
-          "unit": "g/g%"
+          ]
         }
       ],
       "unit": "g/g%"
@@ -701,29 +737,6 @@
       ],
       "url": "https://straininfo.dsmz.de/strain/34969",
       "value": "34969"
-    }
-  ],
-  "isolation": [
-    {
-      "date": null,
-      "isolatedAt": {
-        "address": null,
-        "email": null,
-        "identifier": [
-          {
-            "name": "ROR",
-            "propertyID": "https://www.wikidata.org/wiki/Property:P6782",
-            "url": null,
-            "value": "https://ror.org/03ep23f07"
-          }
-        ],
-        "legalName": null,
-        "name": "Korea Research Institute of Bioscience and Biotechnology",
-        "url": null
-      },
-      "source": [
-        "/sources/0"
-      ]
     }
   ],
   "knownApplications": [
@@ -1067,19 +1080,23 @@
     }
   ],
   "morphType": null,
-  "motility": [
+  "morphology": [
     {
+      "cellLength": {
+        "maximal": 2.2,
+        "minimal": 1.3,
+        "unit": "\u00b5m"
+      },
+      "cellShape": "coccus",
+      "cellWidth": {
+        "maximal": 0.8,
+        "minimal": 0.5,
+        "unit": "\u00b5m"
+      },
       "flagellum": true,
       "flagellumArrangement": null,
       "gliding": false,
       "motile": true,
-      "source": [
-        "/sources/0"
-      ]
-    }
-  ],
-  "multiCellComplexForming": [
-    {
       "multiCellComplexForming": true,
       "source": [
         "/sources/0"
@@ -1087,6 +1104,49 @@
     }
   ],
   "organismType": "Bacteria",
+  "origin": [
+    {
+      "country": null,
+      "description": "soil of landfill site",
+      "isolatedAt": {
+        "address": null,
+        "email": null,
+        "identifier": [
+          {
+            "name": "ROR",
+            "propertyID": "https://www.wikidata.org/wiki/Property:P6782",
+            "url": null,
+            "value": "https://ror.org/03ep23f07"
+          }
+        ],
+        "legalName": null,
+        "name": "Korea Research Institute of Bioscience and Biotechnology",
+        "url": null
+      },
+      "isolationDate": null,
+      "locationCreated": {
+        "description": null,
+        "geo": {
+          "elevation": null,
+          "latitude": 36.03901723905223,
+          "longitude": 129.365704500591,
+          "precision": null
+        },
+        "name": "Pohang"
+      },
+      "sampleDate": "/2011-09-12",
+      "source": [
+        "/sources/0"
+      ],
+      "tags": [
+        {
+          "level1": "#Environmental",
+          "level2": "#Terrestrial",
+          "level3": "#Soil"
+        }
+      ]
+    }
+  ],
   "otherMedia": [
     {
       "additionalType": "image",
@@ -1097,17 +1157,6 @@
       ],
       "url": "https://cdn.dsmz.de/images/strain/2979/EM_DSM_14619_1.jpg",
       "usageInfo": null
-    }
-  ],
-  "oxygenRelation": [
-    {
-      "oxygenRelation": "anaerobe",
-      "relatedData": [
-        "/relatedData/0"
-      ],
-      "source": [
-        "/sources/0"
-      ]
     }
   ],
   "pathogenicity": [
@@ -1136,66 +1185,11 @@
       ]
     }
   ],
-  "ph": [
-    {
-      "maximal": null,
-      "minimal": null,
-      "optimal": 7.0,
-      "source": [
-        "/sources/0"
-      ],
-      "tests": [
-        {
-          "growth": true,
-          "maximal": 9.0,
-          "minimal": 6.0,
-          "unit": "pH"
-        },
-        {
-          "growth": true,
-          "maximal": 7.0,
-          "minimal": 7.0,
-          "relatedData": [
-            "/relatedData/0"
-          ],
-          "unit": "pH"
-        }
-      ],
-      "unit": "pH"
-    }
-  ],
   "relatedData": [
     {
       "relation": "growthCondition",
       "source": [
         "/sources/0"
-      ]
-    }
-  ],
-  "sample": [
-    {
-      "country": null,
-      "date": "/2011-09-12",
-      "description": "soil of landfill site",
-      "locationCreated": {
-        "description": null,
-        "geo": {
-          "elevation": null,
-          "latitude": 36.03901723905223,
-          "longitude": 129.365704500591,
-          "precision": null
-        },
-        "name": "Pohang"
-      },
-      "source": [
-        "/sources/0"
-      ],
-      "tags": [
-        {
-          "level1": "#Environmental",
-          "level2": "#Terrestrial",
-          "level3": "#Soil"
-        }
       ]
     }
   ],
@@ -1430,40 +1424,6 @@
       "taxonStatus": "validly published"
     }
   ],
-  "temperature": [
-    {
-      "maximal": null,
-      "minimal": null,
-      "optimal": 37.0,
-      "source": [
-        "/sources/0"
-      ],
-      "tests": [
-        {
-          "growth": true,
-          "maximal": 39.0,
-          "minimal": 30.0,
-          "unit": "C"
-        },
-        {
-          "growth": false,
-          "maximal": 43.0,
-          "minimal": 45.0,
-          "unit": "C"
-        },
-        {
-          "growth": true,
-          "maximal": 36,
-          "minimal": 36,
-          "relatedData": [
-            "/relatedData/0"
-          ],
-          "unit": "C"
-        }
-      ],
-      "unit": "C"
-    }
-  ],
   "tolerances": [
     {
       "alternateName": [
@@ -1487,7 +1447,7 @@
       ],
       "tests": [
         {
-          "concentration": "30",
+          "concentration": 30,
           "reaction": "sensitive",
           "unit": "g/L"
         }
@@ -1519,7 +1479,7 @@
       ],
       "tests": [
         {
-          "concentration": "10",
+          "concentration": 10,
           "reaction": "resistant",
           "unit": "g/L"
         }
@@ -1550,7 +1510,7 @@
       ],
       "tests": [
         {
-          "concentration": "30",
+          "concentration": 30,
           "reaction": "intermediate",
           "unit": "g/L"
         }
@@ -1566,58 +1526,6 @@
       "typeStrain": true
     }
   ],
-  "unifiedTaxon": {
-    "alternateName": [
-      "Butyribacterium limosum",
-      "Bacteroides limosus"
-    ],
-    "identifier": [
-      {
-        "name": "LPSN",
-        "propertyID": "https://www.wikidata.org/wiki/Property:P1991",
-        "url": "https://lpsn.dsmz.de/species/eubacterium-limosum",
-        "value": "https://lpsn.dsmz.de/species/eubacterium-limosum"
-      },
-      {
-        "name": "NCBI:txid",
-        "propertyID": "https://www.wikidata.org/wiki/Property:P685",
-        "url": "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=1736",
-        "value": "1736"
-      }
-    ],
-    "name": "Eubacterium limosum",
-    "parentTaxon": {
-      "alternateName": [],
-      "identifier": [
-        {
-          "name": "LPSN",
-          "propertyID": "https://www.wikidata.org/wiki/Property:P1991",
-          "url": "https://lpsn.dsmz.de/genus/eubacterium",
-          "value": "https://lpsn.dsmz.de/genus/eubacterium"
-        }
-      ],
-      "name": "Eubacterium",
-      "parentTaxon": null,
-      "sameAs": [],
-      "scientificName": {
-        "author": "Pr\u00e9vot 1938 (Approved Lists 1980)",
-        "name": "Eubacterium"
-      },
-      "taxonRank": "genus",
-      "taxonStatus": "validly published"
-    },
-    "sameAs": [
-      "https://www.gbif.org/species/3226415/metrics"
-    ],
-    "scientificName": {
-      "author": "(Eggerth 1935) Pr\u00e9vot 1938 (Approved Lists 1980)",
-      "name": "Eubacterium limosum"
-    },
-    "taxonRank": "species",
-    "taxonStatus": "validly published"
-  },
-  "unifiedTypeStrain": true,
-  "version": "0.6",
   "wallConstituents": [
     {
       "alternateName": [

@@ -1,14 +1,12 @@
 from typing_extensions import Annotated
-from microbial_strain_data_model.classes.enums import ConcentrationUnit
-from microbial_strain_data_model.classes.metabolitetest import MetaboliteTest
-from microbial_strain_data_model.utils.functions import check_not_completely_empty
-
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
-from microbial_strain_data_model.classes.growthrange import Growth
+from microbial_strain_data_model.classes.enums import ConcentrationUnit
+from microbial_strain_data_model.classes.growthcondition import GrowthRange
+from microbial_strain_data_model.classes.metabolitetest import MetaboliteTest
 from microbial_strain_data_model.classes.identifier import Identifier
-
 from microbial_strain_data_model.classes.links import SourceLink
+from microbial_strain_data_model.utils.functions import check_not_completely_empty
 
 
 class ChemicalSubstance(BaseModel):
@@ -70,7 +68,7 @@ class FattyAcid(ChemicalSubstance):
     ecl: str | None = Field(default=None, title="ECL")
 
 
-class Halophil(Growth[ConcentrationUnit], ChemicalSubstance):
+class Halophil(ChemicalSubstance):
     """Halophily abilities of a Strain"""
 
     model_config = ConfigDict(
@@ -78,6 +76,22 @@ class Halophil(Growth[ConcentrationUnit], ChemicalSubstance):
         extra="forbid",
         revalidate_instances="always",
         str_strip_whitespace=True,
+    )
+    minimal: float | None = Field(
+        default=None, title="Optimal", description="Single optimal growth value"
+    )
+    maximal: float | None = Field(
+        default=None, title="Optimal", description="Single optimal growth value"
+    )
+    optimal: float | None = Field(
+        default=None, title="Optimal", description="Single optimal growth value"
+    )
+    unit: ConcentrationUnit = Field(title="Unit", description="")
+
+    tests: list[GrowthRange] = Field(
+        default_factory=list,
+        title="Tests",
+        description="List of tests and if the strain grows in tested ranges",
     )
 
     source: list[SourceLink] = Field(

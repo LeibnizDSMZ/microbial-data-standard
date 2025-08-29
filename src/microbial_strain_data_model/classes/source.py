@@ -27,6 +27,9 @@ class Source(BaseModel):
     dateRecorded: Date = Field(
         default_factory=Date.today, title="Date Recorded", strict=False
     )
+    lastUpdate: Date | None = Field(
+        default=None, title="Date of last update", strict=False
+    )
     author: list[Person] = Field(default_factory=list, title="Author")
     publisher: list[Organization] = Field(default_factory=list, title="Publisher")
 

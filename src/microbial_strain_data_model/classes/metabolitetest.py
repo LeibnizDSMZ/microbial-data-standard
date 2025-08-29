@@ -1,6 +1,9 @@
 from pydantic import BaseModel, ConfigDict, Field
 
-from microbial_strain_data_model.classes.enums import MetaboliteTestType
+from microbial_strain_data_model.classes.enums import (
+    MetaboliteTestType,
+    KindOfUtilization,
+)
 from microbial_strain_data_model.classes.links import RelationLink
 
 
@@ -25,7 +28,7 @@ class MetaboliteTest(BaseModel):
     protocol: str | None = Field(
         default=None, title="Protocol", description="What test was used"
     )
-    kindOfUtilization: str | None = Field(
+    kindOfUtilization: KindOfUtilization | None = Field(
         default=None,
         title="Kind Of Utilization",
         description="Only relevant if the type is utilization, "

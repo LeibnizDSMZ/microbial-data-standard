@@ -17,7 +17,7 @@ class ToleranceTest(BaseModel):
     )
 
     reaction: ToleranceReaction = Field(title="Reaction")
-    concentration: str | None = Field(
+    concentration: float | None = Field(
         default=None, title="Concentration", description="Concentration value"
     )
     unit: ConcentrationUnit = Field(

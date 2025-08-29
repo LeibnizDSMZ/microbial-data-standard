@@ -4,7 +4,7 @@ import jsonref
 import json
 import pandas as pd
 
-from microbial_strain_data_model.microbe import Microbe
+from microbial_strain_data_model.strain import Strain
 
 # ruff: noqa: C901
 
@@ -39,7 +39,7 @@ def write_documentation(name, title, type, format, description, id, is_req):
 
 
 def parse_schema() -> None:
-    mi = Microbe.model_json_schema()
+    mi = Strain.model_json_schema()
     main_schema_path = Path("schema/microbe_schema.json")
     with main_schema_path.open("w") as f_out:
         f_out.write(json.dumps(mi, indent=2))
