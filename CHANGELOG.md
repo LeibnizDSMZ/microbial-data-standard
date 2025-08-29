@@ -1,3 +1,23 @@
+## v0.8.0 (2025-08-29)
+
+### Feat
+
+- add OxygenRelation Enum
+- add GCMethod enum
+- add lastUpdate to source and logo to identifier
+- add KindOfUtilization enum
+
+### Fix
+
+- change concentration of tolerance test to float value, was string
+- changed enzyme url to identifier list
+
+### Refactor
+
+- **restructure**: restructure
+- **restructure**: restructure data multicallcomplex and oxygenrelation into other classes
+- **restructure**: restructure information of origin, morphology and growthcondtion into new classes
+
 ## v0.7.0 (2025-08-14)
 
 ### Feat
