@@ -1,9 +1,4 @@
 from enum import Enum
-from typing import Literal, TypeAlias
-
-
-CelsiusUnit: TypeAlias = Literal["C"]
-PHUnit: TypeAlias = Literal["pH"]
 
 
 # ruff: noqa: E501
@@ -280,21 +275,6 @@ class PathogenLevel(str, Enum):
     no = "no pathogen"
     opportunistic = "opportunistic"
     obligate = "obligate"
-
-
-class PersonRole(str, Enum):
-    """
-    Valid roles for persons related to strain
-
-    Attributes:
-        sampler: sampler
-        isolator: isolator
-        other: other
-    """
-
-    sampler = "sampler"
-    isolator = "isolator"
-    other = "other"
 
 
 class SequenceType(str, Enum):

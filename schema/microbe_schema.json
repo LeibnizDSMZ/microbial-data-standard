@@ -166,64 +166,6 @@
       "title": "BioSafety",
       "type": "object"
     },
-    "CellShape": {
-      "additionalProperties": false,
-      "description": "Cell shape of the strain",
-      "properties": {
-        "cellShape": {
-          "description": "The shape type the cells",
-          "title": "Cell Shape",
-          "type": "string"
-        },
-        "source": {
-          "description": "List of JSON paths to source object",
-          "items": {
-            "pattern": "^\\/sources\\/\\d+$",
-            "type": "string"
-          },
-          "title": "Source",
-          "type": "array"
-        }
-      },
-      "required": [
-        "cellShape",
-        "source"
-      ],
-      "title": "CellShape",
-      "type": "object"
-    },
-    "CellSize": {
-      "additionalProperties": false,
-      "description": "object to hold cell size information",
-      "properties": {
-        "cellLength": {
-          "$ref": "#/$defs/Size",
-          "description": "",
-          "title": "Cell Length"
-        },
-        "cellWidth": {
-          "$ref": "#/$defs/Size",
-          "description": "",
-          "title": "Cell Width"
-        },
-        "source": {
-          "description": "List of JSON paths to source object",
-          "items": {
-            "pattern": "^\\/sources\\/\\d+$",
-            "type": "string"
-          },
-          "title": "Source",
-          "type": "array"
-        }
-      },
-      "required": [
-        "cellLength",
-        "cellWidth",
-        "source"
-      ],
-      "title": "CellSize",
-      "type": "object"
-    },
     "CellWall": {
       "additionalProperties": false,
       "description": "Cell Wall constituent - ChemSubstance + percent of CellWall",
@@ -575,51 +517,6 @@
       "title": "Collection",
       "type": "object"
     },
-    "Colony": {
-      "additionalProperties": false,
-      "description": "Colony information of a microorganism/strain",
-      "properties": {
-        "color": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/ColonyColor"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Color of the colony on the",
-          "title": "Color of Colony"
-        },
-        "size": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/Size"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Size of Colony"
-        },
-        "source": {
-          "description": "List of JSON paths to source object",
-          "items": {
-            "pattern": "^\\/sources\\/\\d+$",
-            "type": "string"
-          },
-          "title": "Source",
-          "type": "array"
-        }
-      },
-      "required": [
-        "source"
-      ],
-      "title": "Colony",
-      "type": "object"
-    },
     "ColonyColor": {
       "description": "Valid colors for colonies\n\nAttributes:\n    white: white\n    cream: cream\n    yellowish: yellowish\n    orange: orange\n    pink: pink\n    red: red\n    buff: buff\n    darkbrown: darkbrown\n    reyish: reyish\n    tannish: tannish\n    beige: beige\n    brownish: brownish",
       "enum": [
@@ -909,6 +806,13 @@
           "title": "EC Number",
           "type": "string"
         },
+        "identifier": {
+          "items": {
+            "$ref": "#/$defs/Identifier"
+          },
+          "title": "Identifier",
+          "type": "array"
+        },
         "name": {
           "anyOf": [
             {
@@ -938,22 +842,6 @@
           },
           "title": "Source",
           "type": "array"
-        },
-        "url": {
-          "anyOf": [
-            {
-              "format": "uri",
-              "maxLength": 2083,
-              "minLength": 1,
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Uniform Resource Locator of a resource on the Internet",
-          "title": "URL"
         }
       },
       "required": [
@@ -1105,7 +993,7 @@
         "method": {
           "anyOf": [
             {
-              "type": "string"
+              "$ref": "#/$defs/GCMethod"
             },
             {
               "type": "null"
@@ -1114,6 +1002,19 @@
           "default": null,
           "description": "Name of the method used to measure the GC content",
           "title": "Method"
+        },
+        "noteMethod": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Note about the used method",
+          "title": "Note Method"
         },
         "source": {
           "description": "List of JSON paths to source object",
@@ -1138,6 +1039,15 @@
       ],
       "title": "GCContent",
       "type": "object"
+    },
+    "GCMethod": {
+      "description": "Methods for GC measurement\n\nArgs:\n    experimental: experimental\n    genomeSequence: genome sequence",
+      "enum": [
+        "experimental",
+        "genome sequence"
+      ],
+      "title": "GCMethod",
+      "type": "string"
     },
     "GeoPoint": {
       "additionalProperties": false,
@@ -1683,6 +1593,22 @@
       "additionalProperties": false,
       "description": "Identifier of every Kind, compare to schema.org PropertyValue class",
       "properties": {
+        "logo": {
+          "anyOf": [
+            {
+              "format": "uri",
+              "maxLength": 2083,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Logo of the Identifier Organization (e.g. DOI, ORCID, ROR, ...)",
+          "title": "Logo"
+        },
         "name": {
           "description": "Name of the identifier",
           "title": "Name",
@@ -1733,6 +1659,22 @@
     "IdentifierStrain": {
       "additionalProperties": false,
       "properties": {
+        "logo": {
+          "anyOf": [
+            {
+              "format": "uri",
+              "maxLength": 2083,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Logo of the Identifier Organization (e.g. DOI, ORCID, ROR, ...)",
+          "title": "Logo"
+        },
         "name": {
           "description": "Name of the identifier",
           "title": "Name",
@@ -1790,53 +1732,6 @@
       "title": "IdentifierStrain",
       "type": "object"
     },
-    "Isolation": {
-      "additionalProperties": false,
-      "description": "Isolation event information",
-      "properties": {
-        "date": {
-          "anyOf": [
-            {
-              "pattern": "^(?:\\d{4}[-\\._]?\\d{0,2}[-\\._]?\\d{0,2})?/?(?:\\d{4}[-\\._]?\\d{0,2}[-\\._]?\\d{0,2})?$",
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Date of Isolation, using date range format of dublin core: 'YYYY-MM-DD/YYYY-MM-DD' ether side can be empty defining an open ended range, only the year is mandatory, e.g. '/1978' means before 1978",
-          "title": "Date"
-        },
-        "isolatedAt": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/Organization"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Institute where the isolation happened",
-          "title": "Isolated At"
-        },
-        "source": {
-          "description": "List of JSON paths to source object",
-          "items": {
-            "pattern": "^\\/sources\\/\\d+$",
-            "type": "string"
-          },
-          "title": "Source",
-          "type": "array"
-        }
-      },
-      "required": [
-        "source"
-      ],
-      "title": "Isolation",
-      "type": "object"
-    },
     "IsolationTag": {
       "additionalProperties": false,
       "description": "Isolation tag system, original used by BacDive",
@@ -1875,6 +1770,20 @@
       ],
       "title": "IsolationTag",
       "type": "object"
+    },
+    "KindOfUtilization": {
+      "description": "Types of utilization\n\nArgs:\n    assimilation: assimilation\n    buildsAcidFrom: builds acid from\n    degradation: degradation\n    energySource: energy source\n    fermentation: fermentation\n    hydrolysis:  hydrolysis\n    reduction:  reduction",
+      "enum": [
+        "assimilation",
+        "builds acid from",
+        "degradation",
+        "energy source",
+        "fermentation",
+        "hydrolysis",
+        "reduction"
+      ],
+      "title": "KindOfUtilization",
+      "type": "string"
     },
     "Legal": {
       "additionalProperties": false,
@@ -2182,7 +2091,7 @@
         "kindOfUtilization": {
           "anyOf": [
             {
-              "type": "string"
+              "$ref": "#/$defs/KindOfUtilization"
             },
             {
               "type": "null"
@@ -2244,10 +2153,50 @@
       "title": "Morph",
       "type": "string"
     },
-    "Motility": {
+    "Morphology": {
       "additionalProperties": false,
-      "description": "Information on motility of a Strain",
+      "description": "Morphology of a cell",
       "properties": {
+        "cellLength": {
+          "$ref": "#/$defs/Size",
+          "description": "Length of a cell",
+          "title": "Cell Length"
+        },
+        "cellShape": {
+          "description": "The shape type the cells",
+          "title": "Cell Shape",
+          "type": "string"
+        },
+        "cellWidth": {
+          "$ref": "#/$defs/Size",
+          "description": "Width of a cell",
+          "title": "Cell Width"
+        },
+        "colonyColor": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ColonyColor"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Color of the colony on the",
+          "title": "Color of Colony"
+        },
+        "colonySize": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Size"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Size of Colony"
+        },
         "flagellum": {
           "anyOf": [
             {
@@ -2311,9 +2260,12 @@
         }
       },
       "required": [
+        "cellShape",
+        "cellLength",
+        "cellWidth",
         "source"
       ],
-      "title": "Motility",
+      "title": "Morphology",
       "type": "object"
     },
     "MultiCell": {
@@ -2469,6 +2421,139 @@
       "title": "Organization",
       "type": "object"
     },
+    "Origin": {
+      "additionalProperties": false,
+      "description": "Isolation event information\n    Sample = The material probe in which the strain was found\n    Isolation = Isolation of the strain from the sample",
+      "properties": {
+        "country": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Country"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Country where the sample material originated from",
+          "title": "Country"
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Description of the sample",
+          "title": "Description"
+        },
+        "isolatedAt": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Organization"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Institute where the strain was isolated from the sample",
+          "title": "Isolated At"
+        },
+        "isolationDate": {
+          "anyOf": [
+            {
+              "pattern": "^(?:\\d{4}[-\\._]?\\d{0,2}[-\\._]?\\d{0,2})?/?(?:\\d{4}[-\\._]?\\d{0,2}[-\\._]?\\d{0,2})?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Date of isolation from the sample material, using date range format of dublin core:'YYYY-MM-DD/YYYY-MM-DD' ether side can be empty defining an open ended range, only the year is mandatory, e.g. '/1978' means before 1978",
+          "title": "Date"
+        },
+        "isolator": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Person"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Person that isolated the strain from the sample",
+          "title": "Isolator"
+        },
+        "locationCreated": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Location"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Location where the sample was taken",
+          "title": "Location Created"
+        },
+        "sampleDate": {
+          "anyOf": [
+            {
+              "pattern": "^(?:\\d{4}[-\\._]?\\d{0,2}[-\\._]?\\d{0,2})?/?(?:\\d{4}[-\\._]?\\d{0,2}[-\\._]?\\d{0,2})?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Date of sampling, using date range format of dublin core: 'YYYY-MM-DD/YYYY-MM-DD' ether side can be empty defining an open ended range, only the year is mandatory, e.g. '/1978' means before 1978",
+          "title": "Date"
+        },
+        "sampler": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Person"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Person that sampled the material",
+          "title": "Sampler"
+        },
+        "source": {
+          "description": "List of JSON paths to source object",
+          "items": {
+            "pattern": "^\\/sources\\/\\d+$",
+            "type": "string"
+          },
+          "title": "Source",
+          "type": "array"
+        },
+        "tags": {
+          "items": {
+            "$ref": "#/$defs/IsolationTag"
+          },
+          "title": "Isolation Source Tags",
+          "type": "array"
+        }
+      },
+      "required": [
+        "source"
+      ],
+      "title": "Origin",
+      "type": "object"
+    },
     "OtherMedia": {
       "additionalProperties": false,
       "description": "A Media object e.g. Photo, Video, Document, etc",
@@ -2560,9 +2645,9 @@
       "description": "OxygenRelation of the strain",
       "properties": {
         "oxygenRelation": {
+          "$ref": "#/$defs/OxygenTolerance",
           "description": "Aerobic, anaerobic etc.",
-          "title": "Oxygen Relation",
-          "type": "string"
+          "title": "Oxygen Relation"
         },
         "relatedData": {
           "description": "JSON paths to relation object",
@@ -2589,6 +2674,22 @@
       ],
       "title": "OxygenRelation",
       "type": "object"
+    },
+    "OxygenTolerance": {
+      "description": "How does the strain tolerate Oxygen\n\nArgs:\n    aerobe: aerobe\n    aerotolerant: aerotolerant\n    anaerobe: anaerobe\n    facultativeAerobe: facultative aerobe\n    facultativeAnaerobe: facultative anaerobe\n    microaerophile: microaerophile\n    microaerotolerant: microaerotolerant\n    obligateAerobe: obligate aerobe\n    obligateAnaerobe: obligate anaerobe",
+      "enum": [
+        "aerobe",
+        "aerotolerant",
+        "anaerobe",
+        "facultative aerobe",
+        "facultative anaerobe",
+        "microaerophile",
+        "microaerotolerant",
+        "obligate aerobe",
+        "obligate anaerobe"
+      ],
+      "title": "OxygenTolerance",
+      "type": "string"
     },
     "Pathogen": {
       "additionalProperties": false,
@@ -2718,83 +2819,6 @@
         "source"
       ],
       "title": "RelatedData",
-      "type": "object"
-    },
-    "Sample": {
-      "additionalProperties": false,
-      "description": "Information on the Sampling event of that Strain",
-      "properties": {
-        "country": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/Country"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Country"
-        },
-        "date": {
-          "anyOf": [
-            {
-              "pattern": "^(?:\\d{4}[-\\._]?\\d{0,2}[-\\._]?\\d{0,2})?/?(?:\\d{4}[-\\._]?\\d{0,2}[-\\._]?\\d{0,2})?$",
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Date of Sampling, using date range format of dublin core: 'YYYY-MM-DD/YYYY-MM-DD' ether side can be empty defining an open ended range, only the year is mandatory, e.g. '/1978' means before 1978",
-          "title": "Date"
-        },
-        "description": {
-          "anyOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Description"
-        },
-        "locationCreated": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/Location"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Location Created"
-        },
-        "source": {
-          "description": "List of JSON paths to source object",
-          "items": {
-            "pattern": "^\\/sources\\/\\d+$",
-            "type": "string"
-          },
-          "title": "Source",
-          "type": "array"
-        },
-        "tags": {
-          "items": {
-            "$ref": "#/$defs/IsolationTag"
-          },
-          "title": "Isolation Source Tags",
-          "type": "array"
-        }
-      },
-      "required": [
-        "source"
-      ],
-      "title": "Sample",
       "type": "object"
     },
     "ScientificName": {
@@ -2968,12 +2992,25 @@
           "title": "Date Recorded",
           "type": "string"
         },
-        "identifiers": {
+        "identifier": {
           "items": {
             "$ref": "#/$defs/Identifier"
           },
           "title": "Identifier",
           "type": "array"
+        },
+        "lastUpdate": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Date of last update"
         },
         "mode": {
           "$ref": "#/$defs/CurationMode",
@@ -3212,18 +3249,32 @@
           "title": "Scientific Name"
         },
         "taxonRank": {
-          "$ref": "#/$defs/TaxonRank",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/TaxonRank"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
           "title": "Taxon Rank"
         },
         "taxonStatus": {
-          "$ref": "#/$defs/TaxonStatus",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/TaxonStatus"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
           "title": "Taxon Status"
         }
       },
       "required": [
-        "name",
-        "taxonRank",
-        "taxonStatus"
+        "name"
       ],
       "title": "Taxon",
       "type": "object"
@@ -3317,18 +3368,32 @@
           "type": "array"
         },
         "taxonRank": {
-          "$ref": "#/$defs/TaxonRank",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/TaxonRank"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
           "title": "Taxon Rank"
         },
         "taxonStatus": {
-          "$ref": "#/$defs/TaxonStatus",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/TaxonStatus"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
           "title": "Taxon Status"
         }
       },
       "required": [
         "name",
-        "taxonRank",
-        "taxonStatus",
         "source"
       ],
       "title": "TaxonWithSource",
@@ -3443,7 +3508,7 @@
         "concentration": {
           "anyOf": [
             {
-              "type": "string"
+              "type": "number"
             },
             {
               "type": "null"
@@ -3580,7 +3645,7 @@
     }
   },
   "additionalProperties": false,
-  "description": "Microbe - main class of the new microbial data standard",
+  "description": "Microbial Strain - main class of the new microbial strain data standard",
   "properties": {
     "bioSafety": {
       "description": "",
@@ -3590,36 +3655,12 @@
       "title": "Bio Safety",
       "type": "array"
     },
-    "cellShape": {
-      "description": "",
-      "items": {
-        "$ref": "#/$defs/CellShape"
-      },
-      "title": "Cell Shape",
-      "type": "array"
-    },
-    "cellSize": {
-      "description": "",
-      "items": {
-        "$ref": "#/$defs/CellSize"
-      },
-      "title": "Cell Size",
-      "type": "array"
-    },
     "collections": {
       "description": "",
       "items": {
         "$ref": "#/$defs/Collection"
       },
       "title": "Collections",
-      "type": "array"
-    },
-    "colony": {
-      "description": "",
-      "items": {
-        "$ref": "#/$defs/Colony"
-      },
-      "title": "Colony",
       "type": "array"
     },
     "connectedPersons": {
@@ -3691,14 +3732,6 @@
       "title": "Identifier",
       "type": "array"
     },
-    "isolation": {
-      "description": "",
-      "items": {
-        "$ref": "#/$defs/Isolation"
-      },
-      "title": "Isolation",
-      "type": "array"
-    },
     "knownApplications": {
       "description": "",
       "items": {
@@ -3744,12 +3777,12 @@
       "description": "Applicable and required for fungi only",
       "title": "Morph Type"
     },
-    "motility": {
-      "description": "",
+    "morphology": {
+      "description": "Morphology information",
       "items": {
-        "$ref": "#/$defs/Motility"
+        "$ref": "#/$defs/Morphology"
       },
-      "title": "Motility",
+      "title": "Morphology",
       "type": "array"
     },
     "multiCellComplexForming": {
@@ -3764,6 +3797,14 @@
       "$ref": "#/$defs/OrganismType",
       "description": "",
       "title": "Organism Type"
+    },
+    "origin": {
+      "description": "Sample and isolation data",
+      "items": {
+        "$ref": "#/$defs/Origin"
+      },
+      "title": "Origin",
+      "type": "array"
     },
     "otherMedia": {
       "description": "",
@@ -3803,14 +3844,6 @@
         "$ref": "#/$defs/RelatedData"
       },
       "title": "Related Data",
-      "type": "array"
-    },
-    "sample": {
-      "description": "",
-      "items": {
-        "$ref": "#/$defs/Sample"
-      },
-      "title": "Sample",
       "type": "array"
     },
     "sequences": {
@@ -3877,37 +3910,6 @@
       "title": "Type Strain",
       "type": "array"
     },
-    "unifiedTaxon": {
-      "anyOf": [
-        {
-          "$ref": "#/$defs/Taxon"
-        },
-        {
-          "type": "null"
-        }
-      ],
-      "default": null,
-      "description": "Evaluated and updated taxonomy",
-      "title": "Unified Taxon"
-    },
-    "unifiedTypeStrain": {
-      "anyOf": [
-        {
-          "type": "boolean"
-        },
-        {
-          "type": "null"
-        }
-      ],
-      "default": null,
-      "description": "Is this strain type for unified species",
-      "title": "Unified Type Strain"
-    },
-    "version": {
-      "const": "0.6",
-      "title": "Version",
-      "type": "string"
-    },
     "wallConstituents": {
       "description": "",
       "items": {
@@ -3918,12 +3920,11 @@
     }
   },
   "required": [
-    "version",
     "organismType",
     "typeStrain",
     "taxon",
     "sources"
   ],
-  "title": "Microbe",
+  "title": "Strain",
   "type": "object"
 }
