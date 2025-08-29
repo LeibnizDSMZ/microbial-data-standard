@@ -40,6 +40,11 @@ class Morphology(BaseModel):
     colonyColor: ColonyColor | None = Field(
         default=None, title="Color of Colony", description="Color of the colony on the"
     )
+    multiCellComplexForming: bool | None = Field(
+        default=None,
+        title="Multi Cell Complex Forming",
+        description="Do the cells form complexes",
+    )
     source: list[SourceLink] = Field(
         title="Source", description="List of JSON paths to source object"
     )

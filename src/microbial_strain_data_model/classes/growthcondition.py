@@ -1,5 +1,6 @@
 from pydantic import BaseModel, ConfigDict, Field
 
+from microbial_strain_data_model.classes.enums import OxygenTolerance
 from microbial_strain_data_model.classes.links import SourceLink, RelationLink
 
 
@@ -73,6 +74,10 @@ class GrowthCondition(BaseModel):
         default_factory=list,
         title="Tests",
         description="List of tests and if the strain grows in tested ranges",
+    )
+
+    oxygenRelation: OxygenTolerance | None = Field(
+        default=None, title="Oxygen Relation", description="Aerobic, anaerobic etc."
     )
 
     source: list[SourceLink] = Field(

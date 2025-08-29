@@ -203,31 +203,6 @@ value: string
 url: string | null
 }
 
-class `OxygenRelation`{
-oxygenRelation: OxygenTolerance
-relatedData: string
-source: string
-}
-
-class `OxygenTolerance`{
-<<enumeration>>
-aerobe
-aerotolerant
-anaerobe
-facultative aerobe
-facultative anaerobe
-microaerophile
-microaerotolerant
-obligate aerobe
-obligate anaerobe
-}
-
-class `MultiCell`{
-multiCellComplexForming: boolean
-relatedData: string
-source: string
-}
-
 class `Morphology`{
 cellShape: string
 cellLength: Size
@@ -238,6 +213,7 @@ flagellumArrangement: FlagellumArrangement | null
 gliding: boolean | null
 colonySize: Size | null
 colonyColor: ColonyColor | null
+multiCellComplexForming: boolean | null
 source: string
 }
 
@@ -290,38 +266,37 @@ spore
 endospore
 }
 
-class `Growth[C]`{
-optimal: number | null
-minimal: number | null
-maximal: number | null
-unit: string
-tests: array[GrowthRange[C]]
+class `GrowthCondition`{
+optimalTemperature: number | null
+minimalTemperature: number | null
+maximalTemperature: number | null
+testsTemperature: array[GrowthRange]
+optimalPh: number | null
+minimalPh: number | null
+maximalPh: number | null
+testsPh: array[GrowthRange]
+oxygenRelation: OxygenTolerance | null
 source: string
 }
 
-class `GrowthRange[C]`{
+class `GrowthRange`{
 minimal: number | null
 maximal: number | null
-unit: string
 growth: boolean
 relatedData: string
 }
 
-class `Growth[pH]`{
-optimal: number | null
-minimal: number | null
-maximal: number | null
-unit: string
-tests: array[GrowthRange[pH]]
-source: string
-}
-
-class `GrowthRange[pH]`{
-minimal: number | null
-maximal: number | null
-unit: string
-growth: boolean
-relatedData: string
+class `OxygenTolerance`{
+<<enumeration>>
+aerobe
+aerotolerant
+anaerobe
+facultative aerobe
+facultative anaerobe
+microaerophile
+microaerotolerant
+obligate aerobe
+obligate anaerobe
 }
 
 class `IdentifierStrain`{
@@ -331,20 +306,6 @@ propertyID: string | null
 url: string | null
 logo: string | null
 source: string
-}
-
-class `ConnectedPerson`{
-name: string
-identifier: array[Identifier]
-role: PersonRole | null
-source: string
-}
-
-class `PersonRole`{
-<<enumeration>>
-sampler
-isolator
-other
 }
 
 class `Pathogen`{
@@ -497,11 +458,11 @@ class `Halophil`{
 name: string | null
 identifier: array[Identifier]
 alternateName: string
-optimal: number | null
 minimal: number | null
 maximal: number | null
+optimal: number | null
 unit: ConcentrationUnit
-tests: array[GrowthRange_ConcentrationUnit_]
+tests: array[GrowthRange]
 source: string
 }
 
@@ -512,14 +473,6 @@ mol/L
 g/g%
 v/v%
 unknown
-}
-
-class `GrowthRange_ConcentrationUnit_`{
-minimal: number | null
-maximal: number | null
-unit: ConcentrationUnit
-growth: boolean
-relatedData: string
 }
 
 class `Tolerance`{
@@ -688,14 +641,10 @@ typeStrain: array[TypeStrain]
 taxon: array[TaxonWithSource]
 origin: array[Origin]
 legal: array[Legal]
-oxygenRelation: array[OxygenRelation]
-multiCellComplexForming: array[MultiCell]
 morphology: array[Morphology]
 sporeFormation: array[Spore]
-temperature: array[Growth[C]]
-ph: array[Growth[pH]]
+growthConditions: array[GrowthCondition]
 identifier: array[IdentifierStrain]
-connectedPersons: array[ConnectedPerson]
 pathogenicity: array[Pathogen]
 bioSafety: array[BioSafety]
 sequences: array[Sequence]
@@ -749,9 +698,6 @@ sources: array[Source]
 `Legal` ..> `NagoyaRestrictions`
 `Legal` ..> `microbial_strain_data_model__classes__legal__Restriction`
 `microbial_strain_data_model__classes__legal__Restriction` ..> `Country`
-`Strain` ..> `OxygenRelation`
-`OxygenRelation` ..> `OxygenTolerance`
-`Strain` ..> `MultiCell`
 `Strain` ..> `Morphology`
 `Morphology` ..> `Size`
 `Size` ..> `SizeUnit`
@@ -761,14 +707,11 @@ sources: array[Source]
 `Morphology` ..> `ColonyColor`
 `Strain` ..> `Spore`
 `Spore` ..> `SporeType`
-`Strain` ..> `Growth[C]`
-`Growth[C]` ..> `GrowthRange[C]`
-`Strain` ..> `Growth[pH]`
-`Growth[pH]` ..> `GrowthRange[pH]`
+`Strain` ..> `GrowthCondition`
+`GrowthCondition` ..> `GrowthRange`
+`GrowthCondition` ..> `GrowthRange`
+`GrowthCondition` ..> `OxygenTolerance`
 `Strain` ..> `IdentifierStrain`
-`Strain` ..> `ConnectedPerson`
-`ConnectedPerson` ..> `Identifier`
-`ConnectedPerson` ..> `PersonRole`
 `Strain` ..> `Pathogen`
 `Pathogen` ..> `Host`
 `Pathogen` ..> `PathogenLevel`
@@ -796,8 +739,7 @@ sources: array[Source]
 `Strain` ..> `Halophil`
 `Halophil` ..> `Identifier`
 `Halophil` ..> `ConcentrationUnit`
-`Halophil` ..> `GrowthRange_ConcentrationUnit_`
-`GrowthRange_ConcentrationUnit_` ..> `ConcentrationUnit`
+`Halophil` ..> `GrowthRange`
 `Strain` ..> `Tolerance`
 `Tolerance` ..> `Identifier`
 `Tolerance` ..> `ToleranceReaction`

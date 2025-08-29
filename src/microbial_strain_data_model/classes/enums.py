@@ -466,7 +466,7 @@ class KindOfUtilization(str, Enum):
     """
     Types of utilization
 
-    Args:
+    Attributes:
         assimilation: assimilation
         buildsAcidFrom: builds acid from
         degradation: degradation
@@ -489,7 +489,7 @@ class GCMethod(str, Enum):
     """
     Methods for GC measurement
 
-    Args:
+    Attributes:
         experimental: experimental
         genomeSequence: genome sequence
     """
@@ -502,7 +502,7 @@ class OxygenTolerance(str, Enum):
     """
     How does the strain tolerate Oxygen
 
-    Args:
+    Attributes:
         aerobe: aerobe
         aerotolerant: aerotolerant
         anaerobe: anaerobe

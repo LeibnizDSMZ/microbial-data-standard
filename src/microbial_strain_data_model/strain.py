@@ -18,10 +18,8 @@ from microbial_strain_data_model.classes.hemolysis import Hemolysis
 from microbial_strain_data_model.classes.legal import Legal
 from microbial_strain_data_model.classes.literature import Literature
 from microbial_strain_data_model.classes.morphology import Morphology
-from microbial_strain_data_model.classes.multicell import MultiCell
 from microbial_strain_data_model.classes.organization import Collection
 from microbial_strain_data_model.classes.othermedia import OtherMedia
-from microbial_strain_data_model.classes.oxygenrelation import OxygenRelation
 from microbial_strain_data_model.classes.pathogen import Pathogen
 from microbial_strain_data_model.classes.identifier import IdentifierStrain
 from microbial_strain_data_model.classes.origin import Origin
@@ -65,18 +63,6 @@ class Strain(BaseModel):
     )
 
     legal: list[Legal] = Field(default_factory=list, title="Legal", description="")
-
-    oxygenRelation: list[OxygenRelation] = Field(
-        default_factory=list,
-        title="Oxygen Relation",
-        description="",
-    )
-
-    multiCellComplexForming: list[MultiCell] = Field(
-        default_factory=list,
-        title="Multi Cell Complex Forming",
-        description="",
-    )
 
     morphology: list[Morphology] = Field(
         default_factory=list, title="Morphology", description="Morphology information"

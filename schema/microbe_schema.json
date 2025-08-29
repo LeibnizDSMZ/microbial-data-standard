@@ -548,52 +548,6 @@
       "title": "ConcentrationUnit",
       "type": "string"
     },
-    "ConnectedPerson": {
-      "additionalProperties": false,
-      "description": "Connected Person = Person + Role",
-      "properties": {
-        "identifier": {
-          "description": "Person identifiers like ORCID",
-          "items": {
-            "$ref": "#/$defs/Identifier"
-          },
-          "title": "Identifier",
-          "type": "array"
-        },
-        "name": {
-          "description": "Name of the person, preferable: [Last], [First]",
-          "title": "Name",
-          "type": "string"
-        },
-        "role": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/PersonRole"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Role"
-        },
-        "source": {
-          "description": "List of JSON paths to source object",
-          "items": {
-            "pattern": "^\\/sources\\/\\d+$",
-            "type": "string"
-          },
-          "title": "Source",
-          "type": "array"
-        }
-      },
-      "required": [
-        "name",
-        "source"
-      ],
-      "title": "ConnectedPerson",
-      "type": "object"
-    },
     "Country": {
       "additionalProperties": false,
       "description": "Country information, mostly on nagoya protocol",
@@ -1041,7 +995,7 @@
       "type": "object"
     },
     "GCMethod": {
-      "description": "Methods for GC measurement\n\nArgs:\n    experimental: experimental\n    genomeSequence: genome sequence",
+      "description": "Methods for GC measurement\n\nAttributes:\n    experimental: experimental\n    genomeSequence: genome sequence",
       "enum": [
         "experimental",
         "genome sequence"
@@ -1113,15 +1067,11 @@
       "title": "GeoPoint",
       "type": "object"
     },
-    "GrowthRange_ConcentrationUnit_": {
+    "GrowthCondition": {
       "additionalProperties": false,
+      "description": "Optimal and tested information about growing a Strain",
       "properties": {
-        "growth": {
-          "description": "Does the strain grow within this range?",
-          "title": "Growth",
-          "type": "boolean"
-        },
-        "maximal": {
+        "maximalPh": {
           "anyOf": [
             {
               "type": "number"
@@ -1131,10 +1081,10 @@
             }
           ],
           "default": null,
-          "description": "Maximal value of tested range",
+          "description": "Known maximal growth pH value",
           "title": "Maximal"
         },
-        "minimal": {
+        "maximalTemperature": {
           "anyOf": [
             {
               "type": "number"
@@ -1144,51 +1094,10 @@
             }
           ],
           "default": null,
-          "description": "Minimal value of tested range",
-          "title": "Minimal"
-        },
-        "relatedData": {
-          "description": "JSON paths to relation object",
-          "items": {
-            "pattern": "^\\/relatedData\\/\\d+$",
-            "type": "string"
-          },
-          "title": "Related Data",
-          "type": "array"
-        },
-        "unit": {
-          "$ref": "#/$defs/ConcentrationUnit"
-        }
-      },
-      "required": [
-        "unit",
-        "growth"
-      ],
-      "title": "GrowthRange[ConcentrationUnit]",
-      "type": "object"
-    },
-    "GrowthRange_Literal__C___": {
-      "additionalProperties": false,
-      "properties": {
-        "growth": {
-          "description": "Does the strain grow within this range?",
-          "title": "Growth",
-          "type": "boolean"
-        },
-        "maximal": {
-          "anyOf": [
-            {
-              "type": "number"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Maximal value of tested range",
+          "description": "Known maximal growth temperature value in celsius",
           "title": "Maximal"
         },
-        "minimal": {
+        "minimalPh": {
           "anyOf": [
             {
               "type": "number"
@@ -1198,40 +1107,10 @@
             }
           ],
           "default": null,
-          "description": "Minimal value of tested range",
+          "description": "Known minimal growth pH value",
           "title": "Minimal"
         },
-        "relatedData": {
-          "description": "JSON paths to relation object",
-          "items": {
-            "pattern": "^\\/relatedData\\/\\d+$",
-            "type": "string"
-          },
-          "title": "Related Data",
-          "type": "array"
-        },
-        "unit": {
-          "const": "C",
-          "title": "Unit",
-          "type": "string"
-        }
-      },
-      "required": [
-        "unit",
-        "growth"
-      ],
-      "title": "GrowthRange[Literal['C']]",
-      "type": "object"
-    },
-    "GrowthRange_Literal__pH___": {
-      "additionalProperties": false,
-      "properties": {
-        "growth": {
-          "description": "Does the strain grow within this range?",
-          "title": "Growth",
-          "type": "boolean"
-        },
-        "maximal": {
+        "minimalTemperature": {
           "anyOf": [
             {
               "type": "number"
@@ -1241,48 +1120,10 @@
             }
           ],
           "default": null,
-          "description": "Maximal value of tested range",
-          "title": "Maximal"
-        },
-        "minimal": {
-          "anyOf": [
-            {
-              "type": "number"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Minimal value of tested range",
+          "description": "Known minimal growth temperature value in celsius",
           "title": "Minimal"
         },
-        "relatedData": {
-          "description": "JSON paths to relation object",
-          "items": {
-            "pattern": "^\\/relatedData\\/\\d+$",
-            "type": "string"
-          },
-          "title": "Related Data",
-          "type": "array"
-        },
-        "unit": {
-          "const": "pH",
-          "title": "Unit",
-          "type": "string"
-        }
-      },
-      "required": [
-        "unit",
-        "growth"
-      ],
-      "title": "GrowthRange[Literal['pH']]",
-      "type": "object"
-    },
-    "Growth_Literal__C___": {
-      "additionalProperties": false,
-      "properties": {
-        "maximal": {
+        "optimalPh": {
           "anyOf": [
             {
               "type": "number"
@@ -1292,34 +1133,34 @@
             }
           ],
           "default": null,
-          "description": "Known maximal growth value",
-          "title": "Maximal"
-        },
-        "minimal": {
-          "anyOf": [
-            {
-              "type": "number"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Known minimal growth value",
-          "title": "Minimal"
-        },
-        "optimal": {
-          "anyOf": [
-            {
-              "type": "number"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Single optimal growth value",
+          "description": "Single optimal growth pH value",
           "title": "Optimal"
+        },
+        "optimalTemperature": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Single optimal growth temperature value in celsius",
+          "title": "Optimal"
+        },
+        "oxygenRelation": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/OxygenTolerance"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Aerobic, anaerobic etc.",
+          "title": "Oxygen Relation"
         },
         "source": {
           "description": "List of JSON paths to source object",
@@ -1330,30 +1171,38 @@
           "title": "Source",
           "type": "array"
         },
-        "tests": {
+        "testsPh": {
           "description": "List of tests and if the strain grows in tested ranges",
           "items": {
-            "$ref": "#/$defs/GrowthRange_Literal__C___"
+            "$ref": "#/$defs/GrowthRange"
           },
           "title": "Tests",
           "type": "array"
         },
-        "unit": {
-          "const": "C",
-          "title": "Unit",
-          "type": "string"
+        "testsTemperature": {
+          "description": "List of tests and if the strain grows in tested ranges",
+          "items": {
+            "$ref": "#/$defs/GrowthRange"
+          },
+          "title": "Tests",
+          "type": "array"
         }
       },
       "required": [
-        "unit",
         "source"
       ],
-      "title": "Growth[Literal['C']]",
+      "title": "GrowthCondition",
       "type": "object"
     },
-    "Growth_Literal__pH___": {
+    "GrowthRange": {
       "additionalProperties": false,
+      "description": "Single grow condition test",
       "properties": {
+        "growth": {
+          "description": "Does the strain grow within this range?",
+          "title": "Growth",
+          "type": "boolean"
+        },
         "maximal": {
           "anyOf": [
             {
@@ -1364,7 +1213,7 @@
             }
           ],
           "default": null,
-          "description": "Known maximal growth value",
+          "description": "Maximal value of tested range",
           "title": "Maximal"
         },
         "minimal": {
@@ -1377,50 +1226,23 @@
             }
           ],
           "default": null,
-          "description": "Known minimal growth value",
+          "description": "Minimal value of tested range",
           "title": "Minimal"
         },
-        "optimal": {
-          "anyOf": [
-            {
-              "type": "number"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Single optimal growth value",
-          "title": "Optimal"
-        },
-        "source": {
-          "description": "List of JSON paths to source object",
+        "relatedData": {
+          "description": "JSON paths to relation object",
           "items": {
-            "pattern": "^\\/sources\\/\\d+$",
+            "pattern": "^\\/relatedData\\/\\d+$",
             "type": "string"
           },
-          "title": "Source",
+          "title": "Related Data",
           "type": "array"
-        },
-        "tests": {
-          "description": "List of tests and if the strain grows in tested ranges",
-          "items": {
-            "$ref": "#/$defs/GrowthRange_Literal__pH___"
-          },
-          "title": "Tests",
-          "type": "array"
-        },
-        "unit": {
-          "const": "pH",
-          "title": "Unit",
-          "type": "string"
         }
       },
       "required": [
-        "unit",
-        "source"
+        "growth"
       ],
-      "title": "Growth[Literal['pH']]",
+      "title": "GrowthRange",
       "type": "object"
     },
     "Halophil": {
@@ -1452,8 +1274,8 @@
             }
           ],
           "default": null,
-          "description": "Known maximal growth value",
-          "title": "Maximal"
+          "description": "Single optimal growth value",
+          "title": "Optimal"
         },
         "minimal": {
           "anyOf": [
@@ -1465,8 +1287,8 @@
             }
           ],
           "default": null,
-          "description": "Known minimal growth value",
-          "title": "Minimal"
+          "description": "Single optimal growth value",
+          "title": "Optimal"
         },
         "name": {
           "anyOf": [
@@ -1506,13 +1328,15 @@
         "tests": {
           "description": "List of tests and if the strain grows in tested ranges",
           "items": {
-            "$ref": "#/$defs/GrowthRange_ConcentrationUnit_"
+            "$ref": "#/$defs/GrowthRange"
           },
           "title": "Tests",
           "type": "array"
         },
         "unit": {
-          "$ref": "#/$defs/ConcentrationUnit"
+          "$ref": "#/$defs/ConcentrationUnit",
+          "description": "",
+          "title": "Unit"
         }
       },
       "required": [
@@ -1772,7 +1596,7 @@
       "type": "object"
     },
     "KindOfUtilization": {
-      "description": "Types of utilization\n\nArgs:\n    assimilation: assimilation\n    buildsAcidFrom: builds acid from\n    degradation: degradation\n    energySource: energy source\n    fermentation: fermentation\n    hydrolysis:  hydrolysis\n    reduction:  reduction",
+      "description": "Types of utilization\n\nAttributes:\n    assimilation: assimilation\n    buildsAcidFrom: builds acid from\n    degradation: degradation\n    energySource: energy source\n    fermentation: fermentation\n    hydrolysis:  hydrolysis\n    reduction:  reduction",
       "enum": [
         "assimilation",
         "builds acid from",
@@ -2249,6 +2073,19 @@
           "description": "Are the cells of this strain are motile",
           "title": "Motile"
         },
+        "multiCellComplexForming": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Do the cells form complexes",
+          "title": "Multi Cell Complex Forming"
+        },
         "source": {
           "description": "List of JSON paths to source object",
           "items": {
@@ -2266,41 +2103,6 @@
         "source"
       ],
       "title": "Morphology",
-      "type": "object"
-    },
-    "MultiCell": {
-      "additionalProperties": false,
-      "description": "MultiCell ability of the strain",
-      "properties": {
-        "multiCellComplexForming": {
-          "description": "Do the cells form complexes",
-          "title": "Multi Cell Complex Forming",
-          "type": "boolean"
-        },
-        "relatedData": {
-          "description": "JSON paths to relation object",
-          "items": {
-            "pattern": "^\\/relatedData\\/\\d+$",
-            "type": "string"
-          },
-          "title": "Related Data",
-          "type": "array"
-        },
-        "source": {
-          "description": "List of JSON paths to source object",
-          "items": {
-            "pattern": "^\\/sources\\/\\d+$",
-            "type": "string"
-          },
-          "title": "Source",
-          "type": "array"
-        }
-      },
-      "required": [
-        "multiCellComplexForming",
-        "source"
-      ],
-      "title": "MultiCell",
       "type": "object"
     },
     "NagoyaRestrictions": {
@@ -2640,43 +2442,8 @@
       "title": "OtherMedia",
       "type": "object"
     },
-    "OxygenRelation": {
-      "additionalProperties": false,
-      "description": "OxygenRelation of the strain",
-      "properties": {
-        "oxygenRelation": {
-          "$ref": "#/$defs/OxygenTolerance",
-          "description": "Aerobic, anaerobic etc.",
-          "title": "Oxygen Relation"
-        },
-        "relatedData": {
-          "description": "JSON paths to relation object",
-          "items": {
-            "pattern": "^\\/relatedData\\/\\d+$",
-            "type": "string"
-          },
-          "title": "Related Data",
-          "type": "array"
-        },
-        "source": {
-          "description": "List of JSON paths to source object",
-          "items": {
-            "pattern": "^\\/sources\\/\\d+$",
-            "type": "string"
-          },
-          "title": "Source",
-          "type": "array"
-        }
-      },
-      "required": [
-        "oxygenRelation",
-        "source"
-      ],
-      "title": "OxygenRelation",
-      "type": "object"
-    },
     "OxygenTolerance": {
-      "description": "How does the strain tolerate Oxygen\n\nArgs:\n    aerobe: aerobe\n    aerotolerant: aerotolerant\n    anaerobe: anaerobe\n    facultativeAerobe: facultative aerobe\n    facultativeAnaerobe: facultative anaerobe\n    microaerophile: microaerophile\n    microaerotolerant: microaerotolerant\n    obligateAerobe: obligate aerobe\n    obligateAnaerobe: obligate anaerobe",
+      "description": "How does the strain tolerate Oxygen\n\nAttributes:\n    aerobe: aerobe\n    aerotolerant: aerotolerant\n    anaerobe: anaerobe\n    facultativeAerobe: facultative aerobe\n    facultativeAnaerobe: facultative anaerobe\n    microaerophile: microaerophile\n    microaerotolerant: microaerotolerant\n    obligateAerobe: obligate aerobe\n    obligateAnaerobe: obligate anaerobe",
       "enum": [
         "aerobe",
         "aerotolerant",
@@ -2784,16 +2551,6 @@
       ],
       "title": "Person",
       "type": "object"
-    },
-    "PersonRole": {
-      "description": "Valid roles for persons related to strain\n\nAttributes:\n    sampler: sampler\n    isolator: isolator\n    other: other",
-      "enum": [
-        "sampler",
-        "isolator",
-        "other"
-      ],
-      "title": "PersonRole",
-      "type": "string"
     },
     "RelatedData": {
       "additionalProperties": false,
@@ -3663,14 +3420,6 @@
       "title": "Collections",
       "type": "array"
     },
-    "connectedPersons": {
-      "description": "",
-      "items": {
-        "$ref": "#/$defs/ConnectedPerson"
-      },
-      "title": "Connected Persons",
-      "type": "array"
-    },
     "creation_date": {
       "format": "date",
       "title": "Creation Date",
@@ -3706,6 +3455,14 @@
         "$ref": "#/$defs/GCContent"
       },
       "title": "GC Content",
+      "type": "array"
+    },
+    "growthConditions": {
+      "description": "Temperature and pH values",
+      "items": {
+        "$ref": "#/$defs/GrowthCondition"
+      },
+      "title": "Growth conditions",
       "type": "array"
     },
     "halophily": {
@@ -3785,14 +3542,6 @@
       "title": "Morphology",
       "type": "array"
     },
-    "multiCellComplexForming": {
-      "description": "",
-      "items": {
-        "$ref": "#/$defs/MultiCell"
-      },
-      "title": "Multi Cell Complex Forming",
-      "type": "array"
-    },
     "organismType": {
       "$ref": "#/$defs/OrganismType",
       "description": "",
@@ -3814,28 +3563,12 @@
       "title": "Other Media",
       "type": "array"
     },
-    "oxygenRelation": {
-      "description": "",
-      "items": {
-        "$ref": "#/$defs/OxygenRelation"
-      },
-      "title": "Oxygen Relation",
-      "type": "array"
-    },
     "pathogenicity": {
       "description": "",
       "items": {
         "$ref": "#/$defs/Pathogen"
       },
       "title": "pathogenicity",
-      "type": "array"
-    },
-    "ph": {
-      "description": "",
-      "items": {
-        "$ref": "#/$defs/Growth_Literal__pH___"
-      },
-      "title": "pH",
       "type": "array"
     },
     "relatedData": {
@@ -3884,14 +3617,6 @@
         "$ref": "#/$defs/TaxonWithSource"
       },
       "title": "Taxon",
-      "type": "array"
-    },
-    "temperature": {
-      "description": "",
-      "items": {
-        "$ref": "#/$defs/Growth_Literal__C___"
-      },
-      "title": "Temperature",
       "type": "array"
     },
     "tolerances": {

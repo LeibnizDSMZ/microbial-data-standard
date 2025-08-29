@@ -522,6 +522,7 @@
       "minimalTemperature": null,
       "optimalPh": 7.0,
       "optimalTemperature": 37.0,
+      "oxygenRelation": "anaerobe",
       "source": [
         "/sources/0"
       ],
@@ -1096,13 +1097,6 @@
       "flagellumArrangement": null,
       "gliding": false,
       "motile": true,
-      "source": [
-        "/sources/0"
-      ]
-    }
-  ],
-  "multiCellComplexForming": [
-    {
       "multiCellComplexForming": true,
       "source": [
         "/sources/0"
@@ -1163,17 +1157,6 @@
       ],
       "url": "https://cdn.dsmz.de/images/strain/2979/EM_DSM_14619_1.jpg",
       "usageInfo": null
-    }
-  ],
-  "oxygenRelation": [
-    {
-      "oxygenRelation": "anaerobe",
-      "relatedData": [
-        "/relatedData/0"
-      ],
-      "source": [
-        "/sources/0"
-      ]
     }
   ],
   "pathogenicity": [
