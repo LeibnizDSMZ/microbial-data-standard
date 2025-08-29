@@ -1,4 +1,3 @@
-from pydantic_extra_types.pendulum_dt import Date
 from pydantic import BaseModel, ConfigDict, Field
 
 
@@ -39,8 +38,6 @@ from microbial_strain_data_model.classes.enums import (
 class Strain(BaseModel):
     """Microbial Strain - main class of the new microbial strain data standard"""
 
-    creation_date: Date = Field(default_factory=Date.today)
-
     # single data points
 
     organismType: OrganismType = Field(title="Organism Type", description="", frozen=True)
@@ -58,14 +55,36 @@ class Strain(BaseModel):
 
     taxon: list[TaxonWithSource] = Field(title="Taxon", description="")
 
+    identifier: list[IdentifierStrain] = Field(
+        default_factory=list, title="Identifier", description=""
+    )
+
     origin: list[Origin] = Field(
         default_factory=list, title="Origin", description="Sample and isolation data"
     )
 
     legal: list[Legal] = Field(default_factory=list, title="Legal", description="")
 
+    pathogenicity: list[Pathogen] = Field(
+        default_factory=list, title="pathogenicity", description=""
+    )
+
+    bioSafety: list[BioSafety] = Field(
+        default_factory=list, title="Bio Safety", description=""
+    )
+
     morphology: list[Morphology] = Field(
         default_factory=list, title="Morphology", description="Morphology information"
+    )
+
+    wallConstituents: list[CellWall] = Field(
+        default_factory=list,
+        title="Wall Constituents",
+        description="",
+    )
+
+    staining: list[Staining] = Field(
+        default_factory=list, title="Stainings", description=""
     )
 
     sporeFormation: list[Spore] = Field(
@@ -80,16 +99,10 @@ class Strain(BaseModel):
         description="Temperature and pH values",
     )
 
-    identifier: list[IdentifierStrain] = Field(
-        default_factory=list, title="Identifier", description=""
-    )
-
-    pathogenicity: list[Pathogen] = Field(
-        default_factory=list, title="pathogenicity", description=""
-    )
-
-    bioSafety: list[BioSafety] = Field(
-        default_factory=list, title="Bio Safety", description=""
+    cultivationMedia: list[CultivationMedia] = Field(
+        default_factory=list,
+        title="Cultivation Media",
+        description="",
     )
 
     sequences: list[Sequence] = Field(
@@ -100,34 +113,14 @@ class Strain(BaseModel):
         default_factory=list, title="GC Content", description=""
     )
 
-    literature: list[Literature] = Field(
-        default_factory=list, title="Literature", description=""
-    )
-
-    wallConstituents: list[CellWall] = Field(
-        default_factory=list,
-        title="Wall Constituents",
-        description="",
-    )
-
     fattyAcidProfiles: list[FattyAcidProfile] = Field(
         default_factory=list,
         title="Fatty Acid Profile",
         description="",
     )
 
-    staining: list[Staining] = Field(
-        default_factory=list, title="Stainings", description=""
-    )
-
     hemolysis: list[Hemolysis] = Field(
         default_factory=list, title="Hemolysis", description=""
-    )
-
-    cultivationMedia: list[CultivationMedia] = Field(
-        default_factory=list,
-        title="Cultivation Media",
-        description="",
     )
 
     halophily: list[Halophil] = Field(
@@ -139,6 +132,7 @@ class Strain(BaseModel):
     )
 
     enzymes: list[Enzyme] = Field(default_factory=list, title="Enzymes", description="")
+
     metabolites: list[Metabolite] = Field(
         default_factory=list, title="Metabolites", description=""
     )
@@ -153,6 +147,10 @@ class Strain(BaseModel):
         default_factory=list, title="Collections", description=""
     )
 
+    literature: list[Literature] = Field(
+        default_factory=list, title="Literature", description=""
+    )
+
     otherMedia: list[OtherMedia] = Field(
         default_factory=list, title="Other Media", description=""
     )
@@ -165,7 +163,7 @@ class Strain(BaseModel):
 
     model_config = ConfigDict(
         strict=True,
-        extra="forbid",
+        extra="allow",
         revalidate_instances="always",
         str_strip_whitespace=True,
     )

@@ -3401,7 +3401,7 @@
       "type": "object"
     }
   },
-  "additionalProperties": false,
+  "additionalProperties": true,
   "description": "Microbial Strain - main class of the new microbial strain data standard",
   "properties": {
     "bioSafety": {
@@ -3419,11 +3419,6 @@
       },
       "title": "Collections",
       "type": "array"
-    },
-    "creation_date": {
-      "format": "date",
-      "title": "Creation Date",
-      "type": "string"
     },
     "cultivationMedia": {
       "description": "",

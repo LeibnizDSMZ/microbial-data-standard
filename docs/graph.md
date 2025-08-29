@@ -83,6 +83,15 @@ parentTaxon: Taxon | null
 sameAs: string
 }
 
+class `IdentifierStrain`{
+name: string
+value: string
+propertyID: string | null
+url: string | null
+logo: string | null
+source: string
+}
+
 class `Origin`{
 sampleDate: string | null
 country: Country | null
@@ -203,6 +212,40 @@ value: string
 url: string | null
 }
 
+class `Pathogen`{
+host: Host
+pathogen: PathogenLevel
+classification: string | null
+url: string | null
+source: string
+}
+
+class `Host`{
+<<enumeration>>
+plant
+animal
+invertebrates
+vertebrates
+mammals
+non-human primates
+human
+fungi
+}
+
+class `PathogenLevel`{
+<<enumeration>>
+no pathogen
+opportunistic
+obligate
+}
+
+class `BioSafety`{
+riskgroup: string
+classification: string | null
+url: string | null
+source: string
+}
+
 class `Morphology`{
 cellShape: string
 cellLength: Size
@@ -252,6 +295,27 @@ beige
 brownish
 }
 
+class `CellWall`{
+name: string | null
+identifier: array[Identifier]
+alternateName: string
+percent: number | null
+source: string
+}
+
+class `Staining`{
+name: string
+value: StainingValue
+source: string
+}
+
+class `StainingValue`{
+<<enumeration>>
+positive
+negative
+variable
+}
+
 class `Spore`{
 sporeBuilding: boolean | null
 typeOfSpore: SporeType
@@ -299,47 +363,12 @@ obligate aerobe
 obligate anaerobe
 }
 
-class `IdentifierStrain`{
+class `CultivationMedia`{
 name: string
-value: string
-propertyID: string | null
 url: string | null
-logo: string | null
+reagentUsed: string
 source: string
-}
-
-class `Pathogen`{
-host: Host
-pathogen: PathogenLevel
-classification: string | null
-url: string | null
-source: string
-}
-
-class `Host`{
-<<enumeration>>
-plant
-animal
-invertebrates
-vertebrates
-mammals
-non-human primates
-human
-fungi
-}
-
-class `PathogenLevel`{
-<<enumeration>>
-no pathogen
-opportunistic
-obligate
-}
-
-class `BioSafety`{
-riskgroup: string
-classification: string | null
-url: string | null
-source: string
+relatedData: string
 }
 
 class `Sequence`{
@@ -380,23 +409,6 @@ experimental
 genome sequence
 }
 
-class `Literature`{
-name: string | null
-url: string | null
-datePublished: string | null
-author: array[Person]
-publisher: array[Organization]
-source: string
-}
-
-class `CellWall`{
-name: string | null
-identifier: array[Identifier]
-alternateName: string
-percent: number | null
-source: string
-}
-
 class `FattyAcidProfile`{
 profile: array[FattyAcid]
 library: string | null
@@ -411,19 +423,6 @@ identifier: array[Identifier]
 alternateName: string
 percent: number | null
 ecl: string | null
-}
-
-class `Staining`{
-name: string
-value: StainingValue
-source: string
-}
-
-class `StainingValue`{
-<<enumeration>>
-positive
-negative
-variable
 }
 
 class `Hemolysis`{
@@ -444,14 +443,6 @@ class `HemolysisType`{
 alpha
 beta
 gamma
-}
-
-class `CultivationMedia`{
-name: string
-url: string | null
-reagentUsed: string
-source: string
-relatedData: string
 }
 
 class `Halophil`{
@@ -592,6 +583,15 @@ Water
 DNA
 }
 
+class `Literature`{
+name: string | null
+url: string | null
+datePublished: string | null
+author: array[Person]
+publisher: array[Organization]
+source: string
+}
+
 class `OtherMedia`{
 url: string | null
 name: string | null
@@ -634,33 +634,32 @@ unknown
 }
 
 class `Strain`{
-creation_date: string
 organismType: OrganismType
 morphType: Morph | null
 typeStrain: array[TypeStrain]
 taxon: array[TaxonWithSource]
+identifier: array[IdentifierStrain]
 origin: array[Origin]
 legal: array[Legal]
-morphology: array[Morphology]
-sporeFormation: array[Spore]
-growthConditions: array[GrowthCondition]
-identifier: array[IdentifierStrain]
 pathogenicity: array[Pathogen]
 bioSafety: array[BioSafety]
+morphology: array[Morphology]
+wallConstituents: array[CellWall]
+staining: array[Staining]
+sporeFormation: array[Spore]
+growthConditions: array[GrowthCondition]
+cultivationMedia: array[CultivationMedia]
 sequences: array[Sequence]
 gcContent: array[GCContent]
-literature: array[Literature]
-wallConstituents: array[CellWall]
 fattyAcidProfiles: array[FattyAcidProfile]
-staining: array[Staining]
 hemolysis: array[Hemolysis]
-cultivationMedia: array[CultivationMedia]
 halophily: array[Halophil]
 tolerances: array[Tolerance]
 enzymes: array[Enzyme]
 metabolites: array[Metabolite]
 knownApplications: array[Application]
 collections: array[Collection]
+literature: array[Literature]
 otherMedia: array[OtherMedia]
 relatedData: array[RelatedData]
 sources: array[Source]
@@ -680,6 +679,7 @@ sources: array[Source]
 `Taxon` ..> `Identifier`
 `Taxon` ..> `ScientificName`
 `Taxon` ..> `Taxon`
+`Strain` ..> `IdentifierStrain`
 `Strain` ..> `Origin`
 `Origin` ..> `Country`
 `Country` ..> `CountryHistoricalAlpha2`
@@ -698,6 +698,10 @@ sources: array[Source]
 `Legal` ..> `NagoyaRestrictions`
 `Legal` ..> `microbial_strain_data_model__classes__legal__Restriction`
 `microbial_strain_data_model__classes__legal__Restriction` ..> `Country`
+`Strain` ..> `Pathogen`
+`Pathogen` ..> `Host`
+`Pathogen` ..> `PathogenLevel`
+`Strain` ..> `BioSafety`
 `Strain` ..> `Morphology`
 `Morphology` ..> `Size`
 `Size` ..> `SizeUnit`
@@ -705,37 +709,29 @@ sources: array[Source]
 `Morphology` ..> `FlagellumArrangement`
 `Morphology` ..> `Size`
 `Morphology` ..> `ColonyColor`
+`Strain` ..> `CellWall`
+`CellWall` ..> `Identifier`
+`Strain` ..> `Staining`
+`Staining` ..> `StainingValue`
 `Strain` ..> `Spore`
 `Spore` ..> `SporeType`
 `Strain` ..> `GrowthCondition`
 `GrowthCondition` ..> `GrowthRange`
 `GrowthCondition` ..> `GrowthRange`
 `GrowthCondition` ..> `OxygenTolerance`
-`Strain` ..> `IdentifierStrain`
-`Strain` ..> `Pathogen`
-`Pathogen` ..> `Host`
-`Pathogen` ..> `PathogenLevel`
-`Strain` ..> `BioSafety`
+`Strain` ..> `CultivationMedia`
 `Strain` ..> `Sequence`
 `Sequence` ..> `SequenceType`
 `Sequence` ..> `SequenceLevel`
 `Sequence` ..> `Identifier`
 `Strain` ..> `GCContent`
 `GCContent` ..> `GCMethod`
-`Strain` ..> `Literature`
-`Literature` ..> `Person`
-`Literature` ..> `Organization`
-`Strain` ..> `CellWall`
-`CellWall` ..> `Identifier`
 `Strain` ..> `FattyAcidProfile`
 `FattyAcidProfile` ..> `FattyAcid`
 `FattyAcid` ..> `Identifier`
-`Strain` ..> `Staining`
-`Staining` ..> `StainingValue`
 `Strain` ..> `Hemolysis`
 `Hemolysis` ..> `HemolysisBlood`
 `Hemolysis` ..> `HemolysisType`
-`Strain` ..> `CultivationMedia`
 `Strain` ..> `Halophil`
 `Halophil` ..> `Identifier`
 `Halophil` ..> `ConcentrationUnit`
@@ -761,6 +757,9 @@ sources: array[Source]
 `Collection` ..> `microbial_strain_data_model__classes__enums__Restriction`
 `Collection` ..> `SupplyForm`
 `Collection` ..> `Person`
+`Strain` ..> `Literature`
+`Literature` ..> `Person`
+`Literature` ..> `Organization`
 `Strain` ..> `OtherMedia`
 `Strain` ..> `RelatedData`
 `Strain` ..> `Source`
