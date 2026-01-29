@@ -9,6 +9,7 @@ from microbial_strain_data_model.strain import Strain
 @pytest.fixture
 def micro():
     return Strain(
+        primaryId="DSM 1",
         organismType=OrganismType.bacteria,
         typeStrain=[{"typeStrain": False, "source": ["/sources/0"]}],
         origin=[
@@ -73,6 +74,7 @@ def test_microbe(micro: Strain) -> None:
 
 def test_populate_new_class(micro: Strain) -> None:
     new_micro = Strain(
+        primaryId=micro.primaryId,
         organismType=micro.organismType,
         typeStrain=micro.typeStrain,
         taxon=micro.taxon,

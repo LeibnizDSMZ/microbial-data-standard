@@ -40,6 +40,10 @@ class Strain(BaseModel):
 
     # single data points
 
+    primaryId: str = Field(
+        title="Primary Identifier", description="Primary Identifier for this dataset"
+    )
+
     organismType: OrganismType = Field(title="Organism Type", description="", frozen=True)
 
     morphType: Morph | None = Field(
