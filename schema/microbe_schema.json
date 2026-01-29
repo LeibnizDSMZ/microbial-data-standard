@@ -7,6 +7,19 @@
         "addressCountry": {
           "anyOf": [
             {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Name of the country",
+          "title": "Country name"
+        },
+        "addressCountryIso": {
+          "anyOf": [
+            {
               "pattern": "^\\w{2}$",
               "type": "string"
             },
@@ -15,8 +28,8 @@
             }
           ],
           "default": null,
-          "description": "Country code, see ISO 3166-1 alpha-2",
-          "title": "Country"
+          "description": "Country ISO code, see ISO 3166-1 alpha-2",
+          "title": "Country Iso"
         },
         "addressLocality": {
           "anyOf": [
@@ -583,6 +596,22 @@
           "title": "Identifier",
           "type": "array"
         },
+        "iso_3166_2": {
+          "anyOf": [
+            {
+              "pattern": "^\\w{2}$",
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/CountryHistoricalAlpha2"
+            },
+            {
+              "$ref": "#/$defs/CountryOtherCodes"
+            }
+          ],
+          "description": "Country code, see ISO 3166-1 alpha-2",
+          "title": "Country name"
+        },
         "nagoyaKualaLumpurParty": {
           "anyOf": [
             {
@@ -610,22 +639,19 @@
         "name": {
           "anyOf": [
             {
-              "pattern": "^\\w{2}$",
               "type": "string"
             },
             {
-              "$ref": "#/$defs/CountryHistoricalAlpha2"
-            },
-            {
-              "$ref": "#/$defs/CountryOtherCodes"
+              "type": "null"
             }
           ],
-          "description": "Country code, see ISO 3166-1 alpha-2",
+          "default": null,
+          "description": "Full name of the country",
           "title": "Country name"
         }
       },
       "required": [
-        "name"
+        "iso_3166_2"
       ],
       "title": "Country",
       "type": "object"
@@ -1027,6 +1053,7 @@
               "type": "number"
             },
             {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
               "type": "string"
             }
           ],
@@ -1041,6 +1068,7 @@
               "type": "number"
             },
             {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
               "type": "string"
             }
           ],
@@ -3566,6 +3594,11 @@
       "title": "pathogenicity",
       "type": "array"
     },
+    "primaryId": {
+      "description": "Primary Identifier for this dataset",
+      "title": "Primary Identifier",
+      "type": "string"
+    },
     "relatedData": {
       "description": "",
       "items": {
@@ -3640,6 +3673,7 @@
     }
   },
   "required": [
+    "primaryId",
     "organismType",
     "typeStrain",
     "taxon",

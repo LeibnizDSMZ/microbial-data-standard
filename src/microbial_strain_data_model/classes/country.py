@@ -17,7 +17,10 @@ class Country(BaseModel):
         str_strip_whitespace=True,
     )
 
-    name: CountryAlpha2 | CountryHistoricalAlpha2 | CountryOtherCodes = Field(
+    name: str | None = Field(
+        default=None, title="Country name", description="Full name of the country"
+    )
+    iso_3166_2: CountryAlpha2 | CountryHistoricalAlpha2 | CountryOtherCodes = Field(
         title="Country name", description="Country code, see ISO 3166-1 alpha-2"
     )
     identifier: list[Identifier] = Field(default_factory=list, title="Identifier")

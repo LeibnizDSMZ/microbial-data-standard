@@ -16,8 +16,13 @@ class Address(BaseModel):
         str_strip_whitespace=True,
     )
 
-    addressCountry: CountryAlpha2 | None = Field(
-        default=None, title="Country", description="Country code, see ISO 3166-1 alpha-2"
+    addressCountry: str | None = Field(
+        default=None, title="Country name", description="Name of the country"
+    )
+    addressCountryIso: CountryAlpha2 | None = Field(
+        default=None,
+        title="Country Iso",
+        description="Country ISO code, see ISO 3166-1 alpha-2",
     )
     addressRegion: str | None = Field(
         default=None, title="Region", description="Region within the country"

@@ -106,7 +106,8 @@ source: string
 }
 
 class `Country`{
-name: string | CountryHistoricalAlpha2 | CountryOtherCodes
+name: string | null
+iso_3166_2: string | CountryHistoricalAlpha2 | CountryOtherCodes
 identifier: array[Identifier]
 conventionOfBiologicalDiversityParty: boolean | null
 cartagenaProtocolParty: boolean | null
@@ -178,6 +179,7 @@ logo: string | null
 
 class `Address`{
 addressCountry: string | null
+addressCountryIso: string | null
 addressRegion: string | null
 addressLocality: string | null
 postOfficeBoxNumber: string | null
@@ -634,6 +636,7 @@ unknown
 }
 
 class `Strain`{
+primaryId: string
 organismType: OrganismType
 morphType: Morph | null
 typeStrain: array[TypeStrain]
