@@ -1,3 +1,9 @@
+## v0.9.0 (2026-01-29)
+
+### Feat
+
+- **update**: new field primaryId and country data changes
+
 ## v0.8.0 (2025-08-29)
 
 ### Feat
