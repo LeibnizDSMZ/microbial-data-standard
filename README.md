@@ -36,20 +36,27 @@ from microbial_strain_data_model.microbe import Microbe
 Generate JSON schema:
 ```python
 import json
-from microbial_strain_data_model.microbe import Microbe
+from microbial_strain_data_model.strain import Strain
 
-mi = Microbe.model_json_schema()
+mi = Strain.model_json_schema()
 print(json.dumps(mi, indent=2))
+```
+Validate a dict against the pydantic model:
+```python
+from microbial_strain_data_model.strain import Strain
+
+data = {...}
+Strain.model_validate_json(data)
 ```
 
 Validate a JSON against the pydantic model:
 ```python
-from microbial_strain_data_model.microbe import Microbe
+from microbial_strain_data_model.strain import Strain
 
 with open("PATH_TO_FILE", "r") as f_in:
         file_content = f_in.read()
 
-Microbe.model_validate_json(file_content)
+Strain.model_validate_json(file_content)
 ```
 
 Validate a JSON against the JSON schema:
