@@ -30,7 +30,7 @@ Examples for using the pydantic data model:
 
 Import:
 ```python
-from microbial_strain_data_model.microbe import Microbe
+from microbial_strain_data_model.strain import Strain
 ```
 
 Generate JSON schema:
