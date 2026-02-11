@@ -1,8 +1,10 @@
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from microbial_strain_data_model.classes.enums import ColonyColor, FlagellumArrangement
 from microbial_strain_data_model.classes.links import SourceLink
 from microbial_strain_data_model.classes.size import Size
+
+from microbial_strain_data_model.utils.functions import check_not_completely_empty
 
 
 class Morphology(BaseModel):
@@ -15,9 +17,15 @@ class Morphology(BaseModel):
         str_strip_whitespace=True,
     )
 
-    cellShape: str = Field(title="Cell Shape", description="The shape type the cells")
-    cellLength: Size = Field(title="Cell Length", description="Length of a cell")
-    cellWidth: Size = Field(title="Cell Width", description="Width of a cell")
+    cellShape: str | None = Field(
+        default=None, title="Cell Shape", description="The shape type the cells"
+    )
+    cellLength: Size | None = Field(
+        default=None, title="Cell Length", description="Length of a cell"
+    )
+    cellWidth: Size | None = Field(
+        default=None, title="Cell Width", description="Width of a cell"
+    )
     motile: bool | None = Field(
         default=None,
         title="Motile",
@@ -48,3 +56,5 @@ class Morphology(BaseModel):
     source: list[SourceLink] = Field(
         title="Source", description="List of JSON paths to source object"
     )
+
+    _check_values = model_validator(mode="after")(check_not_completely_empty)
