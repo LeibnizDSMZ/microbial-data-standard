@@ -21,6 +21,7 @@ dependencies = [
   "pycountry >=24.6.1,<25",
   "pydantic-extra-types >=2.9.0,<3",
   "jsonschema >=4.19,<5",
+  "jsonref"
 ]
 
 [tool.poetry]
