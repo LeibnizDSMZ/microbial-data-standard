@@ -80,24 +80,24 @@ class CountryHistoricalAlpha2(str, Enum):
         AN: Netherlands Antilles
     """
 
-    CS = "Czechoslovakia"
-    DD = "German Democratic Republic (East Germany)"
-    DY = "Dahomey"  # Now Benin
-    FQ = "French Southern and Antarctic Territories"  # Now part of TF
-    GE = "Gilbert and Ellice Islands"  # Split into Kiribati (KI) and Tuvalu (TV)
-    HV = "Upper Volta"  # Now Burkina Faso (BF)
-    JT = "Johnston Island"  # Now part of UM (United States Minor Outlying Islands)
-    MI = "Midway Islands"  # Now part of UM (United States Minor Outlying Islands)
-    NH = "New Hebrides"  # Now Vanuatu (VU)
-    RH = "Southern Rhodesia"  # Now Zimbabwe (ZW)
-    SU = "Soviet Union"
-    TP = "East Timor"  # Now Timor-Leste (TL)
-    UK = "United Kingdom"  # Historical usage for GB
-    VD = "North Vietnam"  # Now part of Vietnam (VN)
-    YU = "Yugoslavia"
-    ZR = "Zaire"  # Now Democratic Republic of the Congo (CD)
-    BU = "Burma"  # Now Myanmar (MM)
-    AN = "Netherlands Antilles"  # Dissolved, now CW (Curaçao), SX (Sint Maarten), etc.
+    CS = "CS"
+    DD = "DD"
+    DY = "DY"  # Now Benin
+    FQ = "FQ"  # Now part of TF
+    GE = "GE"  # Split into Kiribati (KI) and Tuvalu (TV)
+    HV = "HV"  # Now Burkina Faso (BF)
+    JT = "JT"  # Now part of UM (United States Minor Outlying Islands)
+    MI = "MI"  # Now part of UM (United States Minor Outlying Islands)
+    NH = "NH"  # Now Vanuatu (VU)
+    RH = "RH"  # Now Zimbabwe (ZW)
+    SU = "SU"
+    TP = "ET"  # Now Timor-Leste (TL)
+    UK = "UK"  # Historical usage for GB
+    VD = "VD"  # Now part of Vietnam (VN)
+    YU = "YU"
+    ZR = "ZR"  # Now Democratic Republic of the Congo (CD)
+    BU = "BU"  # Now Myanmar (MM)
+    AN = "AN"  # Dissolved, now CW (Curaçao), SX (Sint Maarten), etc.
 
 
 class CountryOtherCodes(str, Enum):
@@ -105,12 +105,11 @@ class CountryOtherCodes(str, Enum):
     Other allowed Values in case of non-country origin
 
     Attributes:
-        international: International Region
+        international: International Waters
         other: Other
-        unknown: Unknown
     """
 
-    international = "International Region"
+    international = "International Waters"
     other = "Other"
 
 

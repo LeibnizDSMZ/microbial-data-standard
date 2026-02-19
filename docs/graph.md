@@ -117,29 +117,29 @@ nagoyaKualaLumpurParty: boolean | null
 
 class `CountryHistoricalAlpha2`{
 <<enumeration>>
-Czechoslovakia
-German Democratic Republic (East Germany)
-Dahomey
-French Southern and Antarctic Territories
-Gilbert and Ellice Islands
-Upper Volta
-Johnston Island
-Midway Islands
-New Hebrides
-Southern Rhodesia
-Soviet Union
-East Timor
-United Kingdom
-North Vietnam
-Yugoslavia
-Zaire
-Burma
-Netherlands Antilles
+CS
+DD
+DY
+FQ
+GE
+HV
+JT
+MI
+NH
+RH
+SU
+ET
+UK
+VD
+YU
+ZR
+BU
+AN
 }
 
 class `CountryOtherCodes`{
 <<enumeration>>
-International Region
+International Waters
 Other
 }
 
@@ -249,9 +249,9 @@ source: string
 }
 
 class `Morphology`{
-cellShape: string
-cellLength: Size
-cellWidth: Size
+cellShape: string | null
+cellLength: Size | null
+cellWidth: Size | null
 motile: boolean | null
 flagellum: boolean | null
 flagellumArrangement: FlagellumArrangement | null
