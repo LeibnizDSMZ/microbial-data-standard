@@ -8,14 +8,9 @@ pre-commit:
       group:
         parallel: true
         jobs:
-          - name: tox
-            run: tox
           - name: mypy
-            glob: "*.py"
+            glob: "src/**/*.py"
             run: mypy {staged_files}
-            exclude: tests|bin
-          - name: poetry-check
-            run: poetry check
           - name: shellcheck
             glob: "*.sh"
             run: shellcheck {staged_files}
@@ -56,20 +51,16 @@ pre-commit:
       group:
         piped: true
         jobs:
-          - name: black
+          - name: ruff-check
             glob: "*.py"
-            run: black {staged_files}
+            run: ruff check {staged_files} --fix
             stage_fixed: true
-          - name: ruff
+          - name: ruff-format
             glob: "*.py"
-            run: test $RUFF != "" && $RUFF check {staged_files} || ruff check  {staged_files}
+            run: ruff format {staged_files}
             stage_fixed: true
-            exclude: bin
-          - name: poetry-export
-            run: poetry export -f requirements.txt -o requirements.txt
-            stage_fixed: true
-          - name: poetry-export-dev
-            run: poetry export --only=dev -f requirements.txt -o configs/dev/requirements.dev.txt
+          - name: uv-export
+            run: make runLock && git add \*/requirements\*\.txt
             stage_fixed: true
           - name: pretty-format-json
             glob: "*.json"
@@ -94,3 +85,8 @@ commit-msg:
   commands:
     commitizen:
       run: cat {1} | cz check
+pre-push:
+  piped: true
+  commands:
+    tests:
+      run: "tox"

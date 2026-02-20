@@ -10,7 +10,7 @@ from microbial_strain_data_model.utils.functions import check_not_completely_emp
 
 
 class ChemicalSubstance(BaseModel):
-    """Chemical Substance base class"""
+    """Chemical Substance base class."""
 
     model_config = ConfigDict(
         strict=True,
@@ -35,7 +35,7 @@ class ChemicalSubstance(BaseModel):
 
 
 class CellWall(ChemicalSubstance):
-    """Cell Wall constituent - ChemSubstance + percent of CellWall"""
+    """Cell Wall constituent - ChemSubstance + percent of CellWall."""
 
     model_config = ConfigDict(
         strict=True,
@@ -53,7 +53,7 @@ class CellWall(ChemicalSubstance):
 
 
 class FattyAcid(ChemicalSubstance):
-    """Single Fatty Acid - used in Fatty Acid Profile"""
+    """Single Fatty Acid - used in Fatty Acid Profile."""
 
     model_config = ConfigDict(
         strict=True,
@@ -69,7 +69,7 @@ class FattyAcid(ChemicalSubstance):
 
 
 class Halophil(ChemicalSubstance):
-    """Halophily abilities of a Strain"""
+    """Halophily abilities of a Strain."""
 
     model_config = ConfigDict(
         strict=True,
@@ -100,7 +100,7 @@ class Halophil(ChemicalSubstance):
 
 
 class Metabolite(ChemicalSubstance):
-    """Information about tested Metabolites"""
+    """Information about tested Metabolites."""
 
     model_config = ConfigDict(
         strict=True,

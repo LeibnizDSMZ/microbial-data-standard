@@ -4,7 +4,7 @@ from pathlib import Path
 
 def write_mermaid(classes, links):
     f_path = Path("/workspace/docs/graph.md")
-    with open(f_path, "w") as f_out:
+    with f_path.open("w") as f_out:
         f_out.write("---\nhide:\n  - navigation\n  - toc\n---\n\n")
         f_out.write("``` mermaid\n")
         f_out.write("classDiagram\n")
@@ -22,17 +22,14 @@ def write_mermaid(classes, links):
                         for x in type:
                             f_out.write(f"{x}\n")
                     else:
-                        f_out.write(
-                            f"{field_name}: {type.replace('_Literal__', '[').replace('___', ']')}\n".replace(
-                                " \n", "\n"
-                            )
-                        )
+                        type_repl = type.replace("_Literal__", "[").replace("___", "]")
+                        f_out.write(f"{field_name}: {type_repl}\n".replace(" \n", "\n"))
                 f_out.write("}\n\n")
 
         for link in links:
-            f_out.write(
-                f"`{link[0].replace('_Literal__', '[').replace('___', ']')}` ..> `{link[1].replace('_Literal__', '[').replace('___', ']')}`\n"
-            )
+            link_0 = link[0].replace("_Literal__", "[").replace("___", "]")
+            link_1 = link[1].replace("_Literal__", "[").replace("___", "]")
+            f_out.write(f"`{link_0}` ..> `{link_1}`\n")
 
         f_out.write("```\n")
 
@@ -71,7 +68,7 @@ def parse_object(schema, classes, links, title, whole_schema):
         attr[name], prop_links = get_prop_type_and_links(prop)
         for p_link in prop_links:
             links.append((title, p_link))
-            if not p_link in classes.keys():
+            if p_link not in classes.keys():
                 classes[p_link] = {}
                 parse_object(
                     whole_schema["$defs"][p_link], classes, links, p_link, whole_schema
@@ -94,7 +91,7 @@ def parse_schema(schema):
 
 if __name__ == "__main__":
     schema_path = Path("schema/microbe_schema.json")
-    with open(schema_path, "r") as schema_file:
+    with schema_path.open("r") as schema_file:
         schema = json.load(schema_file)
     classes, links = parse_schema(schema)
     write_mermaid(classes, links)

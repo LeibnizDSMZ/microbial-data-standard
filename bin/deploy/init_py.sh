@@ -1,12 +1,12 @@
 #!/bin/bash
 
-pyv="3.13.1"
+pyv="3.13.12"
 dist="/tmp/build"
 build="$dist/build.tar.gz"
 
 echo "install required python"
 dnf -y install gcc openssl-devel bzip2-devel libffi-devel \
-    zlib-devel wget make xz
+    zlib-devel wget make xz sudo git
 dnf -y remove python3-pip
 wget "https://www.python.org/ftp/python/$pyv/Python-$pyv.tar.xz"
 tar -xf "Python-$pyv.tar.xz"
@@ -18,4 +18,5 @@ cd ..
 echo "finished python"
 python -m pip install "$build"
 rm -rf "$dist"
+dnf -y remove git
 echo "project installed"

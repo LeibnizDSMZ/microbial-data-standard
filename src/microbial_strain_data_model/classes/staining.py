@@ -6,7 +6,7 @@ from microbial_strain_data_model.classes.links import SourceLink
 
 
 class Staining(BaseModel):
-    """Stainings tested on the strain"""
+    """Stainings tested on the strain."""
 
     model_config = ConfigDict(
         strict=True,

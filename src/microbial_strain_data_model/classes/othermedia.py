@@ -11,7 +11,7 @@ from microbial_strain_data_model.classes.links import SourceLink
 
 
 class OtherMedia(BaseModel):
-    """A Media object e.g. Photo, Video, Document, etc"""
+    """A Media object e.g. Photo, Video, Document, etc."""
 
     model_config = ConfigDict(
         strict=True,

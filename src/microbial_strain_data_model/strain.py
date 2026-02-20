@@ -36,7 +36,7 @@ from microbial_strain_data_model.classes.enums import (
 
 
 class Strain(BaseModel):
-    """Microbial Strain - main class of the new microbial strain data standard"""
+    """Microbial Strain - main class of the new microbial strain data standard."""
 
     # single data points
 

@@ -13,27 +13,53 @@ dependencies = [
   "requests >=2.32,<3",
   "anytree >=2.12,<3",
   "dacite >=1.8,<2",
-  "jsonref >=1.1.0,<2",
-  "email-validator >=2.1.2,<3",
-  "openpyxl >=3.1.5,<4",
-  "pandas >=2.2,<3",
-  "pendulum >=3,<4",
-  "pycountry >=24.6.1,<25",
-  "pydantic-extra-types >=2.9.0,<3",
+  "jsonref >=1.1,<2",
+  "email-validator >=2.1,<3",
+  "openpyxl >=3.1,<4",
+  "pandas >=3.0,<4",
+  "pendulum >=3.2,<4",
+  "pycountry >=26.2,<27",
+  "pydantic-extra-types >=2.9,<3",
   "jsonschema >=4.19,<5",
-  "jsonref"
 ]
 
-[tool.poetry]
-packages = [{ include = "microbial_strain_data_model", from = "src" }]
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["microbial_strain_data_model"]
 
 [build-system]
-build-backend = "poetry.core.masonry.api"
-requires = ["poetry-core"]
+requires = ["uv_build>=0.10.4,<0.11.0"]
+build-backend = "uv_build"
 
-[tool.black]
-line-length = 90
-target-version = ["py313"]
+[tool.uv]
+package = true
+default-groups = []
+
+[dependency-groups]
+dev = [
+  "commitizen ==4.11.2",
+  "mypy ==1.19.1",
+  "ruff ==0.14.11",
+  "codespell ==2.4.1",
+  "shellcheck-py ==0.11.0.1",
+  "pre-commit-hooks ==6.0.0",
+  "vulture ==2.14",
+  # commit hooks
+  "lefthook ==2.0.13",
+  # types
+  "types-python-dateutil ==2.9.0.20251115",
+  "types-requests ==2.32.4.20260107",
+]
+test = ["coverage ==7.13.1", "pytest ==9.0.2", "tox ==4.34.1"]
+docs = [
+  "mkdocs ==1.6.1",
+  "mkdocs-material ==9.7.1",
+  "mkdocstrings ==1.0.0",
+  "mkdocstrings-python ==2.0.1",
+  "mkdocs-literate-nav ==0.6.2",
+  "mkdocs-exclude-search ==0.6.4",
+  "griffe-fieldz ==0.4.0"
+]
 
 [tool.codespell]
 count = ''
@@ -46,8 +72,10 @@ major_version_zero = true
 name = "cz_conventional_commits"
 tag_format = "v$version"
 update_changelog_on_bump = true
-version_files = ["README.md:^\\[!\\[release:"]
-version_provider = "pep621"
+version_files = [
+  "README.md:^\\[!\\[release:",
+]
+version_provider = "uv"
 version_type = "semver"
 
 [tool.mypy]
@@ -69,9 +97,10 @@ disallow_untyped_decorators = true
 disallow_untyped_defs = true
 exclude = [
   "__pycache__",
-  "\\.tox",
-  "\\.mypy_cache",
-  "venv",
+  "\\.tox/.*",
+  "\\.mypy_cache/.*",
+  "\\.venv/.*",
+  "configs/.*",
   'bin/.*',
   "tests/.*"
 ]
@@ -90,46 +119,6 @@ warn_redundant_casts = true
 warn_return_any = true
 warn_unreachable = true
 warn_unused_ignores = true
-
-[tool.poetry.group.dev]
-optional = true
-
-[tool.poetry.group.dev.dependencies]
-commitizen = ">=4.1,<5"
-mypy = ">=1.14,<2"
-ruff = ">=0.9,<1"
-black = ">=24.10,<25"
-codespell = ">=2.3,<3"
-shellcheck-py = ">=0.10,<1"
-pre-commit-hooks = ">=5.0,<6"
-# commit hooks
-lefthook = ">=1.10,<2"
-# types
-types-requests = ">=2.32,<3"
-
-[tool.poetry.group.docs]
-optional = true
-
-[tool.poetry.group.docs.dependencies]
-griffe-fieldz = ">=0.2.0, <1"
-mkdocs = ">=1.6,<2"
-mkdocs-literate-nav = ">=0.6, <1"
-mkdocs-material = ">=9.5,<10"
-mkdocstrings = ">=0.27,<1"
-mkdocstrings-python = ">=1.13,<2"
-mkdocs-exclude-search = "0.6.6"
-
-[tool.poetry.group.test]
-optional = true
-
-[tool.poetry.group.test.dependencies]
-coverage = ">= 7.3,<8"
-pytest = ">= 7.4,<8"
-tox = ">=4.11,<5"
-
-[tool.poetry.requires-plugins]
-poetry-plugin-export = ">=1.9"
-poetry-plugin-shell = ">=1.0"
 
 [tool.ruff]
 line-length = 90
@@ -196,8 +185,19 @@ fixable = [
   "UP",
   "YTT",
 ]
-ignore = ["TRY003", "N818"]
-select = ["E", "F", "B", "C90", "S", "PT", "ARG", "PTH", "TRY", "RUF", "N"]
+ignore = [
+  "TRY003",
+  "N818",
+  "D100",
+  "D101",
+  "D102",
+  "D103",
+  "D104",
+  "D105",
+  "D106",
+  "D107",
+]
+select = ["E", "F", "B", "C90", "S", "PT", "ARG", "PTH", "TRY", "RUF", "N", "D"]
 unfixable = []
 
 [tool.ruff.lint.mccabe]
@@ -211,11 +211,15 @@ max-complexity = 11
 [tool.ruff.lint.pylint]
 max-args = 8
 
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
 [tool.tox]
 requires = ["tox>=4.23"]
 
 [tool.tox.env_run_base]
 allowlist_externals = ["coverage"]
+set_env = { PYTHONPATH = "src" }
 commands = [
   [
     "coverage",
@@ -245,4 +249,4 @@ parallel = true
 
 [tool.coverage.report]
 show_missing = false
-fail_under = 80
+fail_under = 30

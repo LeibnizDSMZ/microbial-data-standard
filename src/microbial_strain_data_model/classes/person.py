@@ -3,7 +3,7 @@ from microbial_strain_data_model.classes.identifier import Identifier
 
 
 class Person(BaseModel):
-    """Person"""
+    """Person."""
 
     model_config = ConfigDict(
         strict=True,

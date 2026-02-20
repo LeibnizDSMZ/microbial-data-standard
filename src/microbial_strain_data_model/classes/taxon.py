@@ -9,7 +9,7 @@ from microbial_strain_data_model.classes.links import SourceLink
 
 
 class TypeStrain(BaseModel):
-    """Information if a strain is the type strain of its species"""
+    """Information if a strain is the type strain of its species."""
 
     model_config = ConfigDict(
         strict=True,
@@ -25,7 +25,7 @@ class TypeStrain(BaseModel):
 
 
 class ScientificName(BaseModel):
-    """Scientific name"""
+    """Scientific name."""
 
     model_config = ConfigDict(
         strict=True,
@@ -39,9 +39,7 @@ class ScientificName(BaseModel):
 
 
 class Taxon(BaseModel):
-    """
-    A class to take all information about a taxon for the new microbial data standard.
-    """
+    """Aggregates taxon data for the new microbial standard."""
 
     model_config = ConfigDict(
         strict=True,
@@ -61,7 +59,7 @@ class Taxon(BaseModel):
 
 
 class TaxonWithSource(Taxon):
-    """Taxon class with source information"""
+    """Taxon class with source information."""
 
     model_config = ConfigDict(
         strict=True,

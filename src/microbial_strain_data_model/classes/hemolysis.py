@@ -6,7 +6,7 @@ from microbial_strain_data_model.classes.links import SourceLink
 
 
 class Hemolysis(BaseModel):
-    """Hemolysis of bloods"""
+    """Hemolysis of bloods."""
 
     model_config = ConfigDict(
         strict=True,

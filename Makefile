@@ -1,77 +1,88 @@
-POETRY = $(HOME)/.local/bin/poetry
-PYV = 3.13.2
+ROOT_MAKEFILE:=$(abspath $(patsubst %/, %, $(dir $(abspath $(lastword $(MAKEFILE_LIST))))))
 
-dev: setup
-	$(POETRY) install --with test,docs,dev
-	$(POETRY) run lefthook uninstall | echo "lefthook not installed"
-	$(POETRY) run lefthook install
-	bash bin/deploy/post.sh
+include $(ROOT_MAKEFILE)/.env
+
+export
+export PATH := $(PATH):$(shell pwd)/$(UV_INSTALL_DIR)
+
+$(eval UVEL := $(shell which uv && echo "true" || echo ""))
+UVE = $(if ${UVEL},'uv',$(UV_INSTALL_DIR)/uv)
+
+dev: setup setupGit
+	$(UVE) sync --frozen --all-groups
+	$(UVE) run lefthook uninstall 2>&1 || echo "not installed"
+	rm -f .git/hooks/*
+	$(UVE) run lefthook install
 
 tests: setup
-	$(POETRY) install --without docs,dev
+	$(UVE) sync --frozen --group test
 
 build: setup
-	$(POETRY) install --without test,docs,dev
+	$(UVE) sync --frozen
 
 docs: setup
-	$(POETRY) install --with docs --without test,dev
+	$(UVE) sync --frozen --group docs
+
+setupGit:
+	git config core.editor vim
+	git lfs install --force || echo '[FAIL] git-lfs could not be installed'
 
 setup:
-	git lfs install || echo '[FAIL] git-lfs could not be installed'
-	pyenv install $(PYV) -s
-	pyenv local $(PYV)
-	curl -sSL https://install.python-poetry.org | python3 -
-	$(POETRY) env remove --all
-	$(POETRY) config virtualenvs.in-project true
-	$(POETRY) config virtualenvs.create true
-	$(POETRY) env use `pyenv which python`
-	$(POETRY) run pip install --upgrade pip
+	which uv || [ -d "${UV_INSTALL_DIR}" ] || (curl -LsSf https://astral.sh/uv/install.sh | sh -s - --quiet)
+	$(UVE) python install $(PYV)
+	rm -rf .venv
+	$(UVE) venv --python=$(PYV) --relocatable --link-mode=copy --seed
+	$(UVE) pip install --upgrade pip
 
-uninstall:
-	pyenv local $(PYV)
-	curl -sSL https://install.python-poetry.org | python3 - --uninstall
+
+RAN := $(shell awk 'BEGIN{srand();printf("%d", 65536*rand())}')
 
 runAct:
-	$(POETRY) shell
+	echo "source .venv/bin/activate; rm /tmp/$(RAN)" > /tmp/$(RAN)
+	bash --init-file /tmp/$(RAN)
 
 runChecks:
-	$(POETRY) run lefthook run pre-commit --all-files -f
+	$(UVE) run lefthook run pre-commit --all-files -f
 
 runDocs:
-	$(POETRY) run mkdocs build -f configs/dev/mkdocs.yml -d ../../public
+	$(UVE) run mkdocs build -f configs/dev/mkdocs.yml -d ../../public
 
 serveDocs:
-	$(POETRY) run mkdocs serve -f configs/dev/mkdocs.yml
+	$(UVE) run mkdocs serve -f configs/dev/mkdocs.yml
 
 runTests:
-	$(POETRY) run tox
+	$(UVE) run tox
 
 runBuild:
-	$(POETRY) build
+	$(UVE) build
 
 runBump:
-	$(POETRY) run cz bump
+	$(UVE) run cz bump --files-only --yes --changelog
+	git add .
+	$(UVE) run cz version --project | xargs -i git commit -am "bump: release {}"
 
-runPoetry:
-	$(POETRY) run $(CMD)
+runUV:
+	$(UVE) run $(CMD)
 
 runLock runUpdate: %: export_%
-	$(POETRY) export -f requirements.txt -o requirements.txt
-	$(POETRY) export --only=dev -f requirements.txt -o configs/dev/requirements.dev.txt
-	$(POETRY) export --only=test -f requirements.txt -o configs/dev/requirements.test.txt
+# add all packages rquired to be build
+	$(UVE) export --frozen --format requirements.txt > requirements.txt
+	$(UVE) export --frozen --only-group dev --format requirements.txt > configs/dev/requirements.dev.txt
+	$(UVE) export --frozen --only-group test --format requirements.txt > configs/dev/requirements.test.txt
+	$(UVE) export --frozen --only-group docs --format requirements.txt > configs/dev/requirements.docs.txt
 
 export_runLock:
-	$(POETRY) lock
+	$(UVE) lock
 
 export_runUpdate:
-	$(POETRY) update --with test,docs,dev
+	$(UVE) lock -U
 
 com commit:
-	$(POETRY) run cz commit
+	$(UVE) run cz commit
 
 recom recommit:
-	$(POETRY) run cz commit --retry
+	$(UVE) run cz commit --retry
 
 buildSchema:
-	python3 bin/python/build_docs_schema_excel.py
-	python3 bin/python/schema_parser_mermaid.py
+	$(UVE) run bin/python/build_docs_schema_excel.py
+	$(UVE) run bin/python/schema_parser_mermaid.py

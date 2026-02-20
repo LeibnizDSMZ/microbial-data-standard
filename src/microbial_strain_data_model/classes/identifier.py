@@ -4,7 +4,7 @@ from microbial_strain_data_model.classes.links import SourceLink
 
 
 class Identifier(BaseModel):
-    """Identifier of every Kind, compare to schema.org PropertyValue class"""
+    """Identifier of every Kind, compare to schema.org PropertyValue class."""
 
     model_config = ConfigDict(
         strict=True,
@@ -33,7 +33,6 @@ class Identifier(BaseModel):
 
 
 class IdentifierStrain(Identifier):
-
     model_config = ConfigDict(
         strict=True,
         extra="forbid",

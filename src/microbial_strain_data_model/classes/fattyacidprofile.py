@@ -7,7 +7,7 @@ from microbial_strain_data_model.classes.links import RelationLink, SourceLink
 
 
 class FattyAcidProfile(BaseModel):
-    """Full Fatty Acid Profile"""
+    """Full Fatty Acid Profile."""
 
     model_config = ConfigDict(
         strict=True,

@@ -4,7 +4,7 @@ from microbial_strain_data_model.classes.links import RelationLink, SourceLink
 
 
 class CultivationMedia(BaseModel):
-    """Cultivation media, use links to Media Dive or other resources"""
+    """Cultivation media, use links to Media Dive or other resources."""
 
     model_config = ConfigDict(
         strict=True,

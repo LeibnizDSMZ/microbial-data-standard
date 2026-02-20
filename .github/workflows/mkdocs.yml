@@ -17,7 +17,7 @@ concurrency:
 jobs:
   build:
     env:
-      PY_DIR: pyenv
+      PY_DIR: uv
       CU_HOME: /home/custom
     runs-on: ubuntu-latest
     steps:
@@ -29,7 +29,7 @@ jobs:
         run: |
           sudo mkdir -p $CU_HOME && sudo chown runner -R $CU_HOME
           sudo apt install -y libedit-dev curl make git-lfs
-          curl https://pyenv.run | PYENV_ROOT=$CU_HOME/$PY_DIR bash
+          curl -LsSf https://astral.sh/uv/install.sh | UV_INSTALL_DIR=$CU_HOME/$PY_DIR sh
           echo "$CU_HOME/$PY_DIR/bin" >> $GITHUB_PATH
           echo "$CU_HOME/$PY_DIR/shims" >> $GITHUB_PATH
       - name: Checkout

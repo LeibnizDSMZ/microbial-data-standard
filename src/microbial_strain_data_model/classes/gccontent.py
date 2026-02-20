@@ -6,7 +6,7 @@ from microbial_strain_data_model.classes.links import SourceLink
 
 
 class GCContent(BaseModel):
-    """GC content of the microorganism"""
+    """GC content of the microorganism."""
 
     model_config = ConfigDict(
         strict=True,

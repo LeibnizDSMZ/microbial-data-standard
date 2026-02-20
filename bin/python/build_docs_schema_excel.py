@@ -11,16 +11,16 @@ from microbial_strain_data_model.strain import Strain
 
 def write_documentation(name, title, type, format, description, id, is_req):
     f_path = Path(f"docs/schema/{id.split('.')[0]}. {name.split('.')[0]}.md")
-    with open(f_path, "a") as f_out:
+    with f_path.open("a") as f_out:
         f_out.write("---\n")
         f_out.write(f"## {id} {name}\n")
         f_out.write(f"{title}  ")
         if is_req:
-            f_out.write(f"`Required`\n\n")
+            f_out.write("`Required`\n\n")
         else:
-            f_out.write(f"\n\n")
+            f_out.write("\n\n")
         if description:
-            f_out.write(f"Description:\n")
+            f_out.write("Description:\n")
             for line in description.splitlines():
                 if len(line) < 2:
                     f_out.write(">\n")
@@ -30,12 +30,12 @@ def write_documentation(name, title, type, format, description, id, is_req):
         f_out.write(f"**{type}**\n\n")
         if format:
             if isinstance(format, list):
-                f_out.write(f"Enum:\n\n")
+                f_out.write("Enum:\n\n")
                 for x in format:
                     f_out.write(f"\t{x}\n")
             else:
                 f_out.write(f"Format:\n\n\t{format}\n")
-            f_out.write(f"\n")
+            f_out.write("\n")
 
 
 def parse_schema() -> None:
@@ -143,9 +143,9 @@ def clear_docs_schema():
 def clean_end_of_files():
     for file in Path("docs/schema").glob("*.md"):
         lines = []
-        with open(file, "r") as f_in:
+        with file.open("r") as f_in:
             lines = f_in.readlines()[:-1]
-        with open(file, "w") as f_out:
+        with file.open("w") as f_out:
             for line in lines:
                 f_out.write(line)
 

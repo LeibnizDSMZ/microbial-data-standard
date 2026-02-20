@@ -6,7 +6,7 @@ from microbial_strain_data_model.data.isolation_sources_tree import root
 
 
 class IsolationTag(BaseModel):
-    """Isolation tag system, original used by BacDive"""
+    """Isolation tag system, original used by BacDive."""
 
     model_config = ConfigDict(
         strict=True,

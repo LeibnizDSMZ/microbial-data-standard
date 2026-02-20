@@ -6,7 +6,7 @@ from microbial_strain_data_model.classes.links import SourceLink
 
 
 class Pathogen(BaseModel):
-    """Pathogen, defining Host, pathogenicity and under what classification"""
+    """Pathogen, defining Host, pathogenicity and under what classification."""
 
     model_config = ConfigDict(
         strict=True,

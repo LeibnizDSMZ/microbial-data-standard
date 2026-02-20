@@ -6,7 +6,7 @@ from microbial_strain_data_model.classes.links import SourceLink
 
 
 class Sequence(BaseModel):
-    """Information on a Sequence"""
+    """Information on a Sequence."""
 
     model_config = ConfigDict(
         strict=True,

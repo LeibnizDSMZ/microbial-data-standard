@@ -31,7 +31,7 @@ jobs:
         tox -e py
   lin_lint:
     env:
-      PY_DIR: pyenv
+      PY_DIR: uv
       CU_HOME: /home/custom
     strategy:
       fail-fast: false
@@ -45,7 +45,7 @@ jobs:
       run: |
         sudo mkdir -p $CU_HOME && sudo chown runner -R $CU_HOME
         sudo apt install -y libedit-dev curl make git-lfs libsqlite3-dev libbz2-dev liblzma-dev
-        curl https://pyenv.run | PYENV_ROOT=$CU_HOME/$PY_DIR bash
+        curl -LsSf https://astral.sh/uv/install.sh | UV_INSTALL_DIR=$CU_HOME/$PY_DIR sh
         echo "$CU_HOME/$PY_DIR/bin" >> $GITHUB_PATH
         echo "$CU_HOME/$PY_DIR/shims" >> $GITHUB_PATH
     - name: Checkout

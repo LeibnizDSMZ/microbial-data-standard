@@ -7,7 +7,7 @@ from microbial_strain_data_model.classes.links import RelationLink, SourceLink
 
 
 class ToleranceTest(BaseModel):
-    """Tested tolerance of compound"""
+    """Tested tolerance of compound."""
 
     model_config = ConfigDict(
         strict=True,
@@ -31,7 +31,7 @@ class ToleranceTest(BaseModel):
 
 
 class Tolerance(ChemicalSubstance):
-    """Tolerance information - e.g. antibiotic resistance"""
+    """Tolerance information - e.g. antibiotic resistance."""
 
     model_config = ConfigDict(
         strict=True,

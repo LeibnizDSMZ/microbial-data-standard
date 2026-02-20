@@ -5,9 +5,7 @@ from microbial_strain_data_model.utils.functions import check_not_completely_emp
 
 
 class Address(BaseModel):
-    """
-    Address object comparable to schema.org PostalAddress
-    """
+    """Address object comparable to schema.org PostalAddress."""
 
     model_config = ConfigDict(
         strict=True,
