@@ -8,7 +8,7 @@ from microbial_strain_data_model.classes.identifier import Identifier
 
 
 class Country(BaseModel):
-    """Country information, mostly on nagoya protocol"""
+    """Country information, mostly on nagoya protocol."""
 
     model_config = ConfigDict(
         strict=True,

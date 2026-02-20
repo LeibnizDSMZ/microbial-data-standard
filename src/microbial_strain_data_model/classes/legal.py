@@ -6,7 +6,7 @@ from microbial_strain_data_model.classes.country import Country
 
 
 class Restriction(BaseModel):
-    """Restriction information"""
+    """Restriction information."""
 
     model_config = ConfigDict(
         strict=True,
@@ -31,7 +31,7 @@ class Restriction(BaseModel):
 
 
 class Legal(BaseModel):
-    """Legal information of the strain"""
+    """Legal information of the strain."""
 
     model_config = ConfigDict(
         strict=True,

@@ -6,7 +6,7 @@ from microbial_strain_data_model.classes.links import RelationLink, SourceLink
 
 
 class Spore(BaseModel):
-    """Spore information about one Strain"""
+    """Spore information about one Strain."""
 
     model_config = ConfigDict(
         strict=True,

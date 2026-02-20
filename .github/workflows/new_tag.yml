@@ -1,0 +1,48 @@
+name: Tag on version bump after rebase
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get version from pyproject.toml
+        id: get_version
+        run: |
+          VERSION=$(grep '^version\s*=' pyproject.toml | cut -d '"' -f2)
+          echo "Detected version: $VERSION"
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Check if tag exists
+        id: tag_exists
+        run: |
+          TAG="v${{ steps.get_version.outputs.version }}"
+          echo "Checking for tag: $TAG"
+          if git rev-parse "$TAG" >/dev/null 2>&1; then
+            echo "Tag already exists: $TAG"
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "Tag does not exist: $TAG"
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create and push tag
+        if: steps.tag_exists.outputs.exists == 'false'
+        run: |
+          TAG="v${{ steps.get_version.outputs.version }}"
+          git config user.name "github-actions[bot]"
+
+          echo "Creating tag: $TAG"
+          git tag "$TAG"
+          git push origin "$TAG"

@@ -3,12 +3,16 @@ services:
     user: devu
     build:
       context: .
-      dockerfile: .devcontainer/dev.Dockerfile
+      dockerfile: configs/docker/dev.Dockerfile
       args:
-        - USERNAME=devu
-        - USER_UID=1000
-        - USER_GID=1000
-        - WORK_DIR=/workspace
+        USERNAME: devu
+        USER_UID: 1000
+        USER_GID: 1000
+        WORK_DIR: "/workspace"
+        UV: ${UV_INSTALL_DIR}
+        SSH_AUTH_SOCK: /ssh-agent
+        GITCONFIG_PATH: ${GITCONFIG_PATH}
     volumes:
-    - .:/workspace
-    - ~/.gitconfig:/etc/gitconfig:ro
+      - ${SSH_AUTH_SOCK:-/dev/null}:/ssh-agent
+      - .:/workspace
+      - ${GITCONFIG_PATH:-${HOME}/.gitconfig}:/etc/gitconfig:ro

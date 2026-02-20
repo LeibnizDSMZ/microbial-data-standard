@@ -5,7 +5,7 @@ from microbial_strain_data_model.utils.functions import check_not_completely_emp
 
 
 class GeoPoint(BaseModel):
-    """Geopoint / Coordinate object"""
+    """Geopoint / Coordinate object."""
 
     model_config = ConfigDict(
         strict=True,
@@ -25,7 +25,7 @@ class GeoPoint(BaseModel):
 
 
 class Location(BaseModel):
-    """Location object"""
+    """Location object."""
 
     model_config = ConfigDict(
         strict=True,

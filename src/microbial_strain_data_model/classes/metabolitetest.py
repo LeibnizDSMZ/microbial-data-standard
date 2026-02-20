@@ -8,7 +8,6 @@ from microbial_strain_data_model.classes.links import RelationLink
 
 
 class MetaboliteTest(BaseModel):
-
     model_config = ConfigDict(
         strict=True,
         extra="forbid",

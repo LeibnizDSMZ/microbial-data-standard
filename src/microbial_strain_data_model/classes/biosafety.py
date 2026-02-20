@@ -4,7 +4,7 @@ from microbial_strain_data_model.classes.links import SourceLink
 
 
 class BioSafety(BaseModel):
-    """Biosafety classification"""
+    """Biosafety classification."""
 
     model_config = ConfigDict(
         strict=True,

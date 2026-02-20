@@ -4,7 +4,7 @@ from microbial_strain_data_model.classes.links import SourceLink
 
 
 class Application(BaseModel):
-    """Application of the strain"""
+    """Application of the strain."""
 
     model_config = ConfigDict(
         strict=True,

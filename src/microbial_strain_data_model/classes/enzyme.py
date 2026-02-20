@@ -6,7 +6,7 @@ from microbial_strain_data_model.classes.links import RelationLink, SourceLink
 
 
 class Enzyme(BaseModel):
-    """Information about one enzyme"""
+    """Information about one enzyme."""
 
     model_config = ConfigDict(
         strict=True,

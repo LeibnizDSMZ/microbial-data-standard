@@ -1,10 +1,13 @@
 # ---> Custom
 
 /public/
-/configs/src/
+/tmp/
+/configs/src
 .ruff_cache/
 .VSCodeCounter/
-/main.py
+.uv
+.commit_msg
+.commit_msg.*
 
 # https://github.com/github/gitignore
 # CC0 1.0 Universal
@@ -158,7 +161,6 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
 .venv
 env/
 venv/

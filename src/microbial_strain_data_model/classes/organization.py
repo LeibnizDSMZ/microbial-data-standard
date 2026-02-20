@@ -9,7 +9,7 @@ from microbial_strain_data_model.classes.links import SourceLink
 
 
 class Organization(BaseModel):
-    """Individual Entity of a Organization"""
+    """Individual Entity of a Organization."""
 
     model_config = ConfigDict(
         strict=True,
@@ -40,7 +40,7 @@ class Organization(BaseModel):
 
 
 class Collection(Organization):
-    """Information about one culture collection"""
+    """Information about one culture collection."""
 
     model_config = ConfigDict(
         strict=True,

@@ -5,7 +5,7 @@ from microbial_strain_data_model.classes.links import SourceLink, RelationLink
 
 
 class GrowthRange(BaseModel):
-    """Single grow condition test"""
+    """Single grow condition test."""
 
     model_config = ConfigDict(
         strict=True,
@@ -31,7 +31,7 @@ class GrowthRange(BaseModel):
 
 
 class GrowthCondition(BaseModel):
-    """Optimal and tested information about growing a Strain"""
+    """Optimal and tested information about growing a Strain."""
 
     model_config = ConfigDict(
         strict=True,

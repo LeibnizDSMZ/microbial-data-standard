@@ -14,7 +14,7 @@ from microbial_strain_data_model.classes.links import SourceLink
 
 
 class LiteratureSource(BaseModel):
-    """Literature used in Source"""
+    """Literature used in Source."""
 
     name: str | None = Field(default=None, title="Name")
     url: HttpUrl | None = Field(default=None, title="URL")
@@ -30,7 +30,7 @@ class LiteratureSource(BaseModel):
 
 
 class Literature(LiteratureSource):
-    """Connected Literature"""
+    """Connected Literature."""
 
     model_config = ConfigDict(
         strict=True,

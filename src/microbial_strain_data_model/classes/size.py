@@ -4,7 +4,7 @@ from microbial_strain_data_model.classes.enums import SizeUnit
 
 
 class Size(BaseModel):
-    """size object, use only for micro and millimeter"""
+    """Size object, use only for micro and millimeter."""
 
     model_config = ConfigDict(
         strict=True,

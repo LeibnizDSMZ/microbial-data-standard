@@ -8,7 +8,7 @@ from microbial_strain_data_model.utils.functions import check_not_completely_emp
 
 
 class Morphology(BaseModel):
-    """Morphology of a cell"""
+    """Morphology of a cell."""
 
     model_config = ConfigDict(
         strict=True,
