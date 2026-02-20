@@ -12,8 +12,9 @@ from microbial_strain_data_model.classes.person import Person
 class Origin(BaseModel):
     """Isolation event information.
 
-    Sample = The material probe in which the strain was found
-    Isolation = Isolation of the strain from the sample
+    Notes:
+        - Sample = The material probe in which the strain was found
+        - Isolation = Isolation of the strain from the sample
     """
 
     model_config = ConfigDict(
