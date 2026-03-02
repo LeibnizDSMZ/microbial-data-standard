@@ -29,10 +29,8 @@ from microbial_strain_data_model.classes.spore import Spore
 from microbial_strain_data_model.classes.staining import Staining
 from microbial_strain_data_model.classes.taxon import TaxonWithSource, TypeStrain
 from microbial_strain_data_model.classes.tolerance import Tolerance
-from microbial_strain_data_model.classes.enums import (
-    Morph,
-    OrganismType,
-)
+from microbial_strain_data_model.classes.enums import OrganismType
+from microbial_strain_data_model.classes.fungi import Fungi
 
 
 class Strain(BaseModel):
@@ -45,13 +43,6 @@ class Strain(BaseModel):
     )
 
     organismType: OrganismType = Field(title="Organism Type", description="", frozen=True)
-
-    morphType: Morph | None = Field(
-        default=None,
-        title="Morph Type",
-        description="Applicable and required for fungi only",
-        frozen=True,
-    )
 
     # lists of data objects
 
@@ -79,6 +70,10 @@ class Strain(BaseModel):
 
     morphology: list[Morphology] = Field(
         default_factory=list, title="Morphology", description="Morphology information"
+    )
+
+    fungi: list[Fungi] = Field(
+        default_factory=list, title="Fungi", description="Fungi related data"
     )
 
     wallConstituents: list[CellWall] = Field(
