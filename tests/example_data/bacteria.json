@@ -1097,7 +1097,6 @@
       "flagellumArrangement": null,
       "gliding": false,
       "motile": true,
-      "multiCellComplexForming": true,
       "source": [
         "/sources/0"
       ]

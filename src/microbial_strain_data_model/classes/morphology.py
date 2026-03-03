@@ -1,7 +1,7 @@
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
-from microbial_strain_data_model.classes.enums import ColonyColor, FlagellumArrangement
-from microbial_strain_data_model.classes.links import SourceLink
+from microbial_strain_data_model.classes.enums import FlagellumArrangement
+from microbial_strain_data_model.classes.links import RelationLink, SourceLink
 from microbial_strain_data_model.classes.size import Size
 
 from microbial_strain_data_model.utils.functions import check_not_completely_empty
@@ -44,17 +44,15 @@ class Morphology(BaseModel):
         title="Gliding",
         description="Cells can be motile by gliding instead of having flagella",
     )
-    colonySize: Size | None = Field(default=None, title="Size of Colony")
-    colonyColor: ColonyColor | None = Field(
-        default=None, title="Color of Colony", description="Color of the colony on the"
-    )
-    multiCellComplexForming: bool | None = Field(
-        default=None,
-        title="Multi Cell Complex Forming",
-        description="Do the cells form complexes",
-    )
+
     source: list[SourceLink] = Field(
         title="Source", description="List of JSON paths to source object"
+    )
+
+    relatedData: list[RelationLink] = Field(
+        default_factory=list,
+        title="Related Data",
+        description="JSON paths to relation object",
     )
 
     _check_values = model_validator(mode="after")(check_not_completely_empty)

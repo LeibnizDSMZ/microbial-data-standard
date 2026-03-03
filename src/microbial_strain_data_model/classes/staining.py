@@ -1,6 +1,6 @@
 from pydantic import BaseModel, ConfigDict, Field
 
-from microbial_strain_data_model.classes.enums import StainingValue
+from microbial_strain_data_model.classes.enums import TestResults
 
 from microbial_strain_data_model.classes.links import SourceLink
 
@@ -16,7 +16,7 @@ class Staining(BaseModel):
     )
 
     name: str = Field(title="Name")
-    value: StainingValue = Field(title="Value")
+    value: TestResults = Field(title="Value")
     source: list[SourceLink] = Field(
         title="Source", description="List of JSON paths to source object"
     )

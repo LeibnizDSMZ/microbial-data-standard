@@ -80,6 +80,12 @@ class GrowthCondition(BaseModel):
         default=None, title="Oxygen Relation", description="Aerobic, anaerobic etc."
     )
 
+    relatedData: list[RelationLink] = Field(
+        default_factory=list,
+        title="Related Data",
+        description="JSON paths to relation object",
+    )
+
     source: list[SourceLink] = Field(
         title="Source", description="List of JSON paths to source object"
     )

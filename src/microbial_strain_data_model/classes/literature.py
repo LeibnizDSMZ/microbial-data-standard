@@ -13,7 +13,7 @@ from microbial_strain_data_model.classes.person import Person
 from microbial_strain_data_model.classes.links import SourceLink
 
 
-class LiteratureSource(BaseModel):
+class Literature(BaseModel):
     """Literature used in Source"""
 
     name: str | None = Field(default=None, title="Name")
@@ -29,7 +29,7 @@ class LiteratureSource(BaseModel):
         return self
 
 
-class Literature(LiteratureSource):
+class LiteratureSource(Literature):
     """Connected Literature"""
 
     model_config = ConfigDict(

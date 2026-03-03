@@ -334,7 +334,7 @@ class SporeType(str, Enum):
     endospore = "endospore"
 
 
-class StainingValue(str, Enum):
+class TestResults(str, Enum):
     """
     Valid staining test results
 

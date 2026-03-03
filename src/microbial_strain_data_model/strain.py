@@ -15,7 +15,7 @@ from microbial_strain_data_model.classes.gccontent import GCContent
 from microbial_strain_data_model.classes.growthcondition import GrowthCondition
 from microbial_strain_data_model.classes.hemolysis import Hemolysis
 from microbial_strain_data_model.classes.legal import Legal
-from microbial_strain_data_model.classes.literature import Literature
+from microbial_strain_data_model.classes.literature import LiteratureSource
 from microbial_strain_data_model.classes.morphology import Morphology
 from microbial_strain_data_model.classes.organization import Collection
 from microbial_strain_data_model.classes.othermedia import OtherMedia
@@ -31,6 +31,8 @@ from microbial_strain_data_model.classes.taxon import TaxonWithSource, TypeStrai
 from microbial_strain_data_model.classes.tolerance import Tolerance
 from microbial_strain_data_model.classes.enums import OrganismType
 from microbial_strain_data_model.classes.fungi import Fungi
+from microbial_strain_data_model.classes.colony import Colony
+from microbial_strain_data_model.classes.specialtests import SpecialTests
 
 
 class Strain(BaseModel):
@@ -74,6 +76,10 @@ class Strain(BaseModel):
 
     fungi: list[Fungi] = Field(
         default_factory=list, title="Fungi", description="Fungi related data"
+    )
+
+    colony: list[Colony] = Field(
+        default_factory=list, title="Colony", description="Colony characteristics"
     )
 
     wallConstituents: list[CellWall] = Field(
@@ -142,11 +148,15 @@ class Strain(BaseModel):
         description="",
     )
 
+    specialTests: list[SpecialTests] = Field(
+        default_factory=list, title="Special Tests", description=""
+    )
+
     collections: list[Collection] = Field(
         default_factory=list, title="Collections", description=""
     )
 
-    literature: list[Literature] = Field(
+    literature: list[LiteratureSource] = Field(
         default_factory=list, title="Literature", description=""
     )
 

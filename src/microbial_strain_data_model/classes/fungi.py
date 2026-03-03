@@ -18,17 +18,17 @@ class Fungi(BaseModel):
         yeast = "yeast"
         filamentous = "filamentous"
 
-    morph_type: MorphTypeEnum | None = Field(
+    morphType: MorphTypeEnum | None = Field(
         default=None,
         title="Morph Type",
         description="Morphological type, must be 'yeast' or 'filamentous'",
     )
-    asexual_reproduction: bool | None = Field(
+    asexualReproduction: bool | None = Field(
         default=None,
         title="Asexual Reproduction",
         description="True/False for asexual reproduction",
     )
-    sexual_reproduction: bool | None = Field(
+    sexualReproduction: bool | None = Field(
         default=None,
         title="Sexual Reproduction",
         description="True/False for sexual reproduction",
@@ -67,17 +67,17 @@ class Fungi(BaseModel):
         needle_shaped = "needle shaped"
         whip_like = "whip-like"
 
-    ascospores_shape: AscosporesShapeEnum | None = Field(
+    ascosporesShape: AscosporesShapeEnum | None = Field(
         default=None,
         title="Ascospores Shape",
         description="Shape of ascospores, controlled vocabulary",
     )
-    ascospores_with_groove: bool | None = Field(
+    ascosporesWithGroove: bool | None = Field(
         default=None,
         title="Ascospores With Groove",
         description="True/False if ascospores have groove",
     )
-    ascospores_with_gelatinous_sheath: bool | None = Field(
+    ascosporesWithGelatinousSheath: bool | None = Field(
         default=None,
         title="Ascospores With Gelatinous Sheath",
         description="True/False if ascospores have gelatinous sheath",
@@ -87,17 +87,17 @@ class Fungi(BaseModel):
         min: int | None = Field(default=None, title="Min", description="Minimum number")
         max: int | None = Field(default=None, title="Max", description="Maximum number")
 
-    number_of_ascospores_per_ascus: NumberRange | None = Field(
+    numberOfAscosporesPerAscus: NumberRange | None = Field(
         default=None,
         title="Number of Ascospores per Ascus",
         description="Object with number range (min/max)",
     )
-    asci_evanescence: bool | None = Field(
+    asciEvanescence: bool | None = Field(
         default=None,
         title="Asci Evanescence",
         description="True/False for asci evanescence",
     )
-    club_shaped_asci: bool | None = Field(
+    clubShapedAsci: bool | None = Field(
         default=None,
         title="Club Shaped Asci",
         description="True/False for club shaped asci",
@@ -112,7 +112,7 @@ class Fungi(BaseModel):
         capitate = "capitate"
         other = "other"
 
-    basidia_shape: list[BasidiaShapeEnum] | None = Field(
+    basidiaShape: list[BasidiaShapeEnum] | None = Field(
         default=None,
         title="Basidia Shape",
         description="List of basidia shapes, controlled vocabulary",
@@ -124,7 +124,7 @@ class Fungi(BaseModel):
         longitudinally_obliquely_septate = "longitudinally-obliquely septate"
         other = "other"
 
-    basidia_septation: BasidiaSeptationEnum | None = Field(
+    basidiaSeptation: BasidiaSeptationEnum | None = Field(
         default=None,
         title="Basidia Septation",
         description="Basidia septation, controlled vocabulary",
@@ -141,7 +141,7 @@ class Fungi(BaseModel):
             "angular to round to oval and/or no teliospores"
         )
 
-    basidia_catenate_solitary: BasidiaCatenateSolitaryEnum | None = Field(
+    basidiaCatenateSolitary: BasidiaCatenateSolitaryEnum | None = Field(
         default=None,
         title="Basidia Catenate Solitary",
         description="Basidia catenate/solitary, controlled vocabulary",
@@ -163,7 +163,7 @@ class Fungi(BaseModel):
         hyphae_with_pseudoclamp_connection = "hyphae with pseudoclamp connection"
         hyphae_with_clamp_connection = "hyphae with clamp connection"
 
-    clamp_connection: ClampConnectionEnum | None = Field(
+    clampConnection: ClampConnectionEnum | None = Field(
         default=None,
         title="Clamp Connection",
         description="Clamp connection type, controlled vocabulary",
@@ -175,12 +175,12 @@ class Fungi(BaseModel):
         pseudotetrapolar = "pseudotetrapolar"
         unknown = "unknown"
 
-    mating_system: MatingSystemEnum | None = Field(
+    matingSystem: MatingSystemEnum | None = Field(
         default=None,
         title="Mating System",
         description="Mating system, controlled vocabulary",
     )
-    complementary_mating_types: list[str] | None = Field(
+    complementaryMatingTypes: list[str] | None = Field(
         default=None,
         title="Complementary Mating Types",
         description="List of complementary mating types",
