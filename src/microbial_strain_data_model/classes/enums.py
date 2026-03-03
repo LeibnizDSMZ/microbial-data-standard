@@ -226,14 +226,14 @@ class Restriction(str, Enum):
     Valid supply forms
 
     Attributes:
-        no_restrictions: No known restrictions apply
-        no_commercial: Only for non-commercial purposes
-        agreement: For commercial development a special agreement is requested
+        no_restrictions: no known restrictions apply
+        no_commercial: only for non-commercial purposes
+        agreement: for commercial development a special agreement is requested
     """
 
-    no_restrictions = "No known restrictions apply"
-    no_commercial = "Only for non-commercial purposes"
-    agreement = "For commercial development a special agreement is requested"
+    no_restrictions = "no known restrictions apply"
+    no_commercial = "only for non-commercial purposes"
+    agreement = "for commercial development a special agreement is requested"
 
 
 class Host(str, Enum):
