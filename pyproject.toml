@@ -7,7 +7,7 @@ authors = [{ name = "Julius Witte", email = "julius.witte@dsmz.de" }]
 license = "MIT"
 keywords = ["python", "data"]
 repository = "https://gitlab.int.dsmz.de/bioindustry-4/microbial_strain_data_model"
-requires-python = ">=3.13,<4"
+requires-python = ">=3.12,<4"
 dependencies = [
   "pydantic >=2.10,<3",
   "requests >=2.32,<3",
