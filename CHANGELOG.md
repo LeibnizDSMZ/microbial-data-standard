@@ -1,3 +1,21 @@
+## v0.9.2 (2026-04-14)
+
+### Fix
+
+- **isolationtags**: fixed seperator problem in isolation tags
+
+## v0.9.1 (2026-02-20)
+
+### Fix
+
+- move sample isolation to notes
+- fixed historical iso codes to be 2 letter codes + updates (#26)
+- **morph**: made cell data in morphology optional
+
+### Refactor
+
+- bump version
+
 ## v0.9.0 (2026-01-29)
 
 ### Feat
