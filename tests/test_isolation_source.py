@@ -16,6 +16,12 @@ def test_isolation_tag_system_3():
     )
 
 
+def test_isolation_tag_system_4():
+    assert isolationtag.IsolationTag(
+        level1="#Host", level2="#Mammals", level3="#Caprinae (Sheep/Goat)"
+    )
+
+
 def test_no_data():
     with pytest.raises(ValueError, match=r".*"):
         isolationtag.IsolationTag()

@@ -2,7 +2,7 @@ from anytree import Node
 
 # Tree structure of Isolation Source Tags
 # root node
-root = Node("IsolationSources")
+root = Node("IsolationSources", separator="|")
 
 
 # Environmental
@@ -131,6 +131,7 @@ engineered = Node(
         Node(
             "#Food production",
             children=[
+                Node("#Animal feed"),
                 Node("#Aquaculture"),
                 Node("#Beverage"),
                 Node("#Bottled, canned, packed food"),

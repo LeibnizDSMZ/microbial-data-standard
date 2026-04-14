@@ -25,7 +25,7 @@ class IsolationTag(BaseModel):
         path = "" + self.level1
         for x in [self.level2, self.level3]:
             if isinstance(x, str):
-                path += "/"
+                path += "|"
                 path += x
         try:
             resolver.get(root, path)
