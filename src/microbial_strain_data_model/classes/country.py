@@ -1,4 +1,5 @@
-from pydantic import BaseModel, ConfigDict, Field
+from typing import Self
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 from pydantic_extra_types.country import CountryAlpha2
 from microbial_strain_data_model.classes.enums import (
     CountryHistoricalAlpha2,
@@ -20,8 +21,12 @@ class Country(BaseModel):
     name: str | None = Field(
         default=None, title="Country name", description="Full name of the country"
     )
-    iso_3166_2: CountryAlpha2 | CountryHistoricalAlpha2 | CountryOtherCodes = Field(
-        title="Country name", description="Country code, see ISO 3166-1 alpha-2"
+    iso_3166_2: CountryAlpha2 | CountryHistoricalAlpha2 | CountryOtherCodes | None = (
+        Field(
+            default=None,
+            title="Country code",
+            description="Country code, see ISO 3166-1 alpha-2",
+        )
     )
     identifier: list[Identifier] = Field(default_factory=list, title="Identifier")
     conventionOfBiologicalDiversityParty: bool | None = Field(
@@ -36,3 +41,9 @@ class Country(BaseModel):
     nagoyaKualaLumpurParty: bool | None = Field(
         default=None, title="Is Nagoya Kuala Lumpur Party"
     )
+
+    @model_validator(mode="after")
+    def ensure_country_not_empty(self) -> Self:
+        if not self.name and not self.iso_3166_2:
+            raise ValueError("Country must have at least a name or an ISO 3166-2 code")
+        return self
