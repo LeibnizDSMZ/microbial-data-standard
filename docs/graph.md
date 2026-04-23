@@ -107,7 +107,7 @@ source: string
 
 class `Country`{
 name: string | null
-iso_3166_2: string | CountryHistoricalAlpha2 | CountryOtherCodes
+iso_3166_2: string | CountryHistoricalAlpha2 | CountryOtherCodes | null
 identifier: array[Identifier]
 conventionOfBiologicalDiversityParty: boolean | null
 cartagenaProtocolParty: boolean | null

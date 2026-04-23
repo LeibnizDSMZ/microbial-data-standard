@@ -11,6 +11,15 @@ def micro():
     return Strain(
         primaryId="DSM 1",
         organismType=OrganismType.bacteria,
+        identifier=[
+            {
+                "name": "DSMZ internal ID",
+                "propertyID": "https://www.wikidata.org/wiki/Property:P6782",
+                "url": None,
+                "value": "DSM 1",
+                "source": ["/sources/0"],
+            }
+        ],
         typeStrain=[{"typeStrain": False, "source": ["/sources/0"]}],
         origin=[
             {
@@ -79,5 +88,6 @@ def test_populate_new_class(micro: Strain) -> None:
         typeStrain=micro.typeStrain,
         taxon=micro.taxon,
         sources=micro.sources,
+        identifier=micro.identifier,
     )
     assert new_micro

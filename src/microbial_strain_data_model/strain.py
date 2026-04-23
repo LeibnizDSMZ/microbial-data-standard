@@ -55,12 +55,16 @@ class Strain(BaseModel):
 
     # lists of data objects
 
-    typeStrain: list[TypeStrain] = Field(title="Type Strain", description="")
+    typeStrain: list[TypeStrain] = Field(
+        default_factory=list, title="Type Strain", description=""
+    )
 
-    taxon: list[TaxonWithSource] = Field(title="Taxon", description="")
+    taxon: list[TaxonWithSource] = Field(
+        default_factory=list, title="Taxon", description=""
+    )
 
     identifier: list[IdentifierStrain] = Field(
-        default_factory=list, title="Identifier", description=""
+        title="Identifier", description="", min_length=1
     )
 
     origin: list[Origin] = Field(
