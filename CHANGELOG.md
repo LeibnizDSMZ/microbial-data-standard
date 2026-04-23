@@ -1,3 +1,13 @@
+## v0.10.0 (2026-04-23)
+
+### Feat
+
+- changed taxon and typestrain to not required and add min len for identifer = 1
+
+### Fix
+
+- **country**: fixed check for country name or iso
+
 ## v0.9.2 (2026-04-14)
 
 ### Fix
