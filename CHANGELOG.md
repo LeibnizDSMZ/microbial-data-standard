@@ -1,3 +1,17 @@
+## v0.11.0 (2026-05-05)
+
+### Feat
+
+- change spore object requirements
+
+### Fix
+
+- correct sporeForming field
+
+### Refactor
+
+- rename sporeBuilding to sporeForming
+
 ## v0.10.0 (2026-04-23)
 
 ### Feat
