@@ -319,7 +319,7 @@ variable
 }
 
 class `Spore`{
-sporeBuilding: boolean | null
+sporeForming: boolean | null
 typeOfSpore: SporeType
 sporeEjection: string | null
 relatedData: string
