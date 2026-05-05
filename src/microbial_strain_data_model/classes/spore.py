@@ -15,8 +15,8 @@ class Spore(BaseModel):
         str_strip_whitespace=True,
     )
 
-    sporeBuilding: bool | None = Field(default=None, title="sporeBuilding")
-    typeOfSpore: SporeType = Field(title="Type Of Spore")
+    sporeFormation: bool = Field(title="sporeFormation")
+    typeOfSpore: SporeType | None = Field(default=None, title="Type Of Spore")
     sporeEjection: str | None = Field(default=None, title="Spore Ejection")
     relatedData: list[RelationLink] = Field(
         default_factory=list,
