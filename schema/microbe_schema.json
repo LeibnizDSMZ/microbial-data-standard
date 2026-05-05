@@ -2915,24 +2915,24 @@
           "title": "Spore Ejection"
         },
         "sporeForming": {
+          "title": "sporeForming",
+          "type": "boolean"
+        },
+        "typeOfSpore": {
           "anyOf": [
             {
-              "type": "boolean"
+              "$ref": "#/$defs/SporeType"
             },
             {
               "type": "null"
             }
           ],
           "default": null,
-          "title": "sporeForming"
-        },
-        "typeOfSpore": {
-          "$ref": "#/$defs/SporeType",
           "title": "Type Of Spore"
         }
       },
       "required": [
-        "typeOfSpore",
+        "sporeForming",
         "source"
       ],
       "title": "Spore",
