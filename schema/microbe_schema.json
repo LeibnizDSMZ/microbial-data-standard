@@ -2902,18 +2902,6 @@
           "title": "Source",
           "type": "array"
         },
-        "sporeBuilding": {
-          "anyOf": [
-            {
-              "type": "boolean"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "sporeBuilding"
-        },
         "sporeEjection": {
           "anyOf": [
             {
@@ -2925,6 +2913,18 @@
           ],
           "default": null,
           "title": "Spore Ejection"
+        },
+        "sporeForming": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "sporeForming"
         },
         "typeOfSpore": {
           "$ref": "#/$defs/SporeType",

@@ -1356,8 +1356,8 @@
       "source": [
         "/sources/0"
       ],
-      "sporeBuilding": true,
       "sporeEjection": null,
+      "sporeForming": true,
       "typeOfSpore": "endospore"
     }
   ],
