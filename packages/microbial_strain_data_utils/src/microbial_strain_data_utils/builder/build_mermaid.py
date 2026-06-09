@@ -1,8 +1,10 @@
+from typing import Sequence
+from typing import Any
 import json
 from pathlib import Path
 
 
-def write_mermaid(classes, links):
+def write_mermaid(classes: dict[str, Any], links: Sequence[tuple[str, str]]):
     f_path = Path("/workspace/docs/graph.md")
     with f_path.open("w") as f_out:
         f_out.write("---\nhide:\n  - navigation\n  - toc\n---\n")
@@ -35,23 +37,23 @@ def write_mermaid(classes, links):
         f_out.write("```\n")
 
 
-def get_prop_type_and_links(prop):
+def get_prop_type_and_links(prop: dict[str, Any]):
     types = []
     links = []
 
     if ref := prop.get("$ref"):
         types = [ref.split("/")[-1]]
         links = [ref.split("/")[-1]]
-    elif t := prop.get("type"):
-        if t == "array":
-            items = prop.get("items")
+    elif typ := prop.get("type"):
+        if typ == "array":
+            items = prop.get("items", {})
             if ref := items.get("$ref"):
                 types.append(f"array[{ref.split('/')[-1]}]")
                 links.append(ref.split("/")[-1])
             elif array_type := items.get("type"):
                 types.append(array_type)
         else:
-            types = [t]
+            types = [typ]
     elif any_of := prop.get("anyOf"):
         for a in any_of:
             if ref := a.get("$ref"):
@@ -63,7 +65,13 @@ def get_prop_type_and_links(prop):
     return " | ".join(x for x in types), links
 
 
-def parse_object(schema, classes, links, title, whole_schema):
+def parse_object(
+    schema: dict[str, Any],
+    classes: dict[str, Any],
+    links: list[tuple[str, str]],
+    title: str,
+    whole_schema: dict[str, Any],
+):
     attr = {}
     for name, prop in schema.get("properties", {}).items():
         attr[name], prop_links = get_prop_type_and_links(prop)
@@ -80,19 +88,25 @@ def parse_object(schema, classes, links, title, whole_schema):
     classes[title] = attr
 
 
-def parse_schema(schema):
-    classes = {}
-    links = []
+def parse_schema(schema: dict[str, Any]):
+    classes: dict[str, Any] = {}
+    links: list[tuple[str, str]] = []
     title = schema.get("title")
+    if not isinstance(title, str):
+        title = ""
 
     parse_object(schema, classes, links, title, schema)
 
     return classes, links
 
 
-if __name__ == "__main__":
+def run() -> None:
     schema_path = Path("schema/microbe_schema.json")
     with schema_path.open("r") as schema_file:
         schema = json.load(schema_file)
     classes, links = parse_schema(schema)
     write_mermaid(classes, links)
+
+
+if __name__ == "__main__":
+    run()

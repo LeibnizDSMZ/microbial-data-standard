@@ -1,36 +1,35 @@
 [project]
-name = "microbial_strain_data_model"
+name = "microbial_strain_data"
 version = "0.11.0"
-description = """Read strain data from microbiolgy DB and transforms them into JSONs"""
+description = """This project defines a new microbial strain data standard for all data describing a microbial strain."""
 readme = "README.md"
 authors = [{ name = "Julius Witte" }]
 license = "MIT"
 requires-python = ">=3.13,<4"
-dependencies = [
-  "pydantic >=2.10,<3",
-  "pydantic[email] >=2.10,<3",
-  "pydantic_extra_types >=2.10,<3",
-  "pycountry >=26.2,<27",
-  "pendulum >=3.2,<4",
-  "anytree >=2.12,<3",
-  "jsonref >=1.1,<2",
-  "jsonschema >=4.19,<5",
-]
-
-[tool.setuptools.packages.find]
-where = ["src"]
-include = ["microbial_strain_data_model"]
-
-[build-system]
-requires = ["uv_build>=0.11.6,<0.12.0"]
-build-backend = "uv_build"
 
 [tool.uv]
 exclude-newer = "3 days"
-package = true
-default-groups = []
+package = false
+default-groups = ["mono"]
+
+[tool.setuptools]
+py-modules = []
+
+[tool.uv.sources]
+microbial_strain_data_model = { workspace = true }
+microbial_strain_data_utils = { workspace = true }
+
+[tool.uv.workspace]
+members = ["packages/*"]
+exclude = ["packages/microbial_strain_data_schema"]
+
 
 [dependency-groups]
+mono = [
+  # local
+  "microbial_strain_data_model",
+  "microbial_strain_data_utils",
+]
 dev = [
   "commitizen ==4.16.2",
   "pyrefly ==1.0.0",
@@ -66,6 +65,8 @@ tag_format = "v$version"
 update_changelog_on_bump = true
 version_files = [
   "README.md:^\\[!\\[release:",
+  "packages/microbial_strain_data_model/pyproject.toml",
+  "packages/microbial_strain_data_utils/pyproject.toml",
 ]
 version_provider = "uv"
 version_type = "semver"
@@ -73,7 +74,7 @@ version_type = "semver"
 [tool.pyrefly]
 preset = "strict"
 project-includes = [
-  "src/**/*.py",
+  "packages/**/*.py",
 ]
 
 project-excludes = [
@@ -85,7 +86,8 @@ project-excludes = [
   "configs/**",
 ]
 search-path = [
-  "src",
+  "packages/microbial_strain_data_utils/src",
+  "packages/microbial_strain_data_model/src",
 ]
 python-version = "3.13"
 python-platform = "linux"
@@ -198,7 +200,7 @@ requires = ["tox>=4.23"]
 
 [tool.tox.env_run_base]
 allowlist_externals = ["coverage"]
-set_env = { PYTHONPATH = "src" }
+set_env = { PYTHONPATH = "packages/microbial_strain_data_model/src:packages/microbial_strain_data_utils/src" }
 commands = [
   [
     "coverage",
@@ -223,7 +225,10 @@ commands = [
 ]
 
 [tool.coverage.run]
-source = ["microbial_strain_data_model"]
+source = [
+  "packages/microbial_strain_data_model/src/microbial_strain_data_model",
+  "packages/microbial_strain_data_utils/src/microbial_strain_data_utils"
+]
 parallel = true
 
 [tool.coverage.report]
@@ -231,7 +236,11 @@ show_missing = false
 fail_under = 30
 
 [tool.vulture]
-paths = ["configs/lint/whitelist.py", "src"]
+paths = [
+  "configs/lint/whitelist.py",
+   "packages/microbial_strain_data_utils/src",
+   "packages/microbial_strain_data_model/src"
+]
 ignore_decorators = ["@*"]
 ignore_names = ["model_config", "formatwarning"]
 make_whitelist = true

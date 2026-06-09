@@ -1,0 +1,28 @@
+[project]
+name = "microbial_strain_data_utils"
+version = "0.11.0"
+description = """Lightweight, internal library that provides a functionality to the microbial data standard project."""
+readme = "README.md"
+authors = [{ name = "Julius Witte" }]
+license = "MIT"
+requires-python = ">=3.13,<4"
+dependencies = ["microbial_strain_data_model"]
+
+[project.scripts]
+mds_docs = "microbial_strain_data_utils.builder.build_docs:run"
+mds_mermaid = "microbial_strain_data_utils.builder.build_mermaid:run"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["microbial_strain_data_utils"]
+
+[build-system]
+requires = ["uv_build>=0.11.6,<0.12.0"]
+build-backend = "uv_build"
+
+[tool.uv.sources]
+microbial_strain_data_model = {  workspace = true }
+
+[tool.uv]
+package = true
+default-groups = []

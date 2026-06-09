@@ -6,20 +6,26 @@ import tomllib
 import tomli_w
 from microbial_strain_data_model.strain import Strain
 
-# ruff: noqa: C901
 
-
-def write_documentation(name, title, type, format, description, id, is_req):
-    f_path = Path(f"docs/schema/{id.split('.')[0]}. {name.split('.')[0]}.md")
+def write_documentation(
+    name: str,
+    title: str,
+    type: str,
+    format: str | list[str],
+    description: str,
+    mid: str,
+    is_req: bool,
+):
+    f_path = Path(f"docs/schema/{mid.split('.')[0]}. {name.split('.')[0]}.md")
     with f_path.open("a") as f_out:
         f_out.write("---\n")
-        f_out.write(f"## {id} {name}\n")
+        f_out.write(f"## {mid} {name}\n")
         f_out.write(f"{title}  ")
         if is_req:
             f_out.write("`Required`\n\n")
         else:
             f_out.write("\n\n")
-        if description:
+        if description != "":
             f_out.write("Description:\n")
             for line in description.splitlines():
                 if len(line) < 2:
@@ -31,11 +37,34 @@ def write_documentation(name, title, type, format, description, id, is_req):
         if format:
             if isinstance(format, list):
                 f_out.write("Enum:\n\n")
-                for x in format:
-                    f_out.write(f"\t{x}\n")
+                for val in format:
+                    f_out.write(f"\t{val}\n")
             else:
                 f_out.write(f"Format:\n\n\t{format}\n")
             f_out.write("\n")
+
+
+def _get_type(schema: dict[str, Any]) -> Any:
+    if type := schema.get("type"):
+        if type == "array":
+            return f"`{type}` of `{schema.get('items', {}).get('type')}`"
+        return type
+    if any := schema.get("anyOf", None):
+        return ", ".join([x.get("type") for x in any])
+    if all := schema.get("allOf", None):
+        return ", ".join([x.get("type") for x in all])
+    return "?"
+
+
+def _get_value(schema: dict[str, Any]) -> Any:
+    if format := schema.get("format"):
+        return format
+    if enum := schema.get("enum"):
+        return enum
+    if enum := schema.get("anyOf", [{}])[0].get("enum", None):
+        return enum
+    if enum := schema.get("allOf", [{}])[0].get("enum", None):
+        return enum
 
 
 def parse_schema() -> None:
@@ -58,30 +87,12 @@ def parse_schema() -> None:
         "Rest": [],
     }
 
-    def get_type(schema: dict[Any, Any] | list[Any]) -> Any:
-        if type := schema.get("type"):
-            if type == "array":
-                return f"`{type}` of `{schema.get('items').get('type')}`"
-            return type
-        if any := schema.get("anyOf", None):
-            return ", ".join([x.get("type") for x in any])
-        if all := schema.get("allOf", None):
-            return ", ".join([x.get("type") for x in all])
-        return "?"
-
-    def get_value(schema: dict) -> Any:
-        if format := schema.get("format"):
-            return format
-        if enum := schema.get("enum"):
-            return enum
-        if enum := schema.get("anyOf", [{}])[0].get("enum", None):
-            return enum
-        if enum := schema.get("allOf", [{}])[0].get("enum", None):
-            return enum
-
     def recursive_parser(
-        schema_part: dict, name_prefix: str, counter_pre: str, required: list
-    ) -> dict:
+        schema_part: dict[str, Any],
+        name_prefix: str,
+        counter_pre: str,
+        required: list[str],
+    ):
         counter = 0
         for key, value in schema_part.items():
             counter = counter + 1
@@ -93,8 +104,10 @@ def parse_schema() -> None:
 
             name = f"{name_prefix}{key}"
             title = value.get("title", "")
-            type = get_type(value)
-            value_resolved = get_value(value)
+            if not isinstance(title, str):
+                title = ""
+            type = _get_type(value)
+            value_resolved = _get_value(value)
             description = value.get(
                 "description", value.get("items", {}).get("description")
             )
@@ -126,7 +139,6 @@ def parse_schema() -> None:
                         recursive_parser(next_schema, f"{name}.", id, any.get("required"))
 
     recursive_parser(main_schema.get("properties"), "", "", main_schema.get("required"))
-    return transformed_schema
 
 
 def update_nav_config(schemas: list[str]) -> None:
@@ -135,10 +147,12 @@ def update_nav_config(schemas: list[str]) -> None:
         config = tomllib.load(fze)
 
     if "project" not in config:
-        config["project"] = {}
+        project: dict[str, Any] = {}
+        config["project"] = project
 
     if "nav" not in config["project"]:
-        config["project"]["nav"] = []
+        pr_nav: list[dict[str, list[str]]] = []
+        config["project"]["nav"] = pr_nav
 
     nav_entries = config["project"]["nav"]
 
@@ -160,7 +174,7 @@ def clear_docs_schema():
 
 def clean_end_of_files():
     for file in Path("docs/schema").glob("*.md"):
-        lines = []
+        lines: list[str] = []
         with file.open("r") as f_in:
             lines = f_in.readlines()[:-1]
         with file.open("w") as f_out:
@@ -169,8 +183,12 @@ def clean_end_of_files():
         yield str(file.relative_to("docs"))
 
 
-if __name__ == "__main__":
+def run() -> None:
     clear_docs_schema()
-    data_structure = parse_schema()
+    parse_schema()
     md_list = list(sorted(clean_end_of_files()))
     update_nav_config(md_list)
+
+
+if __name__ == "__main__":
+    run()

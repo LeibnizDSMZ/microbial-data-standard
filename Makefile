@@ -71,11 +71,13 @@ runBump:
 	$(UVE) run cz version --project | xargs -i git commit -am "bump: release {}"
 
 runLock runUpdate: %: export_%
-# add all packages rquired to be build
-	$(UVE) export --frozen --format requirements.txt > requirements.txt
+# add all packages required to be build
+	$(UVE) export --package microbial_strain_data_model --frozen --format requirements.txt > packages/microbial_strain_data_model/requirements.txt
+	$(UVE) export --package microbial_strain_data_utils --frozen --format requirements.txt > packages/microbial_strain_data_utils/requirements.txt
 	$(UVE) export --frozen --only-group dev --format requirements.txt > configs/requirements/dev/requirements.txt
 	$(UVE) export --frozen --only-group test --format requirements.txt > configs/requirements/test/requirements.txt
 	$(UVE) export --frozen --only-group docs --format requirements.txt > configs/requirements/docs/requirements.txt
+
 
 export_runLock:
 	$(UVE) lock

@@ -1,3 +1,4 @@
+from microbial_strain_data_model.shared.verify.empty import check_not_completely_empty
 from typing import Self
 from typing_extensions import Annotated
 from pydantic import BaseModel, ConfigDict, Field, model_validator
@@ -7,7 +8,6 @@ from microbial_strain_data_model.classes.growthcondition import GrowthRange
 from microbial_strain_data_model.classes.metabolitetest import MetaboliteTest
 from microbial_strain_data_model.classes.identifier import Identifier
 from microbial_strain_data_model.classes.links import SourceLink
-from microbial_strain_data_model.utils.functions import check_not_completely_empty
 
 
 class ChemicalSubstance(BaseModel):
