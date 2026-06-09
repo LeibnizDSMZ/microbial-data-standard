@@ -37,7 +37,7 @@ class FattyAcidProfile(BaseModel):
     )
 
     @model_validator(mode="after")
-    def ensure_list_not_empty(self) -> Self:
+    def _ensure_list_not_empty(self) -> Self:
         if len(self.profile) < 1:
             raise ValueError("Fatty Acis Profile must contain at least one Fatty Acid")
         return self

@@ -1,3 +1,4 @@
+from typing import Self
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 from pydantic_extra_types.coordinate import Latitude, Longitude
 
@@ -44,4 +45,8 @@ class Location(BaseModel):
         default=None, title="Geo", description="Precise location coordinates"
     )
 
-    _check_values = model_validator(mode="after")(check_not_completely_empty)
+    @model_validator(mode="after")
+    def _check_values(self) -> Self:
+        if check_not_completely_empty(self):
+            raise ValueError("Wrong location")
+        return self

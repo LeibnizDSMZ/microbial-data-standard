@@ -1,13 +1,16 @@
 # ---> Custom
 
 /public/
-/tmp/
-/configs/src
 .ruff_cache/
 .VSCodeCounter/
 .uv
 .commit_msg
 .commit_msg.*
+
+# local env and makefile cache
+/.env
+/.env.mk
+/.secrets
 
 # https://github.com/github/gitignore
 # CC0 1.0 Universal

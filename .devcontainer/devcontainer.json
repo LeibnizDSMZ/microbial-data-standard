@@ -2,28 +2,15 @@
   "customizations": {
     "vscode": {
       "extensions": [
-        "njpwerner.autodocstring",
-        "formulahendry.code-runner",
         "streetsidesoftware.code-spell-checker",
-        "kamikillerto.vscode-colorize",
-        "ms-azuretools.vscode-docker",
-        "donjayamanne.githistory",
-        "eamodio.gitlens",
         "oderwat.indent-rainbow",
         "yzhang.markdown-all-in-one",
         "christian-kohler.path-intellisense",
-        "ms-python.vscode-pylance",
-        "ms-python.python",
-        "ChristianDein.python-radon",
-        "foxundermoon.shell-format",
-        "ms-vscode.test-adapter-converter",
-        "hbenl.vscode-test-explorer",
         "Gruntfuggly.todo-tree",
-        "uctakeoff.vscode-counter",
-        "DotJoshJohnson.xml",
         "aaron-bond.better-comments",
-        "KevinRose.vsc-python-indent",
-        "tamasfe.even-better-toml"
+        "tamasfe.even-better-toml",
+        "ms-python.python",
+        "meta.pyrefly"
       ]
     }
   },
@@ -31,12 +18,9 @@
     "../docker-compose.yml",
     "dev.docker-compose.yml"
   ],
-  "mounts": [
-    "source=${localEnv:HOME}/tech/git/.authentication,target=/workspace/.authentication,type=bind,consistency=cached"
-  ],
+  "initializeCommand": "if [ ! -f .env ]; then cat package.env > .env; fi",
   "name": "microbial_strain_data_model",
   "postAttachCommand": "make dev",
-  "remoteUser": "devu",
   "runServices": [
     "dev"
   ],

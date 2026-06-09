@@ -1,3 +1,4 @@
+from typing import Self
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 from pydantic_extra_types.country import CountryAlpha2
 
@@ -36,4 +37,8 @@ class Address(BaseModel):
         description="Name of the street and number within street",
     )
 
-    _check_values = model_validator(mode="after")(check_not_completely_empty)
+    @model_validator(mode="after")
+    def _check_values(self) -> Self:
+        if check_not_completely_empty(self):
+            raise ValueError("Wrong address")
+        return self

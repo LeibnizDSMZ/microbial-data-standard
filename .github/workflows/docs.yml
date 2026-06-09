@@ -1,3 +1,4 @@
+
 name: Deploy static documentation to Pages
 
 on:
@@ -40,12 +41,13 @@ jobs:
         uses: actions/configure-pages@v5
       - name: Create documentation html
         run: |
+          export CONTAINER="container"
           make docs
           make runDocs
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./public
+          path: ./public/docs
   deploy:
     environment:
       name: github-pages

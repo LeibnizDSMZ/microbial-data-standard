@@ -1,3 +1,4 @@
+from typing import Self
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from microbial_strain_data_model.classes.enums import ColonyColor, FlagellumArrangement
@@ -57,4 +58,8 @@ class Morphology(BaseModel):
         title="Source", description="List of JSON paths to source object"
     )
 
-    _check_values = model_validator(mode="after")(check_not_completely_empty)
+    @model_validator(mode="after")
+    def _check_values(self) -> Self:
+        if check_not_completely_empty(self):
+            raise ValueError("Wrong morphology")
+        return self

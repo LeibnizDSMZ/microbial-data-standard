@@ -1,6 +1,12 @@
 services:
   dev:
     user: devu
+    env_file:
+      - .env
+    environment:
+      HISTFILE: /dev/null
+      HISTSIZE: 0
+      HISTFILESIZE: 0
     build:
       context: .
       dockerfile: configs/docker/dev.Dockerfile
@@ -11,8 +17,18 @@ services:
         WORK_DIR: "/workspace"
         UV: ${UV_INSTALL_DIR}
         SSH_AUTH_SOCK: /ssh-agent
-        GITCONFIG_PATH: ${GITCONFIG_PATH}
+        BIN_DEPLOY_PREP: ${BIN_DEPLOY_PREP}
+        BIN_DEPLOY_REQ: ${BIN_DEPLOY_REQ}
     volumes:
       - ${SSH_AUTH_SOCK:-/dev/null}:/ssh-agent
       - .:/workspace
       - ${GITCONFIG_PATH:-${HOME}/.gitconfig}:/etc/gitconfig:ro
+    networks:
+      - ollama
+    ports:
+      - ${DOC_PORT}:8000
+
+networks:
+    ollama:
+        name: ollama
+        driver: bridge

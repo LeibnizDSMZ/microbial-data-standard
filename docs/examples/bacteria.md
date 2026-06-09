@@ -1,3 +1,8 @@
+---
+search:
+  exclude: true
+---
+
 # Bacteria
 
 This is a example data for a bacterium. The data is artificial and should only demonstrate

@@ -23,7 +23,7 @@ class LiteratureSource(BaseModel):
     publisher: list[Organization] = Field(default_factory=list, title="Publisher")
 
     @model_validator(mode="after")
-    def check_if_name_or_url_is_set(self) -> Self:
+    def _check_if_name_or_url_is_set(self) -> Self:
         if not self.name and not self.url:
             raise ValueError("name or url is needed")
         return self

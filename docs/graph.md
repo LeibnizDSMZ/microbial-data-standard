@@ -3,6 +3,10 @@ hide:
   - navigation
   - toc
 ---
+---
+search:
+  exclude: true
+---
 
 ``` mermaid
 classDiagram
@@ -319,8 +323,8 @@ variable
 }
 
 class `Spore`{
-sporeForming: boolean | null
-typeOfSpore: SporeType
+sporeForming: boolean
+typeOfSpore: SporeType | null
 sporeEjection: string | null
 relatedData: string
 source: string
