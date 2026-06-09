@@ -1,8 +1,9 @@
+from microbial_strain_data_model.shared.data_con.isolation_sources_tree import (
+    create_iso_src_root,
+)
 from typing_extensions import Self
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 from anytree.resolver import Resolver, ChildResolverError
-
-from microbial_strain_data_model.data.isolation_sources_tree import root
 
 
 class IsolationTag(BaseModel):
@@ -28,7 +29,7 @@ class IsolationTag(BaseModel):
                 path += "|"
                 path += x
         try:
-            resolver.get(root, path)
+            resolver.get(create_iso_src_root(), path)
         except ChildResolverError as e:
             raise ValueError from ValueError(
                 f"Isolation Source Tags are not valid isolation tag path: {e}"

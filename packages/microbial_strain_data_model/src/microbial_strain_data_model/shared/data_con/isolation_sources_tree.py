@@ -1,14 +1,14 @@
+from copy import deepcopy
 from anytree import Node
 
 # Tree structure of Isolation Source Tags
 # root node
-root = Node("IsolationSources", separator="|")
-
+_ISO_SRC_ROOT = Node("IsolationSources", separator="|")
 
 # Environmental
-environmental = Node(
+_ISO_ENV = Node(
     "#Environmental",
-    parent=root,
+    parent=_ISO_SRC_ROOT,
     children=[
         Node("#Air", children=[Node("#Indoor Air"), Node("#Outdoor Air")]),
         Node(
@@ -74,9 +74,9 @@ environmental = Node(
 )
 
 # Engineered
-engineered = Node(
+_ISO_ENG = Node(
     "#Engineered",
-    parent=root,
+    parent=_ISO_SRC_ROOT,
     children=[
         Node(
             "#Agriculture",
@@ -207,9 +207,9 @@ engineered = Node(
         ),
     ],
 )
-host = Node(
+_ISO_HOST = Node(
     "#Host",
-    parent=root,
+    parent=_ISO_SRC_ROOT,
     children=[
         Node(
             "#Algae",
@@ -326,9 +326,9 @@ host = Node(
         Node("#Yeast"),
     ],
 )
-host_body_site = Node(
+_ISO_HOST_BODY_SITE = Node(
     "#Host Body-Site",
-    parent=root,
+    parent=_ISO_SRC_ROOT,
     children=[
         Node(
             "#Gastrointestinal tract",
@@ -426,9 +426,9 @@ host_body_site = Node(
         ),
     ],
 )
-host_body_product = Node(
+_ISO_HOST_BODY_PROD = Node(
     "#Host Body Product",
-    parent=root,
+    parent=_ISO_SRC_ROOT,
     children=[
         Node(
             "#Fluids",
@@ -495,9 +495,9 @@ host_body_product = Node(
         ),
     ],
 )
-infection = Node(
+_ISO_INFECTION = Node(
     "#Infection",
-    parent=root,
+    parent=_ISO_SRC_ROOT,
     children=[
         Node(
             "#Disease",
@@ -552,9 +552,9 @@ infection = Node(
         ),
     ],
 )
-condition = Node(
+_ISO_CONDITION = Node(
     "#Condition",
-    parent=root,
+    parent=_ISO_SRC_ROOT,
     children=[
         Node("#Acidic"),
         Node("#Alkaline"),
@@ -567,9 +567,9 @@ condition = Node(
         Node("#Xerophilic"),
     ],
 )
-climate = Node(
+_ISO_CLIMATE = Node(
     "#Climate",
-    parent=root,
+    parent=_ISO_SRC_ROOT,
     children=[
         Node(
             "#Cold",
@@ -591,3 +591,7 @@ climate = Node(
         ),
     ],
 )
+
+
+def create_iso_src_root() -> Node:
+    return deepcopy(_ISO_SRC_ROOT)

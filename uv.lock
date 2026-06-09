@@ -6,6 +6,13 @@ requires-python = ">=3.13, <4"
 exclude-newer = "0001-01-01T00:00:00Z" # This has no effect and is included for backwards compatibility when using relative exclude-newer values.
 exclude-newer-span = "P3D"
 
+[manifest]
+members = [
+    "microbial-strain-data",
+    "microbial-strain-data-model",
+    "microbial-strain-data-utils",
+]
+
 [[package]]
 name = "annotated-types"
 version = "0.7.0"
@@ -530,18 +537,9 @@ wheels = [
 ]
 
 [[package]]
-name = "microbial-strain-data-model"
+name = "microbial-strain-data"
 version = "0.11.0"
-source = { editable = "." }
-dependencies = [
-    { name = "anytree" },
-    { name = "jsonref" },
-    { name = "jsonschema" },
-    { name = "pendulum" },
-    { name = "pycountry" },
-    { name = "pydantic", extra = ["email"] },
-    { name = "pydantic-extra-types" },
-]
+source = { virtual = "." }
 
 [package.dev-dependencies]
 dev = [
@@ -561,6 +559,10 @@ docs = [
     { name = "mkdocstrings-python" },
     { name = "zensical" },
 ]
+mono = [
+    { name = "microbial-strain-data-model" },
+    { name = "microbial-strain-data-utils" },
+]
 test = [
     { name = "coverage" },
     { name = "pytest" },
@@ -568,16 +570,6 @@ test = [
 ]
 
 [package.metadata]
-requires-dist = [
-    { name = "anytree", specifier = ">=2.12,<3" },
-    { name = "jsonref", specifier = ">=1.1,<2" },
-    { name = "jsonschema", specifier = ">=4.19,<5" },
-    { name = "pendulum", specifier = ">=3.2,<4" },
-    { name = "pycountry", specifier = ">=26.2,<27" },
-    { name = "pydantic", specifier = ">=2.10,<3" },
-    { name = "pydantic", extras = ["email"], specifier = ">=2.10,<3" },
-    { name = "pydantic-extra-types", specifier = ">=2.10,<3" },
-]
 
 [package.metadata.requires-dev]
 dev = [
@@ -597,11 +589,52 @@ docs = [
     { name = "mkdocstrings-python", specifier = "==2.0.4" },
     { name = "zensical", specifier = "==0.0.44" },
 ]
+mono = [
+    { name = "microbial-strain-data-model", editable = "packages/microbial_strain_data_model" },
+    { name = "microbial-strain-data-utils", editable = "packages/microbial_strain_data_utils" },
+]
 test = [
     { name = "coverage", specifier = "==7.14.0" },
     { name = "pytest", specifier = "==9.0.3" },
     { name = "tox", specifier = "==4.54.0" },
 ]
+
+[[package]]
+name = "microbial-strain-data-model"
+version = "0.11.0"
+source = { editable = "packages/microbial_strain_data_model" }
+dependencies = [
+    { name = "anytree" },
+    { name = "jsonref" },
+    { name = "jsonschema" },
+    { name = "pendulum" },
+    { name = "pycountry" },
+    { name = "pydantic", extra = ["email"] },
+    { name = "pydantic-extra-types" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "anytree", specifier = ">=2.12,<3" },
+    { name = "jsonref", specifier = ">=1.1,<2" },
+    { name = "jsonschema", specifier = ">=4.19,<5" },
+    { name = "pendulum", specifier = ">=3.2,<4" },
+    { name = "pycountry", specifier = ">=26.2,<27" },
+    { name = "pydantic", specifier = ">=2.10,<3" },
+    { name = "pydantic", extras = ["email"], specifier = ">=2.10,<3" },
+    { name = "pydantic-extra-types", specifier = ">=2.10,<3" },
+]
+
+[[package]]
+name = "microbial-strain-data-utils"
+version = "0.11.0"
+source = { editable = "packages/microbial_strain_data_utils" }
+dependencies = [
+    { name = "microbial-strain-data-model" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "microbial-strain-data-model", editable = "packages/microbial_strain_data_model" }]
 
 [[package]]
 name = "mkdocs"

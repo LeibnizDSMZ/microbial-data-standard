@@ -1,3 +1,4 @@
+from microbial_strain_data_model.shared.verify.empty import check_not_completely_empty
 from typing import Self
 from pydantic import (
     BaseModel,
@@ -6,8 +7,6 @@ from pydantic import (
     HttpUrl,
     model_validator,
 )
-
-from microbial_strain_data_model.utils.functions import check_not_completely_empty
 from microbial_strain_data_model.classes.links import SourceLink
 
 

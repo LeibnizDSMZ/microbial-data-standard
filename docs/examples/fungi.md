@@ -11,5 +11,5 @@ what the data in this schema look like.
 *Attention, this example data is outdated*
 
 ```JSON
---8<-- "tests/example_data/fungi.json"
+--8<-- "packages/microbial_strain_data_model/tests/example_data/fungi.json"
 ```

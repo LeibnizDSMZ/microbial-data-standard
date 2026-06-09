@@ -70,7 +70,8 @@ inventories = [
     "https://docs.python.org/3/objects.inv",
 ]
 paths = [
-    "src",
+    "packages/microbial_strain_data_model/src",
+    "packages/microbial_strain_data_utils/src",
 ]
 
 [project.plugins.mkdocstrings.handlers.python.options]

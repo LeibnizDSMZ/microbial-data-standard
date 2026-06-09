@@ -1,8 +1,7 @@
+from microbial_strain_data_model.shared.verify.empty import check_not_completely_empty
 from typing import Self
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 from pydantic_extra_types.coordinate import Latitude, Longitude
-
-from microbial_strain_data_model.utils.functions import check_not_completely_empty
 
 
 class GeoPoint(BaseModel):

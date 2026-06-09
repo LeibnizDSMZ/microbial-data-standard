@@ -5,7 +5,7 @@ ROOT="$(dirname "$(realpath "$0")")/../.."
 
 ROOT_ENV="$ROOT/package.env"
 
-ENV_FILES=( "$ROOT_ENV" )
+ENV_FILES=( "$ROOT_ENV" "$MSD_M_ENV" "$MSD_U_ENV")
 
 ALL_ENV=(
     "MAKEFILE_LIST"
@@ -74,8 +74,14 @@ check_name_occurrence() {
     if [[ "$(grep -Rnw "$ROOT/configs" -e "$norm_reg" | wc -l)" -gt 0 ]]; then
         return 0
     fi
+    if [[ "$(grep --exclude-dir=__pycache__ -Rnw "$PKG" -e "$norm_reg" | wc -l)" -gt 0 ]]; then
+        return 0
+    fi
     if [[ "$2" = 1 ]]; then
         return 1
+    fi
+    if [[ "$(grep --exclude-dir=__pycache__ -Rnw "$PKG" -e "$1" | wc -l)" -gt 0 ]]; then
+        return 0
     fi
     return 1
 }
@@ -148,6 +154,12 @@ while SEP=' ' read -ra files; do
     done
 done <<<"$(find "$ROOT/configs" -type f)"
 
+while SEP=' ' read -ra files; do
+    for file in "${files[@]}"; do
+        check_name_rev_occurrence "$file" "$cmd"
+    done
+done <<<"$(find "$PKG" -type f -regex '.*/packages/[^/]*/[^/]*')"
+
 cmd='{
     while (match($0, /\$[A-Z_]+[A-Z0-9_]*/)) {
         print substr($0, RSTART+1, RLENGTH-1);
@@ -159,3 +171,9 @@ while SEP=' ' read -ra files; do
         check_name_rev_occurrence "$file" "$cmd"
     done
 done <<<"$(find "$ROOT/bin" -type f)"
+
+while SEP=' ' read -ra files; do
+    for file in "${files[@]}"; do
+        check_name_rev_occurrence "$file" "$cmd"
+    done
+done <<<"$(find "$PKG" -type f -regex '.*/packages/[^/]*/bin/.*')"
