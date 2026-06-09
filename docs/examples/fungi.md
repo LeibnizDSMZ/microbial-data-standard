@@ -1,3 +1,8 @@
+---
+search:
+  exclude: true
+---
+
 # Fungi
 
 This is a example data for a yeast. The data is artificial and should only demonstrate

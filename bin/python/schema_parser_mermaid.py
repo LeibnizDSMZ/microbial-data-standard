@@ -5,7 +5,8 @@ from pathlib import Path
 def write_mermaid(classes, links):
     f_path = Path("/workspace/docs/graph.md")
     with f_path.open("w") as f_out:
-        f_out.write("---\nhide:\n  - navigation\n  - toc\n---\n\n")
+        f_out.write("---\nhide:\n  - navigation\n  - toc\n---\n")
+        f_out.write("---\nsearch:\n  exclude: true\n---\n\n")
         f_out.write("``` mermaid\n")
         f_out.write("classDiagram\n")
         f_out.write("direction LR\n")

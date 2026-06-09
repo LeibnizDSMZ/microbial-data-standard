@@ -20,7 +20,7 @@ class IsolationTag(BaseModel):
     level3: str | None = Field(default=None, title="Level 3")
 
     @model_validator(mode="after")
-    def check_isolation_tag(self) -> Self:
+    def _check_isolation_tag(self) -> Self:
         resolver = Resolver("name")
         path = "" + self.level1
         for x in [self.level2, self.level3]:

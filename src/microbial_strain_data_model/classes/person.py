@@ -13,7 +13,7 @@ class Person(BaseModel):
     )
 
     name: str = Field(
-        title="Name", description="Name of the person, preferable: [Last], [First]"
+        title="Name", description="Name of the person, preferable: `Last`, `First`"
     )
     identifier: list[Identifier] = Field(
         default_factory=list,

@@ -2591,7 +2591,7 @@
           "type": "array"
         },
         "name": {
-          "description": "Name of the person, preferable: [Last], [First]",
+          "description": "Name of the person, preferable: `Last`, `First`",
           "title": "Name",
           "type": "string"
         }

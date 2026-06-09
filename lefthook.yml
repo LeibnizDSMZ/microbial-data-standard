@@ -1,6 +1,7 @@
 output:
 - summary
 - execution_info
+
 pre-commit:
   piped: true
   jobs:
@@ -8,85 +9,92 @@ pre-commit:
       group:
         parallel: true
         jobs:
-          - name: mypy
+          - name: env
+            run: bin/install/wrap.sh bash $BIN_RUN_ENV_LINT
+          - name: lfs
+            run: bin/install/wrap.sh bash $BIN_RUN_LFS_LINT
+          - name: pyrefly
             glob: "src/**/*.py"
-            run: mypy {staged_files}
+            run: bin/install/wrap.sh pyrefly check -- {staged_files}
+          - name: vulture
+            run: bin/install/wrap.sh vulture
           - name: shellcheck
             glob: "*.sh"
-            run: shellcheck {staged_files}
+            run: bin/install/wrap.sh shellcheck --rcfile=$CONFIG_SHELL -- {staged_files}
           - name: codespell
             glob: "*.py"
-            run: codespell {staged_files}
+            run: bin/install/wrap.sh codespell -- {staged_files}
           # pre-commit-hooks checks
           - name: check-ast
             glob: "*.py"
-            run: check-ast {staged_files}
+            run: bin/install/wrap.sh check-ast -- {staged_files}
           - name: check-yaml
             glob: "*.{yaml,yml}"
-            run: check-yaml --unsafe {staged_files}
+            run: bin/install/wrap.sh check-yaml -- {staged_files}
           - name: check-json
             glob: "*.json"
-            run: check-json {staged_files}
+            run: bin/install/wrap.sh check-json -- {staged_files}
           - name: check-toml
             glob: "*.{toml,tml}"
-            run: check-toml {staged_files}
+            run: bin/install/wrap.sh check-toml -- {staged_files}
           - name: check-merge-conflict
-            run: check-merge-conflict {staged_files}
-          - name: check-added-large-files
-            exclude: tests/media/.+
-            run: check-added-large-files {staged_files}
+            run: bin/install/wrap.sh check-merge-conflict -- {staged_files}
           - name: detect-private-key
-            run: detect-private-key {staged_files}
+            run: bin/install/wrap.sh detect-private-key -- {staged_files}
           - name: check-case-conflict
-            run: check-case-conflict {staged_files}
+            run: bin/install/wrap.sh check-case-conflict -- {staged_files}
           - name: check-symlinks
-            run: check-symlinks {staged_files}
+            run: bin/install/wrap.sh check-symlinks -- {staged_files}
           - name: check-executables-have-shebangs
             glob: "*.sh"
-            run: check-executables-have-shebangs {staged_files}
+            run: bin/install/wrap.sh check-executables-have-shebangs -- {staged_files}
           - name: check-shebang-scripts-are-executable
             glob: "*.sh"
-            run: check-shebang-scripts-are-executable {staged_files}
+            run: bin/install/wrap.sh check-shebang-scripts-are-executable -- {staged_files}
     - name: fix
       group:
         piped: true
         jobs:
           - name: ruff-check
             glob: "*.py"
-            run: ruff check {staged_files} --fix
+            run: bin/install/wrap.sh ruff check --fix -- {staged_files}
             stage_fixed: true
           - name: ruff-format
             glob: "*.py"
-            run: ruff format {staged_files}
+            run: bin/install/wrap.sh ruff format -- {staged_files}
             stage_fixed: true
           - name: uv-export
-            run: make runLock && git add \*/requirements\*\.txt
+            run: bin/install/wrap.sh make runLock && git add \*/requirements\*\.txt
             stage_fixed: true
           - name: pretty-format-json
             glob: "*.json"
-            run: pretty-format-json --autofix {staged_files} || echo "json formatted"
+            run: bin/install/wrap.sh pretty-format-json --autofix -- {staged_files}
             stage_fixed: true
           - name: mixed-line-ending
-            exclude: '**/*.png'
-            run: mixed-line-ending -f auto {staged_files} || echo "fixed mle"
+            run: bin/install/wrap.sh mixed-line-ending -f auto -- {staged_files}
+            exclude:
+              - '**/*.{png,jpg,jpeg,gif,svg,webp,ico}'
             stage_fixed: true
           - name: trailing-whitespace
-            exclude: '**/*.png'
-            run: trailing-whitespace-fixer --markdown-linebreak-ext=md {staged_files} || echo "fixed whitespaces"
+            run: bin/install/wrap.sh trailing-whitespace-fixer --markdown-linebreak-ext=md -- {staged_files}
+            exclude:
+              - '**/*.{png,jpg,jpeg,gif,svg,webp,ico}'
             stage_fixed: true
           - name: end-of-file
             exclude:
-              - requirements*.txt
-              - '**/*.png'
-            run: end-of-file-fixer {staged_files} || echo "fixed eof"
+              - '**/*.{png,jpg,jpeg,gif,svg,webp,ico}'
+              - '**/requirements*.txt'
+            run: bin/install/wrap.sh end-of-file-fixer -- {staged_files}
             stage_fixed: true
 commit-msg:
   piped: true
   commands:
     commitizen:
-      run: cat {1} | cz check
+      run: bin/install/wrap.sh cat {1} | cz check
+
 pre-push:
   piped: true
   commands:
     tests:
-      run: "tox"
+      run: bin/install/wrap.sh tox
+      skip: false

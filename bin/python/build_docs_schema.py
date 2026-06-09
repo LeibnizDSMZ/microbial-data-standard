@@ -2,8 +2,8 @@ from pathlib import Path
 from typing import Any
 import jsonref
 import json
-import pandas as pd
-
+import tomllib
+import tomli_w
 from microbial_strain_data_model.strain import Strain
 
 # ruff: noqa: C901
@@ -61,7 +61,7 @@ def parse_schema() -> None:
     def get_type(schema: dict[Any, Any] | list[Any]) -> Any:
         if type := schema.get("type"):
             if type == "array":
-                return f"{type}[{schema.get('items').get('type')}]"
+                return f"`{type}` of `{schema.get('items').get('type')}`"
             return type
         if any := schema.get("anyOf", None):
             return ", ".join([x.get("type") for x in any])
@@ -129,10 +129,28 @@ def parse_schema() -> None:
     return transformed_schema
 
 
-def export_excel(data_struc):
-    mi_norm = pd.DataFrame(data_struc)
-    # print(mi_norm.columns)
-    mi_norm.to_excel("output_test.xlsx")
+def update_nav_config(schemas: list[str]) -> None:
+    zen = Path(".zensical.toml")
+    with zen.open("rb") as fze:
+        config = tomllib.load(fze)
+
+    if "project" not in config:
+        config["project"] = {}
+
+    if "nav" not in config["project"]:
+        config["project"]["nav"] = []
+
+    nav_entries = config["project"]["nav"]
+
+    for ind, entry in enumerate(nav_entries):
+        if isinstance(entry, dict) and "Data schema" in entry:
+            nav_entries[ind]["Data schema"] = schemas
+            break
+    else:
+        nav_entries.append({"Data schema": schemas})
+
+    with zen.open("wb") as fze:
+        tomli_w.dump(config, fze)
 
 
 def clear_docs_schema():
@@ -148,10 +166,11 @@ def clean_end_of_files():
         with file.open("w") as f_out:
             for line in lines:
                 f_out.write(line)
+        yield str(file.relative_to("docs"))
 
 
 if __name__ == "__main__":
     clear_docs_schema()
     data_structure = parse_schema()
-    export_excel(data_structure)
-    clean_end_of_files()
+    md_list = list(sorted(clean_end_of_files()))
+    update_nav_config(md_list)

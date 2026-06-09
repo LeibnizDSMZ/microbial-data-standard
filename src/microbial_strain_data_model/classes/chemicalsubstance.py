@@ -1,3 +1,4 @@
+from typing import Self
 from typing_extensions import Annotated
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
@@ -31,7 +32,11 @@ class ChemicalSubstance(BaseModel):
         description="List of alternative names for this substance",
     )
 
-    _check_values = model_validator(mode="after")(check_not_completely_empty)
+    @model_validator(mode="after")
+    def _check_values(self) -> Self:
+        if check_not_completely_empty(self):
+            raise ValueError("Wrong chemical substance")
+        return self
 
 
 class CellWall(ChemicalSubstance):

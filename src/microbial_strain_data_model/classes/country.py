@@ -43,7 +43,7 @@ class Country(BaseModel):
     )
 
     @model_validator(mode="after")
-    def ensure_country_not_empty(self) -> Self:
+    def _ensure_country_not_empty(self) -> Self:
         if not self.name and not self.iso_3166_2:
             raise ValueError("Country must have at least a name or an ISO 3166-2 code")
         return self
