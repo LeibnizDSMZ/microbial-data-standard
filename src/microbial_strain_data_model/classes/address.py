@@ -40,5 +40,5 @@ class Address(BaseModel):
     @model_validator(mode="after")
     def _check_values(self) -> Self:
         if check_not_completely_empty(self):
-            raise ValueError("Wrong address")
-        return self
+            return self
+        raise ValueError("Wrong address")

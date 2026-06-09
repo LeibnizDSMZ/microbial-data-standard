@@ -32,12 +32,6 @@ class ChemicalSubstance(BaseModel):
         description="List of alternative names for this substance",
     )
 
-    @model_validator(mode="after")
-    def _check_values(self) -> Self:
-        if check_not_completely_empty(self):
-            raise ValueError("Wrong chemical substance")
-        return self
-
 
 class CellWall(ChemicalSubstance):
     """Cell Wall constituent - ChemSubstance + percent of CellWall."""
@@ -56,6 +50,12 @@ class CellWall(ChemicalSubstance):
         title="Source", description="List of JSON paths to source object"
     )
 
+    @model_validator(mode="after")
+    def _check_values(self) -> Self:
+        if check_not_completely_empty(self):
+            return self
+        raise ValueError("Wrong cell wall definition")
+
 
 class FattyAcid(ChemicalSubstance):
     """Single Fatty Acid - used in Fatty Acid Profile."""
@@ -71,6 +71,12 @@ class FattyAcid(ChemicalSubstance):
         default=None, title="Percent"
     )
     ecl: str | None = Field(default=None, title="ECL")
+
+    @model_validator(mode="after")
+    def _check_values(self) -> Self:
+        if check_not_completely_empty(self):
+            return self
+        raise ValueError("Wrong fatty acid definition")
 
 
 class Halophil(ChemicalSubstance):
@@ -103,6 +109,12 @@ class Halophil(ChemicalSubstance):
         title="Source", description="List of JSON paths to source object"
     )
 
+    @model_validator(mode="after")
+    def _check_values(self) -> Self:
+        if check_not_completely_empty(self):
+            return self
+        raise ValueError("Wrong halophil definition")
+
 
 class Metabolite(ChemicalSubstance):
     """Information about tested Metabolites."""
@@ -122,3 +134,9 @@ class Metabolite(ChemicalSubstance):
     source: list[SourceLink] = Field(
         title="Source", description="List of JSON paths to source object"
     )
+
+    @model_validator(mode="after")
+    def _check_values(self) -> Self:
+        if check_not_completely_empty(self):
+            return self
+        raise ValueError("Wrong metabolite definition")
