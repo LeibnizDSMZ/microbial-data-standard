@@ -96,5 +96,5 @@ pre-push:
   piped: true
   commands:
     tests:
-      run: bin/install/wrap.sh tox
+      run: bin/install/wrap.sh make runTests
       skip: false
