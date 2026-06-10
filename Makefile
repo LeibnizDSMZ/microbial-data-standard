@@ -53,6 +53,10 @@ runAct:
 runChecks:
 	$(UVE) run lefthook run pre-commit --all-files -f
 
+setupDocs:
+	$(UVE) run mds_docs
+	$(UVE) run mds_mermaid
+
 runDocs:
 	$(UVE) run zensical build -f $(CONFIG_DOCS)
 

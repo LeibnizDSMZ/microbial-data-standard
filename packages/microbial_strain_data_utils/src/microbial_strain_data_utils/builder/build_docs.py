@@ -1,4 +1,6 @@
-from pathlib import Path
+from microbial_strain_data_utils.builder.load_env import git_add_schema_files
+from microbial_strain_data_utils.builder.load_env import SchemaPaths
+from microbial_strain_data_utils.builder.load_env import load_schema_paths
 from typing import Any
 import jsonref
 import json
@@ -8,6 +10,7 @@ from microbial_strain_data_model.strain import Strain
 
 
 def write_documentation(
+    paths: SchemaPaths,
     name: str,
     title: str,
     type: str,
@@ -16,7 +19,7 @@ def write_documentation(
     mid: str,
     is_req: bool,
 ):
-    f_path = Path(f"docs/schema/{mid.split('.')[0]}. {name.split('.')[0]}.md")
+    f_path = paths.docs_schema.joinpath(f"{mid.split('.')[0]}. {name.split('.')[0]}.md")
     with f_path.open("a") as f_out:
         f_out.write("---\n")
         f_out.write(f"## {mid} {name}\n")
@@ -67,10 +70,9 @@ def _get_value(schema: dict[str, Any]) -> Any:
         return enum
 
 
-def parse_schema() -> None:
+def parse_schema(paths: SchemaPaths) -> None:
     mi = Strain.model_json_schema()
-    main_schema_path = Path("schema/microbe_schema.json")
-    with main_schema_path.open("w") as f_out:
+    with paths.json_schema.open("w") as f_out:
         f_out.write(json.dumps(mi, indent=2))
 
     schema = json.dumps(mi)
@@ -88,6 +90,7 @@ def parse_schema() -> None:
     }
 
     def recursive_parser(
+        paths: SchemaPaths,
         schema_part: dict[str, Any],
         name_prefix: str,
         counter_pre: str,
@@ -109,7 +112,7 @@ def parse_schema() -> None:
             type = _get_type(value)
             value_resolved = _get_value(value)
             description = value.get(
-                "description", value.get("items", {}).get("description")
+                "description", value.get("items", {}).get("description", "")
             )
 
             is_req = True if required and key in required else False
@@ -124,26 +127,35 @@ def parse_schema() -> None:
             transformed_schema["Rest"].append(value)
 
             write_documentation(
-                name, title, type, value_resolved, description, id, is_req
+                paths, name, title, type, value_resolved, description, id, is_req
             )
 
             if next_schema := value.get("properties"):
-                recursive_parser(next_schema, f"{name}.", id, value.get("required"))
+                recursive_parser(
+                    paths, next_schema, f"{name}.", id, value.get("required")
+                )
             if next_schema := value.get("items", {}).get("properties"):
                 recursive_parser(
-                    next_schema, f"{name}.", id, value.get("items", {}).get("required")
+                    paths,
+                    next_schema,
+                    f"{name}.",
+                    id,
+                    value.get("items", {}).get("required"),
                 )
             for any in value.get("anyOf", []):
                 if next_schema := any.get("properties"):
                     if name != "taxon.parentTaxon" and name != "unifiedTaxon.parentTaxon":
-                        recursive_parser(next_schema, f"{name}.", id, any.get("required"))
+                        recursive_parser(
+                            paths, next_schema, f"{name}.", id, any.get("required")
+                        )
 
-    recursive_parser(main_schema.get("properties"), "", "", main_schema.get("required"))
+    recursive_parser(
+        paths, main_schema.get("properties"), "", "", main_schema.get("required")
+    )
 
 
-def update_nav_config(schemas: list[str]) -> None:
-    zen = Path(".zensical.toml")
-    with zen.open("rb") as fze:
+def update_nav_config(paths: SchemaPaths, schemas: list[str]) -> None:
+    with paths.docs_config.open("rb") as fze:
         config = tomllib.load(fze)
 
     if "project" not in config:
@@ -163,31 +175,33 @@ def update_nav_config(schemas: list[str]) -> None:
     else:
         nav_entries.append({"Data schema": schemas})
 
-    with zen.open("wb") as fze:
+    with paths.docs_config.open("wb") as fze:
         tomli_w.dump(config, fze)
 
 
-def clear_docs_schema():
-    for file in Path("docs/schema").glob("*.md"):
+def clear_docs_schema(paths: SchemaPaths):
+    for file in paths.docs_schema.glob("*.md"):
         file.unlink()
 
 
-def clean_end_of_files():
-    for file in Path("docs/schema").glob("*.md"):
+def clean_end_of_files(paths: SchemaPaths):
+    for file in paths.docs_schema.glob("*.md"):
         lines: list[str] = []
         with file.open("r") as f_in:
             lines = f_in.readlines()[:-1]
         with file.open("w") as f_out:
             for line in lines:
                 f_out.write(line)
-        yield str(file.relative_to("docs"))
+        yield str(file.relative_to(paths.docs_schema.parent))
 
 
 def run() -> None:
-    clear_docs_schema()
-    parse_schema()
-    md_list = list(sorted(clean_end_of_files()))
-    update_nav_config(md_list)
+    paths = load_schema_paths()
+    clear_docs_schema(paths)
+    parse_schema(paths)
+    md_list = list(sorted(clean_end_of_files(paths)))
+    update_nav_config(paths, md_list)
+    git_add_schema_files(paths)
 
 
 if __name__ == "__main__":
