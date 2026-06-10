@@ -1,12 +1,15 @@
+from microbial_strain_data_utils.builder.load_env import git_add_schema_files
+from microbial_strain_data_utils.builder.load_env import SchemaPaths
+from microbial_strain_data_utils.builder.load_env import load_schema_paths
 from typing import Sequence
 from typing import Any
 import json
-from pathlib import Path
 
 
-def write_mermaid(classes: dict[str, Any], links: Sequence[tuple[str, str]]):
-    f_path = Path("/workspace/docs/graph.md")
-    with f_path.open("w") as f_out:
+def write_mermaid(
+    paths: SchemaPaths, classes: dict[str, Any], links: Sequence[tuple[str, str]]
+):
+    with paths.docs_mermaid.open("w") as f_out:
         f_out.write("---\nhide:\n  - navigation\n  - toc\n---\n")
         f_out.write("---\nsearch:\n  exclude: true\n---\n\n")
         f_out.write("``` mermaid\n")
@@ -101,11 +104,12 @@ def parse_schema(schema: dict[str, Any]):
 
 
 def run() -> None:
-    schema_path = Path("schema/microbe_schema.json")
-    with schema_path.open("r") as schema_file:
+    paths = load_schema_paths()
+    with paths.json_schema.open("r") as schema_file:
         schema = json.load(schema_file)
     classes, links = parse_schema(schema)
-    write_mermaid(classes, links)
+    write_mermaid(paths, classes, links)
+    git_add_schema_files(paths)
 
 
 if __name__ == "__main__":
