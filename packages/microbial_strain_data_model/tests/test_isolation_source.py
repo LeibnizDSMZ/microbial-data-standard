@@ -24,7 +24,7 @@ def test_isolation_tag_system_4():
 
 def test_no_data():
     with pytest.raises(ValueError, match=r".*"):
-        isolationtag.IsolationTag()
+        isolationtag.IsolationTag(**{})
 
 
 def test_wrong_category_1():
