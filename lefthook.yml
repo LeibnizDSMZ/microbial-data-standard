@@ -13,6 +13,10 @@ pre-commit:
               run: bin/install/wrap.sh make setupDocs
               stage_fixed: true
               skip: false
+            - name: license
+              run: bin/install/wrap.sh $BIN_RUN_LICENSE_LINT
+              stage_fixed: true
+              skip: false
     - name: check
       group:
         parallel: true
