@@ -2,7 +2,7 @@
 
 # SPDX-FileCopyrightText: 2026 Leibniz Institute DSMZ-German Collection of Microorganisms and Cell Cultures GmbH
 #
-# SPDX-License-Identifier: Unlicense
+# SPDX-License-Identifier: MIT
 
 ROOT="$(dirname "$(realpath "$0")")/../.."
 source "$ROOT/package.env"
@@ -43,8 +43,8 @@ if [[ -n "$COPYRIGHT" ]]; then
             echo "Current year ($YEAR) could not be found in $license_file"
             exit 1
         fi
-        if ! grep -q -e "$SOFTWARE_LIC" -e "$DATA_LIC" "$license_file"; then
-            echo "Neither license ($SOFTWARE_LIC) nor ($DATA_LIC) found in $license_file"
+        if ! grep -q -e "$SOFTWARE_LIC" -e "$DATA_LIC" -e "$PUB_LIC" "$license_file"; then
+            echo "Neither license ($SOFTWARE_LIC) nor ($DATA_LIC) nor ($DATA_LIC) found in $license_file"
             exit 1
         fi
     done
@@ -62,12 +62,30 @@ fi
 
 FILES=()
 
+IGNORE=(
+    '^configs/prompt/.+$'
+    '^bin/lint/licenses.sh'
+    '^bin/install/wrap.sh'
+    '^LICENSES/.+$'
+)
+
+should_ignore() {
+    local name="$1"
+    for pattern in "${IGNORE[@]}"; do
+        if [[ "$name" =~ $pattern ]]; then
+            return 0
+        fi
+    done
+    return 1
+}
+
 filter_and_collect() {
     local input_file
     while IFS= read -r input_file; do
         [[ -z "$input_file" ]] && continue
-        [[ "$input_file" == LICENSES/* ]] && continue
-        [[ "$input_file" == "bin/lint/licenses.sh" ]] && continue
+        if should_ignore "$input_file"; then
+            continue
+        fi
         if [[ -e "$input_file" ]]; then
             FILES+=("$input_file")
         fi
@@ -107,22 +125,9 @@ MIT_FILES=(
 )
 
 MIT_FOLDERS=(
-    '^docs/'
+    '^docs(/|$)'
+    '^packages/microbial_strain_data_schema$'
 )
-
-IGNORE=(
-    "^configs/prompt/.+$"
-)
-
-should_ignore() {
-    local name="$1"
-    for pattern in "${IGNORE[@]}"; do
-        if [[ "$name" =~ $pattern ]]; then
-            return 0
-        fi
-    done
-    return 1
-}
 
 mit_to_annotate=()
 ccby_to_annotate=()
@@ -144,13 +149,6 @@ matches_pattern() {
 for file in "${FILES[@]}"; do
     file_name="${file##*/}"
     file_dir="${file%/*}"
-    if should_ignore "$file"; then
-        continue
-    fi
-    if matches_pattern "$file_dir" "${MIT_FOLDERS[@]}"; then
-        mit_to_annotate+=("$file")
-        continue
-    fi
     if matches_pattern "$file_name" "${SOFTWARE[@]}"; then
         mit_to_annotate+=("$file")
         continue
@@ -163,6 +161,10 @@ for file in "${FILES[@]}"; do
         ccby_to_annotate+=("$file")
         continue
     fi
+    if matches_pattern "$file_dir" "${MIT_FOLDERS[@]}"; then
+        mit_to_annotate+=("$file")
+        continue
+    fi
     if matches_pattern "$file_name" "${CC0_FILES[@]}"; then
         cc0_to_annotate+=("$file")
         continue
@@ -170,22 +172,22 @@ for file in "${FILES[@]}"; do
 done
 
 if [ ${#mit_to_annotate[@]} -gt 0 ]; then
-    echo "annotating Unlicense"
+    echo "annotating MIT"
     reuse annotate -c "$COPYRIGHT" -l "$SOFTWARE_LIC" -y "$YEAR" --merge-copyrights --fallback-dot-license "${mit_to_annotate[@]}"
 else
-    echo "No Unlicense files to annotate"
+    echo "No MIT files to annotate"
 fi
 
 if [ ${#ccby_to_annotate[@]} -gt 0 ]; then
     echo "annotating CC-BY"
-    uv_run reuse annotate -c "$COPYRIGHT" -l "$DATA_LIC" -y "$YEAR" --merge-copyrights --fallback-dot-license "${ccby_to_annotate[@]}"
+    reuse annotate -c "$COPYRIGHT" -l "$DATA_LIC" -y "$YEAR" --merge-copyrights --fallback-dot-license "${ccby_to_annotate[@]}"
 else
     echo "No CC-BY files to annotate"
 fi
 
 if [ ${#cc0_to_annotate[@]} -gt 0 ]; then
     echo "annotating CC0"
-    uv_run reuse annotate -c "$COPYRIGHT" -l "$PUB_LIC" -y "$YEAR" --merge-copyrights --fallback-dot-license "${cc0_to_annotate[@]}"
+    reuse annotate -c "$COPYRIGHT" -l "$PUB_LIC" -y "$YEAR" --merge-copyrights --fallback-dot-license "${cc0_to_annotate[@]}"
 else
     echo "No CC0 files to annotate"
 fi

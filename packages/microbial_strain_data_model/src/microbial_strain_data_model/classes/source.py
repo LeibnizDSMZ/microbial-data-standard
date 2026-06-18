@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2026 Leibniz Institute DSMZ-German Collection of Microorganisms and Cell Cultures GmbH
+#
+# SPDX-License-Identifier: MIT
+
 from pydantic_extra_types.pendulum_dt import Date
 from pydantic import BaseModel, ConfigDict, Field, HttpUrl, model_validator
 from typing_extensions import Self

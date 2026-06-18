@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2026 Leibniz Institute DSMZ-German Collection of Microorganisms and Cell Cultures GmbH
+#
+# SPDX-License-Identifier: MIT
+
 from microbial_strain_data_utils.builder.load_env import git_add_schema_files
 from microbial_strain_data_utils.builder.load_env import SchemaPaths
 from microbial_strain_data_utils.builder.load_env import load_schema_paths
