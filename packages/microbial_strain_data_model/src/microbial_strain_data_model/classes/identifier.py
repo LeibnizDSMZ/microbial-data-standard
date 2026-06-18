@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2026 Leibniz Institute DSMZ-German Collection of Microorganisms and Cell Cultures GmbH
+#
+# SPDX-License-Identifier: MIT
+
 from pydantic import BaseModel, ConfigDict, Field, HttpUrl
 
 from microbial_strain_data_model.classes.links import SourceLink

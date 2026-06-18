@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2026 Leibniz Institute DSMZ-German Collection of Microorganisms and Cell Cultures GmbH
+#
+# SPDX-License-Identifier: MIT
+
 addressCountry  # unused variable (src/microbial_strain_data_model/classes/address.py:17)
 addressCountryIso  # unused variable (src/microbial_strain_data_model/classes/address.py:20)
 addressRegion  # unused variable (src/microbial_strain_data_model/classes/address.py:25)

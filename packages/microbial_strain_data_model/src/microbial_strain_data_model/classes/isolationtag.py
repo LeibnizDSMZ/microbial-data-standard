@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2026 Leibniz Institute DSMZ-German Collection of Microorganisms and Cell Cultures GmbH
+#
+# SPDX-License-Identifier: MIT
+
 from microbial_strain_data_model.shared.data_con.isolation_sources_tree import (
     create_iso_src_root,
 )

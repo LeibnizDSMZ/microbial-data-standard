@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2026 Leibniz Institute DSMZ-German Collection of Microorganisms and Cell Cultures GmbH
+#
+# SPDX-License-Identifier: MIT
+
 from copy import deepcopy
 from anytree import Node
 

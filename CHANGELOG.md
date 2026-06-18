@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2026 Leibniz Institute DSMZ-German Collection of Microorganisms and Cell Cultures GmbH
+
+SPDX-License-Identifier: CC0-1.0
+-->
+
 ## v0.11.0 (2026-05-05)
 
 ### Feat
