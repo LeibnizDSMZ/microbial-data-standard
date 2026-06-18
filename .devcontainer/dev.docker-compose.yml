@@ -7,6 +7,8 @@ services:
       HISTFILE: /dev/null
       HISTSIZE: 0
       HISTFILESIZE: 0
+      EDITOR: vim
+      SSH_AUTH_SOCK: /ssh-agent
     build:
       context: .
       dockerfile: configs/docker/dev.Dockerfile
@@ -20,8 +22,8 @@ services:
         BIN_DEPLOY_PREP: ${BIN_DEPLOY_PREP}
         BIN_DEPLOY_REQ: ${BIN_DEPLOY_REQ}
     volumes:
-      - ${SSH_AUTH_SOCK:-/dev/null}:/ssh-agent
-      - .:/workspace
+      - ${SSH_AUTH_SOCK:-/dev/null}:/ssh-agent:ro
+      - .:/workspace:cached
       - ${GITCONFIG_PATH:-${HOME}/.gitconfig}:/etc/gitconfig:ro
     networks:
       - ollama
