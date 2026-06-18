@@ -11,7 +11,7 @@ extra_css = [
 ]
 repo_name = "LeibnizDSMZ/microbial-data-standard"
 repo_url = "https://github.com/LeibnizDSMZ/microbial-data-standard"
-copyright = "Copyright &copy; 2026 Julius Witte, Leibniz Institute DSMZ-German Collection of Microorganisms and Cell Cultures GmbH, Maintained by the WP6 Team of the  <a href='https://www.bioindustry4.eu/'>Bioindustry 4.0 project</a>"
+copyright = "Copyright &copy; 2026 Leibniz Institute DSMZ-German Collection of Microorganisms and Cell Cultures GmbH, Maintained by the WP6 Team of the  <a href='https://www.bioindustry4.eu/'>Bioindustry 4.0 project</a>"
 language = "en"
 
 [project.theme]

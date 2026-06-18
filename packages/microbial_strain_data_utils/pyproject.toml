@@ -3,7 +3,7 @@ name = "microbial_strain_data_utils"
 version = "0.11.0"
 description = """Lightweight, internal library that provides a functionality to the microbial data standard project."""
 readme = "README.md"
-authors = [{ name = "Julius Witte" }]
+authors = [{ name = "Julius Witte" }, { name = "Artur Lissin", email = "artur.lissin@dsmz.de" },]
 requires-python = ">=3.13,<4"
 dependencies = ["microbial_strain_data_model"]
 
