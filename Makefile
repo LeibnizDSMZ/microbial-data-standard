@@ -50,6 +50,9 @@ setup:
 
 RAN := $(shell awk 'BEGIN{srand();printf("%d", 65536*rand())}')
 
+run:
+	$(UVE) run $(CMD)
+
 runAct:
 	echo "source .venv/bin/activate; rm /tmp/$(RAN)" > /tmp/$(RAN)
 	bash --init-file /tmp/$(RAN)
