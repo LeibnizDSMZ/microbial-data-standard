@@ -28,6 +28,7 @@ if [[ -n "$COPYRIGHT" ]]; then
         "$ROOT/LICENSE"
         "$ROOT/LICENSES/$SOFTWARE_LIC.txt"
         "$ROOT/configs/REUSE.toml"
+        "$ROOT/.zensical.toml"
     )
 
     for license_file in "${LICENSE_FILES[@]}"; do
@@ -35,16 +36,16 @@ if [[ -n "$COPYRIGHT" ]]; then
             echo "License file $license_file does not exist"
             exit 1
         fi
-        if ! grep -q "$COPYRIGHT" "$license_file"; then
+        if ! grep -Pv '^[^s]+\s*SPDX-' "$license_file" | grep -q "$COPYRIGHT"; then
             echo "License file $license_file does not exist or COPYRIGHT not found"
             exit 1
         fi
-        if ! grep -q "$YEAR" "$license_file"; then
+        if ! grep -Pv '^[^s]+\s*SPDX-' "$license_file" | grep -q "$YEAR"; then
             echo "Current year ($YEAR) could not be found in $license_file"
             exit 1
         fi
-        if ! grep -q -e "$SOFTWARE_LIC" -e "$DATA_LIC" -e "$PUB_LIC" "$license_file"; then
-            echo "Neither license ($SOFTWARE_LIC) nor ($DATA_LIC) nor ($DATA_LIC) found in $license_file"
+        if ! grep -Pv '^[^s]+\s*SPDX-' "$license_file" | grep -q -e "$SOFTWARE_LIC" -e "$DATA_LIC" -e "$PUB_LIC"; then
+            echo "Neither license ($SOFTWARE_LIC) nor ($DATA_LIC) nor ($PUB_LIC) found in $license_file"
             exit 1
         fi
     done
@@ -67,6 +68,7 @@ IGNORE=(
     '^bin/lint/licenses.sh'
     '^bin/install/wrap.sh'
     '^LICENSES/.+$'
+    '^configs/REUSE.toml'
 )
 
 should_ignore() {
