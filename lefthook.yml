@@ -17,6 +17,9 @@ pre-commit:
               run: bin/install/wrap.sh make setupDocs
               stage_fixed: true
               skip: false
+            - name: uv-export
+              run: bin/install/wrap.sh make runLock && git add \*/requirements\*\.txt
+              stage_fixed: true
             - name: license
               run: bin/install/wrap.sh $BIN_RUN_LICENSE_LINT
               stage_fixed: true
@@ -78,9 +81,6 @@ pre-commit:
           - name: ruff-format
             glob: "*.py"
             run: bin/install/wrap.sh ruff format -- {staged_files} || true
-            stage_fixed: true
-          - name: uv-export
-            run: bin/install/wrap.sh make runLock && git add \*/requirements\*\.txt
             stage_fixed: true
           - name: pretty-format-json
             glob: "*.json"
