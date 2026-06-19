@@ -8,8 +8,12 @@ set -euo pipefail
 
 cmd=()
 files=()
-
 found_sep=false
+
+if [[ -f ".venv/bin/activate" ]]; then
+  source .venv/bin/activate
+fi
+
 for arg in "$@"; do
   if [[ "$arg" == "--" ]]; then
     found_sep=true
