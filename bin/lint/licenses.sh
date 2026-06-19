@@ -175,31 +175,28 @@ done
 
 if [ ${#mit_to_annotate[@]} -gt 0 ]; then
     echo "annotating MIT"
-    ANNO=$(printf '"%s" ' "${mit_to_annotate[@]}")
-    make run CMD="reuse annotate -c \"$COPYRIGHT\" -l \"$SOFTWARE_LIC\" -y \"$YEAR\" --merge-copyrights --fallback-dot-license $ANNO"
+    reuse annotate -c "$COPYRIGHT" -l "$SOFTWARE_LIC" -y "$YEAR" --merge-copyrights --fallback-dot-license "${mit_to_annotate[@]}"
 else
     echo "No MIT files to annotate"
 fi
 
 if [ ${#ccby_to_annotate[@]} -gt 0 ]; then
     echo "annotating CC-BY"
-    ANNO=$(printf '"%s" ' "${ccby_to_annotate[@]}")
-    make run CMD="reuse annotate -c \"$COPYRIGHT\" -l \"$DATA_LIC\" -y \"$YEAR\" --merge-copyrights --fallback-dot-license $ANNO"
+    reuse annotate -c "$COPYRIGHT" -l "$DATA_LIC" -y "$YEAR" --merge-copyrights --fallback-dot-license "${ccby_to_annotate[@]}"
 else
     echo "No CC-BY files to annotate"
 fi
 
 if [ ${#cc0_to_annotate[@]} -gt 0 ]; then
     echo "annotating CC0"
-    ANNO=$(printf '"%s" ' "${cc0_to_annotate[@]}")
-    make run CMD="reuse annotate -c \"$COPYRIGHT\" -l \"$PUB_LIC\" -y \"$YEAR\" --merge-copyrights --fallback-dot-license $ANNO"
+    reuse annotate -c "$COPYRIGHT" -l "$PUB_LIC" -y "$YEAR" --merge-copyrights --fallback-dot-license "${cc0_to_annotate[@]}"
 else
     echo "No CC0 files to annotate"
 fi
 
 git add .
 
-if ! make run CMD="reuse lint"; then
+if ! reuse lint; then
     echo "Linting failed!"
     exit 1
 fi
