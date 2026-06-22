@@ -3,6 +3,20 @@
  *
  * SPDX-License-Identifier: MIT
  */
+.md-tabs,
+.md-header {
+    background-color: #ff9538;
+    color: #ffffff;
+}
+
+.md-search__button {
+    background-color: rgba(255, 255, 255, 0.729);
+}
+
+.md-tabs__item--active {
+    border-color: #545454 !important;
+    border-bottom-width: 0.125rem;
+}
 
 :root>* {
     --md-primary-fg-color: #ff9538;
