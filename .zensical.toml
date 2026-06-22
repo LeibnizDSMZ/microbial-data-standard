@@ -85,6 +85,16 @@ allow_inspection = true
 show_submodules = true
 show_root_heading = false
 unwrap_annotated = true
+show_source = true
+show_bases = true
+show_if_no_docstring = false
+merge_init_into_class = true
+separate_signature = true
+signature_crossrefs = true
+filters = [
+    "!^_",
+    "!^__",
+]
 extensions = [
     { griffe_pydantic = { schema = false } },
 ]
