@@ -25,7 +25,6 @@ def write_documentation(
 ):
     f_path = paths.docs_schema.joinpath(f"{mid.split('.')[0]}. {name.split('.')[0]}.md")
     with f_path.open("a") as f_out:
-        f_out.write("---\n")
         f_out.write(f"## {mid} {name}\n")
         f_out.write(f"{title}  ")
         if is_req:
@@ -49,6 +48,7 @@ def write_documentation(
             else:
                 f_out.write(f"Format:\n\n\t{format}\n")
             f_out.write("\n")
+        f_out.write("---\n")
 
 
 def _get_type(schema: dict[str, Any]) -> Any:
