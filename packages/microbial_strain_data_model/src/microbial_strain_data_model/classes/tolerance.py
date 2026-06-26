@@ -2,6 +2,8 @@
 #
 # SPDX-License-Identifier: MIT
 
+from typing import Iterable
+from microbial_strain_data_model.classes.root import ROOT_HOOK
 from pydantic import BaseModel, ConfigDict, Field
 
 from microbial_strain_data_model.classes.chemicalsubstance import ChemicalSubstance
@@ -53,3 +55,15 @@ class Tolerance(ChemicalSubstance):
     source: list[SourceLink] = Field(
         title="Source", description="List of JSON paths to source object"
     )
+
+    def _source(self) -> ROOT_HOOK:
+        def _hook(nes: list[str]):
+            self.source = nes
+
+        return self.source, _hook
+
+    def _related_data(self, /) -> Iterable[ROOT_HOOK]:
+        def _hook(ner: list[str]):
+            self.relatedData = ner
+
+        return ((self.relatedData, _hook),)

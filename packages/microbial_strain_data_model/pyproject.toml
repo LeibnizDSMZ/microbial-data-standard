@@ -17,7 +17,8 @@ dependencies = [
   "pendulum >=3.2,<4",
   "anytree >=2.12,<3",
   "jsonref >=1.1,<2",
-  "jsonschema >=4.19,<5"
+  "jsonschema >=4.19,<5",
+  "deepdiff >=9.0.0,<10"
 ]
 
 [tool.setuptools.packages.find]

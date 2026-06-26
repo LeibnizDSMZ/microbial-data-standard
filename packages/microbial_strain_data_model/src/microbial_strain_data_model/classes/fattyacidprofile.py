@@ -2,11 +2,13 @@
 #
 # SPDX-License-Identifier: MIT
 
+from pydantic import BaseModel
+from typing import Iterable
+from microbial_strain_data_model.classes.root import ROOT_HOOK
 from typing import Self
-from pydantic import BaseModel, ConfigDict, Field, model_validator
+from pydantic import ConfigDict, Field, model_validator
 
 from microbial_strain_data_model.classes.chemicalsubstance import FattyAcid
-
 from microbial_strain_data_model.classes.links import RelationLink, SourceLink
 
 
@@ -45,3 +47,15 @@ class FattyAcidProfile(BaseModel):
         if len(self.profile) < 1:
             raise ValueError("Fatty Acis Profile must contain at least one Fatty Acid")
         return self
+
+    def _source(self) -> ROOT_HOOK:
+        def _hook(nes: list[str]):
+            self.source = nes
+
+        return self.source, _hook
+
+    def _related_data(self, /) -> Iterable[ROOT_HOOK]:
+        def _hook(ner: list[str]):
+            self.relatedData = ner
+
+        return ((self.relatedData, _hook),)

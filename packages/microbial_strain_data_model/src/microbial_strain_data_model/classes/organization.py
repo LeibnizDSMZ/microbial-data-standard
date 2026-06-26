@@ -2,6 +2,9 @@
 #
 # SPDX-License-Identifier: MIT
 
+from typing import Iterable
+from microbial_strain_data_model.classes.root import ROOT_HOOK
+from pydantic.fields import PrivateAttr
 from typing_extensions import Annotated
 from pydantic import BaseModel, ConfigDict, Field, HttpUrl, EmailStr, StringConstraints
 from microbial_strain_data_model.classes.address import Address
@@ -10,6 +13,8 @@ from microbial_strain_data_model.classes.identifier import Identifier
 
 from microbial_strain_data_model.classes.person import Person
 from microbial_strain_data_model.classes.links import SourceLink
+
+type _INDEX = tuple[HttpUrl | str | None, ...]
 
 
 class Organization(BaseModel):
@@ -41,6 +46,24 @@ class Organization(BaseModel):
         default=None, title="Email", description="Contact email"
     )
     logo: HttpUrl | None = Field(default=None, title="Logo", description="Link to logo")
+
+    _index: _INDEX | None = PrivateAttr(default=None)
+
+    def index(self) -> _INDEX:
+        if self._index is None:
+            core = [self.name, self.legalName, self.url, self.email, self.logo]
+            if self.identifier:
+                core.extend(ind for idi in self.identifier for ind in idi.index())
+            else:
+                core.append(None)
+
+            if self.address:
+                core.extend(self.address.index())
+            else:
+                core.append(None)
+            self._index = tuple(core)
+
+        return self._index
 
 
 class Collection(Organization):
@@ -127,3 +150,12 @@ class Collection(Organization):
     source: list[SourceLink] = Field(
         title="Source", description="List of JSON paths to source object"
     )
+
+    def _source(self) -> ROOT_HOOK:
+        def _hook(nes: list[str]):
+            self.source = nes
+
+        return self.source, _hook
+
+    def _related_data(self, /) -> Iterable[ROOT_HOOK]:
+        return tuple()

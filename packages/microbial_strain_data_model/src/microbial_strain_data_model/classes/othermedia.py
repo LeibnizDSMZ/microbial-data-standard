@@ -2,6 +2,8 @@
 #
 # SPDX-License-Identifier: MIT
 
+from typing import Iterable
+from microbial_strain_data_model.classes.root import ROOT_HOOK
 from microbial_strain_data_model.shared.verify.empty import check_not_completely_empty
 from typing import Self
 from pydantic import (
@@ -46,3 +48,12 @@ class OtherMedia(BaseModel):
         if check_not_completely_empty(self):
             return self
         raise ValueError("Wrong other media")
+
+    def _source(self) -> ROOT_HOOK:
+        def _hook(nes: list[str]):
+            self.source = nes
+
+        return self.source, _hook
+
+    def _related_data(self, /) -> Iterable[ROOT_HOOK]:
+        return tuple()

@@ -2,6 +2,7 @@
 #
 # SPDX-License-Identifier: MIT
 
+from microbial_strain_data_model.classes.root import ROOT_HOOK
 from pydantic import BaseModel, ConfigDict, Field
 
 from microbial_strain_data_model.classes.enums import (
@@ -42,3 +43,9 @@ class MetaboliteTest(BaseModel):
         title="Related Data",
         description="JSON paths to relation object",
     )
+
+    def _hook_related_data(self) -> ROOT_HOOK:
+        def _hook(ner: list[str]):
+            self.relatedData = ner
+
+        return self.relatedData, _hook

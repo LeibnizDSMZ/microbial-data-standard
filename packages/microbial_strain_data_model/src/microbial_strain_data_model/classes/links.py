@@ -5,6 +5,7 @@
 from typing_extensions import Annotated
 
 from pydantic import StringConstraints
+from enum import Enum
 
 
 SourceLink = Annotated[
@@ -12,3 +13,8 @@ SourceLink = Annotated[
     StringConstraints(pattern=r"^\/sources\/\d+$"),
 ]
 RelationLink = Annotated[str, StringConstraints(pattern=r"^\/relatedData\/\d+$")]
+
+
+class LinkType(str, Enum):
+    source = "sources"
+    related_data = "relatedData"

@@ -2,8 +2,12 @@
 #
 # SPDX-License-Identifier: MIT
 
+from pydantic import PrivateAttr
+from pydantic import HttpUrl
 from pydantic import BaseModel, ConfigDict, Field
 from microbial_strain_data_model.classes.identifier import Identifier
+
+type _INDEX = tuple[str, *tuple[HttpUrl | str | None, ...]]
 
 
 class Person(BaseModel):
@@ -24,3 +28,12 @@ class Person(BaseModel):
         title="Identifier",
         description="Person identifiers like ORCID",
     )
+    _index: _INDEX | None = PrivateAttr(default=None)
+
+    def index(self) -> _INDEX:
+        if self._index is None:
+            self._index = (
+                self.name,
+                *(ind for idi in self.identifier for ind in idi.index()),
+            )
+        return self._index
