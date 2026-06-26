@@ -2,6 +2,8 @@
 #
 # SPDX-License-Identifier: MIT
 
+from microbial_strain_data_model.classes.root import ROOT_HOOK
+from typing import Iterable
 from pydantic import BaseModel, ConfigDict, HttpUrl, Field
 
 from microbial_strain_data_model.classes.enums import Host, PathogenLevel
@@ -39,3 +41,12 @@ class Pathogen(BaseModel):
     source: list[SourceLink] = Field(
         title="Source", description="List of JSON paths to source object"
     )
+
+    def _source(self) -> ROOT_HOOK:
+        def _hook(nes: list[str]):
+            self.source = nes
+
+        return self.source, _hook
+
+    def _related_data(self, /) -> Iterable[ROOT_HOOK]:
+        return tuple()

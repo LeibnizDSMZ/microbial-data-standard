@@ -2,6 +2,8 @@
 #
 # SPDX-License-Identifier: MIT
 
+from typing import Iterable
+from microbial_strain_data_model.classes.root import ROOT_HOOK
 from microbial_strain_data_model.shared.verify.empty import check_not_completely_empty
 from typing import Self
 from typing_extensions import Annotated
@@ -59,6 +61,15 @@ class CellWall(ChemicalSubstance):
         if check_not_completely_empty(self):
             return self
         raise ValueError("Wrong cell wall definition")
+
+    def _source(self) -> ROOT_HOOK:
+        def _hook(nes: list[str]):
+            self.source = nes
+
+        return self.source, _hook
+
+    def _related_data(self, /) -> Iterable[ROOT_HOOK]:
+        return tuple()
 
 
 class FattyAcid(ChemicalSubstance):
@@ -119,6 +130,15 @@ class Halophil(ChemicalSubstance):
             return self
         raise ValueError("Wrong halophil definition")
 
+    def _source(self) -> ROOT_HOOK:
+        def _hook(nes: list[str]):
+            self.source = nes
+
+        return self.source, _hook
+
+    def _related_data(self, /) -> Iterable[ROOT_HOOK]:
+        return tuple(test._hook_related_data() for test in self.tests)
+
 
 class Metabolite(ChemicalSubstance):
     """Information about tested Metabolites."""
@@ -144,3 +164,13 @@ class Metabolite(ChemicalSubstance):
         if check_not_completely_empty(self):
             return self
         raise ValueError("Wrong metabolite definition")
+
+    def _source(self) -> ROOT_HOOK:
+        def _hook(nes: list[str]):
+            self.source = nes
+
+        return self.source, _hook
+
+    def _related_data(self, /) -> Iterable[ROOT_HOOK]:
+        for test in self.tests:
+            yield test._hook_related_data()

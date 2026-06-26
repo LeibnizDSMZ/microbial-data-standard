@@ -2,9 +2,14 @@
 #
 # SPDX-License-Identifier: MIT
 
+from microbial_strain_data_model.classes.root import ROOT_HOOK
+from typing import Iterable
+from pydantic.fields import PrivateAttr
 from pydantic import BaseModel, ConfigDict, Field, HttpUrl
 
 from microbial_strain_data_model.classes.links import SourceLink
+
+type _INDEX = tuple[str, str, str | None, HttpUrl | None, HttpUrl | None]
 
 
 class Identifier(BaseModel):
@@ -35,6 +40,13 @@ class Identifier(BaseModel):
         description="Logo of the Identifier Organization (e.g. DOI, ORCID, ROR, ...)",
     )
 
+    _index: _INDEX | None = PrivateAttr(default=None)
+
+    def index(self) -> _INDEX:
+        if self._index is None:
+            self._index = (self.name, self.value, self.propertyID, self.url, self.logo)
+        return self._index
+
 
 class IdentifierStrain(Identifier):
     model_config = ConfigDict(
@@ -47,3 +59,12 @@ class IdentifierStrain(Identifier):
     source: list[SourceLink] = Field(
         title="Source", description="List of JSON paths to source object"
     )
+
+    def _source(self) -> ROOT_HOOK:
+        def _hook(nes: list[str]):
+            self.source = nes
+
+        return self.source, _hook
+
+    def _related_data(self, /) -> Iterable[ROOT_HOOK]:
+        return tuple()

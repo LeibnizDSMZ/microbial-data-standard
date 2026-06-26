@@ -2,7 +2,10 @@
 #
 # SPDX-License-Identifier: MIT
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel
+from typing import Iterable
+from microbial_strain_data_model.classes.root import ROOT_HOOK
+from pydantic import ConfigDict, Field
 
 from microbial_strain_data_model.classes.enums import SequenceLevel, SequenceType
 from microbial_strain_data_model.classes.identifier import Identifier
@@ -28,3 +31,12 @@ class Sequence(BaseModel):
     source: list[SourceLink] = Field(
         title="Source", description="List of JSON paths to source object"
     )
+
+    def _source(self) -> ROOT_HOOK:
+        def _hook(nes: list[str]):
+            self.source = nes
+
+        return self.source, _hook
+
+    def _related_data(self, /) -> Iterable[ROOT_HOOK]:
+        return tuple()

@@ -2,6 +2,8 @@
 #
 # SPDX-License-Identifier: MIT
 
+from typing import Iterable
+from microbial_strain_data_model.classes.root import ROOT_HOOK
 from typing_extensions import Self
 from pydantic import (
     BaseModel,
@@ -46,3 +48,12 @@ class Literature(LiteratureSource):
     source: list[SourceLink] = Field(
         title="Source", description="List of JSON paths to source object"
     )
+
+    def _source(self) -> ROOT_HOOK:
+        def _hook(nes: list[str]):
+            self.source = nes
+
+        return self.source, _hook
+
+    def _related_data(self, /) -> Iterable[ROOT_HOOK]:
+        return tuple()

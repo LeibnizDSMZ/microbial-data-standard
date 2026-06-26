@@ -2,8 +2,11 @@
 #
 # SPDX-License-Identifier: MIT
 
+from pydantic import BaseModel
+from microbial_strain_data_model.classes.root import ROOT_HOOK
+from typing import Iterable
 from typing_extensions import Annotated
-from pydantic import BaseModel, ConfigDict, Field, StringConstraints
+from pydantic import ConfigDict, Field, StringConstraints
 
 from microbial_strain_data_model.classes.country import Country
 from microbial_strain_data_model.classes.isolationtag import IsolationTag
@@ -92,3 +95,12 @@ class Origin(BaseModel):
     source: list[SourceLink] = Field(
         title="Source", description="List of JSON paths to source object"
     )
+
+    def _source(self) -> ROOT_HOOK:
+        def _hook(nes: list[str]):
+            self.source = nes
+
+        return self.source, _hook
+
+    def _related_data(self, /) -> Iterable[ROOT_HOOK]:
+        return tuple()

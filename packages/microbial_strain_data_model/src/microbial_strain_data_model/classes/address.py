@@ -2,10 +2,21 @@
 #
 # SPDX-License-Identifier: MIT
 
+from pydantic.fields import PrivateAttr
 from microbial_strain_data_model.shared.verify.empty import check_not_completely_empty
 from typing import Self
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 from pydantic_extra_types.country import CountryAlpha2
+
+type _INDEX = tuple[
+    str | None,
+    CountryAlpha2 | None,
+    str | None,
+    str | None,
+    str | None,
+    str | None,
+    str | None,
+]
 
 
 class Address(BaseModel):
@@ -40,8 +51,23 @@ class Address(BaseModel):
         description="Name of the street and number within street",
     )
 
+    _index: _INDEX | None = PrivateAttr(default=None)
+
     @model_validator(mode="after")
     def _check_values(self) -> Self:
         if check_not_completely_empty(self):
             return self
         raise ValueError("Wrong address")
+
+    def index(self) -> _INDEX:
+        if self._index is None:
+            self._index = (
+                self.addressCountry,
+                self.addressCountryIso,
+                self.addressRegion,
+                self.addressLocality,
+                self.postOfficeBoxNumber,
+                self.postalCode,
+                self.streetAddress,
+            )
+        return self._index

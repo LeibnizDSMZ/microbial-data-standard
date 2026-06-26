@@ -2,6 +2,8 @@
 #
 # SPDX-License-Identifier: MIT
 
+from typing import Iterable
+from microbial_strain_data_model.classes.root import ROOT_HOOK
 from pydantic import BaseModel, ConfigDict, Field
 
 from microbial_strain_data_model.classes.enums import OxygenTolerance
@@ -32,6 +34,12 @@ class GrowthRange(BaseModel):
         title="Related Data",
         description="JSON paths to relation object",
     )
+
+    def _hook_related_data(self) -> ROOT_HOOK:
+        def _hook(ner: list[str]):
+            self.relatedData = ner
+
+        return self.relatedData, _hook
 
 
 class GrowthCondition(BaseModel):
@@ -87,3 +95,15 @@ class GrowthCondition(BaseModel):
     source: list[SourceLink] = Field(
         title="Source", description="List of JSON paths to source object"
     )
+
+    def _source(self) -> ROOT_HOOK:
+        def _hook(nes: list[str]):
+            self.source = nes
+
+        return self.source, _hook
+
+    def _related_data(self, /) -> Iterable[ROOT_HOOK]:
+        for test in self.testsPh:
+            yield test._hook_related_data()
+        for test in self.testsTemperature:
+            yield test._hook_related_data()
