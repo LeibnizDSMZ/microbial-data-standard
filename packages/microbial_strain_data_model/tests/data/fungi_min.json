@@ -1,0 +1,55 @@
+{
+  "identifier": [
+    {
+      "name": "CCNO",
+      "source": [
+        "/sources/0"
+      ],
+      "value": "CBS 562"
+    }
+  ],
+  "organismType": "Fungi",
+  "otherMedia": [
+    {
+      "name": "test",
+      "source": [
+        "/sources/0"
+      ]
+    }
+  ],
+  "primaryId": "test_fungi",
+  "sources": [
+    {
+      "mode": "automated",
+      "name": "DSMZ",
+      "publisher": [
+        {
+          "address": {
+            "addressCountry": "DE"
+          },
+          "legalName": "Leibniz Institut: Deutsche Sammlung f\u00fcr Microorganismen und Zellkulturen, GmbH",
+          "name": "DSMZ"
+        }
+      ],
+      "sourceType": "dataset"
+    }
+  ],
+  "taxon": [
+    {
+      "name": "BBBBBBBBBBBBBBBBBBB",
+      "source": [
+        "/sources/0"
+      ],
+      "taxonRank": "species",
+      "taxonStatus": "validly published"
+    }
+  ],
+  "typeStrain": [
+    {
+      "source": [
+        "/sources/1"
+      ],
+      "typeStrain": false
+    }
+  ]
+}
