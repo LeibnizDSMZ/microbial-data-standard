@@ -95,19 +95,3 @@ def micro():
             )
         ],
     )
-
-
-def test_microbe(micro: Strain) -> None:
-    assert micro.organismType == "Bacteria"
-
-
-def test_populate_new_class(micro: Strain) -> None:
-    new_micro = Strain(
-        primaryId=micro.primaryId,
-        organismType=micro.organismType,
-        typeStrain=micro.typeStrain,
-        taxon=micro.taxon,
-        sources=micro.sources,
-        identifier=micro.identifier,
-    )
-    assert new_micro

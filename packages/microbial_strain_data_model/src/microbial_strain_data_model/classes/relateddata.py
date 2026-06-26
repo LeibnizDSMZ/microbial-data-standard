@@ -25,8 +25,8 @@ class RelatedData(BaseModel):
     )
     source: SourceLink = Field(title="Source", description="JSON path to source object")
 
-    def index(self) -> str:
-        return self.relation
+    def index(self) -> tuple[str, str]:
+        return self.relation, self.source
 
     def _source(self) -> ROOT_HOOK:
         def _hook(nes: list[str]):

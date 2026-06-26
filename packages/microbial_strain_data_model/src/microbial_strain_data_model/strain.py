@@ -2,6 +2,7 @@
 #
 # SPDX-License-Identifier: MIT
 
+from collections import defaultdict
 from microbial_strain_data_model.shared.data_ops.mapping import (
     build_link_mapping_and_merge,
 )
@@ -228,7 +229,7 @@ class Strain(BaseModel):
     ###
 
     _cache: dict[str, dict[str, Root]] = PrivateAttr(
-        default_factory=dict,
+        default_factory=lambda: defaultdict(dict),
     )
 
     def check_constrains(self, r_mi: Self) -> bool:
@@ -240,71 +241,70 @@ class Strain(BaseModel):
             )
         return True
 
-    def _join_field_right(
+    def _join_field_unique(
         self,
         field_name: str,
-        attr_right: list[Any],
+        attr_list: list[Any],
         source_map: dict[str, str],
         related_data_map: dict[str, str],
         /,
     ) -> Iterable[Root | RelatedData]:
-        for data_obj_right in attr_right:
-            if not (
-                isinstance(data_obj_right, _ROOT_TYPES)
-                or isinstance(data_obj_right, RelatedData)
-            ):
+        for data_obj in attr_list:
+            if not isinstance(data_obj, _ROOT_TYPES):
                 continue
-            fix_source(data_obj_right, source_map)
-            if isinstance(data_obj_right, RelatedData):
-                yield data_obj_right
-                continue
-            fix_related_data(data_obj_right, related_data_map)
+            fix_source(data_obj, source_map)
+            fix_related_data(data_obj, related_data_map)
             hash_right = DeepHash(
-                (data_obj_right_d := data_obj_right.model_dump()),
+                (data_obj_right_d := data_obj.model_dump()),
                 exclude_regex_paths=[_SRC_PATH, _REL_PATH],
             )[data_obj_right_d]
             same_obj: Root | None = self._cache.get(field_name, {}).get(hash_right, None)
             if same_obj is not None:
-                join_links(same_obj, data_obj_right)
+                join_links(same_obj, data_obj)
             else:
-                self._cache[field_name][hash_right] = data_obj_right
-                yield data_obj_right
+                self._cache[field_name][hash_right] = data_obj
+                yield data_obj
 
     def join(self, to_join: Self, /) -> Self:
         # Step 1
         self.check_constrains(to_join)
         # Step 2
-        source_map, links = build_link_mapping_and_merge(
+        source_map_l, source_map_r, links = build_link_mapping_and_merge(
             self.sources, to_join.sources, LinkType.source
         )
-        self.sources.extend(links)
+        self.sources = links
+        to_fix = (
+            (self.relatedData, source_map_l),
+            (to_join.relatedData, source_map_r),
+        )
+        for rel_dat, src_map in to_fix:
+            for rel in rel_dat:
+                fix_source(rel, src_map)
         # Step 3
-        related_data_map, links = build_link_mapping_and_merge(
+        related_data_map_l, related_data_map_r, links = build_link_mapping_and_merge(
             self.relatedData, to_join.relatedData, LinkType.related_data
         )
-        self.relatedData.extend(links)
+        self.relatedData = links
         # Step 4
         not_cached = len(self._cache) == 0
         for field_name in Strain.model_fields.keys():
-            if field_name == "sources":
+            if field_name == "sources" or field_name == "relatedData":
                 continue
             attr_right = getattr(to_join, field_name)
             attr_left = getattr(self, field_name)
             if not (isinstance(attr_right, list) and isinstance(attr_left, list)):
                 continue
 
-            if not_cached and field_name != "relatedData":
-                self._cache[field_name] = {
-                    DeepHash(
-                        (ele_d := ele.model_dump()),
-                        exclude_regex_paths=[_SRC_PATH, _REL_PATH],
-                    )[ele_d]: ele
-                    for ele in attr_left
-                    if isinstance(ele, _ROOT_TYPES)
-                }
+            if not_cached:
+                joined = list(
+                    self._join_field_unique(
+                        field_name, attr_left, source_map_l, related_data_map_l
+                    )
+                )
+                setattr(self, field_name, joined)
             attr_left.extend(
-                self._join_field_right(
-                    field_name, attr_right, source_map, related_data_map
+                self._join_field_unique(
+                    field_name, attr_right, source_map_r, related_data_map_r
                 )
             )
         return self

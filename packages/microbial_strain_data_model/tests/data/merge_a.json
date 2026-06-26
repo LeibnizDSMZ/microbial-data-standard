@@ -1,0 +1,114 @@
+{
+  "cultivationMedia": [
+    {
+      "name": "test medium 1",
+      "relatedData": [
+        "/relatedData/0"
+      ],
+      "source": [
+        "/sources/0"
+      ]
+    },
+    {
+      "name": "test medium 2",
+      "relatedData": [
+        "/relatedData/1"
+      ],
+      "source": [
+        "/sources/1"
+      ]
+    }
+  ],
+  "identifier": [
+    {
+      "name": "CCNO",
+      "source": [
+        "/sources/0"
+      ],
+      "value": "ATCC 18804"
+    }
+  ],
+  "organismType": "Bacteria",
+  "origin": [
+    {
+      "source": [
+        "/sources/0"
+      ],
+      "tags": [
+        {
+          "level1": "#Host",
+          "level2": "#Fishes",
+          "level3": "#Zebrafish"
+        }
+      ]
+    }
+  ],
+  "otherMedia": [
+    {
+      "name": "test",
+      "source": [
+        "/sources/0"
+      ],
+      "url": "https://aaaaaaaa.aa"
+    }
+  ],
+  "primaryId": "test1",
+  "relatedData": [
+    {
+      "relation": "test relation 1",
+      "source": "/sources/0"
+    },
+    {
+      "relation": "test relation 2",
+      "source": "/sources/0"
+    }
+  ],
+  "sources": [
+    {
+      "mode": "automated",
+      "name": "DSMZ",
+      "publisher": [
+        {
+          "address": {
+            "addressCountry": "DE"
+          },
+          "legalName": "Leibniz Institut: Deutsche Sammlung f\u00fcr Microorganismen und Zellkulturen, GmbH",
+          "name": "DSMZ"
+        }
+      ],
+      "sourceType": "dataset"
+    },
+    {
+      "mode": "automated",
+      "name": "DSMZ 2",
+      "publisher": [
+        {
+          "address": {
+            "addressCountry": "DE"
+          },
+          "legalName": "AAAAAAAAAAAAAAA1",
+          "name": "Source2"
+        }
+      ],
+      "sourceType": "dataset"
+    }
+  ],
+  "taxon": [
+    {
+      "name": "AAAAAAAAAAAA",
+      "source": [
+        "/sources/0"
+      ],
+      "taxonRank": "species",
+      "taxonStatus": "validly published"
+    }
+  ],
+  "typeStrain": [
+    {
+      "source": [
+        "/sources/1"
+      ],
+      "typeStrain": false
+    }
+  ]
+}
