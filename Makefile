@@ -105,7 +105,7 @@ recom recommit:
 	echo "" > .commit_msg
 
 message:
-	git diff --staged -- . ':(exclude)*requirements*.txt' | \
+	git diff --staged -- . | \
 		jq -Rs --rawfile prompt configs/prompt/commit.md \
 			'{"stream": false, "model": "$(OLLAMA_MODEL)", "prompt": ("<GIT_DIFF>" + . + "</GIT_DIFF>" + $$prompt)}' | \
 		curl -s -X POST http://ollama:11434/api/generate \
