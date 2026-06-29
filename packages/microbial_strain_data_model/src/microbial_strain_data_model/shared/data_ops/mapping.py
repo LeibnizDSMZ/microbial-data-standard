@@ -19,7 +19,7 @@ def _append_link[T: (Source, RelatedData)](
     new_i = 0
     ori_len = len(core_index)
     for old_ind, to_link in enumerate(link_con):
-        key = to_link.index()
+        key = to_link._index()
         uni_pos = core_index.get(key, None)
         if uni_pos is not None:
             map[f"/{link_type.value}/{old_ind}"] = f"/{link_type.value}/{uni_pos}"

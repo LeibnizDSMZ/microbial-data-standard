@@ -4,7 +4,6 @@
 
 from microbial_strain_data_model.classes.root import ROOT_HOOK
 from typing import Iterable
-from pydantic.fields import PrivateAttr
 from pydantic import BaseModel, ConfigDict, Field, HttpUrl
 
 from microbial_strain_data_model.classes.links import SourceLink
@@ -40,12 +39,8 @@ class Identifier(BaseModel):
         description="Logo of the Identifier Organization (e.g. DOI, ORCID, ROR, ...)",
     )
 
-    _index: _INDEX | None = PrivateAttr(default=None)
-
-    def index(self) -> _INDEX:
-        if self._index is None:
-            self._index = (self.name, self.value, self.propertyID, self.url, self.logo)
-        return self._index
+    def _index(self) -> _INDEX:
+        return (self.name, self.value, self.propertyID, self.url, self.logo)
 
 
 class IdentifierStrain(Identifier):

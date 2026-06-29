@@ -2,10 +2,10 @@
 #
 # SPDX-License-Identifier: MIT
 
+from typing import Self
 from microbial_strain_data_model.shared.data_con.isolation_sources_tree import (
     create_iso_src_root,
 )
-from typing_extensions import Self
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 from anytree.resolver import Resolver, ChildResolverError
 

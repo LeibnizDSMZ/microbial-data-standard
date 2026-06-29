@@ -2,11 +2,11 @@
 #
 # SPDX-License-Identifier: MIT
 
+from typing import Annotated
 from typing import Iterable
 from microbial_strain_data_model.classes.root import ROOT_HOOK
 from microbial_strain_data_model.shared.verify.empty import check_not_completely_empty
 from typing import Self
-from typing_extensions import Annotated
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from microbial_strain_data_model.classes.enums import ConcentrationUnit

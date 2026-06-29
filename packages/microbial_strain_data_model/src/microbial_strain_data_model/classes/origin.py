@@ -2,10 +2,10 @@
 #
 # SPDX-License-Identifier: MIT
 
+from typing import Annotated
 from pydantic import BaseModel
 from microbial_strain_data_model.classes.root import ROOT_HOOK
 from typing import Iterable
-from typing_extensions import Annotated
 from pydantic import ConfigDict, Field, StringConstraints
 
 from microbial_strain_data_model.classes.country import Country
