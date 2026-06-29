@@ -2,8 +2,8 @@
 #
 # SPDX-License-Identifier: MIT
 
-from typing_extensions import Annotated
 
+from typing import Annotated
 from pydantic import StringConstraints
 from enum import Enum
 

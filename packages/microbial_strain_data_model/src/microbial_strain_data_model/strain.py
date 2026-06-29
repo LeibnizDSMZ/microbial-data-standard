@@ -266,6 +266,22 @@ class Strain(BaseModel):
                 yield data_obj
 
     def join(self, to_join: Self, /) -> Self:
+        """Joins this instance with another instance of the same type.
+
+        Combines data from two Strain instances by first validating constraints between
+        instances, then merging source references and fixing related data, followed by merging
+        related data references, and finally joining all other fields while maintaining
+        uniqueness.
+
+        Args:
+            to_join: Another Strain instance to join with this one
+
+        Returns:
+            Self: The modified instance with joined data
+
+        Raises:
+            ValueError: If constraint validation fails
+        """
         # Step 1
         self.check_constrains(to_join)
         # Step 2

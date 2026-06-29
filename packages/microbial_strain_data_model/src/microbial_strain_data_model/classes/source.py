@@ -2,12 +2,12 @@
 #
 # SPDX-License-Identifier: MIT
 
+from typing import Self
 from pydantic.fields import PrivateAttr
 from pydantic_extra_types.country import CountryAlpha2
 from pydantic import EmailStr
 from pydantic_extra_types.pendulum_dt import Date
 from pydantic import BaseModel, ConfigDict, Field, HttpUrl, model_validator
-from typing_extensions import Self
 
 from microbial_strain_data_model.classes.enums import CurationMode, SourceType
 from microbial_strain_data_model.classes.identifier import Identifier
@@ -42,7 +42,7 @@ class Source(BaseModel):
     author: list[Person] = Field(default_factory=list, title="Author")
     publisher: list[Organization] = Field(default_factory=list, title="Publisher")
 
-    _index: _INDEX | None = PrivateAttr(default=None)
+    _ca_index: _INDEX | None = PrivateAttr(default=None)
 
     @model_validator(mode="after")
     def _check_if_name_or_url_is_set(self) -> Self:
@@ -50,9 +50,9 @@ class Source(BaseModel):
             raise ValueError("name or url is needed")
         return self
 
-    def index(self) -> _INDEX:
-        if self._index is None:
-            self._index = (
+    def _index(self) -> _INDEX:
+        if self._ca_index is None:
+            self._ca_index = (
                 self.sourceType,
                 self.mode,
                 self.name,
@@ -60,8 +60,8 @@ class Source(BaseModel):
                 self.datePublished,
                 self.dateRecorded,
                 self.lastUpdate,
-                *(ind for idi in self.identifier for ind in idi.index()),
-                *(ind for aut in self.author for ind in aut.index()),
-                *(ind for org in self.publisher for ind in org.index()),
+                *(ind for idi in self.identifier for ind in idi._index()),
+                *(ind for aut in self.author for ind in aut._index()),
+                *(ind for org in self.publisher for ind in org._index()),
             )
-        return self._index
+        return self._ca_index
