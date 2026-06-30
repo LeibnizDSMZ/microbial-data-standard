@@ -52,7 +52,7 @@ Validate a dict against the pydantic model:
 from microbial_strain_data_model.strain import Strain
 
 data = {...}
-Strain.model_validate_json(data)
+Strain.model_validate(data)
 ```
 
 Validate a JSON against the pydantic model:
@@ -74,7 +74,7 @@ with open("PATH_TO_SCHEMA", "r") as schema_file:
         schema = json.load(schema_file)
 
 with open("PATH_TO_FILE", "r") as f_in:
-        json_content = json.loads(f_in)
+        json_content = json.load(f_in)
 
 jsonschema.validate(json_content, schema)
 ```
