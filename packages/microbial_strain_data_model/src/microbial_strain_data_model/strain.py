@@ -2,6 +2,7 @@
 #
 # SPDX-License-Identifier: MIT
 
+from typing import Literal
 from microbial_strain_data_model.classes.root import split_item
 from copy import deepcopy
 from microbial_strain_data_model.shared.data_ops.mapping import (
@@ -107,6 +108,10 @@ class Strain(BaseModel):
         revalidate_instances="always",
         str_strip_whitespace=True,
     )
+
+    # version
+
+    version: Literal[1]
 
     # single data points
 

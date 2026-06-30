@@ -2,6 +2,7 @@
 #
 # SPDX-License-Identifier: MIT
 
+version  # unused variable (packages/microbial_strain_data_model/src/microbial_strain_data_model/strain.py:114)
 addressCountry  # unused variable (src/microbial_strain_data_model/classes/address.py:17)
 addressCountryIso  # unused variable (src/microbial_strain_data_model/classes/address.py:20)
 addressRegion  # unused variable (src/microbial_strain_data_model/classes/address.py:25)
