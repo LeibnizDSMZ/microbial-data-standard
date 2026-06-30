@@ -2,13 +2,14 @@
 #
 # SPDX-License-Identifier: MIT
 
+from microbial_strain_data_model.shared.data_ops.cast import to_string
 from microbial_strain_data_model.classes.root import ROOT_HOOK
 from typing import Iterable
 from pydantic import BaseModel, ConfigDict, Field, HttpUrl
 
 from microbial_strain_data_model.classes.links import SourceLink
 
-type _INDEX = tuple[str, str, str | None, HttpUrl | None, HttpUrl | None]
+type _INDEX = tuple[str, str, str | None, str | None, str | None]
 
 
 class Identifier(BaseModel):
@@ -40,7 +41,13 @@ class Identifier(BaseModel):
     )
 
     def _index(self) -> _INDEX:
-        return (self.name, self.value, self.propertyID, self.url, self.logo)
+        return (
+            self.name,
+            self.value,
+            self.propertyID,
+            to_string(self.url),
+            to_string(self.logo),
+        )
 
 
 class IdentifierStrain(Identifier):

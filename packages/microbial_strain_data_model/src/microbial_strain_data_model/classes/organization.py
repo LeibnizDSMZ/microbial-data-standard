@@ -2,6 +2,7 @@
 #
 # SPDX-License-Identifier: MIT
 
+from microbial_strain_data_model.shared.data_ops.cast import to_string
 from typing import Annotated
 from typing import Iterable
 from microbial_strain_data_model.classes.root import ROOT_HOOK
@@ -13,7 +14,7 @@ from microbial_strain_data_model.classes.identifier import Identifier
 from microbial_strain_data_model.classes.person import Person
 from microbial_strain_data_model.classes.links import SourceLink
 
-type _INDEX = tuple[HttpUrl | str | None, ...]
+type _INDEX = tuple[str | None, ...]
 
 
 class Organization(BaseModel):
@@ -47,7 +48,13 @@ class Organization(BaseModel):
     logo: HttpUrl | None = Field(default=None, title="Logo", description="Link to logo")
 
     def _index(self) -> _INDEX:
-        core = [self.name, self.legalName, self.url, self.email, self.logo]
+        core = [
+            self.name,
+            self.legalName,
+            to_string(self.url),
+            self.email,
+            to_string(self.logo),
+        ]
         if self.identifier:
             core.extend(ind for idi in self.identifier for ind in idi._index())
         else:

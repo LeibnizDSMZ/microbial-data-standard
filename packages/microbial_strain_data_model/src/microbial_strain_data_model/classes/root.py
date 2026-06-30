@@ -2,6 +2,11 @@
 #
 # SPDX-License-Identifier: MIT
 
+from microbial_strain_data_model.classes.links import LinkType
+from typing import cast
+from typing import TypeGuard
+from copy import deepcopy
+from typing import Mapping
 from typing import Protocol
 from typing import Callable
 from typing import Iterable
@@ -22,14 +27,14 @@ class Root(Protocol):
     def _related_data(self) -> Iterable[ROOT_HOOK]: ...
 
 
-def fix_source(root: _Source, map: dict[str, str], /) -> None:
+def fix_source(root: _Source, map: Mapping[str, str | None], /) -> None:
     sources, hook = root._source()
-    hook([map[src] for src in sources])
+    hook([mapped for src in sources if (mapped := map.get(src, src)) is not None])
 
 
-def fix_related_data(root: _RelatedData, map: dict[str, str], /) -> None:
+def fix_related_data(root: _RelatedData, map: Mapping[str, str | None], /) -> None:
     for rel_data, hook in root._related_data():
-        hook([map[rel] for rel in rel_data])
+        hook([mapped for rel in rel_data if (mapped := map.get(rel, rel)) is not None])
 
 
 def _join_related_data(origin: Root, to_join: Root, /) -> None:
@@ -50,3 +55,37 @@ def _join_source(origin: Root, to_join: Root, /) -> None:
 def join_links(origin: Root, to_join: Root, /) -> None:
     _join_source(origin, to_join)
     _join_related_data(origin, to_join)
+
+
+def _is_root(item: Root | _Source) -> TypeGuard[Root]:
+    return hasattr(item, "_related_data")
+
+
+def split_item[T: (Root, _Source)](
+    to_split_ind: int,
+    item: T,
+    map_src: tuple[dict[str, str | None], dict[str, str | None]],
+    map_rel: tuple[dict[str, str | None], dict[str, str | None]] | None = None,
+    /,
+) -> tuple[T | None, T | None]:
+    to_split_src = f"/{LinkType.source.value}/{to_split_ind}"
+    source_map_l, source_map_r = map_src
+    copied: T | None = None
+    is_root = map_rel is not None and _is_root(item)
+    sources = tuple(item._source()[0])
+    if to_split_src in sources:
+        copied = deepcopy(item)
+        fix_source(copied, source_map_r)
+        if is_root:
+            _, related_data_map_r = map_rel
+            fix_related_data(cast(Root, copied), related_data_map_r)
+    fix_source(item, source_map_l)
+
+    if len(sources) == 0:
+        return None, copied
+
+    if is_root:
+        related_data_map_l, _ = map_rel
+        fix_related_data(item, related_data_map_l)
+
+    return item, copied

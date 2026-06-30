@@ -2,11 +2,10 @@
 #
 # SPDX-License-Identifier: MIT
 
-from pydantic import HttpUrl
 from pydantic import BaseModel, ConfigDict, Field
 from microbial_strain_data_model.classes.identifier import Identifier
 
-type _INDEX = tuple[str, *tuple[HttpUrl | str | None, ...]]
+type _INDEX = tuple[str, *tuple[str | None, ...]]
 
 
 class Person(BaseModel):
