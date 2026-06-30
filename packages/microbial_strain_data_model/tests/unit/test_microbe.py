@@ -18,6 +18,7 @@ def test_microbe(micro: Strain) -> None:
 
 def test_populate_new_class(micro: Strain) -> None:
     new_micro = Strain(
+        version=1,
         primaryId=micro.primaryId,
         organismType=micro.organismType,
         typeStrain=micro.typeStrain,

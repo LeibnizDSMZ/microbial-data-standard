@@ -31,19 +31,6 @@
           "description": "Country ISO code, see ISO 3166-1 alpha-2",
           "title": "Country Iso"
         },
-        "addressLocality": {
-          "anyOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Locality within the region",
-          "title": "Locality"
-        },
         "addressRegion": {
           "anyOf": [
             {
@@ -56,6 +43,19 @@
           "default": null,
           "description": "Region within the country",
           "title": "Region"
+        },
+        "addressLocality": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Locality within the region",
+          "title": "Locality"
         },
         "postOfficeBoxNumber": {
           "anyOf": [
@@ -128,6 +128,11 @@
       "additionalProperties": false,
       "description": "Biosafety classification.",
       "properties": {
+        "riskgroup": {
+          "description": "In most cases a number system 1-4",
+          "title": "Riskgroup",
+          "type": "string"
+        },
         "classification": {
           "anyOf": [
             {
@@ -140,20 +145,6 @@
           "default": null,
           "description": "Classification Agency or Country, e.g. 'WHO' or 'German classification'",
           "title": "Classification"
-        },
-        "riskgroup": {
-          "description": "In most cases a number system 1-4",
-          "title": "Riskgroup",
-          "type": "string"
-        },
-        "source": {
-          "description": "List of JSON paths to source object",
-          "items": {
-            "pattern": "^\\/sources\\/\\d+$",
-            "type": "string"
-          },
-          "title": "Source",
-          "type": "array"
         },
         "url": {
           "anyOf": [
@@ -170,6 +161,15 @@
           "default": null,
           "description": "Uniform Resource Locator of a resource on the Internet",
           "title": "URL"
+        },
+        "source": {
+          "description": "List of JSON paths to source object",
+          "items": {
+            "pattern": "^\\/sources\\/\\d+$",
+            "type": "string"
+          },
+          "title": "Source",
+          "type": "array"
         }
       },
       "required": [
@@ -183,21 +183,6 @@
       "additionalProperties": false,
       "description": "Cell Wall constituent - ChemSubstance + percent of CellWall.",
       "properties": {
-        "alternateName": {
-          "description": "List of alternative names for this substance",
-          "items": {
-            "type": "string"
-          },
-          "title": "Alternate Name",
-          "type": "array"
-        },
-        "identifier": {
-          "items": {
-            "$ref": "#/$defs/Identifier"
-          },
-          "title": "Identifier",
-          "type": "array"
-        },
         "name": {
           "anyOf": [
             {
@@ -210,6 +195,21 @@
           "default": null,
           "description": "Valid scientific name",
           "title": "Name of Chemical Substance"
+        },
+        "identifier": {
+          "items": {
+            "$ref": "#/$defs/Identifier"
+          },
+          "title": "Identifier",
+          "type": "array"
+        },
+        "alternateName": {
+          "description": "List of alternative names for this substance",
+          "items": {
+            "type": "string"
+          },
+          "title": "Alternate Name",
+          "type": "array"
         },
         "percent": {
           "anyOf": [
@@ -245,12 +245,22 @@
       "additionalProperties": false,
       "description": "Information about one culture collection.",
       "properties": {
-        "absFile": {
+        "name": {
+          "description": "Short name of the organization",
+          "title": "Name",
+          "type": "string"
+        },
+        "identifier": {
+          "description": "Identifiers of the organization, e.g. ROR",
+          "items": {
+            "$ref": "#/$defs/Identifier"
+          },
+          "title": "Identifier",
+          "type": "array"
+        },
+        "legalName": {
           "anyOf": [
             {
-              "format": "uri",
-              "maxLength": 2083,
-              "minLength": 1,
               "type": "string"
             },
             {
@@ -258,8 +268,8 @@
             }
           ],
           "default": null,
-          "description": "Link to ABS file",
-          "title": "ABS related file"
+          "description": "Full legal name of the organization",
+          "title": "Legal Name"
         },
         "address": {
           "anyOf": [
@@ -274,6 +284,57 @@
           "description": "Address of the organization",
           "title": "Address"
         },
+        "url": {
+          "anyOf": [
+            {
+              "format": "uri",
+              "maxLength": 2083,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Link to homepage",
+          "title": "URL"
+        },
+        "email": {
+          "anyOf": [
+            {
+              "format": "email",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Contact email",
+          "title": "Email"
+        },
+        "logo": {
+          "anyOf": [
+            {
+              "format": "uri",
+              "maxLength": 2083,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Link to logo",
+          "title": "Logo"
+        },
+        "resourceNumber": {
+          "description": "The CCNO of the strain at this collection",
+          "title": "Resource Number",
+          "type": "string"
+        },
         "available": {
           "anyOf": [
             {
@@ -286,19 +347,6 @@
           "default": null,
           "description": "Is the strain in the current catalog",
           "title": "Availability"
-        },
-        "axenicCulture": {
-          "anyOf": [
-            {
-              "type": "boolean"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Is the culture pure or mixed with other microbes",
-          "title": "Axenic Culture"
         },
         "catalogUrl": {
           "anyOf": [
@@ -316,7 +364,57 @@
           "description": "Link to catalog",
           "title": "Catalog URL"
         },
-        "depositedAs": {
+        "restrictionsOnUse": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/microbial_strain_data_model__classes__enums__Restriction"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Restrictions of use by the collection",
+          "title": "Restrictions On Use"
+        },
+        "policyUrl": {
+          "anyOf": [
+            {
+              "format": "uri",
+              "maxLength": 2083,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Link to collections policy",
+          "title": "Policy URL"
+        },
+        "axenicCulture": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Is the culture pure or mixed with other microbes",
+          "title": "Axenic Culture"
+        },
+        "supplyForms": {
+          "description": "How the strain are available",
+          "items": {
+            "$ref": "#/$defs/SupplyForm"
+          },
+          "title": "Supply Forms",
+          "type": "array"
+        },
+        "history": {
           "anyOf": [
             {
               "type": "string"
@@ -326,8 +424,8 @@
             }
           ],
           "default": null,
-          "description": "The CCNO or designation before deposition",
-          "title": "Deposited as"
+          "description": "Exchange history of the strain",
+          "title": "History"
         },
         "depositionDate": {
           "anyOf": [
@@ -356,21 +454,7 @@
           "description": "Person who deposited the strain at this collection",
           "title": "Depositor"
         },
-        "email": {
-          "anyOf": [
-            {
-              "format": "email",
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Contact email",
-          "title": "Email"
-        },
-        "history": {
+        "depositedAs": {
           "anyOf": [
             {
               "type": "string"
@@ -380,45 +464,21 @@
             }
           ],
           "default": null,
-          "description": "Exchange history of the strain",
-          "title": "History"
+          "description": "The CCNO or designation before deposition",
+          "title": "Deposited as"
         },
-        "identifier": {
-          "description": "Identifiers of the organization, e.g. ROR",
-          "items": {
-            "$ref": "#/$defs/Identifier"
-          },
-          "title": "Identifier",
-          "type": "array"
-        },
-        "legalName": {
+        "registeredCollection": {
           "anyOf": [
             {
-              "type": "string"
+              "type": "boolean"
             },
             {
               "type": "null"
             }
           ],
           "default": null,
-          "description": "Full legal name of the organization",
-          "title": "Legal Name"
-        },
-        "logo": {
-          "anyOf": [
-            {
-              "format": "uri",
-              "maxLength": 2083,
-              "minLength": 1,
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Link to logo",
-          "title": "Logo"
+          "description": "Registered collection status of this collection",
+          "title": "Registered Collection"
         },
         "mtaFile": {
           "anyOf": [
@@ -436,12 +496,7 @@
           "description": "Link to MTA file",
           "title": "MTA file"
         },
-        "name": {
-          "description": "Short name of the organization",
-          "title": "Name",
-          "type": "string"
-        },
-        "policyUrl": {
+        "absFile": {
           "anyOf": [
             {
               "format": "uri",
@@ -454,39 +509,8 @@
             }
           ],
           "default": null,
-          "description": "Link to collections policy",
-          "title": "Policy URL"
-        },
-        "registeredCollection": {
-          "anyOf": [
-            {
-              "type": "boolean"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Registered collection status of this collection",
-          "title": "Registered Collection"
-        },
-        "resourceNumber": {
-          "description": "The CCNO of the strain at this collection",
-          "title": "Resource Number",
-          "type": "string"
-        },
-        "restrictionsOnUse": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/microbial_strain_data_model__classes__enums__Restriction"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Restrictions of use by the collection",
-          "title": "Restrictions On Use"
+          "description": "Link to ABS file",
+          "title": "ABS related file"
         },
         "source": {
           "description": "List of JSON paths to source object",
@@ -496,30 +520,6 @@
           },
           "title": "Source",
           "type": "array"
-        },
-        "supplyForms": {
-          "description": "How the strain are available",
-          "items": {
-            "$ref": "#/$defs/SupplyForm"
-          },
-          "title": "Supply Forms",
-          "type": "array"
-        },
-        "url": {
-          "anyOf": [
-            {
-              "format": "uri",
-              "maxLength": 2083,
-              "minLength": 1,
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Link to homepage",
-          "title": "URL"
         }
       },
       "required": [
@@ -565,36 +565,18 @@
       "additionalProperties": false,
       "description": "Country information, mostly on nagoya protocol.",
       "properties": {
-        "cartagenaProtocolParty": {
+        "name": {
           "anyOf": [
             {
-              "type": "boolean"
+              "type": "string"
             },
             {
               "type": "null"
             }
           ],
           "default": null,
-          "title": "Is Cartagena Protocol Party"
-        },
-        "conventionOfBiologicalDiversityParty": {
-          "anyOf": [
-            {
-              "type": "boolean"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Is Convention Of Biological Diversity Party"
-        },
-        "identifier": {
-          "items": {
-            "$ref": "#/$defs/Identifier"
-          },
-          "title": "Identifier",
-          "type": "array"
+          "description": "Full name of the country",
+          "title": "Country name"
         },
         "iso_3166_2": {
           "anyOf": [
@@ -616,7 +598,14 @@
           "description": "Country code, see ISO 3166-1 alpha-2",
           "title": "Country code"
         },
-        "nagoyaKualaLumpurParty": {
+        "identifier": {
+          "items": {
+            "$ref": "#/$defs/Identifier"
+          },
+          "title": "Identifier",
+          "type": "array"
+        },
+        "conventionOfBiologicalDiversityParty": {
           "anyOf": [
             {
               "type": "boolean"
@@ -626,7 +615,19 @@
             }
           ],
           "default": null,
-          "title": "Is Nagoya Kuala Lumpur Party"
+          "title": "Is Convention Of Biological Diversity Party"
+        },
+        "cartagenaProtocolParty": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Is Cartagena Protocol Party"
         },
         "nagoyaProtocolParty": {
           "anyOf": [
@@ -640,18 +641,17 @@
           "default": null,
           "title": "Is Nagoya Protocol Party"
         },
-        "name": {
+        "nagoyaKualaLumpurParty": {
           "anyOf": [
             {
-              "type": "string"
+              "type": "boolean"
             },
             {
               "type": "null"
             }
           ],
           "default": null,
-          "description": "Full name of the country",
-          "title": "Country name"
+          "title": "Is Nagoya Kuala Lumpur Party"
         }
       },
       "title": "Country",
@@ -699,31 +699,6 @@
           "title": "Name",
           "type": "string"
         },
-        "reagentUsed": {
-          "items": {
-            "type": "string"
-          },
-          "title": "Reagent Used",
-          "type": "array"
-        },
-        "relatedData": {
-          "description": "JSON paths to relation object",
-          "items": {
-            "pattern": "^\\/relatedData\\/\\d+$",
-            "type": "string"
-          },
-          "title": "Related Data",
-          "type": "array"
-        },
-        "source": {
-          "description": "List of JSON paths to source object",
-          "items": {
-            "pattern": "^\\/sources\\/\\d+$",
-            "type": "string"
-          },
-          "title": "Source",
-          "type": "array"
-        },
         "url": {
           "anyOf": [
             {
@@ -738,6 +713,31 @@
           ],
           "default": null,
           "title": "URL"
+        },
+        "reagentUsed": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Reagent Used",
+          "type": "array"
+        },
+        "source": {
+          "description": "List of JSON paths to source object",
+          "items": {
+            "pattern": "^\\/sources\\/\\d+$",
+            "type": "string"
+          },
+          "title": "Source",
+          "type": "array"
+        },
+        "relatedData": {
+          "description": "JSON paths to relation object",
+          "items": {
+            "pattern": "^\\/relatedData\\/\\d+$",
+            "type": "string"
+          },
+          "title": "Related Data",
+          "type": "array"
         }
       },
       "required": [
@@ -761,25 +761,17 @@
       "additionalProperties": false,
       "description": "Information about one enzyme.",
       "properties": {
-        "active": {
+        "name": {
           "anyOf": [
             {
-              "type": "boolean"
+              "type": "string"
             },
             {
               "type": "null"
             }
           ],
           "default": null,
-          "description": "Is this enzyme active",
-          "title": "Active"
-        },
-        "alternateName": {
-          "items": {
-            "type": "string"
-          },
-          "title": "Alternate Name",
-          "type": "array"
+          "title": "Name"
         },
         "hasECNumber": {
           "description": "An EC number defined by the Enzyme Commission",
@@ -794,17 +786,25 @@
           "title": "Identifier",
           "type": "array"
         },
-        "name": {
+        "alternateName": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Alternate Name",
+          "type": "array"
+        },
+        "active": {
           "anyOf": [
             {
-              "type": "string"
+              "type": "boolean"
             },
             {
               "type": "null"
             }
           ],
           "default": null,
-          "title": "Name"
+          "description": "Is this enzyme active",
+          "title": "Active"
         },
         "relatedData": {
           "description": "JSON paths to relation object",
@@ -836,33 +836,6 @@
       "additionalProperties": false,
       "description": "Single Fatty Acid - used in Fatty Acid Profile.",
       "properties": {
-        "alternateName": {
-          "description": "List of alternative names for this substance",
-          "items": {
-            "type": "string"
-          },
-          "title": "Alternate Name",
-          "type": "array"
-        },
-        "ecl": {
-          "anyOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "ECL"
-        },
-        "identifier": {
-          "items": {
-            "$ref": "#/$defs/Identifier"
-          },
-          "title": "Identifier",
-          "type": "array"
-        },
         "name": {
           "anyOf": [
             {
@@ -875,6 +848,21 @@
           "default": null,
           "description": "Valid scientific name",
           "title": "Name of Chemical Substance"
+        },
+        "identifier": {
+          "items": {
+            "$ref": "#/$defs/Identifier"
+          },
+          "title": "Identifier",
+          "type": "array"
+        },
+        "alternateName": {
+          "description": "List of alternative names for this substance",
+          "items": {
+            "type": "string"
+          },
+          "title": "Alternate Name",
+          "type": "array"
         },
         "percent": {
           "anyOf": [
@@ -889,6 +877,18 @@
           ],
           "default": null,
           "title": "Percent"
+        },
+        "ecl": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "ECL"
         }
       },
       "title": "FattyAcid",
@@ -898,6 +898,14 @@
       "additionalProperties": false,
       "description": "Full Fatty Acid Profile.",
       "properties": {
+        "profile": {
+          "description": "List of fatty acids and their percentages",
+          "items": {
+            "$ref": "#/$defs/FattyAcid"
+          },
+          "title": "Profile",
+          "type": "array"
+        },
         "library": {
           "anyOf": [
             {
@@ -911,23 +919,6 @@
           "description": "The used library",
           "title": "Library"
         },
-        "profile": {
-          "description": "List of fatty acids and their percentages",
-          "items": {
-            "$ref": "#/$defs/FattyAcid"
-          },
-          "title": "Profile",
-          "type": "array"
-        },
-        "relatedData": {
-          "description": "JSON paths to relation object",
-          "items": {
-            "pattern": "^\\/relatedData\\/\\d+$",
-            "type": "string"
-          },
-          "title": "Related Data",
-          "type": "array"
-        },
         "software": {
           "anyOf": [
             {
@@ -940,6 +931,15 @@
           "default": null,
           "description": "The used software",
           "title": "Software"
+        },
+        "relatedData": {
+          "description": "JSON paths to relation object",
+          "items": {
+            "pattern": "^\\/relatedData\\/\\d+$",
+            "type": "string"
+          },
+          "title": "Related Data",
+          "type": "array"
         },
         "source": {
           "description": "List of JSON paths to source object",
@@ -997,6 +997,13 @@
           "description": "Note about the used method",
           "title": "Note Method"
         },
+        "value": {
+          "description": "Percent value of how much percent of the DNA is GC pairs",
+          "maximum": 100,
+          "minimum": 0,
+          "title": "Percent Value",
+          "type": "number"
+        },
         "source": {
           "description": "List of JSON paths to source object",
           "items": {
@@ -1005,13 +1012,6 @@
           },
           "title": "Source",
           "type": "array"
-        },
-        "value": {
-          "description": "Percent value of how much percent of the DNA is GC pairs",
-          "maximum": 100,
-          "minimum": 0,
-          "title": "Percent Value",
-          "type": "number"
         }
       },
       "required": [
@@ -1034,18 +1034,6 @@
       "additionalProperties": false,
       "description": "Geopoint / Coordinate object.",
       "properties": {
-        "elevation": {
-          "anyOf": [
-            {
-              "type": "number"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Elevation"
-        },
         "latitude": {
           "anyOf": [
             {
@@ -1076,6 +1064,18 @@
           "description": "Should be a float value between -180 and 180",
           "title": "Longitude"
         },
+        "elevation": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Elevation"
+        },
         "precision": {
           "anyOf": [
             {
@@ -1100,7 +1100,7 @@
       "additionalProperties": false,
       "description": "Optimal and tested information about growing a Strain.",
       "properties": {
-        "maximalPh": {
+        "optimalTemperature": {
           "anyOf": [
             {
               "type": "number"
@@ -1110,34 +1110,8 @@
             }
           ],
           "default": null,
-          "description": "Known maximal growth pH value",
-          "title": "Maximal"
-        },
-        "maximalTemperature": {
-          "anyOf": [
-            {
-              "type": "number"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Known maximal growth temperature value in celsius",
-          "title": "Maximal"
-        },
-        "minimalPh": {
-          "anyOf": [
-            {
-              "type": "number"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Known minimal growth pH value",
-          "title": "Minimal"
+          "description": "Single optimal growth temperature value in celsius",
+          "title": "Optimal"
         },
         "minimalTemperature": {
           "anyOf": [
@@ -1152,6 +1126,27 @@
           "description": "Known minimal growth temperature value in celsius",
           "title": "Minimal"
         },
+        "maximalTemperature": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Known maximal growth temperature value in celsius",
+          "title": "Maximal"
+        },
+        "testsTemperature": {
+          "description": "List of tests and if the strain grows in tested ranges",
+          "items": {
+            "$ref": "#/$defs/GrowthRange"
+          },
+          "title": "Tests",
+          "type": "array"
+        },
         "optimalPh": {
           "anyOf": [
             {
@@ -1165,7 +1160,7 @@
           "description": "Single optimal growth pH value",
           "title": "Optimal"
         },
-        "optimalTemperature": {
+        "minimalPh": {
           "anyOf": [
             {
               "type": "number"
@@ -1175,8 +1170,29 @@
             }
           ],
           "default": null,
-          "description": "Single optimal growth temperature value in celsius",
-          "title": "Optimal"
+          "description": "Known minimal growth pH value",
+          "title": "Minimal"
+        },
+        "maximalPh": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Known maximal growth pH value",
+          "title": "Maximal"
+        },
+        "testsPh": {
+          "description": "List of tests and if the strain grows in tested ranges",
+          "items": {
+            "$ref": "#/$defs/GrowthRange"
+          },
+          "title": "Tests",
+          "type": "array"
         },
         "oxygenRelation": {
           "anyOf": [
@@ -1199,22 +1215,6 @@
           },
           "title": "Source",
           "type": "array"
-        },
-        "testsPh": {
-          "description": "List of tests and if the strain grows in tested ranges",
-          "items": {
-            "$ref": "#/$defs/GrowthRange"
-          },
-          "title": "Tests",
-          "type": "array"
-        },
-        "testsTemperature": {
-          "description": "List of tests and if the strain grows in tested ranges",
-          "items": {
-            "$ref": "#/$defs/GrowthRange"
-          },
-          "title": "Tests",
-          "type": "array"
         }
       },
       "required": [
@@ -1227,10 +1227,18 @@
       "additionalProperties": false,
       "description": "Single grow condition test.",
       "properties": {
-        "growth": {
-          "description": "Does the strain grow within this range?",
-          "title": "Growth",
-          "type": "boolean"
+        "minimal": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Minimal value of tested range",
+          "title": "Minimal"
         },
         "maximal": {
           "anyOf": [
@@ -1245,18 +1253,10 @@
           "description": "Maximal value of tested range",
           "title": "Maximal"
         },
-        "minimal": {
-          "anyOf": [
-            {
-              "type": "number"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Minimal value of tested range",
-          "title": "Minimal"
+        "growth": {
+          "description": "Does the strain grow within this range?",
+          "title": "Growth",
+          "type": "boolean"
         },
         "relatedData": {
           "description": "JSON paths to relation object",
@@ -1278,13 +1278,18 @@
       "additionalProperties": false,
       "description": "Halophily abilities of a Strain.",
       "properties": {
-        "alternateName": {
-          "description": "List of alternative names for this substance",
-          "items": {
-            "type": "string"
-          },
-          "title": "Alternate Name",
-          "type": "array"
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Valid scientific name",
+          "title": "Name of Chemical Substance"
         },
         "identifier": {
           "items": {
@@ -1293,18 +1298,13 @@
           "title": "Identifier",
           "type": "array"
         },
-        "maximal": {
-          "anyOf": [
-            {
-              "type": "number"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Single optimal growth value",
-          "title": "Optimal"
+        "alternateName": {
+          "description": "List of alternative names for this substance",
+          "items": {
+            "type": "string"
+          },
+          "title": "Alternate Name",
+          "type": "array"
         },
         "minimal": {
           "anyOf": [
@@ -1319,18 +1319,18 @@
           "description": "Single optimal growth value",
           "title": "Optimal"
         },
-        "name": {
+        "maximal": {
           "anyOf": [
             {
-              "type": "string"
+              "type": "number"
             },
             {
               "type": "null"
             }
           ],
           "default": null,
-          "description": "Valid scientific name",
-          "title": "Name of Chemical Substance"
+          "description": "Single optimal growth value",
+          "title": "Optimal"
         },
         "optimal": {
           "anyOf": [
@@ -1345,14 +1345,10 @@
           "description": "Single optimal growth value",
           "title": "Optimal"
         },
-        "source": {
-          "description": "List of JSON paths to source object",
-          "items": {
-            "pattern": "^\\/sources\\/\\d+$",
-            "type": "string"
-          },
-          "title": "Source",
-          "type": "array"
+        "unit": {
+          "$ref": "#/$defs/ConcentrationUnit",
+          "description": "",
+          "title": "Unit"
         },
         "tests": {
           "description": "List of tests and if the strain grows in tested ranges",
@@ -1362,10 +1358,14 @@
           "title": "Tests",
           "type": "array"
         },
-        "unit": {
-          "$ref": "#/$defs/ConcentrationUnit",
-          "description": "",
-          "title": "Unit"
+        "source": {
+          "description": "List of JSON paths to source object",
+          "items": {
+            "pattern": "^\\/sources\\/\\d+$",
+            "type": "string"
+          },
+          "title": "Source",
+          "type": "array"
         }
       },
       "required": [
@@ -1446,25 +1446,14 @@
       "additionalProperties": false,
       "description": "Identifier of every Kind, compare to schema.org PropertyValue class.",
       "properties": {
-        "logo": {
-          "anyOf": [
-            {
-              "format": "uri",
-              "maxLength": 2083,
-              "minLength": 1,
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Logo of the Identifier Organization (e.g. DOI, ORCID, ROR, ...)",
-          "title": "Logo"
-        },
         "name": {
           "description": "Name of the identifier",
           "title": "Name",
+          "type": "string"
+        },
+        "value": {
+          "description": "Value of the identifier (can also be a URL)",
+          "title": "Value",
           "type": "string"
         },
         "propertyID": {
@@ -1496,10 +1485,21 @@
           "description": "Uniform Resource Locator of a resource on the Internet",
           "title": "URL"
         },
-        "value": {
-          "description": "Value of the identifier (can also be a URL)",
-          "title": "Value",
-          "type": "string"
+        "logo": {
+          "anyOf": [
+            {
+              "format": "uri",
+              "maxLength": 2083,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Logo of the Identifier Organization (e.g. DOI, ORCID, ROR, ...)",
+          "title": "Logo"
         }
       },
       "required": [
@@ -1512,25 +1512,14 @@
     "IdentifierStrain": {
       "additionalProperties": false,
       "properties": {
-        "logo": {
-          "anyOf": [
-            {
-              "format": "uri",
-              "maxLength": 2083,
-              "minLength": 1,
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Logo of the Identifier Organization (e.g. DOI, ORCID, ROR, ...)",
-          "title": "Logo"
-        },
         "name": {
           "description": "Name of the identifier",
           "title": "Name",
+          "type": "string"
+        },
+        "value": {
+          "description": "Value of the identifier (can also be a URL)",
+          "title": "Value",
           "type": "string"
         },
         "propertyID": {
@@ -1545,15 +1534,6 @@
           "default": null,
           "description": "See schema.org/propertyID",
           "title": "Property ID"
-        },
-        "source": {
-          "description": "List of JSON paths to source object",
-          "items": {
-            "pattern": "^\\/sources\\/\\d+$",
-            "type": "string"
-          },
-          "title": "Source",
-          "type": "array"
         },
         "url": {
           "anyOf": [
@@ -1571,10 +1551,30 @@
           "description": "Uniform Resource Locator of a resource on the Internet",
           "title": "URL"
         },
-        "value": {
-          "description": "Value of the identifier (can also be a URL)",
-          "title": "Value",
-          "type": "string"
+        "logo": {
+          "anyOf": [
+            {
+              "format": "uri",
+              "maxLength": 2083,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Logo of the Identifier Organization (e.g. DOI, ORCID, ROR, ...)",
+          "title": "Logo"
+        },
+        "source": {
+          "description": "List of JSON paths to source object",
+          "items": {
+            "pattern": "^\\/sources\\/\\d+$",
+            "type": "string"
+          },
+          "title": "Source",
+          "type": "array"
         }
       },
       "required": [
@@ -1654,6 +1654,49 @@
           "default": null,
           "title": "Dual Use"
         },
+        "quarantineEU": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Quarantine EU"
+        },
+        "nagoyaRestrictions": {
+          "$ref": "#/$defs/NagoyaRestrictions",
+          "description": "Are there any known Nagoya restrictions in place for this strain",
+          "title": "Nagoya Protocol Restrictions"
+        },
+        "qps": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Status of 'Qualified presumption of safety' by EFSA - European Union",
+          "title": "QPS"
+        },
+        "gras": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Status of 'Generally Recognized As Safe' by FDA - USA",
+          "title": "GRAS"
+        },
         "gmo": {
           "anyOf": [
             {
@@ -1680,24 +1723,6 @@
           "description": "What was genetically modified",
           "title": "GMO Information"
         },
-        "gras": {
-          "anyOf": [
-            {
-              "type": "boolean"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Status of 'Generally Recognized As Safe' by FDA - USA",
-          "title": "GRAS"
-        },
-        "nagoyaRestrictions": {
-          "$ref": "#/$defs/NagoyaRestrictions",
-          "description": "Are there any known Nagoya restrictions in place for this strain",
-          "title": "Nagoya Protocol Restrictions"
-        },
         "otherRestrictions": {
           "description": "List of restrictions in place for this strain",
           "items": {
@@ -1705,31 +1730,6 @@
           },
           "title": "Other Restrictions",
           "type": "array"
-        },
-        "qps": {
-          "anyOf": [
-            {
-              "type": "boolean"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Status of 'Qualified presumption of safety' by EFSA - European Union",
-          "title": "QPS"
-        },
-        "quarantineEU": {
-          "anyOf": [
-            {
-              "type": "boolean"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Quarantine EU"
         },
         "source": {
           "description": "List of JSON paths to source object",
@@ -1752,12 +1752,32 @@
       "additionalProperties": false,
       "description": "Connected Literature.",
       "properties": {
-        "author": {
-          "items": {
-            "$ref": "#/$defs/Person"
-          },
-          "title": "Author",
-          "type": "array"
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        },
+        "url": {
+          "anyOf": [
+            {
+              "format": "uri",
+              "maxLength": 2083,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "URL"
         },
         "datePublished": {
           "anyOf": [
@@ -1772,17 +1792,12 @@
           "default": null,
           "title": "Date Published"
         },
-        "name": {
-          "anyOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Name"
+        "author": {
+          "items": {
+            "$ref": "#/$defs/Person"
+          },
+          "title": "Author",
+          "type": "array"
         },
         "publisher": {
           "items": {
@@ -1799,21 +1814,6 @@
           },
           "title": "Source",
           "type": "array"
-        },
-        "url": {
-          "anyOf": [
-            {
-              "format": "uri",
-              "maxLength": 2083,
-              "minLength": 1,
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "URL"
         }
       },
       "required": [
@@ -1826,6 +1826,19 @@
       "additionalProperties": false,
       "description": "Location object.",
       "properties": {
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Name of the location, e.g. 'Lake Como'",
+          "title": "Name"
+        },
         "description": {
           "anyOf": [
             {
@@ -1851,19 +1864,6 @@
           "default": null,
           "description": "Precise location coordinates",
           "title": "Geo"
-        },
-        "name": {
-          "anyOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Name of the location, e.g. 'Lake Como'",
-          "title": "Name"
         }
       },
       "title": "Location",
@@ -1873,21 +1873,6 @@
       "additionalProperties": false,
       "description": "Information about tested Metabolites.",
       "properties": {
-        "alternateName": {
-          "description": "List of alternative names for this substance",
-          "items": {
-            "type": "string"
-          },
-          "title": "Alternate Name",
-          "type": "array"
-        },
-        "identifier": {
-          "items": {
-            "$ref": "#/$defs/Identifier"
-          },
-          "title": "Identifier",
-          "type": "array"
-        },
         "name": {
           "anyOf": [
             {
@@ -1901,13 +1886,19 @@
           "description": "Valid scientific name",
           "title": "Name of Chemical Substance"
         },
-        "source": {
-          "description": "List of JSON paths to source object",
+        "identifier": {
           "items": {
-            "pattern": "^\\/sources\\/\\d+$",
+            "$ref": "#/$defs/Identifier"
+          },
+          "title": "Identifier",
+          "type": "array"
+        },
+        "alternateName": {
+          "description": "List of alternative names for this substance",
+          "items": {
             "type": "string"
           },
-          "title": "Source",
+          "title": "Alternate Name",
           "type": "array"
         },
         "tests": {
@@ -1916,6 +1907,15 @@
             "$ref": "#/$defs/MetaboliteTest"
           },
           "title": "Tests",
+          "type": "array"
+        },
+        "source": {
+          "description": "List of JSON paths to source object",
+          "items": {
+            "pattern": "^\\/sources\\/\\d+$",
+            "type": "string"
+          },
+          "title": "Source",
           "type": "array"
         }
       },
@@ -1928,6 +1928,11 @@
     "MetaboliteTest": {
       "additionalProperties": false,
       "properties": {
+        "type": {
+          "$ref": "#/$defs/MetaboliteTestType",
+          "description": "The type of metabolic test, can be utilization or production",
+          "title": "Type"
+        },
         "active": {
           "anyOf": [
             {
@@ -1940,19 +1945,6 @@
           "default": null,
           "description": "Is the metabolite utilization or production active",
           "title": "Active"
-        },
-        "kindOfUtilization": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/KindOfUtilization"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Only relevant if the type is utilization, as there are multiple kinds of utilization",
-          "title": "Kind Of Utilization"
         },
         "protocol": {
           "anyOf": [
@@ -1967,6 +1959,19 @@
           "description": "What test was used",
           "title": "Protocol"
         },
+        "kindOfUtilization": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/KindOfUtilization"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Only relevant if the type is utilization, as there are multiple kinds of utilization",
+          "title": "Kind Of Utilization"
+        },
         "relatedData": {
           "description": "JSON paths to relation object",
           "items": {
@@ -1975,11 +1980,6 @@
           },
           "title": "Related Data",
           "type": "array"
-        },
-        "type": {
-          "$ref": "#/$defs/MetaboliteTestType",
-          "description": "The type of metabolic test, can be utilization or production",
-          "title": "Type"
         }
       },
       "required": [
@@ -2010,19 +2010,6 @@
       "additionalProperties": false,
       "description": "Morphology of a cell.",
       "properties": {
-        "cellLength": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/Size"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Length of a cell",
-          "title": "Cell Length"
-        },
         "cellShape": {
           "anyOf": [
             {
@@ -2035,6 +2022,19 @@
           "default": null,
           "description": "The shape type the cells",
           "title": "Cell Shape"
+        },
+        "cellLength": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Size"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Length of a cell",
+          "title": "Cell Length"
         },
         "cellWidth": {
           "anyOf": [
@@ -2049,30 +2049,18 @@
           "description": "Width of a cell",
           "title": "Cell Width"
         },
-        "colonyColor": {
+        "motile": {
           "anyOf": [
             {
-              "$ref": "#/$defs/ColonyColor"
+              "type": "boolean"
             },
             {
               "type": "null"
             }
           ],
           "default": null,
-          "description": "Color of the colony on the",
-          "title": "Color of Colony"
-        },
-        "colonySize": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/Size"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Size of Colony"
+          "description": "Are the cells of this strain are motile",
+          "title": "Motile"
         },
         "flagellum": {
           "anyOf": [
@@ -2113,18 +2101,30 @@
           "description": "Cells can be motile by gliding instead of having flagella",
           "title": "Gliding"
         },
-        "motile": {
+        "colonySize": {
           "anyOf": [
             {
-              "type": "boolean"
+              "$ref": "#/$defs/Size"
             },
             {
               "type": "null"
             }
           ],
           "default": null,
-          "description": "Are the cells of this strain are motile",
-          "title": "Motile"
+          "title": "Size of Colony"
+        },
+        "colonyColor": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ColonyColor"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Color of the colony on the",
+          "title": "Color of Colony"
         },
         "multiCellComplexForming": {
           "anyOf": [
@@ -2181,32 +2181,10 @@
       "additionalProperties": false,
       "description": "Individual Entity of a Organization.",
       "properties": {
-        "address": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/Address"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Address of the organization",
-          "title": "Address"
-        },
-        "email": {
-          "anyOf": [
-            {
-              "format": "email",
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Contact email",
-          "title": "Email"
+        "name": {
+          "description": "Short name of the organization",
+          "title": "Name",
+          "type": "string"
         },
         "identifier": {
           "description": "Identifiers of the organization, e.g. ROR",
@@ -2229,26 +2207,18 @@
           "description": "Full legal name of the organization",
           "title": "Legal Name"
         },
-        "logo": {
+        "address": {
           "anyOf": [
             {
-              "format": "uri",
-              "maxLength": 2083,
-              "minLength": 1,
-              "type": "string"
+              "$ref": "#/$defs/Address"
             },
             {
               "type": "null"
             }
           ],
           "default": null,
-          "description": "Link to logo",
-          "title": "Logo"
-        },
-        "name": {
-          "description": "Short name of the organization",
-          "title": "Name",
-          "type": "string"
+          "description": "Address of the organization",
+          "title": "Address"
         },
         "url": {
           "anyOf": [
@@ -2265,6 +2235,36 @@
           "default": null,
           "description": "Link to homepage",
           "title": "URL"
+        },
+        "email": {
+          "anyOf": [
+            {
+              "format": "email",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Contact email",
+          "title": "Email"
+        },
+        "logo": {
+          "anyOf": [
+            {
+              "format": "uri",
+              "maxLength": 2083,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Link to logo",
+          "title": "Logo"
         }
       },
       "required": [
@@ -2277,6 +2277,20 @@
       "additionalProperties": false,
       "description": "Isolation event information.\n\nNotes:\n    - Sample = The material probe in which the strain was found\n    - Isolation = Isolation of the strain from the sample",
       "properties": {
+        "sampleDate": {
+          "anyOf": [
+            {
+              "pattern": "^(?:\\d{4}[-\\._]?\\d{0,2}[-\\._]?\\d{0,2})?/?(?:\\d{4}[-\\._]?\\d{0,2}[-\\._]?\\d{0,2})?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Date of sampling, using date range format of dublin core: 'YYYY-MM-DD/YYYY-MM-DD' ether side can be empty defining an open ended range, only the year is mandatory, e.g. '/1978' means before 1978",
+          "title": "Date"
+        },
         "country": {
           "anyOf": [
             {
@@ -2303,18 +2317,38 @@
           "description": "Description of the sample",
           "title": "Description"
         },
-        "isolatedAt": {
+        "locationCreated": {
           "anyOf": [
             {
-              "$ref": "#/$defs/Organization"
+              "$ref": "#/$defs/Location"
             },
             {
               "type": "null"
             }
           ],
           "default": null,
-          "description": "Institute where the strain was isolated from the sample",
-          "title": "Isolated At"
+          "description": "Location where the sample was taken",
+          "title": "Location Created"
+        },
+        "tags": {
+          "items": {
+            "$ref": "#/$defs/IsolationTag"
+          },
+          "title": "Isolation Source Tags",
+          "type": "array"
+        },
+        "sampler": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Person"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Person that sampled the material",
+          "title": "Sampler"
         },
         "isolationDate": {
           "anyOf": [
@@ -2330,6 +2364,19 @@
           "description": "Date of isolation from the sample material, using date range format of dublin core:'YYYY-MM-DD/YYYY-MM-DD' ether side can be empty defining an open ended range, only the year is mandatory, e.g. '/1978' means before 1978",
           "title": "Date"
         },
+        "isolatedAt": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Organization"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Institute where the strain was isolated from the sample",
+          "title": "Isolated At"
+        },
         "isolator": {
           "anyOf": [
             {
@@ -2343,46 +2390,6 @@
           "description": "Person that isolated the strain from the sample",
           "title": "Isolator"
         },
-        "locationCreated": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/Location"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Location where the sample was taken",
-          "title": "Location Created"
-        },
-        "sampleDate": {
-          "anyOf": [
-            {
-              "pattern": "^(?:\\d{4}[-\\._]?\\d{0,2}[-\\._]?\\d{0,2})?/?(?:\\d{4}[-\\._]?\\d{0,2}[-\\._]?\\d{0,2})?$",
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Date of sampling, using date range format of dublin core: 'YYYY-MM-DD/YYYY-MM-DD' ether side can be empty defining an open ended range, only the year is mandatory, e.g. '/1978' means before 1978",
-          "title": "Date"
-        },
-        "sampler": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/Person"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Person that sampled the material",
-          "title": "Sampler"
-        },
         "source": {
           "description": "List of JSON paths to source object",
           "items": {
@@ -2390,13 +2397,6 @@
             "type": "string"
           },
           "title": "Source",
-          "type": "array"
-        },
-        "tags": {
-          "items": {
-            "$ref": "#/$defs/IsolationTag"
-          },
-          "title": "Isolation Source Tags",
           "type": "array"
         }
       },
@@ -2410,52 +2410,6 @@
       "additionalProperties": false,
       "description": "A Media object e.g. Photo, Video, Document, etc.",
       "properties": {
-        "additionalType": {
-          "anyOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Additional Type"
-        },
-        "description": {
-          "anyOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Description of the medium and the content in the medium",
-          "title": "Description"
-        },
-        "name": {
-          "anyOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Name"
-        },
-        "source": {
-          "description": "List of JSON paths to source object",
-          "items": {
-            "pattern": "^\\/sources\\/\\d+$",
-            "type": "string"
-          },
-          "title": "Source",
-          "type": "array"
-        },
         "url": {
           "anyOf": [
             {
@@ -2472,6 +2426,31 @@
           "description": "Link to medium",
           "title": "URL"
         },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Description of the medium and the content in the medium",
+          "title": "Description"
+        },
         "usageInfo": {
           "anyOf": [
             {
@@ -2484,6 +2463,27 @@
           "default": null,
           "description": "License or other information on usage",
           "title": "Usage Information"
+        },
+        "additionalType": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Additional Type"
+        },
+        "source": {
+          "description": "List of JSON paths to source object",
+          "items": {
+            "pattern": "^\\/sources\\/\\d+$",
+            "type": "string"
+          },
+          "title": "Source",
+          "type": "array"
         }
       },
       "required": [
@@ -2512,6 +2512,15 @@
       "additionalProperties": false,
       "description": "Pathogen, defining Host, pathogenicity and under what classification.",
       "properties": {
+        "host": {
+          "$ref": "#/$defs/Host",
+          "description": "Organism or group of organisms that can be infected"
+        },
+        "pathogen": {
+          "$ref": "#/$defs/PathogenLevel",
+          "description": "Frequency of pathogenicity: no pathogen, opportunistic or obligate",
+          "title": "Pathogen"
+        },
         "classification": {
           "anyOf": [
             {
@@ -2524,24 +2533,6 @@
           "default": null,
           "description": "Type of classification, e.g. German classification or WHO classification",
           "title": "Classification"
-        },
-        "host": {
-          "$ref": "#/$defs/Host",
-          "description": "Organism or group of organisms that can be infected"
-        },
-        "pathogen": {
-          "$ref": "#/$defs/PathogenLevel",
-          "description": "Frequency of pathogenicity: no pathogen, opportunistic or obligate",
-          "title": "Pathogen"
-        },
-        "source": {
-          "description": "List of JSON paths to source object",
-          "items": {
-            "pattern": "^\\/sources\\/\\d+$",
-            "type": "string"
-          },
-          "title": "Source",
-          "type": "array"
         },
         "url": {
           "anyOf": [
@@ -2558,6 +2549,15 @@
           "default": null,
           "description": "Link to classification document",
           "title": "URL"
+        },
+        "source": {
+          "description": "List of JSON paths to source object",
+          "items": {
+            "pattern": "^\\/sources\\/\\d+$",
+            "type": "string"
+          },
+          "title": "Source",
+          "type": "array"
         }
       },
       "required": [
@@ -2582,6 +2582,11 @@
       "additionalProperties": false,
       "description": "Person.",
       "properties": {
+        "name": {
+          "description": "Name of the person, preferable: `Last`, `First`",
+          "title": "Name",
+          "type": "string"
+        },
         "identifier": {
           "description": "Person identifiers like ORCID",
           "items": {
@@ -2589,11 +2594,6 @@
           },
           "title": "Identifier",
           "type": "array"
-        },
-        "name": {
-          "description": "Name of the person, preferable: `Last`, `First`",
-          "title": "Name",
-          "type": "string"
         }
       },
       "required": [
@@ -2629,12 +2629,12 @@
       "additionalProperties": false,
       "description": "Scientific name.",
       "properties": {
-        "author": {
-          "title": "Author",
-          "type": "string"
-        },
         "name": {
           "title": "Name",
+          "type": "string"
+        },
+        "author": {
+          "title": "Author",
           "type": "string"
         }
       },
@@ -2649,6 +2649,14 @@
       "additionalProperties": false,
       "description": "Information on a Sequence.",
       "properties": {
+        "type": {
+          "$ref": "#/$defs/SequenceType",
+          "title": "Type"
+        },
+        "level": {
+          "$ref": "#/$defs/SequenceLevel",
+          "title": "Level"
+        },
         "accessionNumber": {
           "title": "Accession Number",
           "type": "string"
@@ -2665,13 +2673,6 @@
           "default": null,
           "title": "Description"
         },
-        "identifier": {
-          "items": {
-            "$ref": "#/$defs/Identifier"
-          },
-          "title": "Identifier",
-          "type": "array"
-        },
         "length": {
           "anyOf": [
             {
@@ -2684,9 +2685,12 @@
           "default": null,
           "title": "Length"
         },
-        "level": {
-          "$ref": "#/$defs/SequenceLevel",
-          "title": "Level"
+        "identifier": {
+          "items": {
+            "$ref": "#/$defs/Identifier"
+          },
+          "title": "Identifier",
+          "type": "array"
         },
         "source": {
           "description": "List of JSON paths to source object",
@@ -2696,10 +2700,6 @@
           },
           "title": "Source",
           "type": "array"
-        },
-        "type": {
-          "$ref": "#/$defs/SequenceType",
-          "title": "Type"
         }
       },
       "required": [
@@ -2736,14 +2736,14 @@
       "additionalProperties": false,
       "description": "Size object, use only for micro and millimeter.",
       "properties": {
-        "maximal": {
-          "exclusiveMinimum": 0,
-          "title": "Maximal",
-          "type": "number"
-        },
         "minimal": {
           "exclusiveMinimum": 0,
           "title": "Minimal",
+          "type": "number"
+        },
+        "maximal": {
+          "exclusiveMinimum": 0,
+          "title": "Maximal",
           "type": "number"
         },
         "unit": {
@@ -2771,11 +2771,47 @@
     "Source": {
       "additionalProperties": false,
       "properties": {
-        "author": {
+        "sourceType": {
+          "$ref": "#/$defs/SourceType",
+          "description": "Source Type"
+        },
+        "mode": {
+          "$ref": "#/$defs/CurationMode",
+          "description": "Mode of curation",
+          "title": "Mode"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        },
+        "url": {
+          "anyOf": [
+            {
+              "format": "uri",
+              "maxLength": 2083,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "URL"
+        },
+        "identifier": {
           "items": {
-            "$ref": "#/$defs/Person"
+            "$ref": "#/$defs/Identifier"
           },
-          "title": "Author",
+          "title": "Identifier",
           "type": "array"
         },
         "datePublished": {
@@ -2796,13 +2832,6 @@
           "title": "Date Recorded",
           "type": "string"
         },
-        "identifier": {
-          "items": {
-            "$ref": "#/$defs/Identifier"
-          },
-          "title": "Identifier",
-          "type": "array"
-        },
         "lastUpdate": {
           "anyOf": [
             {
@@ -2816,22 +2845,12 @@
           "default": null,
           "title": "Date of last update"
         },
-        "mode": {
-          "$ref": "#/$defs/CurationMode",
-          "description": "Mode of curation",
-          "title": "Mode"
-        },
-        "name": {
-          "anyOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Name"
+        "author": {
+          "items": {
+            "$ref": "#/$defs/Person"
+          },
+          "title": "Author",
+          "type": "array"
         },
         "publisher": {
           "items": {
@@ -2839,25 +2858,6 @@
           },
           "title": "Publisher",
           "type": "array"
-        },
-        "sourceType": {
-          "$ref": "#/$defs/SourceType",
-          "description": "Source Type"
-        },
-        "url": {
-          "anyOf": [
-            {
-              "format": "uri",
-              "maxLength": 2083,
-              "minLength": 1,
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "URL"
         }
       },
       "required": [
@@ -2881,6 +2881,34 @@
       "additionalProperties": false,
       "description": "Spore information about one Strain.",
       "properties": {
+        "sporeForming": {
+          "title": "sporeForming",
+          "type": "boolean"
+        },
+        "typeOfSpore": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SporeType"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Type Of Spore"
+        },
+        "sporeEjection": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Spore Ejection"
+        },
         "relatedData": {
           "description": "JSON paths to relation object",
           "items": {
@@ -2898,34 +2926,6 @@
           },
           "title": "Source",
           "type": "array"
-        },
-        "sporeEjection": {
-          "anyOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Spore Ejection"
-        },
-        "sporeForming": {
-          "title": "sporeForming",
-          "type": "boolean"
-        },
-        "typeOfSpore": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/SporeType"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Type Of Spore"
         }
       },
       "required": [
@@ -2952,6 +2952,10 @@
           "title": "Name",
           "type": "string"
         },
+        "value": {
+          "$ref": "#/$defs/StainingValue",
+          "title": "Value"
+        },
         "source": {
           "description": "List of JSON paths to source object",
           "items": {
@@ -2960,10 +2964,6 @@
           },
           "title": "Source",
           "type": "array"
-        },
-        "value": {
-          "$ref": "#/$defs/StainingValue",
-          "title": "Value"
         }
       },
       "required": [
@@ -3003,54 +3003,9 @@
       "additionalProperties": false,
       "description": "Aggregates taxon data for the new microbial standard.",
       "properties": {
-        "alternateName": {
-          "items": {
-            "type": "string"
-          },
-          "title": "Alternate Name",
-          "type": "array"
-        },
-        "identifier": {
-          "items": {
-            "$ref": "#/$defs/Identifier"
-          },
-          "title": "Identifier",
-          "type": "array"
-        },
         "name": {
           "title": "Name",
           "type": "string"
-        },
-        "parentTaxon": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/Taxon"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Parent Taxon"
-        },
-        "sameAs": {
-          "items": {
-            "type": "string"
-          },
-          "title": "Same As",
-          "type": "array"
-        },
-        "scientificName": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/ScientificName"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Scientific Name"
         },
         "taxonRank": {
           "anyOf": [
@@ -3075,6 +3030,51 @@
           ],
           "default": null,
           "title": "Taxon Status"
+        },
+        "identifier": {
+          "items": {
+            "$ref": "#/$defs/Identifier"
+          },
+          "title": "Identifier",
+          "type": "array"
+        },
+        "scientificName": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ScientificName"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Scientific Name"
+        },
+        "alternateName": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Alternate Name",
+          "type": "array"
+        },
+        "parentTaxon": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Taxon"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Parent Taxon"
+        },
+        "sameAs": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Same As",
+          "type": "array"
         }
       },
       "required": [
@@ -3113,63 +3113,9 @@
       "additionalProperties": false,
       "description": "Taxon class with source information.",
       "properties": {
-        "alternateName": {
-          "items": {
-            "type": "string"
-          },
-          "title": "Alternate Name",
-          "type": "array"
-        },
-        "identifier": {
-          "items": {
-            "$ref": "#/$defs/Identifier"
-          },
-          "title": "Identifier",
-          "type": "array"
-        },
         "name": {
           "title": "Name",
           "type": "string"
-        },
-        "parentTaxon": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/Taxon"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Parent Taxon"
-        },
-        "sameAs": {
-          "items": {
-            "type": "string"
-          },
-          "title": "Same As",
-          "type": "array"
-        },
-        "scientificName": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/ScientificName"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Scientific Name"
-        },
-        "source": {
-          "description": "List of JSON paths to source object",
-          "items": {
-            "pattern": "^\\/sources\\/\\d+$",
-            "type": "string"
-          },
-          "title": "Source",
-          "type": "array"
         },
         "taxonRank": {
           "anyOf": [
@@ -3194,6 +3140,60 @@
           ],
           "default": null,
           "title": "Taxon Status"
+        },
+        "identifier": {
+          "items": {
+            "$ref": "#/$defs/Identifier"
+          },
+          "title": "Identifier",
+          "type": "array"
+        },
+        "scientificName": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ScientificName"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Scientific Name"
+        },
+        "alternateName": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Alternate Name",
+          "type": "array"
+        },
+        "parentTaxon": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Taxon"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Parent Taxon"
+        },
+        "sameAs": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Same As",
+          "type": "array"
+        },
+        "source": {
+          "description": "List of JSON paths to source object",
+          "items": {
+            "pattern": "^\\/sources\\/\\d+$",
+            "type": "string"
+          },
+          "title": "Source",
+          "type": "array"
         }
       },
       "required": [
@@ -3207,6 +3207,26 @@
       "additionalProperties": false,
       "description": "Tolerance information - e.g. antibiotic resistance.",
       "properties": {
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Valid scientific name",
+          "title": "Name of Chemical Substance"
+        },
+        "identifier": {
+          "items": {
+            "$ref": "#/$defs/Identifier"
+          },
+          "title": "Identifier",
+          "type": "array"
+        },
         "alternateName": {
           "description": "List of alternative names for this substance",
           "items": {
@@ -3215,12 +3235,17 @@
           "title": "Alternate Name",
           "type": "array"
         },
-        "identifier": {
-          "items": {
-            "$ref": "#/$defs/Identifier"
-          },
-          "title": "Identifier",
-          "type": "array"
+        "reaction": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ToleranceReaction"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reaction"
         },
         "mic": {
           "anyOf": [
@@ -3235,47 +3260,6 @@
           "description": "The minimal inhibitory concentration",
           "title": "MIC"
         },
-        "name": {
-          "anyOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Valid scientific name",
-          "title": "Name of Chemical Substance"
-        },
-        "reaction": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/ToleranceReaction"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Reaction"
-        },
-        "source": {
-          "description": "List of JSON paths to source object",
-          "items": {
-            "pattern": "^\\/sources\\/\\d+$",
-            "type": "string"
-          },
-          "title": "Source",
-          "type": "array"
-        },
-        "tests": {
-          "items": {
-            "$ref": "#/$defs/ToleranceTest"
-          },
-          "title": "Tests",
-          "type": "array"
-        },
         "unit": {
           "anyOf": [
             {
@@ -3287,6 +3271,22 @@
           ],
           "default": null,
           "title": "Unit"
+        },
+        "tests": {
+          "items": {
+            "$ref": "#/$defs/ToleranceTest"
+          },
+          "title": "Tests",
+          "type": "array"
+        },
+        "source": {
+          "description": "List of JSON paths to source object",
+          "items": {
+            "pattern": "^\\/sources\\/\\d+$",
+            "type": "string"
+          },
+          "title": "Source",
+          "type": "array"
         }
       },
       "required": [
@@ -3309,6 +3309,10 @@
       "additionalProperties": false,
       "description": "Tested tolerance of compound.",
       "properties": {
+        "reaction": {
+          "$ref": "#/$defs/ToleranceReaction",
+          "title": "Reaction"
+        },
         "concentration": {
           "anyOf": [
             {
@@ -3322,9 +3326,10 @@
           "description": "Concentration value",
           "title": "Concentration"
         },
-        "reaction": {
-          "$ref": "#/$defs/ToleranceReaction",
-          "title": "Reaction"
+        "unit": {
+          "$ref": "#/$defs/ConcentrationUnit",
+          "description": "Unit of concentration e.g. g/ml",
+          "title": "Unit"
         },
         "relatedData": {
           "description": "JSON paths to relation object",
@@ -3334,11 +3339,6 @@
           },
           "title": "Related Data",
           "type": "array"
-        },
-        "unit": {
-          "$ref": "#/$defs/ConcentrationUnit",
-          "description": "Unit of concentration e.g. g/ml",
-          "title": "Unit"
         }
       },
       "required": [
@@ -3352,6 +3352,10 @@
       "additionalProperties": false,
       "description": "Information if a strain is the type strain of its species.",
       "properties": {
+        "typeStrain": {
+          "title": "Type Strain",
+          "type": "boolean"
+        },
         "source": {
           "description": "List of JSON paths to source object",
           "items": {
@@ -3360,10 +3364,6 @@
           },
           "title": "Source",
           "type": "array"
-        },
-        "typeStrain": {
-          "title": "Type Strain",
-          "type": "boolean"
         }
       },
       "required": [
@@ -3387,18 +3387,10 @@
       "additionalProperties": false,
       "description": "Restriction information.",
       "properties": {
-        "authority": {
-          "anyOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "The responsible authority",
-          "title": "Authority"
+        "name": {
+          "description": "Name of the restriction",
+          "title": "Name",
+          "type": "string"
         },
         "country": {
           "anyOf": [
@@ -3413,9 +3405,22 @@
           "description": "Country that put the restriction in place",
           "title": "Country"
         },
-        "name": {
-          "description": "Name of the restriction",
-          "title": "Name",
+        "authority": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "The responsible authority",
+          "title": "Authority"
+        },
+        "value": {
+          "description": "What is the restriction",
+          "title": "Value",
           "type": "string"
         },
         "url": {
@@ -3433,11 +3438,6 @@
           "default": null,
           "description": "Link to the restriction documents",
           "title": "URL"
-        },
-        "value": {
-          "description": "What is the restriction",
-          "title": "Value",
-          "type": "string"
         }
       },
       "required": [
@@ -3451,118 +3451,20 @@
   "additionalProperties": true,
   "description": "Microbial Strain - main class of the new microbial strain data standard.",
   "properties": {
-    "bioSafety": {
-      "description": "",
-      "items": {
-        "$ref": "#/$defs/BioSafety"
-      },
-      "title": "Bio Safety",
-      "type": "array"
+    "version": {
+      "const": 1,
+      "title": "Version",
+      "type": "integer"
     },
-    "collections": {
-      "description": "",
-      "items": {
-        "$ref": "#/$defs/Collection"
-      },
-      "title": "Collections",
-      "type": "array"
+    "primaryId": {
+      "description": "Primary Identifier for this dataset",
+      "title": "Primary Identifier",
+      "type": "string"
     },
-    "cultivationMedia": {
+    "organismType": {
+      "$ref": "#/$defs/OrganismType",
       "description": "",
-      "items": {
-        "$ref": "#/$defs/CultivationMedia"
-      },
-      "title": "Cultivation Media",
-      "type": "array"
-    },
-    "enzymes": {
-      "description": "",
-      "items": {
-        "$ref": "#/$defs/Enzyme"
-      },
-      "title": "Enzymes",
-      "type": "array"
-    },
-    "fattyAcidProfiles": {
-      "description": "",
-      "items": {
-        "$ref": "#/$defs/FattyAcidProfile"
-      },
-      "title": "Fatty Acid Profile",
-      "type": "array"
-    },
-    "gcContent": {
-      "description": "",
-      "items": {
-        "$ref": "#/$defs/GCContent"
-      },
-      "title": "GC Content",
-      "type": "array"
-    },
-    "growthConditions": {
-      "description": "Temperature and pH values",
-      "items": {
-        "$ref": "#/$defs/GrowthCondition"
-      },
-      "title": "Growth conditions",
-      "type": "array"
-    },
-    "halophily": {
-      "description": "",
-      "items": {
-        "$ref": "#/$defs/Halophil"
-      },
-      "title": "Halophily",
-      "type": "array"
-    },
-    "hemolysis": {
-      "description": "",
-      "items": {
-        "$ref": "#/$defs/Hemolysis"
-      },
-      "title": "Hemolysis",
-      "type": "array"
-    },
-    "identifier": {
-      "description": "",
-      "items": {
-        "$ref": "#/$defs/IdentifierStrain"
-      },
-      "minItems": 1,
-      "title": "Identifier",
-      "type": "array"
-    },
-    "knownApplications": {
-      "description": "",
-      "items": {
-        "$ref": "#/$defs/Application"
-      },
-      "title": "Known Applications",
-      "type": "array"
-    },
-    "legal": {
-      "description": "",
-      "items": {
-        "$ref": "#/$defs/Legal"
-      },
-      "title": "Legal",
-      "type": "array"
-    },
-    "literature": {
-      "description": "",
-      "items": {
-        "$ref": "#/$defs/Literature"
-      },
-      "title": "Literature",
-      "type": "array"
-    },
-    "metabolites": {
-      "description": "",
-      "items": {
-        "$ref": "#/$defs/Metabolite"
-      },
-      "title": "Metabolites",
-      "type": "array"
+      "title": "Organism Type"
     },
     "morphType": {
       "anyOf": [
@@ -3577,86 +3479,12 @@
       "description": "Applicable and required for fungi only",
       "title": "Morph Type"
     },
-    "morphology": {
-      "description": "Morphology information",
-      "items": {
-        "$ref": "#/$defs/Morphology"
-      },
-      "title": "Morphology",
-      "type": "array"
-    },
-    "organismType": {
-      "$ref": "#/$defs/OrganismType",
-      "description": "",
-      "title": "Organism Type"
-    },
-    "origin": {
-      "description": "Sample and isolation data",
-      "items": {
-        "$ref": "#/$defs/Origin"
-      },
-      "title": "Origin",
-      "type": "array"
-    },
-    "otherMedia": {
+    "typeStrain": {
       "description": "",
       "items": {
-        "$ref": "#/$defs/OtherMedia"
+        "$ref": "#/$defs/TypeStrain"
       },
-      "title": "Other Media",
-      "type": "array"
-    },
-    "pathogenicity": {
-      "description": "",
-      "items": {
-        "$ref": "#/$defs/Pathogen"
-      },
-      "title": "pathogenicity",
-      "type": "array"
-    },
-    "primaryId": {
-      "description": "Primary Identifier for this dataset",
-      "title": "Primary Identifier",
-      "type": "string"
-    },
-    "relatedData": {
-      "description": "",
-      "items": {
-        "$ref": "#/$defs/RelatedData"
-      },
-      "title": "Related Data",
-      "type": "array"
-    },
-    "sequences": {
-      "description": "",
-      "items": {
-        "$ref": "#/$defs/Sequence"
-      },
-      "title": "Sequences",
-      "type": "array"
-    },
-    "sources": {
-      "description": "",
-      "items": {
-        "$ref": "#/$defs/Source"
-      },
-      "title": "Sources",
-      "type": "array"
-    },
-    "sporeFormation": {
-      "description": "",
-      "items": {
-        "$ref": "#/$defs/Spore"
-      },
-      "title": "Spore Formation",
-      "type": "array"
-    },
-    "staining": {
-      "description": "",
-      "items": {
-        "$ref": "#/$defs/Staining"
-      },
-      "title": "Stainings",
+      "title": "Type Strain",
       "type": "array"
     },
     "taxon": {
@@ -3667,6 +3495,135 @@
       "title": "Taxon",
       "type": "array"
     },
+    "identifier": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/IdentifierStrain"
+      },
+      "minItems": 1,
+      "title": "Identifier",
+      "type": "array"
+    },
+    "origin": {
+      "description": "Sample and isolation data",
+      "items": {
+        "$ref": "#/$defs/Origin"
+      },
+      "title": "Origin",
+      "type": "array"
+    },
+    "legal": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/Legal"
+      },
+      "title": "Legal",
+      "type": "array"
+    },
+    "pathogenicity": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/Pathogen"
+      },
+      "title": "pathogenicity",
+      "type": "array"
+    },
+    "bioSafety": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/BioSafety"
+      },
+      "title": "Bio Safety",
+      "type": "array"
+    },
+    "morphology": {
+      "description": "Morphology information",
+      "items": {
+        "$ref": "#/$defs/Morphology"
+      },
+      "title": "Morphology",
+      "type": "array"
+    },
+    "wallConstituents": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/CellWall"
+      },
+      "title": "Wall Constituents",
+      "type": "array"
+    },
+    "staining": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/Staining"
+      },
+      "title": "Stainings",
+      "type": "array"
+    },
+    "sporeFormation": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/Spore"
+      },
+      "title": "Spore Formation",
+      "type": "array"
+    },
+    "growthConditions": {
+      "description": "Temperature and pH values",
+      "items": {
+        "$ref": "#/$defs/GrowthCondition"
+      },
+      "title": "Growth conditions",
+      "type": "array"
+    },
+    "cultivationMedia": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/CultivationMedia"
+      },
+      "title": "Cultivation Media",
+      "type": "array"
+    },
+    "sequences": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/Sequence"
+      },
+      "title": "Sequences",
+      "type": "array"
+    },
+    "gcContent": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/GCContent"
+      },
+      "title": "GC Content",
+      "type": "array"
+    },
+    "fattyAcidProfiles": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/FattyAcidProfile"
+      },
+      "title": "Fatty Acid Profile",
+      "type": "array"
+    },
+    "hemolysis": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/Hemolysis"
+      },
+      "title": "Hemolysis",
+      "type": "array"
+    },
+    "halophily": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/Halophil"
+      },
+      "title": "Halophily",
+      "type": "array"
+    },
     "tolerances": {
       "description": "",
       "items": {
@@ -3675,25 +3632,68 @@
       "title": "Tolerances",
       "type": "array"
     },
-    "typeStrain": {
+    "enzymes": {
       "description": "",
       "items": {
-        "$ref": "#/$defs/TypeStrain"
+        "$ref": "#/$defs/Enzyme"
       },
-      "title": "Type Strain",
+      "title": "Enzymes",
       "type": "array"
     },
-    "version": {
-      "const": 1,
-      "title": "Version",
-      "type": "integer"
-    },
-    "wallConstituents": {
+    "metabolites": {
       "description": "",
       "items": {
-        "$ref": "#/$defs/CellWall"
+        "$ref": "#/$defs/Metabolite"
       },
-      "title": "Wall Constituents",
+      "title": "Metabolites",
+      "type": "array"
+    },
+    "knownApplications": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/Application"
+      },
+      "title": "Known Applications",
+      "type": "array"
+    },
+    "collections": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/Collection"
+      },
+      "title": "Collections",
+      "type": "array"
+    },
+    "literature": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/Literature"
+      },
+      "title": "Literature",
+      "type": "array"
+    },
+    "otherMedia": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/OtherMedia"
+      },
+      "title": "Other Media",
+      "type": "array"
+    },
+    "relatedData": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/RelatedData"
+      },
+      "title": "Related Data",
+      "type": "array"
+    },
+    "sources": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/Source"
+      },
+      "title": "Sources",
       "type": "array"
     }
   },

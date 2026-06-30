@@ -24,6 +24,7 @@ from microbial_strain_data_model.strain import Strain
 @pytest.fixture
 def micro():
     return Strain(
+        version=1,
         primaryId="DSM 1",
         organismType=OrganismType.bacteria,
         identifier=[
