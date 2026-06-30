@@ -2,6 +2,7 @@
 #
 # SPDX-License-Identifier: MIT
 
+from microbial_strain_data_model.shared.data_ops.cast import to_string
 from typing import Self
 from pydantic.fields import PrivateAttr
 from pydantic_extra_types.country import CountryAlpha2
@@ -14,7 +15,7 @@ from microbial_strain_data_model.classes.identifier import Identifier
 from microbial_strain_data_model.classes.organization import Organization
 from microbial_strain_data_model.classes.person import Person
 
-type _INDEX = tuple[Date | str | None | HttpUrl | EmailStr | CountryAlpha2, ...]
+type _INDEX = tuple[str | None | EmailStr | CountryAlpha2, ...]
 
 
 class Source(BaseModel):
@@ -53,13 +54,13 @@ class Source(BaseModel):
     def _index(self) -> _INDEX:
         if self._ca_index is None:
             self._ca_index = (
-                self.sourceType,
-                self.mode,
+                self.sourceType.value,
+                self.mode.value,
                 self.name,
-                self.url,
-                self.datePublished,
-                self.dateRecorded,
-                self.lastUpdate,
+                to_string(self.url),
+                to_string(self.datePublished, lambda dat: dat.to_date_string()),
+                to_string(self.dateRecorded, lambda dat: dat.to_date_string()),
+                to_string(self.lastUpdate, lambda dat: dat.to_date_string()),
                 *(ind for idi in self.identifier for ind in idi._index()),
                 *(ind for aut in self.author for ind in aut._index()),
                 *(ind for org in self.publisher for ind in org._index()),

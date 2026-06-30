@@ -2,24 +2,29 @@
 #
 # SPDX-License-Identifier: MIT
 
-from collections import defaultdict
+from microbial_strain_data_model.classes.root import split_item
+from copy import deepcopy
 from microbial_strain_data_model.shared.data_ops.mapping import (
-    build_link_mapping_and_merge,
+    build_link_mapping_and_split,
 )
+from collections import defaultdict
+import uuid
 from typing import Any
 from typing import Iterable
-from microbial_strain_data_model.classes.root import join_links
-from microbial_strain_data_model.classes.root import Root
-from microbial_strain_data_model.classes.root import fix_related_data
-from microbial_strain_data_model.classes.root import fix_source
 from pydantic.fields import PrivateAttr
-from microbial_strain_data_model.classes.links import LinkType
 import re
 from typing import Self
 from pydantic import BaseModel, ConfigDict, Field
 from deepdiff import DeepHash
 
-
+from microbial_strain_data_model.classes.links import LinkType
+from microbial_strain_data_model.classes.root import join_links
+from microbial_strain_data_model.classes.root import Root
+from microbial_strain_data_model.classes.root import fix_related_data
+from microbial_strain_data_model.classes.root import fix_source
+from microbial_strain_data_model.shared.data_ops.mapping import (
+    build_link_mapping_and_merge,
+)
 from microbial_strain_data_model.classes.application import Application
 from microbial_strain_data_model.classes.biosafety import BioSafety
 from microbial_strain_data_model.classes.chemicalsubstance import (
@@ -83,6 +88,14 @@ _ROOT_TYPES = (
     Literature,
     OtherMedia,
 )
+type _MAPPING = tuple[
+    dict[str, str | None],
+    dict[str, str | None],
+    dict[str, str | None],
+    dict[str, str | None],
+    list[Source],
+    list[RelatedData],
+]
 
 
 class Strain(BaseModel):
@@ -323,4 +336,88 @@ class Strain(BaseModel):
                     field_name, attr_right, source_map_r, related_data_map_r
                 )
             )
+        self.model_validate(self)
         return self
+
+    def _create_mapping(self, to_split: int, /) -> _MAPPING:
+        source_map_l, source_map_r, src_l, src_r = build_link_mapping_and_split(
+            self.sources, {to_split}, LinkType.source
+        )
+        self.sources = src_l
+        rel_to_split = set()
+        for rel_i, rel in enumerate(self.relatedData):
+            left, right = split_item(to_split, rel, (source_map_l, source_map_r))
+            if right is not None:
+                rel_to_split.add(rel_i)
+
+        related_data_map_l, related_data_map_r, rel_l, rel_r = (
+            build_link_mapping_and_split(
+                self.relatedData, rel_to_split, LinkType.related_data
+            )
+        )
+        self.relatedData = rel_l
+        return (
+            source_map_l,
+            source_map_r,
+            related_data_map_l,
+            related_data_map_r,
+            src_r,
+            rel_r,
+        )
+
+    def _split_by_index(self, to_split: int, /) -> tuple[Self, Self]:
+        to_copy_right: dict[str, list[Root]] = defaultdict(list)
+
+        (
+            source_map_l,
+            source_map_r,
+            related_data_map_l,
+            related_data_map_r,
+            src_r,
+            rel_r,
+        ) = self._create_mapping(to_split)
+
+        for field_name in Strain.model_fields.keys():
+            if field_name == "sources" or field_name == "relatedData":
+                continue
+            attr_left = getattr(self, field_name)
+            if not isinstance(attr_left, list):
+                continue
+            clean_roots = []
+            for data_obj in attr_left:
+                if not isinstance(data_obj, _ROOT_TYPES):
+                    continue
+                left, right = split_item(
+                    to_split,
+                    data_obj,
+                    (source_map_l, source_map_r),
+                    (related_data_map_l, related_data_map_r),
+                )
+                if right is not None:
+                    to_copy_right[field_name].append(right)
+                if left is not None:
+                    clean_roots.append(left)
+            setattr(self, field_name, clean_roots)
+        self.model_validate(self)
+        return self, type(self).model_validate(
+            {
+                "primaryId": str(uuid.uuid4()),
+                "organismType": deepcopy(self.organismType),
+                "sources": src_r,
+                "relatedData": rel_r,
+                **to_copy_right,
+            }
+        )
+
+    def split(self, to_split: int | Source, /) -> tuple[Self, Self]:
+        to_split_index = to_split
+        if isinstance(to_split, Source):
+            for sid, source in enumerate(self.sources):
+                if source._index() == to_split._index():
+                    to_split_index = sid
+                    break
+        if not (
+            isinstance(to_split_index, int) and 0 <= to_split_index < len(self.sources)
+        ):
+            raise IndexError("Received incorrect source or index")
+        return self._split_by_index(to_split_index)

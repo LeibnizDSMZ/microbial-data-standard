@@ -44,3 +44,37 @@ def build_link_mapping_and_merge[T: (Source, RelatedData)](
         *_append_link(link_right, core_index, right_link_list, link_type),
     ]
     return (link_left, link_right, merged)
+
+
+def _split_link[T: (Source, RelatedData)](
+    map: dict[str, str | None],
+    original: list[T],
+    split_indices: set[int],
+    link_type: LinkType,
+    /,
+) -> Iterable[T]:
+
+    new_i = 0
+    for uni_pos, item in enumerate(original):
+        if uni_pos in split_indices:
+            map[f"/{link_type.value}/{uni_pos}"] = f"/{link_type.value}/{new_i}"
+            yield item
+            new_i += 1
+        else:
+            map[f"/{link_type.value}/{uni_pos}"] = None
+
+
+def build_link_mapping_and_split[T: (Source, RelatedData)](
+    original: list[T],
+    to_split: set[int],
+    link_type: LinkType,
+) -> tuple[dict[str, str | None], dict[str, str | None], list[T], list[T]]:
+    link_left: dict[str, str | None] = {}
+    link_right: dict[str, str | None] = {}
+    left_indices = set(ind for ind in range(len(original)) if ind not in to_split)
+    right_indices = to_split
+
+    left_list = list(_split_link(link_left, original, left_indices, link_type))
+    right_list = list(_split_link(link_right, original, right_indices, link_type))
+
+    return (link_left, link_right, left_list, right_list)

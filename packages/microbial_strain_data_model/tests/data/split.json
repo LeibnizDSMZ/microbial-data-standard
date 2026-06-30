@@ -1,0 +1,197 @@
+{
+  "bioSafety": [],
+  "collections": [],
+  "cultivationMedia": [],
+  "enzymes": [],
+  "fattyAcidProfiles": [],
+  "gcContent": [],
+  "halophily": [],
+  "hemolysis": [],
+  "identifier": [
+    {
+      "name": "cccc",
+      "source": [
+        "/sources/2"
+      ],
+      "value": "CCCC"
+    },
+    {
+      "name": "dsmz",
+      "source": [
+        "/sources/1"
+      ],
+      "value": "BBBB"
+    },
+    {
+      "name": "sdfds",
+      "source": [
+        "/sources/0"
+      ],
+      "value": "LLLL"
+    }
+  ],
+  "knownApplications": [],
+  "legal": [],
+  "literature": [],
+  "metabolites": [],
+  "morphType": null,
+  "organismType": "Bacteria",
+  "origin": [
+    {
+      "country": null,
+      "description": null,
+      "locationCreated": null,
+      "source": [
+        "/sources/0",
+        "/sources/1",
+        "/sources/2"
+      ],
+      "tags": [
+        {
+          "level1": "#Host",
+          "level2": "#Fishes",
+          "level3": "#Zebrafish"
+        }
+      ]
+    }
+  ],
+  "otherMedia": [
+    {
+      "additionalType": null,
+      "description": null,
+      "name": "source A media",
+      "source": [
+        "/sources/0"
+      ],
+      "url": "https://aaaaaaaa.aa/",
+      "usageInfo": null
+    },
+    {
+      "additionalType": null,
+      "description": null,
+      "name": "source B media",
+      "source": [
+        "/sources/1"
+      ],
+      "url": "https://bbbbbbbb.bb/",
+      "usageInfo": null
+    },
+    {
+      "additionalType": null,
+      "description": null,
+      "name": "source B media",
+      "source": [
+        "/sources/2"
+      ],
+      "url": "https://cccccccc.cc/",
+      "usageInfo": null
+    }
+  ],
+  "pathogenicity": [],
+  "primaryId": "test_split",
+  "sequences": [],
+  "sources": [
+    {
+      "mode": "automated",
+      "name": "A",
+      "publisher": [
+        {
+          "address": null,
+          "email": null,
+          "identifier": [],
+          "legalName": "AAAAAAAA",
+          "name": "A",
+          "url": null
+        }
+      ],
+      "sourceType": "dataset"
+    },
+    {
+      "mode": "automated",
+      "name": "B",
+      "publisher": [
+        {
+          "address": null,
+          "email": null,
+          "identifier": [],
+          "legalName": "BBBBBBB",
+          "name": "B",
+          "url": null
+        }
+      ],
+      "sourceType": "dataset"
+    },
+    {
+      "mode": "automated",
+      "name": "C",
+      "publisher": [
+        {
+          "address": null,
+          "email": null,
+          "identifier": [],
+          "legalName": "CCCCCCC",
+          "name": "C",
+          "url": null
+        }
+      ],
+      "sourceType": "dataset"
+    }
+  ],
+  "sporeFormation": [],
+  "staining": [],
+  "taxon": [
+    {
+      "alternateName": [],
+      "identifier": [],
+      "name": "aaaa",
+      "parentTaxon": null,
+      "sameAs": [],
+      "scientificName": null,
+      "source": [
+        "/sources/0"
+      ],
+      "taxonRank": "species",
+      "taxonStatus": "validly published"
+    },
+    {
+      "alternateName": [],
+      "identifier": [],
+      "name": "bbbb",
+      "parentTaxon": null,
+      "sameAs": [],
+      "scientificName": null,
+      "source": [
+        "/sources/1"
+      ],
+      "taxonRank": "species",
+      "taxonStatus": "validly published"
+    },
+    {
+      "alternateName": [],
+      "identifier": [],
+      "name": "cccc",
+      "parentTaxon": null,
+      "sameAs": [],
+      "scientificName": null,
+      "source": [
+        "/sources/2"
+      ],
+      "taxonRank": "species",
+      "taxonStatus": "validly published"
+    }
+  ],
+  "tolerances": [],
+  "typeStrain": [
+    {
+      "source": [
+        "/sources/0",
+        "/sources/1",
+        "/sources/2"
+      ],
+      "typeStrain": false
+    }
+  ],
+  "unifiedTaxon": null,
+  "unifiedTypeStrain": null,
+  "wallConstituents": []
+}
