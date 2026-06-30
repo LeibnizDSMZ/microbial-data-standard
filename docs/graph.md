@@ -644,6 +644,7 @@ unknown
 }
 
 class `Strain`{
+version: integer
 primaryId: string
 organismType: OrganismType
 morphType: Morph | null
