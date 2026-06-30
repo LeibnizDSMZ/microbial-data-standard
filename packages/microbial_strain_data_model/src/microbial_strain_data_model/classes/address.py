@@ -9,7 +9,7 @@ from pydantic_extra_types.country import CountryAlpha2
 
 type _INDEX = tuple[
     str | None,
-    CountryAlpha2 | None,
+    str | None,
     str | None,
     str | None,
     str | None,
