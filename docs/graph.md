@@ -576,9 +576,9 @@ source: string
 
 class `microbial_strain_data_model__classes__enums__Restriction`{
 <<enumeration>>
-No known restrictions apply
-Only for non-commercial purposes
-For commercial development a special agreement is requested
+no known restrictions apply
+only for non-commercial purposes
+for commercial development a special agreement is requested
 }
 
 class `SupplyForm`{
