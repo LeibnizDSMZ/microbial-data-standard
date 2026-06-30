@@ -406,6 +406,7 @@ class Strain(BaseModel):
         self.model_validate(self)
         return self, type(self).model_validate(
             {
+                "version": 1,
                 "primaryId": str(uuid.uuid4()),
                 "organismType": deepcopy(self.organismType),
                 "sources": src_r,
