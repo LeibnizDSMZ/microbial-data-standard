@@ -98,6 +98,21 @@ pre-commit:
               - '**/*.{png,jpg,jpeg,gif,svg,webp,ico}'
             run: bin/install/wrap.sh end-of-file-fixer -- {staged_files} || true
             stage_fixed: true
+          - name: fix-all-addable-files
+            env:
+              JSON_FILES: $(find . -name "*.json" -type f)
+              ALL_FILES: $(find . -name "*.license" -o -name "*.json" -o -name "*.md" -o -name "*.toml" -type f)
+            run: |
+              if [ -n "$ALL_FILES" ]; then
+                bin/install/wrap.sh mixed-line-ending -f auto -- $ALL_FILES || true
+                bin/install/wrap.sh trailing-whitespace-fixer --markdown-linebreak-ext=md -- $ALL_FILES || true
+                bin/install/wrap.sh end-of-file-fixer -- $ALL_FILES || true
+              fi
+
+              if [ -n "$JSON_FILES" ]; then
+                bin/install/wrap.sh pretty-format-json --autofix -- $JSON_FILES || true
+              fi
+            stage_fixed: true
 commit-msg:
   piped: true
   commands:
