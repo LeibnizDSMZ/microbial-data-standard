@@ -10,15 +10,14 @@ readme = "README.md"
 authors = [{ name = "Julius Witte" },{ name = "Artur Lissin", email = "artur.lissin@dsmz.de" },]
 requires-python = ">=3.13,<4"
 dependencies = [
-  "pydantic >=2.10,<3",
-  "pydantic[email] >=2.10,<3",
-  "pydantic_extra_types >=2.10,<3",
-  "pycountry >=26.2,<27",
-  "pendulum >=3.2,<4",
-  "anytree >=2.12,<3",
+  "pydantic >=2.13,<3",
+  "pydantic[email] >=2.13,<3",
+  "pydantic_extra_types[pycountry] >=2.11,<3",
+  "pydantic_extra_types[pendulum] >=2.11,<3",
+  "anytree >=2.13,<3",
   "jsonref >=1.1,<2",
-  "jsonschema >=4.19,<5",
-  "deepdiff >=9.0.0,<10"
+  "jsonschema >=4.26,<5",
+  "deepdiff >=9.1,<10"
 ]
 
 [tool.setuptools.packages.find]
@@ -26,7 +25,7 @@ where = ["src"]
 include = ["microbial_strain_data_model"]
 
 [build-system]
-requires = ["uv_build>=0.11.6,<0.12.0"]
+requires = ["uv_build>=0.11.26,<0.12.0"]
 build-backend = "uv_build"
 
 [tool.uv]

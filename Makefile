@@ -1,7 +1,6 @@
 # SPDX-FileCopyrightText: 2026 Leibniz Institute DSMZ-German Collection of Microorganisms and Cell Cultures GmbH
 #
 # SPDX-License-Identifier: MIT
-
 ifeq ($(CONTAINER),container)
 $(info Makefile enabled, proceeding ...)
 else
@@ -41,21 +40,11 @@ docs: setup
 	$(UVE) sync --frozen --group docs
 
 setup:
-	which uv || [ -d "${UV_INSTALL_DIR}" ] || (curl -LsSf https://astral.sh/uv/install.sh | sh -s - --quiet)
+	which uv || [ -d "${UV_INSTALL_DIR}" ] || (curl -LsSf https://astral.sh/uv/$(UV_VERSION)/install.sh | sh -s - --quiet)
 	$(UVE) python install $(PYV)
 	rm -rf .venv
 	$(UVE) venv --python=$(PYV) --relocatable --link-mode=copy --seed
 	$(UVE) pip install --upgrade pip
-
-
-RAN := $(shell awk 'BEGIN{srand();printf("%d", 65536*rand())}')
-
-runAct:
-	echo "source .venv/bin/activate; rm /tmp/$(RAN)" > /tmp/$(RAN)
-	bash --init-file /tmp/$(RAN)
-
-runChecks:
-	$(UVE) run lefthook run pre-commit --all-files -f
 
 unstaged:
 	@if ! git diff --quiet --exit-code; then \
@@ -72,6 +61,15 @@ setupDocs: unstaged
 setupLicense: unstaged
 	bash $(BIN_RUN_LICENSE_LINT)
 	git add .
+
+RAN := $(shell awk 'BEGIN{srand();printf("%d", 65536*rand())}')
+
+runAct:
+	@echo "source .venv/bin/activate; rm /tmp/$(RAN)" > /tmp/$(RAN)
+	bash --init-file /tmp/$(RAN)
+
+runChecks:
+	$(UVE) run lefthook run pre-commit --all-files -f
 
 runDocs:
 	$(UVE) run zensical build -f $(CONFIG_DOCS)
@@ -99,25 +97,25 @@ export_runUpdate:
 	$(UVE) lock -U
 
 com commit:
-	echo "" > .commit_msg
+	@echo "" > .commit_msg
 	@if curl -sf http://ollama:11434; then \
-		$(MAKE) message; \
-	else\
-		$(UVE) run cz commit; \
+		$(MAKE) message || exit 1; \
+	else \
+		$(UVE) run cz commit || exit 1; \
 	fi
-	echo "" > .commit_msg
+	@echo "" > .commit_msg
 
 recom recommit:
 	@if curl -sf http://ollama:11434; then \
 		[ -s .commit_msg ] || (echo "Missing commit message!" && exit 1); \
-		git commit -F .commit_msg; \
+		git commit -F .commit_msg || exit 1; \
 	else\
-		$(UVE) run cz commit --retry; \
+		$(UVE) run cz commit --retry || exit 1; \
 	fi
-	echo "" > .commit_msg
+	@echo "" > .commit_msg
 
 message:
-	git diff --staged -- . | \
+	git diff --staged -- . ':(exclude)uv.lock' | \
 		jq -Rs --rawfile prompt configs/prompt/commit.md \
 			'{"stream": false, "model": "$(OLLAMA_MODEL)", "prompt": ("<GIT_DIFF>" + . + "</GIT_DIFF>" + $$prompt)}' | \
 		curl -s -X POST http://ollama:11434/api/generate \

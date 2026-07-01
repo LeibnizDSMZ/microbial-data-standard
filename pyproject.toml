@@ -35,9 +35,9 @@ mono = [
   "microbial_strain_data_utils",
 ]
 dev = [
-  "commitizen ==4.16.2",
-  "pyrefly ==1.0.0",
-  "ruff ==0.15.14",
+  "commitizen ==4.16.4",
+  "pyrefly ==1.1.1",
+  "ruff ==0.15.20",
   "codespell ==2.4.2",
   "shellcheck-py ==0.11.0.1",
   "pre-commit-hooks ==6.0.0",
@@ -45,15 +45,13 @@ dev = [
   # license
   "reuse ==6.2.0",
   # commit hooks
-  "lefthook ==2.1.8",
+  "lefthook ==2.1.9",
   # types
 ]
-test = ["coverage ==7.14.0", "pytest ==9.0.3", "tox ==4.54.0"]
+test = ["coverage ==7.14.3", "pytest ==9.1.1", "tox ==4.56.1"]
 docs = [
   "zensical ==0.0.46",
-  "mkdocstrings-python ==2.0.4",
-  "griffe-pydantic ==1.3.1",
-  "griffe ==2.0.2"
+  "mkdocstrings-python ==2.0.5",
 ]
 
 [tool.codespell]
