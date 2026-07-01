@@ -194,8 +194,6 @@ else
     echo "No CC0 files to annotate"
 fi
 
-git add .
-
 if ! reuse lint; then
     echo "Linting failed!"
     exit 1
