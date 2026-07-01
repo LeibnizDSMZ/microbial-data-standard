@@ -77,9 +77,9 @@ def _get_value(schema: dict[str, Any]) -> Any:
 def parse_schema(paths: SchemaPaths) -> None:
     mi = Strain.model_json_schema()
     with paths.json_schema.open("w") as f_out:
-        f_out.write(json.dumps(mi, indent=2))
+        f_out.write(json.dumps(mi, indent=2, sort_keys=True))
 
-    schema = json.dumps(mi)
+    schema = json.dumps(mi, sort_keys=True)
     main_schema = jsonref.loads(schema)
 
     transformed_schema: dict[Any, Any] = {
@@ -101,7 +101,12 @@ def parse_schema(paths: SchemaPaths) -> None:
         required: list[str],
     ):
         counter = 0
-        for key, value in schema_part.items():
+
+        schema_t = sorted(
+            tuple((key, value) for key, value in schema_part.items()),
+            key=lambda val: val[0],
+        )
+        for key, value in schema_t:
             counter = counter + 1
 
             if counter_pre:

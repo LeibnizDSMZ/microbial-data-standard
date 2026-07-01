@@ -15,112 +15,250 @@ search:
 ``` mermaid
 classDiagram
 direction LR
-class `OrganismType`{
-<<enumeration>>
-Algae
-Archaea
-Bacteria
-Fungi
-Protist
-}
-
-class `Morph`{
-<<enumeration>>
-yeast
-filamentous
-}
-
-class `TypeStrain`{
-typeStrain: boolean
+class `BioSafety`{
+classification: string | null
+riskgroup: string
 source: string
+url: string | null
 }
 
-class `TaxonWithSource`{
-name: string
-taxonRank: TaxonRank | null
-taxonStatus: TaxonStatus | null
+class `Collection`{
+absFile: string | null
+address: Address | null
+available: boolean | null
+axenicCulture: boolean | null
+catalogUrl: string | null
+depositedAs: string | null
+depositionDate: string | null
+depositor: Person | null
+email: string | null
+history: string | null
 identifier: array[Identifier]
-scientificName: ScientificName | null
-alternateName: string
-parentTaxon: Taxon | null
-sameAs: string
+legalName: string | null
+logo: string | null
+mtaFile: string | null
+name: string
+policyUrl: string | null
+registeredCollection: boolean | null
+resourceNumber: string
+restrictionsOnUse: microbial_strain_data_model__classes__enums__Restriction | null
 source: string
+supplyForms: array[SupplyForm]
+url: string | null
 }
 
-class `TaxonRank`{
-<<enumeration>>
-subspecies
-species
-section
-genus
-family
-order
-class
-phylum
-domain
+class `Address`{
+addressCountry: string | null
+addressCountryIso: string | null
+addressLocality: string | null
+addressRegion: string | null
+postOfficeBoxNumber: string | null
+postalCode: string | null
+streetAddress: string | null
 }
 
-class `TaxonStatus`{
-<<enumeration>>
-proposed
-validly published
-validly published synonym
+class `Person`{
+identifier: array[Identifier]
+name: string
 }
 
 class `Identifier`{
+logo: string | null
 name: string
-value: string
 propertyID: string | null
 url: string | null
-logo: string | null
+value: string
 }
 
-class `ScientificName`{
-name: string
-author: string
+class `microbial_strain_data_model__classes__enums__Restriction`{
+<<enumeration>>
+no known restrictions apply
+only for non-commercial purposes
+for commercial development a special agreement is requested
 }
 
-class `Taxon`{
+class `SupplyForm`{
+<<enumeration>>
+Agar
+Cryo
+Dry ice
+Liquid medium
+Lyo
+Oil
+Water
+DNA
+}
+
+class `CultivationMedia`{
 name: string
-taxonRank: TaxonRank | null
-taxonStatus: TaxonStatus | null
-identifier: array[Identifier]
-scientificName: ScientificName | null
+reagentUsed: string
+relatedData: string
+source: string
+url: string | null
+}
+
+class `Enzyme`{
+active: boolean | null
 alternateName: string
-parentTaxon: Taxon | null
-sameAs: string
+hasECNumber: string
+identifier: array[Identifier]
+name: string | null
+relatedData: string
+source: string
+}
+
+class `FattyAcidProfile`{
+library: string | null
+profile: array[FattyAcid]
+relatedData: string
+software: string | null
+source: string
+}
+
+class `FattyAcid`{
+alternateName: string
+ecl: string | null
+identifier: array[Identifier]
+name: string | null
+percent: number | null
+}
+
+class `GCContent`{
+method: GCMethod | null
+noteMethod: string | null
+source: string
+value: number
+}
+
+class `GCMethod`{
+<<enumeration>>
+experimental
+genome sequence
+}
+
+class `GrowthCondition`{
+maximalPh: number | null
+maximalTemperature: number | null
+minimalPh: number | null
+minimalTemperature: number | null
+optimalPh: number | null
+optimalTemperature: number | null
+oxygenRelation: OxygenTolerance | null
+source: string
+testsPh: array[GrowthRange]
+testsTemperature: array[GrowthRange]
+}
+
+class `OxygenTolerance`{
+<<enumeration>>
+aerobe
+aerotolerant
+anaerobe
+facultative aerobe
+facultative anaerobe
+microaerophile
+microaerotolerant
+obligate aerobe
+obligate anaerobe
+}
+
+class `GrowthRange`{
+growth: boolean
+maximal: number | null
+minimal: number | null
+relatedData: string
+}
+
+class `Halophil`{
+alternateName: string
+identifier: array[Identifier]
+maximal: number | null
+minimal: number | null
+name: string | null
+optimal: number | null
+source: string
+tests: array[GrowthRange]
+unit: ConcentrationUnit
+}
+
+class `ConcentrationUnit`{
+<<enumeration>>
+g/L
+mol/L
+g/g%
+v/v%
+unknown
+}
+
+class `Hemolysis`{
+blood: HemolysisBlood
+hemolysisType: HemolysisType
+source: string
+}
+
+class `HemolysisBlood`{
+<<enumeration>>
+sheep
+horse
+unknown
+}
+
+class `HemolysisType`{
+<<enumeration>>
+alpha
+beta
+gamma
 }
 
 class `IdentifierStrain`{
-name: string
-value: string
-propertyID: string | null
-url: string | null
 logo: string | null
+name: string
+propertyID: string | null
+source: string
+url: string | null
+value: string
+}
+
+class `Application`{
+application: string
 source: string
 }
 
-class `Origin`{
-sampleDate: string | null
-country: Country | null
-description: string | null
-locationCreated: Location | null
-tags: array[IsolationTag]
-sampler: Person | null
-isolationDate: string | null
-isolatedAt: Organization | null
-isolator: Person | null
+class `Legal`{
+dualUse: boolean | null
+gmo: boolean | null
+gmoInformation: string | null
+gras: boolean | null
+nagoyaRestrictions: NagoyaRestrictions
+otherRestrictions: array[microbial_strain_data_model__classes__legal__Restriction]
+qps: boolean | null
+quarantineEU: boolean | null
 source: string
+}
+
+class `NagoyaRestrictions`{
+<<enumeration>>
+No known restrictions under the Nagoya protocol
+Documents providing proof of legal access and terms of use available at the collection
+Strain probably in scope, please contact the culture collection
+}
+
+class `microbial_strain_data_model__classes__legal__Restriction`{
+authority: string | null
+country: Country | null
+name: string
+url: string | null
+value: string
 }
 
 class `Country`{
-name: string | null
-iso_3166_2: string | CountryHistoricalAlpha2 | CountryOtherCodes | null
-identifier: array[Identifier]
-conventionOfBiologicalDiversityParty: boolean | null
 cartagenaProtocolParty: boolean | null
-nagoyaProtocolParty: boolean | null
+conventionOfBiologicalDiversityParty: boolean | null
+identifier: array[Identifier]
+iso_3166_2: string | CountryHistoricalAlpha2 | CountryOtherCodes | null
 nagoyaKualaLumpurParty: boolean | null
+nagoyaProtocolParty: boolean | null
+name: string | null
 }
 
 class `CountryHistoricalAlpha2`{
@@ -151,16 +289,145 @@ International Waters
 Other
 }
 
-class `Location`{
+class `Literature`{
+author: array[Person]
+datePublished: string | null
 name: string | null
+publisher: array[Organization]
+source: string
+url: string | null
+}
+
+class `Organization`{
+address: Address | null
+email: string | null
+identifier: array[Identifier]
+legalName: string | null
+logo: string | null
+name: string
+url: string | null
+}
+
+class `Metabolite`{
+alternateName: string
+identifier: array[Identifier]
+name: string | null
+source: string
+tests: array[MetaboliteTest]
+}
+
+class `MetaboliteTest`{
+active: boolean | null
+kindOfUtilization: KindOfUtilization | null
+protocol: string | null
+relatedData: string
+type: MetaboliteTestType
+}
+
+class `KindOfUtilization`{
+<<enumeration>>
+assimilation
+builds acid from
+degradation
+energy source
+fermentation
+hydrolysis
+reduction
+}
+
+class `MetaboliteTestType`{
+<<enumeration>>
+utilization
+production
+}
+
+class `Morph`{
+<<enumeration>>
+yeast
+filamentous
+}
+
+class `Morphology`{
+cellLength: Size | null
+cellShape: string | null
+cellWidth: Size | null
+colonyColor: ColonyColor | null
+colonySize: Size | null
+flagellum: boolean | null
+flagellumArrangement: FlagellumArrangement | null
+gliding: boolean | null
+motile: boolean | null
+multiCellComplexForming: boolean | null
+source: string
+}
+
+class `Size`{
+maximal: number
+minimal: number
+unit: SizeUnit
+}
+
+class `SizeUnit`{
+<<enumeration>>
+µm
+mm
+}
+
+class `ColonyColor`{
+<<enumeration>>
+white
+cream
+yellowish
+orange
+pink
+red
+buff
+darkbrown
+reyish
+tannish
+beige
+brownish
+}
+
+class `FlagellumArrangement`{
+<<enumeration>>
+Polar
+Peritrichous
+Monotrichous polar
+}
+
+class `OrganismType`{
+<<enumeration>>
+Algae
+Archaea
+Bacteria
+Fungi
+Protist
+}
+
+class `Origin`{
+country: Country | null
+description: string | null
+isolatedAt: Organization | null
+isolationDate: string | null
+isolator: Person | null
+locationCreated: Location | null
+sampleDate: string | null
+sampler: Person | null
+source: string
+tags: array[IsolationTag]
+}
+
+class `Location`{
 description: string | null
 geo: GeoPoint | null
+name: string | null
 }
 
 class `GeoPoint`{
+elevation: number | null
 latitude: number | string
 longitude: number | string
-elevation: number | null
 precision: number | null
 }
 
@@ -170,64 +437,21 @@ level2: string | null
 level3: string | null
 }
 
-class `Person`{
-name: string
-identifier: array[Identifier]
-}
-
-class `Organization`{
-name: string
-identifier: array[Identifier]
-legalName: string | null
-address: Address | null
-url: string | null
-email: string | null
-logo: string | null
-}
-
-class `Address`{
-addressCountry: string | null
-addressCountryIso: string | null
-addressRegion: string | null
-addressLocality: string | null
-postOfficeBoxNumber: string | null
-postalCode: string | null
-streetAddress: string | null
-}
-
-class `Legal`{
-dualUse: boolean | null
-quarantineEU: boolean | null
-nagoyaRestrictions: NagoyaRestrictions
-qps: boolean | null
-gras: boolean | null
-gmo: boolean | null
-gmoInformation: string | null
-otherRestrictions: array[microbial_strain_data_model__classes__legal__Restriction]
+class `OtherMedia`{
+additionalType: string | null
+description: string | null
+name: string | null
 source: string
-}
-
-class `NagoyaRestrictions`{
-<<enumeration>>
-No known restrictions under the Nagoya protocol
-Documents providing proof of legal access and terms of use available at the collection
-Strain probably in scope, please contact the culture collection
-}
-
-class `microbial_strain_data_model__classes__legal__Restriction`{
-name: string
-country: Country | null
-authority: string | null
-value: string
 url: string | null
+usageInfo: string | null
 }
 
 class `Pathogen`{
+classification: string | null
 host: Host
 pathogen: PathogenLevel
-classification: string | null
-url: string | null
 source: string
+url: string | null
 }
 
 class `Host`{
@@ -249,152 +473,19 @@ opportunistic
 obligate
 }
 
-class `BioSafety`{
-riskgroup: string
-classification: string | null
-url: string | null
+class `RelatedData`{
+relation: string
 source: string
-}
-
-class `Morphology`{
-cellShape: string | null
-cellLength: Size | null
-cellWidth: Size | null
-motile: boolean | null
-flagellum: boolean | null
-flagellumArrangement: FlagellumArrangement | null
-gliding: boolean | null
-colonySize: Size | null
-colonyColor: ColonyColor | null
-multiCellComplexForming: boolean | null
-source: string
-}
-
-class `Size`{
-minimal: number
-maximal: number
-unit: SizeUnit
-}
-
-class `SizeUnit`{
-<<enumeration>>
-µm
-mm
-}
-
-class `FlagellumArrangement`{
-<<enumeration>>
-Polar
-Peritrichous
-Monotrichous polar
-}
-
-class `ColonyColor`{
-<<enumeration>>
-white
-cream
-yellowish
-orange
-pink
-red
-buff
-darkbrown
-reyish
-tannish
-beige
-brownish
-}
-
-class `CellWall`{
-name: string | null
-identifier: array[Identifier]
-alternateName: string
-percent: number | null
-source: string
-}
-
-class `Staining`{
-name: string
-value: StainingValue
-source: string
-}
-
-class `StainingValue`{
-<<enumeration>>
-positive
-negative
-variable
-}
-
-class `Spore`{
-sporeForming: boolean
-typeOfSpore: SporeType | null
-sporeEjection: string | null
-relatedData: string
-source: string
-}
-
-class `SporeType`{
-<<enumeration>>
-spore
-endospore
-}
-
-class `GrowthCondition`{
-optimalTemperature: number | null
-minimalTemperature: number | null
-maximalTemperature: number | null
-testsTemperature: array[GrowthRange]
-optimalPh: number | null
-minimalPh: number | null
-maximalPh: number | null
-testsPh: array[GrowthRange]
-oxygenRelation: OxygenTolerance | null
-source: string
-}
-
-class `GrowthRange`{
-minimal: number | null
-maximal: number | null
-growth: boolean
-relatedData: string
-}
-
-class `OxygenTolerance`{
-<<enumeration>>
-aerobe
-aerotolerant
-anaerobe
-facultative aerobe
-facultative anaerobe
-microaerophile
-microaerotolerant
-obligate aerobe
-obligate anaerobe
-}
-
-class `CultivationMedia`{
-name: string
-url: string | null
-reagentUsed: string
-source: string
-relatedData: string
 }
 
 class `Sequence`{
-type: SequenceType
-level: SequenceLevel
 accessionNumber: string
 description: string | null
-length: string | null
 identifier: array[Identifier]
+length: string | null
+level: SequenceLevel
 source: string
-}
-
-class `SequenceType`{
-<<enumeration>>
-nucleotide
-protein
+type: SequenceType
 }
 
 class `SequenceLevel`{
@@ -406,85 +497,123 @@ artificial
 other
 }
 
-class `GCContent`{
-method: GCMethod | null
-noteMethod: string | null
-value: number
-source: string
-}
-
-class `GCMethod`{
+class `SequenceType`{
 <<enumeration>>
-experimental
-genome sequence
+nucleotide
+protein
 }
 
-class `FattyAcidProfile`{
-profile: array[FattyAcid]
-library: string | null
-software: string | null
+class `Source`{
+author: array[Person]
+datePublished: string | null
+dateRecorded: string
+identifier: array[Identifier]
+lastUpdate: string | null
+mode: CurationMode
+name: string | null
+publisher: array[Organization]
+sourceType: SourceType
+url: string | null
+}
+
+class `CurationMode`{
+<<enumeration>>
+manual
+automated
+unknown
+}
+
+class `SourceType`{
+<<enumeration>>
+literature
+website
+dataset
+}
+
+class `Spore`{
 relatedData: string
 source: string
+sporeEjection: string | null
+sporeForming: boolean
+typeOfSpore: SporeType | null
 }
 
-class `FattyAcid`{
-name: string | null
-identifier: array[Identifier]
-alternateName: string
-percent: number | null
-ecl: string | null
+class `SporeType`{
+<<enumeration>>
+spore
+endospore
 }
 
-class `Hemolysis`{
-blood: HemolysisBlood
-hemolysisType: HemolysisType
+class `Staining`{
+name: string
 source: string
+value: StainingValue
 }
 
-class `HemolysisBlood`{
+class `StainingValue`{
 <<enumeration>>
-sheep
-horse
-unknown
+positive
+negative
+variable
 }
 
-class `HemolysisType`{
-<<enumeration>>
-alpha
-beta
-gamma
-}
-
-class `Halophil`{
-name: string | null
-identifier: array[Identifier]
+class `TaxonWithSource`{
 alternateName: string
-minimal: number | null
-maximal: number | null
-optimal: number | null
-unit: ConcentrationUnit
-tests: array[GrowthRange]
+identifier: array[Identifier]
+name: string
+parentTaxon: Taxon | null
+sameAs: string
+scientificName: ScientificName | null
 source: string
+taxonRank: TaxonRank | null
+taxonStatus: TaxonStatus | null
 }
 
-class `ConcentrationUnit`{
+class `Taxon`{
+alternateName: string
+identifier: array[Identifier]
+name: string
+parentTaxon: Taxon | null
+sameAs: string
+scientificName: ScientificName | null
+taxonRank: TaxonRank | null
+taxonStatus: TaxonStatus | null
+}
+
+class `ScientificName`{
+author: string
+name: string
+}
+
+class `TaxonRank`{
 <<enumeration>>
-g/L
-mol/L
-g/g%
-v/v%
-unknown
+subspecies
+species
+section
+genus
+family
+order
+class
+phylum
+domain
+}
+
+class `TaxonStatus`{
+<<enumeration>>
+proposed
+validly published
+validly published synonym
 }
 
 class `Tolerance`{
-name: string | null
-identifier: array[Identifier]
 alternateName: string
-reaction: ToleranceReaction | null
+identifier: array[Identifier]
 mic: string | null
-unit: ConcentrationUnit | null
-tests: array[ToleranceTest]
+name: string | null
+reaction: ToleranceReaction | null
 source: string
+tests: array[ToleranceTest]
+unit: ConcentrationUnit | null
 }
 
 class `ToleranceReaction`{
@@ -495,289 +624,160 @@ intermediate
 }
 
 class `ToleranceTest`{
-reaction: ToleranceReaction
 concentration: number | null
+reaction: ToleranceReaction
+relatedData: string
 unit: ConcentrationUnit
-relatedData: string
 }
 
-class `Enzyme`{
-name: string | null
-hasECNumber: string
-identifier: array[Identifier]
+class `TypeStrain`{
+source: string
+typeStrain: boolean
+}
+
+class `CellWall`{
 alternateName: string
-active: boolean | null
-relatedData: string
-source: string
-}
-
-class `Metabolite`{
-name: string | null
 identifier: array[Identifier]
-alternateName: string
-tests: array[MetaboliteTest]
-source: string
-}
-
-class `MetaboliteTest`{
-type: MetaboliteTestType
-active: boolean | null
-protocol: string | null
-kindOfUtilization: KindOfUtilization | null
-relatedData: string
-}
-
-class `MetaboliteTestType`{
-<<enumeration>>
-utilization
-production
-}
-
-class `KindOfUtilization`{
-<<enumeration>>
-assimilation
-builds acid from
-degradation
-energy source
-fermentation
-hydrolysis
-reduction
-}
-
-class `Application`{
-application: string
-source: string
-}
-
-class `Collection`{
-name: string
-identifier: array[Identifier]
-legalName: string | null
-address: Address | null
-url: string | null
-email: string | null
-logo: string | null
-resourceNumber: string
-available: boolean | null
-catalogUrl: string | null
-restrictionsOnUse: microbial_strain_data_model__classes__enums__Restriction | null
-policyUrl: string | null
-axenicCulture: boolean | null
-supplyForms: array[SupplyForm]
-history: string | null
-depositionDate: string | null
-depositor: Person | null
-depositedAs: string | null
-registeredCollection: boolean | null
-mtaFile: string | null
-absFile: string | null
-source: string
-}
-
-class `microbial_strain_data_model__classes__enums__Restriction`{
-<<enumeration>>
-no known restrictions apply
-only for non-commercial purposes
-for commercial development a special agreement is requested
-}
-
-class `SupplyForm`{
-<<enumeration>>
-Agar
-Cryo
-Dry ice
-Liquid medium
-Lyo
-Oil
-Water
-DNA
-}
-
-class `Literature`{
 name: string | null
-url: string | null
-datePublished: string | null
-author: array[Person]
-publisher: array[Organization]
+percent: number | null
 source: string
-}
-
-class `OtherMedia`{
-url: string | null
-name: string | null
-description: string | null
-usageInfo: string | null
-additionalType: string | null
-source: string
-}
-
-class `RelatedData`{
-relation: string
-source: string
-}
-
-class `Source`{
-sourceType: SourceType
-mode: CurationMode
-name: string | null
-url: string | null
-identifier: array[Identifier]
-datePublished: string | null
-dateRecorded: string
-lastUpdate: string | null
-author: array[Person]
-publisher: array[Organization]
-}
-
-class `SourceType`{
-<<enumeration>>
-literature
-website
-dataset
-}
-
-class `CurationMode`{
-<<enumeration>>
-manual
-automated
-unknown
 }
 
 class `Strain`{
-version: integer
-primaryId: string
-organismType: OrganismType
-morphType: Morph | null
-typeStrain: array[TypeStrain]
-taxon: array[TaxonWithSource]
-identifier: array[IdentifierStrain]
-origin: array[Origin]
-legal: array[Legal]
-pathogenicity: array[Pathogen]
 bioSafety: array[BioSafety]
-morphology: array[Morphology]
-wallConstituents: array[CellWall]
-staining: array[Staining]
-sporeFormation: array[Spore]
-growthConditions: array[GrowthCondition]
-cultivationMedia: array[CultivationMedia]
-sequences: array[Sequence]
-gcContent: array[GCContent]
-fattyAcidProfiles: array[FattyAcidProfile]
-hemolysis: array[Hemolysis]
-halophily: array[Halophil]
-tolerances: array[Tolerance]
-enzymes: array[Enzyme]
-metabolites: array[Metabolite]
-knownApplications: array[Application]
 collections: array[Collection]
+cultivationMedia: array[CultivationMedia]
+enzymes: array[Enzyme]
+fattyAcidProfiles: array[FattyAcidProfile]
+gcContent: array[GCContent]
+growthConditions: array[GrowthCondition]
+halophily: array[Halophil]
+hemolysis: array[Hemolysis]
+identifier: array[IdentifierStrain]
+knownApplications: array[Application]
+legal: array[Legal]
 literature: array[Literature]
+metabolites: array[Metabolite]
+morphType: Morph | null
+morphology: array[Morphology]
+organismType: OrganismType
+origin: array[Origin]
 otherMedia: array[OtherMedia]
+pathogenicity: array[Pathogen]
+primaryId: string
 relatedData: array[RelatedData]
+sequences: array[Sequence]
 sources: array[Source]
+sporeFormation: array[Spore]
+staining: array[Staining]
+taxon: array[TaxonWithSource]
+tolerances: array[Tolerance]
+typeStrain: array[TypeStrain]
+version: integer
+wallConstituents: array[CellWall]
 }
 
-`Strain` ..> `OrganismType`
-`Strain` ..> `Morph`
-`Strain` ..> `TypeStrain`
-`Strain` ..> `TaxonWithSource`
-`TaxonWithSource` ..> `TaxonRank`
-`TaxonWithSource` ..> `TaxonStatus`
-`TaxonWithSource` ..> `Identifier`
-`TaxonWithSource` ..> `ScientificName`
-`TaxonWithSource` ..> `Taxon`
-`Taxon` ..> `TaxonRank`
-`Taxon` ..> `TaxonStatus`
-`Taxon` ..> `Identifier`
-`Taxon` ..> `ScientificName`
-`Taxon` ..> `Taxon`
-`Strain` ..> `IdentifierStrain`
-`Strain` ..> `Origin`
-`Origin` ..> `Country`
-`Country` ..> `CountryHistoricalAlpha2`
-`Country` ..> `CountryOtherCodes`
-`Country` ..> `Identifier`
-`Origin` ..> `Location`
-`Location` ..> `GeoPoint`
-`Origin` ..> `IsolationTag`
-`Origin` ..> `Person`
+`Strain` ..> `BioSafety`
+`Strain` ..> `Collection`
+`Collection` ..> `Address`
+`Collection` ..> `Person`
 `Person` ..> `Identifier`
-`Origin` ..> `Organization`
-`Organization` ..> `Identifier`
-`Organization` ..> `Address`
-`Origin` ..> `Person`
+`Collection` ..> `Identifier`
+`Collection` ..> `microbial_strain_data_model__classes__enums__Restriction`
+`Collection` ..> `SupplyForm`
+`Strain` ..> `CultivationMedia`
+`Strain` ..> `Enzyme`
+`Enzyme` ..> `Identifier`
+`Strain` ..> `FattyAcidProfile`
+`FattyAcidProfile` ..> `FattyAcid`
+`FattyAcid` ..> `Identifier`
+`Strain` ..> `GCContent`
+`GCContent` ..> `GCMethod`
+`Strain` ..> `GrowthCondition`
+`GrowthCondition` ..> `OxygenTolerance`
+`GrowthCondition` ..> `GrowthRange`
+`GrowthCondition` ..> `GrowthRange`
+`Strain` ..> `Halophil`
+`Halophil` ..> `Identifier`
+`Halophil` ..> `GrowthRange`
+`Halophil` ..> `ConcentrationUnit`
+`Strain` ..> `Hemolysis`
+`Hemolysis` ..> `HemolysisBlood`
+`Hemolysis` ..> `HemolysisType`
+`Strain` ..> `IdentifierStrain`
+`Strain` ..> `Application`
 `Strain` ..> `Legal`
 `Legal` ..> `NagoyaRestrictions`
 `Legal` ..> `microbial_strain_data_model__classes__legal__Restriction`
 `microbial_strain_data_model__classes__legal__Restriction` ..> `Country`
-`Strain` ..> `Pathogen`
-`Pathogen` ..> `Host`
-`Pathogen` ..> `PathogenLevel`
-`Strain` ..> `BioSafety`
+`Country` ..> `Identifier`
+`Country` ..> `CountryHistoricalAlpha2`
+`Country` ..> `CountryOtherCodes`
+`Strain` ..> `Literature`
+`Literature` ..> `Person`
+`Literature` ..> `Organization`
+`Organization` ..> `Address`
+`Organization` ..> `Identifier`
+`Strain` ..> `Metabolite`
+`Metabolite` ..> `Identifier`
+`Metabolite` ..> `MetaboliteTest`
+`MetaboliteTest` ..> `KindOfUtilization`
+`MetaboliteTest` ..> `MetaboliteTestType`
+`Strain` ..> `Morph`
 `Strain` ..> `Morphology`
 `Morphology` ..> `Size`
 `Size` ..> `SizeUnit`
 `Morphology` ..> `Size`
-`Morphology` ..> `FlagellumArrangement`
-`Morphology` ..> `Size`
 `Morphology` ..> `ColonyColor`
-`Strain` ..> `CellWall`
-`CellWall` ..> `Identifier`
-`Strain` ..> `Staining`
-`Staining` ..> `StainingValue`
+`Morphology` ..> `Size`
+`Morphology` ..> `FlagellumArrangement`
+`Strain` ..> `OrganismType`
+`Strain` ..> `Origin`
+`Origin` ..> `Country`
+`Origin` ..> `Organization`
+`Origin` ..> `Person`
+`Origin` ..> `Location`
+`Location` ..> `GeoPoint`
+`Origin` ..> `Person`
+`Origin` ..> `IsolationTag`
+`Strain` ..> `OtherMedia`
+`Strain` ..> `Pathogen`
+`Pathogen` ..> `Host`
+`Pathogen` ..> `PathogenLevel`
+`Strain` ..> `RelatedData`
+`Strain` ..> `Sequence`
+`Sequence` ..> `Identifier`
+`Sequence` ..> `SequenceLevel`
+`Sequence` ..> `SequenceType`
+`Strain` ..> `Source`
+`Source` ..> `Person`
+`Source` ..> `Identifier`
+`Source` ..> `CurationMode`
+`Source` ..> `Organization`
+`Source` ..> `SourceType`
 `Strain` ..> `Spore`
 `Spore` ..> `SporeType`
-`Strain` ..> `GrowthCondition`
-`GrowthCondition` ..> `GrowthRange`
-`GrowthCondition` ..> `GrowthRange`
-`GrowthCondition` ..> `OxygenTolerance`
-`Strain` ..> `CultivationMedia`
-`Strain` ..> `Sequence`
-`Sequence` ..> `SequenceType`
-`Sequence` ..> `SequenceLevel`
-`Sequence` ..> `Identifier`
-`Strain` ..> `GCContent`
-`GCContent` ..> `GCMethod`
-`Strain` ..> `FattyAcidProfile`
-`FattyAcidProfile` ..> `FattyAcid`
-`FattyAcid` ..> `Identifier`
-`Strain` ..> `Hemolysis`
-`Hemolysis` ..> `HemolysisBlood`
-`Hemolysis` ..> `HemolysisType`
-`Strain` ..> `Halophil`
-`Halophil` ..> `Identifier`
-`Halophil` ..> `ConcentrationUnit`
-`Halophil` ..> `GrowthRange`
+`Strain` ..> `Staining`
+`Staining` ..> `StainingValue`
+`Strain` ..> `TaxonWithSource`
+`TaxonWithSource` ..> `Identifier`
+`TaxonWithSource` ..> `Taxon`
+`Taxon` ..> `Identifier`
+`Taxon` ..> `Taxon`
+`Taxon` ..> `ScientificName`
+`Taxon` ..> `TaxonRank`
+`Taxon` ..> `TaxonStatus`
+`TaxonWithSource` ..> `ScientificName`
+`TaxonWithSource` ..> `TaxonRank`
+`TaxonWithSource` ..> `TaxonStatus`
 `Strain` ..> `Tolerance`
 `Tolerance` ..> `Identifier`
 `Tolerance` ..> `ToleranceReaction`
-`Tolerance` ..> `ConcentrationUnit`
 `Tolerance` ..> `ToleranceTest`
 `ToleranceTest` ..> `ToleranceReaction`
 `ToleranceTest` ..> `ConcentrationUnit`
-`Strain` ..> `Enzyme`
-`Enzyme` ..> `Identifier`
-`Strain` ..> `Metabolite`
-`Metabolite` ..> `Identifier`
-`Metabolite` ..> `MetaboliteTest`
-`MetaboliteTest` ..> `MetaboliteTestType`
-`MetaboliteTest` ..> `KindOfUtilization`
-`Strain` ..> `Application`
-`Strain` ..> `Collection`
-`Collection` ..> `Identifier`
-`Collection` ..> `Address`
-`Collection` ..> `microbial_strain_data_model__classes__enums__Restriction`
-`Collection` ..> `SupplyForm`
-`Collection` ..> `Person`
-`Strain` ..> `Literature`
-`Literature` ..> `Person`
-`Literature` ..> `Organization`
-`Strain` ..> `OtherMedia`
-`Strain` ..> `RelatedData`
-`Strain` ..> `Source`
-`Source` ..> `SourceType`
-`Source` ..> `CurationMode`
-`Source` ..> `Identifier`
-`Source` ..> `Person`
-`Source` ..> `Organization`
+`Tolerance` ..> `ConcentrationUnit`
+`Strain` ..> `TypeStrain`
+`Strain` ..> `CellWall`
+`CellWall` ..> `Identifier`
 ```
