@@ -36,5 +36,6 @@ services:
 
 networks:
     ollama:
+        external: true
         name: ollama
         driver: bridge
