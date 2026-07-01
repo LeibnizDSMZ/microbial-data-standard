@@ -4,6 +4,12 @@ SPDX-FileCopyrightText: 2026 Leibniz Institute DSMZ-German Collection of Microor
 SPDX-License-Identifier: CC0-1.0
 -->
 
+## v0.12.1 (2026-07-01)
+
+### Fix
+
+- **deps**: add griffe_pydantic to docs dependencies
+
 ## v0.12.0 (2026-07-01)
 
 ### Feat
