@@ -4,6 +4,28 @@ SPDX-FileCopyrightText: 2026 Leibniz Institute DSMZ-German Collection of Microor
 SPDX-License-Identifier: CC0-1.0
 -->
 
+## v0.12.0 (2026-07-01)
+
+### Feat
+
+- **strain**: add version field to strain model and update tests
+- **strain**: add version field to strain model
+- **strain**: add split functionality to partition strain data by source
+- add licenses script
+
+### Fix
+
+- **classes**: correct inverted validation logic in data models
+
+### Refactor
+
+- **builder**: remove git add functionality from documentation scripts
+- **schema**: alphabetize properties and sort json output in doc builder
+- **address**: replace countryalpha2 type with str in index tuple
+- **merge**: update strain join logic to handle bidirectional link mappings
+- **schema**: update strain model properties and add deepdiff dependency
+- **schema**: alphabetize schema properties and adjust doc generator separator
+
 ## v0.11.0 (2026-05-05)
 
 ### Feat

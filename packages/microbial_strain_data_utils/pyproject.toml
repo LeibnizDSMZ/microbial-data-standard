@@ -4,7 +4,7 @@
 
 [project]
 name = "microbial_strain_data_utils"
-version = "0.11.0"
+version = "0.12.0"
 description = """Lightweight, internal library that provides a functionality to the microbial data standard project."""
 readme = "README.md"
 authors = [{ name = "Julius Witte" }, { name = "Artur Lissin", email = "artur.lissin@dsmz.de" },]
