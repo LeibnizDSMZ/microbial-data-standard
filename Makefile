@@ -57,9 +57,21 @@ runAct:
 runChecks:
 	$(UVE) run lefthook run pre-commit --all-files -f
 
-setupDocs:
+unstaged:
+	@if ! git diff --quiet --exit-code; then \
+		echo "ERROR: Unstaged changes found!"; \
+		exit 1; \
+	fi
+	@echo "No unstaged changes. Proceeding..."
+
+setupDocs: unstaged
 	$(UVE) run mds_docs
 	$(UVE) run mds_mermaid
+	git add .
+
+setupLicense: unstaged
+	bash $(BIN_RUN_LICENSE_LINT)
+	git add .
 
 runDocs:
 	$(UVE) run zensical build -f $(CONFIG_DOCS)
@@ -73,7 +85,7 @@ runTests:
 runBuild:
 	$(UVE) build
 
-runBump:
+runBump: unstaged
 	$(UVE) run cz bump --files-only --yes --changelog
 	git add .
 	$(UVE) run cz version --project | xargs -i git commit -am "bump: release {}"
