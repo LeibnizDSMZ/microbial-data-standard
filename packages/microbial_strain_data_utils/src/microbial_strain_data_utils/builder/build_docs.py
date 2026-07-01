@@ -2,7 +2,6 @@
 #
 # SPDX-License-Identifier: MIT
 
-from microbial_strain_data_utils.builder.load_env import git_add_schema_files
 from microbial_strain_data_utils.builder.load_env import SchemaPaths
 from microbial_strain_data_utils.builder.load_env import load_schema_paths
 from typing import Any
@@ -210,7 +209,6 @@ def run() -> None:
     parse_schema(paths)
     md_list = list(sorted(clean_end_of_files(paths)))
     update_nav_config(paths, md_list)
-    git_add_schema_files(paths)
 
 
 if __name__ == "__main__":
