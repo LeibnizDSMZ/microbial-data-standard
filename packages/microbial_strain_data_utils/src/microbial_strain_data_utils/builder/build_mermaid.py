@@ -2,7 +2,6 @@
 #
 # SPDX-License-Identifier: MIT
 
-from microbial_strain_data_utils.builder.load_env import git_add_schema_files
 from microbial_strain_data_utils.builder.load_env import SchemaPaths
 from microbial_strain_data_utils.builder.load_env import load_schema_paths
 from typing import Sequence
@@ -113,7 +112,6 @@ def run() -> None:
         schema = json.load(schema_file)
     classes, links = parse_schema(schema)
     write_mermaid(paths, classes, links)
-    git_add_schema_files(paths)
 
 
 if __name__ == "__main__":
