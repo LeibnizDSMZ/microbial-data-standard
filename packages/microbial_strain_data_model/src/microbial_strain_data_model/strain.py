@@ -416,6 +416,34 @@ class Strain(BaseModel):
         )
 
     def split(self, to_split: int | Source, /) -> tuple[Self, Self]:
+        """Splits the Strain instance into two distinct instances based on a specific Source.
+
+        This method separates the data associated with a specific source (identified by index
+        or object) from the rest of the data. It effectively creates two new strain records:
+        one containing data linked to the specified source, and another containing the
+        remaining data.
+
+        The process involves:
+        1. Identifying the target source index.
+        2. Separating source and related data links.
+        3. Iterating through all data fields to split objects based on their source links.
+        4. Assigning a new UUID to the split-off instance.
+
+        Args:
+            to_split (int | Source): The source to split by. Can be the integer index of
+                the source in the `sources` list, or the `Source` object itself.
+
+        Returns:
+            tuple[Self, Self]: A tuple containing two Strain instances.
+                - The first element is the modified original instance (self), containing
+                  data *not* linked to the split source.
+                - The second element is the new instance containing data *only* linked
+                  to the split source.
+
+        Raises:
+            IndexError: If the provided integer index is out of bounds or if the
+                provided Source object is not found in the `sources` list.
+        """
         to_split_index = to_split
         if isinstance(to_split, Source):
             for sid, source in enumerate(self.sources):
