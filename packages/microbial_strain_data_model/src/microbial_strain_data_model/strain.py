@@ -423,11 +423,9 @@ class Strain(BaseModel):
         one containing data linked to the specified source, and another containing the
         remaining data.
 
-        The process involves:
-        1. Identifying the target source index.
-        2. Separating source and related data links.
-        3. Iterating through all data fields to split objects based on their source links.
-        4. Assigning a new UUID to the split-off instance.
+        The method splits the strain instance into two by identifying a specific source,
+        separating its associated data and links from the rest, and assigning a new
+        UUID to the resulting instance.
 
         Args:
             to_split (int | Source): The source to split by. Can be the integer index of
