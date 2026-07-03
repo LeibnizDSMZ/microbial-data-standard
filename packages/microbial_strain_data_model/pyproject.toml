@@ -4,7 +4,7 @@
 
 [project]
 name = "microbial_strain_data_model"
-version = "0.12.1"
+version = "0.12.2"
 description = """This project defines a new microbial strain data standard for all data describing a microbial strain."""
 readme = "README.md"
 authors = [{ name = "Julius Witte" },{ name = "Artur Lissin", email = "artur.lissin@dsmz.de" },]
@@ -25,7 +25,7 @@ where = ["src"]
 include = ["microbial_strain_data_model"]
 
 [build-system]
-requires = ["uv_build>=0.11.26,<0.12.1"]
+requires = ["uv_build>=0.11.26,<0.12.2"]
 build-backend = "uv_build"
 
 [tool.uv]
