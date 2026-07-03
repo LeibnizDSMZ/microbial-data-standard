@@ -22,7 +22,7 @@ The new microbial strain data standard is defined as a data model written in [py
 The model is used for data validation and to generate a JSON schema file, describing the microbial strain data standard.
 
 The JSON-schema file is prebuilt and included in this project. You find the JSON schema in
-`packages/microbial_strain_data_schema/microbe_json_schema.jso`.
+`packages/microbial_strain_data_schema/microbe_json_schema.json`.
 The JSON schema will be used for data validation.
 
 If you want to report a bug, contribute to the project or suggest new features, please contact the project owner.

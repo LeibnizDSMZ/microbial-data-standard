@@ -25,8 +25,10 @@ microbial_strain_data_utils = { workspace = true }
 
 [tool.uv.workspace]
 members = ["packages/*"]
-exclude = ["packages/microbial_strain_data_schema"]
-
+exclude = [
+  "packages/microbial_strain_data_schema",
+  "packages/microbial_strain_data_docs"
+]
 
 [dependency-groups]
 mono = [
@@ -70,6 +72,7 @@ version_files = [
   "README.md:^\\[!\\[release:",
   "packages/microbial_strain_data_model/pyproject.toml",
   "packages/microbial_strain_data_utils/pyproject.toml",
+  "packages/microbial_strain_data_docs/package.json",
 ]
 version_provider = "uv"
 version_type = "semver"

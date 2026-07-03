@@ -8,10 +8,13 @@ site_name = "Microbial Data Standard"
 site_description = "Modern microbial data standardization"
 site_author = "Bioindustry 4.0 WP6"
 site_dir = "public/docs"
-docs_dir = "docs"
+docs_dir = "packages/microbial_strain_data_docs/src"
 use_directory_urls = true
 extra_css = [
-    "css/extra.css",
+    "extra_css/extra.css",
+]
+extra_javascript = [
+    "extra_js/mermaid.min.js",
 ]
 copyright = "Copyright &copy; 2026 Leibniz Institute DSMZ-German Collection of Microorganisms and Cell Cultures GmbH, Maintained by the WP6 Team of the <a href='https://www.bioindustry4.eu/'>Bioindustry 4.0 project</a>"
 language = "en"

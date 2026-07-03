@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2026 Leibniz Institute DSMZ-German Collection of Microorganisms and Cell Cultures GmbH
 #
 # SPDX-License-Identifier: MIT
+
 ifeq ($(CONTAINER),container)
 $(info Makefile enabled, proceeding ...)
 else
@@ -14,14 +15,17 @@ $(shell $(ROOT_MAKEFILE)/bin/install/env.sh $(ROOT_MAKEFILE)/package.env > .env.
 -include .env.mk
 
 export
-export PATH := $(PATH):$(shell pwd)/$(UV_INSTALL_DIR)
+export PATH := $(PATH):$(shell pwd)/$(UV_INSTALL_DIR)/:$(shell pwd)/$(PNPM_HOME)/bin
 OLLAMA_MODEL?=qwen3.6:27b-q4_K_M
 
 $(eval UVEL := $(shell which uv && echo "true" || echo ""))
-UVE = $(if $(UVEL),uv,$(UV_INSTALL_DIR)/uv)
+$(eval PNPMEL := $(shell which pnpm && echo "true" || echo ""))
+UVE = $(if $(UVEL),uv,$(ROOT_MAKEFILE)/$(UV_INSTALL_DIR)/uv)
+PNPME = $(if $(PNPMEL),pnpm,$(ROOT_MAKEFILE)/$(PNPM_HOME)/bin/pnpm)
 
-dev: setup
+dev: setupUv setupPnpm
 	$(UVE) sync --frozen --all-groups
+	find .git/hooks -name "*.old" -delete
 	$(UVE) run lefthook uninstall 2>&1 || echo "not installed"
 	$(UVE) run lefthook install
 	@HOOK_FILE=.git/hooks/pre-push; \
@@ -30,21 +34,20 @@ dev: setup
 		echo "added 'git lfs pre-push' to pre-push hook."; \
 	fi
 
-tests: setup
+tests: setupUv
 	$(UVE) sync --frozen --group test
 
-build: setup
+build: setupUv
 	$(UVE) sync --frozen
 
-docs: setup
+docs: setupUv setupPnpm
 	$(UVE) sync --frozen --group docs
 
-setup:
-	which uv || [ -d "${UV_INSTALL_DIR}" ] || (curl -LsSf https://astral.sh/uv/$(UV_VERSION)/install.sh | sh -s - --quiet)
-	$(UVE) python install $(PYV)
-	rm -rf .venv
-	$(UVE) venv --python=$(PYV) --relocatable --link-mode=copy --seed
-	$(UVE) pip install --upgrade pip
+setupUv:
+	bash $(ROOT_MAKEFILE)/$(BIN_INSTALL_UV)
+
+setupPnpm:
+	bash $(ROOT_MAKEFILE)/$(BIN_INSTALL_PNMP)
 
 unstaged:
 	@if ! git diff --quiet --exit-code; then \
@@ -71,10 +74,13 @@ runAct:
 runChecks:
 	$(UVE) run lefthook run pre-commit --all-files -f
 
-runDocs:
+buildDocs:
+	cd $(ROOT_MAKEFILE)/$(PKG_DOCS) && $(PNPME) run build
+
+runDocs: buildDocs
 	$(UVE) run zensical build -f $(CONFIG_DOCS)
 
-serveDocs:
+serveDocs: buildDocs
 	$(UVE) run zensical serve -f $(CONFIG_DOCS) -a 0.0.0.0:8000
 
 runTests:
@@ -92,9 +98,11 @@ runLock runUpdate: %: export_%
 
 export_runLock:
 	$(UVE) lock
+	cd $(PKG_DOCS) && $(PNPME) install --lockfile-only
 
 export_runUpdate:
 	$(UVE) lock -U
+	cd $(PKG_DOCS) && $(PNPME) update
 
 com commit:
 	@echo "" > .commit_msg
@@ -115,7 +123,7 @@ recom recommit:
 	@echo "" > .commit_msg
 
 message:
-	git diff --staged -- . ':(exclude)uv.lock' | \
+	git diff --staged -- . ':(exclude)uv.lock' ':(exclude)*pnpm-lock.yaml' | \
 		jq -Rs --rawfile prompt configs/prompt/commit.md \
 			'{"stream": false, "model": "$(OLLAMA_MODEL)", "prompt": ("<GIT_DIFF>" + . + "</GIT_DIFF>" + $$prompt)}' | \
 		curl -s -X POST http://ollama:11434/api/generate \
