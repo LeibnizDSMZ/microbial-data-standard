@@ -22,7 +22,7 @@ Before generating any text, scan the git diff for sensitive information. This in
 # Step 2: Change Analysis
 If the diff is clean, analyze the changes with these priorities:
 1. **Focus:** Behavioral and functional logic changes.
-2. **Ignore:** Cosmetic changes (indentation, trailing whitespace) and changes to all `*.lock` files.
+2. **Ignore:** Cosmetic changes (indentation, trailing whitespace) and changes to all `lock` files.
 3. **Scope:** Identify the primary module or directory affected (e.g., `auth`, `api`, `ui`).
 
 # Step 3: Formatting Rules

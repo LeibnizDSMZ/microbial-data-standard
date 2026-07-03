@@ -1,0 +1,19 @@
+{
+  "author": "Julius Witte",
+  "contributors": [
+    {
+      "email": "artur.lissin@dsmz.de",
+      "name": "Artur Lissin"
+    }
+  ],
+  "dependencies": {
+    "mermaid": "11.16.0"
+  },
+  "description": "This package documents the microbial strain data standard.",
+  "name": "microbial_strain_data_utils",
+  "private": true,
+  "scripts": {
+    "build": "pnpm list --depth 0 --parseable --lockfile-only | grep node_modules | xargs -I {} find {} -type f -name '*.min.js' |  xargs -I {} cp {} \"$EXTRA_JS\""
+  },
+  "version": "0.12.1"
+}

@@ -13,8 +13,8 @@ def write_mermaid(
     paths: SchemaPaths, classes: dict[str, Any], links: Sequence[tuple[str, str]]
 ):
     with paths.docs_mermaid.open("w") as f_out:
-        f_out.write("---\nhide:\n  - navigation\n  - toc\n---\n")
-        f_out.write("---\nsearch:\n  exclude: true\n---\n\n")
+        f_out.write("---\nhide:\n  - navigation\n  - toc\n")
+        f_out.write("search:\n  exclude: true\n---\n\n")
         f_out.write("``` mermaid\n")
         f_out.write("classDiagram\n")
         f_out.write("direction LR\n")
