@@ -75,11 +75,13 @@ done
 FILES=()
 
 IGNORE=(
-    '^configs/prompt/.+$'
     '^bin/lint/licenses.sh'
     '^bin/install/wrap.sh'
     '^LICENSES/.+$'
-    '^configs/REUSE.toml'
+    '^configs/prompt/.+$'
+    '^configs/REUSE.toml$'
+    '^packages/microbial_strain_data_docs/src/.+\.md$'
+    '^packages/microbial_strain_data_docs/REUSE.toml$'
     'uv\.lock$'
     'pnpm-lock.yaml'
 )
@@ -139,7 +141,6 @@ MIT_FILES=(
 )
 
 MIT_FOLDERS=(
-    '^docs(/|$)'
     '^packages/microbial_strain_data_schema$'
 )
 
