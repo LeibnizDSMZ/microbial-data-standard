@@ -27,7 +27,7 @@ well as the exchange of microbial strain data is laborious and prevents the effe
 utilization of a gigantic number of important resources for the research community and
 for the bioindustrial use.
 
-![image](stylesheets/standard.png)
+![image](images/standard.png)
 
 ### What is the goal of the new standard?
 The EU project [Bioindustry 4.0](https://www.bioindustry4.eu/) brings together experts from multiple culture collections,
@@ -44,6 +44,6 @@ and the [Westerdijk Institute](https://wi.knaw.nl/),
 the open concept of the system will not only enable the distribution of the data, but
 also the contribution of data by other collections.
 
-![image](stylesheets/sdd.png)
+![image](images/sdd.png)
 
 Join now! See [Call To Action](call.md) for further details.
