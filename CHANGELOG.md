@@ -4,6 +4,13 @@ SPDX-FileCopyrightText: 2026 Leibniz Institute DSMZ-German Collection of Microor
 SPDX-License-Identifier: CC0-1.0
 -->
 
+## v0.12.3 (2026-07-03)
+
+### Fix
+
+- update image paths from stylesheets to images directory
+- **licenses**: consolidate spdx headers using reuse.toml and update lint script
+
 ## v0.12.2 (2026-07-03)
 
 ### Fix
