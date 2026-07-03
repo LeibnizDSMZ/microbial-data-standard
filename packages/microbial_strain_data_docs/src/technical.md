@@ -80,7 +80,7 @@ most cases, as a change in the conditions can change the result of the test.
 The relation between the environment conditions and the test can be captured
 with the *relatedData* links and object.
 
-![image](stylesheets/growth_condition.png)
+![image](images/growth_condition.png)
 
 In the example above all data points that are related to the growth condition are linked to the
 *relatedDate* object **Growth Condition**. Even the test result, which was measured under
@@ -93,7 +93,7 @@ according category of this data standard. But to capture the information that a 
 is from this API test series, all the results will link via *relatedData* to the relation
 object.
 
-![image](stylesheets/API_results.png)
+![image](images/API_results.png)
 
 As one data point can link to multiple *relatedData* objects, even complex combinations of
 relations can be captured.
