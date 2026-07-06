@@ -4,6 +4,7 @@
 #
 # SPDX-License-Identifier: MIT
 
+set -euo pipefail
 root_path=$(dirname "$(realpath "$0")")
 source "$root_path/../../package.env"
 
@@ -18,6 +19,6 @@ dnf upgrade --refresh -y
 echo -e "copy health"
 cp "$root_path/health.sh" / && chmod +x /health.sh
 echo -e "copy entrypoint"
-cp "$root_path/entry_dev.sh" / && chmod +x /entry_dev.sh
-cp "$root_path/entry_prod.sh" / && chmod +x /entry.sh
+cp "$root_path/entry_dev.sh" /entry_dev.sh && chmod +x /entry_dev.sh
+cp "$root_path/entry_prod.sh" /entry.sh && chmod +x /entry.sh
 echo "prep finished"
