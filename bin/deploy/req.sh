@@ -4,6 +4,7 @@
 #
 # SPDX-License-Identifier: MIT
 
+set -euo pipefail
 echo "update"
 dnf -y update
 echo "installing requirements"

@@ -4,6 +4,7 @@
 #
 # SPDX-License-Identifier: MIT
 
+set -euo pipefail
 ROOT="$(dirname "$(realpath "$0")")/../.."
 source "$ROOT/package.env"
 

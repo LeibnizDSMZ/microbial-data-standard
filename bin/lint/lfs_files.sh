@@ -4,6 +4,7 @@
 #
 # SPDX-License-Identifier: MIT
 
+set -euo pipefail
 FILES=()
 
 filter_and_collect() {
@@ -35,8 +36,12 @@ for f in "${DELETED_FILES[@]}"; do
 done
 
 for file in "${FILES[@]}"; do
-    [[ -z "${lfs_map[$file]}" ]] && continue
-    [[ -n "${deleted_map[$file]}" ]] && continue
+    if [[ -z "${lfs_map[$file]+x}" ]]; then
+        continue
+    fi
+    if [[ -n "${deleted_map[$file]+x}" ]]; then
+        continue
+    fi
 
     size=$(stat --format=%s "$file")
     if [ "$size" -gt 512000 ]; then

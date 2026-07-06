@@ -4,4 +4,5 @@
 #
 # SPDX-License-Identifier: MIT
 
+set -euo pipefail
 sleep infinity
