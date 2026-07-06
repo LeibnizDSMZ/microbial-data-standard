@@ -4,6 +4,12 @@ SPDX-FileCopyrightText: 2026 Leibniz Institute DSMZ-German Collection of Microor
 SPDX-License-Identifier: CC0-1.0
 -->
 
+## v0.12.4 (2026-07-06)
+
+### Fix
+
+- improve bin shell scripts
+
 ## v0.12.3 (2026-07-03)
 
 ### Fix
