@@ -15,5 +15,5 @@
   "scripts": {
     "build": "pnpm list --depth 0 --parseable --lockfile-only | grep node_modules | xargs -I {} find {} -type f -name '*.min.js' |  xargs -I {} cp {} \"$EXTRA_JS\""
   },
-  "version": "0.12.4"
+  "version": "0.12.5"
 }

@@ -4,6 +4,12 @@ SPDX-FileCopyrightText: 2026 Leibniz Institute DSMZ-German Collection of Microor
 SPDX-License-Identifier: CC0-1.0
 -->
 
+## v0.12.5 (2026-07-07)
+
+### Fix
+
+- **microbial_strain_data_docs**: align package name with directory
+
 ## v0.12.4 (2026-07-06)
 
 ### Fix
