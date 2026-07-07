@@ -4,7 +4,7 @@
 
 [project]
 name = "microbial_strain_data_utils"
-version = "0.12.5"
+version = "0.12.6"
 description = """Lightweight, internal library that provides a functionality to the microbial data standard project."""
 readme = "README.md"
 authors = [{ name = "Julius Witte" }, { name = "Artur Lissin", email = "artur.lissin@dsmz.de" },]
@@ -20,7 +20,7 @@ where = ["src"]
 include = ["microbial_strain_data_utils"]
 
 [build-system]
-requires = ["uv_build>=0.11.26,<0.12.5"]
+requires = ["uv_build>=0.11.26,<0.12.6"]
 build-backend = "uv_build"
 
 [tool.uv.sources]

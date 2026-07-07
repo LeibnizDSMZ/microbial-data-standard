@@ -4,6 +4,12 @@ SPDX-FileCopyrightText: 2026 Leibniz Institute DSMZ-German Collection of Microor
 SPDX-License-Identifier: CC0-1.0
 -->
 
+## v0.12.6 (2026-07-07)
+
+### Fix
+
+- **lint**: improve robustness and error handling in lint scripts
+
 ## v0.12.5 (2026-07-07)
 
 ### Fix
