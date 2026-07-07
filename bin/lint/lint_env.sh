@@ -41,11 +41,12 @@ check_env_uniqueness() {
             for known in "${ALL_ENV[@]}"; do
                 if [[ "$known" = "$name" ]]; then
                     echo "found duplicate in $1 -> $name [FAIL]"
-                    exit 1
+                    return 1
                 fi
             done
             ALL_ENV+=("$name")
     done <<<"$cmd"
+    return 0
 }
 
 check_name_occurrence() {
@@ -107,20 +108,24 @@ check_name_rev_occurrence() {
                 check_name_occurrence "$name" 1
                 if [[ "$?" = 1 ]]; then
                     echo "[FAIL] could not find $name -> $1"
-                    exit 1
+                    return 1
                 fi
                 echo "[OK] $name found"
             fi
             ALL_ENV+=("$name")
     done <<<"$(awk "$2" "$1")"
+    return 0
 }
 
 echo "checking env files"
 for env in "${ENV_FILES[@]}"; do
     if [[ ! -f "$env" ]]; then
         echo "missing env file -> $env"
+        continue
     fi
-    check_env_uniqueness "$env"
+    if ! check_env_uniqueness "$env"; then
+        exit 1
+    fi
     echo "[OK] $env"
 done
 echo "-- occurrence check --"
@@ -128,8 +133,7 @@ for name in "${ALL_ENV[@]}"; do
     if should_ignore "$name"; then
         continue
     fi
-    check_name_occurrence "$name" 0
-    if [[ "$?" = 1 ]]; then
+    if ! check_name_occurrence "$name" 0; then
         echo "[FAIL] could not find $name"
         exit 1
     fi
@@ -142,25 +146,37 @@ cmd='{
         $0 = substr($0, RSTART+RLENGTH)
     }
 }'
-check_name_rev_occurrence "$ROOT/Makefile" "$cmd"
-check_name_rev_occurrence "$ROOT/Dockerfile" "$cmd"
-check_name_rev_occurrence "$ROOT/docker-compose.yml" "$cmd"
+if ! check_name_rev_occurrence "$ROOT/Makefile" "$cmd"; then
+    exit 1
+fi
+if ! check_name_rev_occurrence "$ROOT/Dockerfile" "$cmd"; then
+    exit 1
+fi
+if ! check_name_rev_occurrence "$ROOT/docker-compose.yml" "$cmd"; then
+    exit 1
+fi
 
 while SEP=' ' read -ra files; do
     for file in "${files[@]}"; do
-        check_name_rev_occurrence "$file" "$cmd"
+        if ! check_name_rev_occurrence "$file" "$cmd"; then
+            exit 1
+        fi
     done
 done <<<"$(find "$ROOT/.devcontainer" -type f)"
 
 while SEP=' ' read -ra files; do
     for file in "${files[@]}"; do
-        check_name_rev_occurrence "$file" "$cmd"
+        if ! check_name_rev_occurrence "$file" "$cmd"; then
+            exit 1
+        fi
     done
 done <<<"$(find "$ROOT/configs" -type f)"
 
 while SEP=' ' read -ra files; do
     for file in "${files[@]}"; do
-        check_name_rev_occurrence "$file" "$cmd"
+        if ! check_name_rev_occurrence "$file" "$cmd"; then
+            exit 1
+        fi
     done
 done <<<"$(find "$PKG" -type f -regex '.*/packages/[^/]*/[^/]*')"
 
@@ -172,12 +188,16 @@ cmd='{
 }'
 while SEP=' ' read -ra files; do
     for file in "${files[@]}"; do
-        check_name_rev_occurrence "$file" "$cmd"
+        if ! check_name_rev_occurrence "$file" "$cmd"; then
+            exit 1
+        fi
     done
 done <<<"$(find "$ROOT/bin" -type f)"
 
 while SEP=' ' read -ra files; do
     for file in "${files[@]}"; do
-        check_name_rev_occurrence "$file" "$cmd"
+        if ! check_name_rev_occurrence "$file" "$cmd"; then
+            exit 1
+        fi
     done
 done <<<"$(find "$PKG" -type f -regex '.*/packages/[^/]*/bin/.*')"
