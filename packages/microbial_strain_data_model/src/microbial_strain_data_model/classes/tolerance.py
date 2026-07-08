@@ -35,6 +35,12 @@ class ToleranceTest(BaseModel):
         description="JSON paths to relation object",
     )
 
+    def _hook_related_data(self) -> ROOT_HOOK:
+        def _hook(ner: list[str]):
+            self.relatedData = ner
+
+        return self.relatedData, _hook
+
 
 class Tolerance(ChemicalSubstance):
     """Tolerance information - e.g. antibiotic resistance."""
@@ -63,7 +69,5 @@ class Tolerance(ChemicalSubstance):
         return self.source, _hook
 
     def _related_data(self, /) -> Iterable[ROOT_HOOK]:
-        def _hook(ner: list[str]):
-            self.relatedData = ner
-
-        return ((self.relatedData, _hook),)
+        for test in self.tests:
+            yield test._hook_related_data()
