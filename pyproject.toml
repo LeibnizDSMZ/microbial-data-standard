@@ -4,7 +4,7 @@
 
 [project]
 name = "microbial_strain_data"
-version = "0.12.7"
+version = "0.12.8"
 description = """This project defines a new microbial strain data standard for all data describing a microbial strain."""
 readme = "README.md"
 authors = [{ name = "Julius Witte" }, { name = "Artur Lissin", email = "artur.lissin@dsmz.de" },]
