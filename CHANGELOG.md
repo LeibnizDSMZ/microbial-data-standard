@@ -4,6 +4,12 @@ SPDX-FileCopyrightText: 2026 Leibniz Institute DSMZ-German Collection of Microor
 SPDX-License-Identifier: CC0-1.0
 -->
 
+## v0.12.7 (2026-07-08)
+
+### Fix
+
+- **tolerance**: extract related data hook logic to test class
+
 ## v0.12.6 (2026-07-07)
 
 ### Fix
