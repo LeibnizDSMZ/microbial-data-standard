@@ -283,7 +283,7 @@ class Strain(BaseModel):
                 self._cache[field_name][hash_right] = data_obj
                 yield data_obj
 
-    def join(self, to_join: Self, /) -> Self:
+    def join(self, to_join: Self, re_validate: bool = False, /) -> Self:
         """Joins this instance with another instance of the same type.
 
         Combines data from two Strain instances by first validating constraints between
@@ -341,7 +341,8 @@ class Strain(BaseModel):
                     field_name, attr_right, source_map_r, related_data_map_r
                 )
             )
-        self.model_validate(self)
+        if re_validate:
+            self.model_validate(self)
         return self
 
     def _create_mapping(self, to_split: int, /) -> _MAPPING:
@@ -370,7 +371,7 @@ class Strain(BaseModel):
             rel_r,
         )
 
-    def _split_by_index(self, to_split: int, /) -> tuple[Self, Self]:
+    def _split_by_index(self, to_split: int, re_validate: bool, /) -> tuple[Self, Self]:
         to_copy_right: dict[str, list[Root]] = defaultdict(list)
 
         (
@@ -403,7 +404,8 @@ class Strain(BaseModel):
                 if left is not None:
                     clean_roots.append(left)
             setattr(self, field_name, clean_roots)
-        self.model_validate(self)
+        if re_validate:
+            self.model_validate(self)
         return self, type(self).model_validate(
             {
                 "version": 1,
@@ -415,7 +417,9 @@ class Strain(BaseModel):
             }
         )
 
-    def split(self, to_split: int | Source, /) -> tuple[Self, Self]:
+    def split(
+        self, to_split: int | Source, re_validate: bool = False, /
+    ) -> tuple[Self, Self]:
         """Splits the Strain instance into two distinct instances based on a specific Source.
 
         This method separates the data associated with a specific source (identified by index
@@ -452,4 +456,4 @@ class Strain(BaseModel):
             isinstance(to_split_index, int) and 0 <= to_split_index < len(self.sources)
         ):
             raise IndexError("Received incorrect source or index")
-        return self._split_by_index(to_split_index)
+        return self._split_by_index(to_split_index, re_validate)

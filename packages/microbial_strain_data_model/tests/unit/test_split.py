@@ -26,7 +26,7 @@ def test_integration_split_object(split: Strain) -> None:
     }
     extract_source = Source.model_validate(source_dict)
 
-    micro_purged, micro_extracted = split.split(extract_source)
+    micro_purged, micro_extracted = split.split(extract_source, True)
 
     assert Strain.model_validate(micro_purged)
     assert Strain.model_validate(micro_extracted)
@@ -48,7 +48,7 @@ def test_integration_split_object_error(split: Strain) -> None:
         {"sourceType": "dataset", "mode": "automated", "name": "Z"}
     )
     with pytest.raises(IndexError, match=r"Received incorrect source or index"):
-        split.split(org)
+        split.split(org, True)
 
 
 def test_integration_split_index(split: Strain) -> None:
@@ -68,7 +68,7 @@ def test_integration_split_index(split: Strain) -> None:
     }
     extract_source = Source.model_validate(source_dict)
 
-    micro_purged, micro_extracted = split.split(1)
+    micro_purged, micro_extracted = split.split(1, True)
 
     assert Strain.model_validate(micro_purged)
     assert Strain.model_validate(micro_extracted)
@@ -87,4 +87,4 @@ def test_integration_split_index(split: Strain) -> None:
 
 def test_integration_split_index_error(split: Strain) -> None:
     with pytest.raises(IndexError, match=r"Received incorrect source or index"):
-        split.split(3)
+        split.split(3, True)
