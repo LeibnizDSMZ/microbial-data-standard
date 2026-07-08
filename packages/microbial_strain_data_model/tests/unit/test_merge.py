@@ -24,7 +24,7 @@ def test_integration_merge(micro_left: Strain, micro_right: Strain) -> None:
     assert len(micro_left.relatedData) == 2
     assert len(micro_right.sources) == 2
     assert len(micro_right.relatedData) == 2
-    mm = micro_left.join(micro_right)
+    mm = micro_left.join(micro_right, True)
     assert len(mm.sources) == 3
     assert len(mm.relatedData) == 3
 
