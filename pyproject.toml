@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: CC0-1.0
 
 [project]
-name = "microbial_strain_data"
+name = "microbial-strain-data"
 version = "0.12.9"
 description = """This project defines a new microbial strain data standard for all data describing a microbial strain."""
 readme = "README.md"
@@ -33,8 +33,8 @@ exclude = [
 [dependency-groups]
 mono = [
   # local
-  "microbial_strain_data_model",
-  "microbial_strain_data_utils",
+  "microbial-strain-data-model",
+  "microbial-strain-data-utils",
 ]
 dev = [
   "commitizen ==4.16.4",

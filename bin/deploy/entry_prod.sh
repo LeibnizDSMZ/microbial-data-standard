@@ -6,5 +6,6 @@
 
 set -euo pipefail
 
-echo 'PROD'
+echo_model
+
 sleep infinity

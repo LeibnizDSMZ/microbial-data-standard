@@ -87,7 +87,7 @@ runTests:
 	$(UVE) run tox
 
 runBuild:
-	$(UVE) build
+	$(UVE) build --package microbial-strain-data-model
 
 runBump: unstaged
 	$(UVE) run cz bump --files-only --yes --changelog
