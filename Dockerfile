@@ -56,12 +56,19 @@ COPY ./${BIN_DEPLOY_HEALTH} /health.sh
 WORKDIR /tmp/build
 RUN bash /prep.sh && rm /prep.sh
 RUN bash /req.sh && rm /req.sh
-RUN rm -rf  /tmp/build
 
 HEALTHCHECK --interval=5m --timeout=3s CMD /health.sh
 
+RUN chown ${USERNAME}:${USERNAME} -R /tmp/build
+
 USER ${USERNAME}
 
+RUN pip install --no-cache-dir *.whl
+
 WORKDIR ${HOME_MAIN}
+
+RUN rm -rf  /tmp/build
+
+ENV PATH="${HOME_MAIN}/.local/bin:${PATH}"
 
 ENTRYPOINT ["/bin/sh", "/entry.sh"]
