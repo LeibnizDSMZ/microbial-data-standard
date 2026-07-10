@@ -31,6 +31,8 @@ ARG USERNAME=runner
 ARG USER_UID=1001
 ARG USER_GID=${USER_UID}
 ARG HOME_MAIN="/home/${USERNAME}"
+ARG BIN_DEPLOY_ENTRY_PROD
+ARG BIN_DEPLOY_HEALTH
 
 RUN dnf clean all && dnf install -y bash
 
@@ -48,8 +50,8 @@ COPY ./${BIN_DEPLOY_PREP} /prep.sh
 COPY ./${BIN_DEPLOY_REQ} /req.sh
 
 COPY --from=appbuilder /tmp/app/dist /tmp/build
-COPY --from=appbuilder /health.sh /health.sh
-COPY --from=appbuilder /entry.sh  /entry.sh
+COPY ./${BIN_DEPLOY_ENTRY_PROD} /entry.sh
+COPY ./${BIN_DEPLOY_HEALTH} /health.sh
 
 WORKDIR /tmp/build
 RUN bash /prep.sh && rm /prep.sh

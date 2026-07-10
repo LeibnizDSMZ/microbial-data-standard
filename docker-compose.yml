@@ -16,6 +16,8 @@ services:
         WORK_DIR: "/workspace"
         BIN_DEPLOY_PREP: ${BIN_DEPLOY_PREP}
         BIN_DEPLOY_REQ: ${BIN_DEPLOY_REQ}
+        BIN_DEPLOY_HEALTH: ${BIN_DEPLOY_HEALTH}
+        BIN_DEPLOY_ENTRY_PROD: ${BIN_DEPLOY_ENTRY_PROD}
 
 secrets:
     env_file:

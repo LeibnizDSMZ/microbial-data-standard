@@ -5,4 +5,6 @@
 # SPDX-License-Identifier: MIT
 
 set -euo pipefail
+
+echo 'PROD'
 sleep infinity
