@@ -1,12 +1,12 @@
 FROM docker.io/almalinux:10
 
 ARG UV
+ARG PNPM
 ARG USERNAME=devu
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 ARG WORK_DIR=/workspace
-ENV HOME_MAIN="/home/${USERNAME}"
-ENV PATH="${HOME_MAIN}/.local/bin:${WORK_DIR}/${UV}:${PATH}"
+ENV HOME_MAIN="/home/${USERNAME}"ENV PATH="${HOME_MAIN}/.local/bin:${WORK_DIR}/${UV}:${WORK_DIR}/${PNPM}:${PATH}"
 ENV CONTAINER="container"
 ENV HISTFILE=/dev/null
 ENV HISTSIZE=0
@@ -14,6 +14,8 @@ ENV HISTFILESIZE=0
 
 ARG BIN_DEPLOY_PREP
 ARG BIN_DEPLOY_REQ
+ARG BIN_DEPLOY_ENTRY_DEV
+ARG BIN_DEPLOY_HEALTH
 
 RUN groupadd --gid $USER_GID $USERNAME \
     && useradd -m -d $HOME_MAIN \
@@ -22,6 +24,9 @@ RUN groupadd --gid $USER_GID $USERNAME \
 COPY . /tmp/app
 
 WORKDIR /tmp/app
+
+COPY ./${BIN_DEPLOY_ENTRY_DEV} /entry_dev.sh
+COPY ./${BIN_DEPLOY_HEALTH} /health.sh
 
 RUN dnf clean all && dnf install -y bash
 RUN bash "./${BIN_DEPLOY_PREP}" && bash "./${BIN_DEPLOY_REQ}"

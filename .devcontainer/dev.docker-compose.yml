@@ -22,9 +22,12 @@ services:
         USER_GID: 1000
         WORK_DIR: "/workspace"
         UV: ${UV_INSTALL_DIR}
+        PNPM: ${PNPM_BIN}
         SSH_AUTH_SOCK: /ssh-agent
         BIN_DEPLOY_PREP: ${BIN_DEPLOY_PREP}
         BIN_DEPLOY_REQ: ${BIN_DEPLOY_REQ}
+        BIN_DEPLOY_HEALTH: ${BIN_DEPLOY_HEALTH}
+        BIN_DEPLOY_ENTRY_DEV: ${BIN_DEPLOY_ENTRY_DEV}
     volumes:
       - ${SSH_AUTH_SOCK:-/dev/null}:/ssh-agent:ro
       - .:/workspace:cached
