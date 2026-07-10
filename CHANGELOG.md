@@ -4,6 +4,12 @@ SPDX-FileCopyrightText: 2026 Leibniz Institute DSMZ-German Collection of Microor
 SPDX-License-Identifier: CC0-1.0
 -->
 
+## v0.12.9 (2026-07-10)
+
+### Refactor
+
+- correct docker production deployment
+
 ## v0.12.8 (2026-07-08)
 
 ### Fix
