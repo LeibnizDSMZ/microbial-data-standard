@@ -4,6 +4,13 @@ SPDX-FileCopyrightText: 2026 Leibniz Institute DSMZ-German Collection of Microor
 SPDX-License-Identifier: CC0-1.0
 -->
 
+## v0.12.10 (2026-07-11)
+
+### Refactor
+
+- add print for compose up
+- correct production deployment
+
 ## v0.12.9 (2026-07-10)
 
 ### Refactor
