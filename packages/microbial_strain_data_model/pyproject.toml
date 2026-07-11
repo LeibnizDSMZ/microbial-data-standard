@@ -20,6 +20,10 @@ dependencies = [
   "deepdiff >=9.1,<10"
 ]
 
+[project.scripts]
+echo_model = "microbial_strain_data_model.main:run"
+
+
 [tool.setuptools.packages.find]
 where = ["src"]
 include = ["microbial_strain_data_model"]
