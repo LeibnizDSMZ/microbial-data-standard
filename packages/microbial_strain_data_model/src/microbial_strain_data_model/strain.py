@@ -336,6 +336,7 @@ class Strain(BaseModel):
                     )
                 )
                 setattr(self, field_name, joined)
+                attr_left = joined
             attr_left.extend(
                 self._join_field_unique(
                     field_name, attr_right, source_map_r, related_data_map_r
