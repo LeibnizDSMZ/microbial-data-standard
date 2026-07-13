@@ -4,6 +4,12 @@ SPDX-FileCopyrightText: 2026 Leibniz Institute DSMZ-German Collection of Microor
 SPDX-License-Identifier: CC0-1.0
 -->
 
+## v0.12.11 (2026-07-13)
+
+### Fix
+
+- **strain**: assign joined result to attr_left before extending
+
 ## v0.12.10 (2026-07-11)
 
 ### Refactor
