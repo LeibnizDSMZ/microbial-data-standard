@@ -1,4 +1,4 @@
-# Microbial strain data
+# Microbial Strain Data
 
 ### Microbial strains in culture collections
 
