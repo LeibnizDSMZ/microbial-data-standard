@@ -4,6 +4,12 @@ SPDX-FileCopyrightText: 2026 Leibniz Institute DSMZ-German Collection of Microor
 SPDX-License-Identifier: CC0-1.0
 -->
 
+## v0.12.12 (2026-07-15)
+
+### Refactor
+
+- enable docstring attributes
+
 ## v0.12.11 (2026-07-13)
 
 ### Fix
