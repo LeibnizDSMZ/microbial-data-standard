@@ -8,8 +8,13 @@ SPDX-License-Identifier: CC0-1.0
 [![MIT LICENSE](https://img.shields.io/badge/License-MIT-brightgreen.svg?style=flat-square)](https://choosealicense.com/licenses/mit/)
 [![Documentation Status](https://img.shields.io/badge/docs-GitHub-blue.svg?style=flat-square)](https://LeibnizDSMZ.github.io/microbial-data-standard/)
 
-*Please note that this project is still in development*
+[![main](https://github.com/LeibnizDSMZ/microbial-data-standard//actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/LeibnizDSMZ/microbial-data-standard//actions/workflows/main.yml)
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21374531.svg)](https://doi.org/10.5281/zenodo.21374531)
+
+---
+
+*Please note that this project is still in development*
 
 # Microbial Strain Data Standard
 
@@ -79,3 +84,10 @@ with open("PATH_TO_FILE", "r") as f_in:
 
 jsonschema.validate(json_content, schema)
 ```
+
+-----
+
+> ✏️ **Note**:
+> This project uses AI tools for code generation, review, and documentation.
+> All AI-generated content is human-reviewed.
+
