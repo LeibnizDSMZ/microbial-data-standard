@@ -15,5 +15,10 @@ dnf -y install bzip2-devel ncurses-devel libffi-devel \
     readline-devel openssl-devel sqlite-devel tk-devel
 ln -s /usr/bin/python3.13 /usr/bin/python
 ln -s /usr/bin/pip3.13 /usr/bin/pip
-dnf -y install nodejs libatomic
+# nodejs
+curl -o- https://fnm.vercel.app/install | bash
+PATH="$HOME/.local/share/fnm:$PATH"
+dnf -y install libatomic
+fnm install "$NODE_VERSION"
+fnm default "$NODE_VERSION"
 echo "requirements installed"

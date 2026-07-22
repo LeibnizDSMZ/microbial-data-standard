@@ -23,6 +23,7 @@ services:
         WORK_DIR: "/workspace"
         UV: ${UV_INSTALL_DIR}
         PNPM: ${PNPM_BIN}
+        NODE_VERSION: ${NODE_VERSION}
         SSH_AUTH_SOCK: /ssh-agent
         BIN_DEPLOY_PREP: ${BIN_DEPLOY_PREP}
         BIN_DEPLOY_REQ: ${BIN_DEPLOY_REQ}

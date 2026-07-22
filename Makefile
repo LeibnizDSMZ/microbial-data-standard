@@ -15,7 +15,7 @@ $(shell $(ROOT_MAKEFILE)/bin/install/env.sh $(ROOT_MAKEFILE)/package.env > .env.
 -include .env.mk
 
 export
-export PATH := $(PATH):$(shell pwd)/$(UV_INSTALL_DIR)/:$(shell pwd)/$(PNPM_HOME)/bin
+export PATH := $(PATH):$(ROOT_MAKEFILE)/$(UV_INSTALL_DIR)/:$(ROOT_MAKEFILE)/$(PNPM_HOME)/bin
 OLLAMA_MODEL?=qwen3.6:27b-q4_K_M
 
 $(eval UVEL := $(shell which uv && echo "true" || echo ""))
