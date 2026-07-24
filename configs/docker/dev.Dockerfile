@@ -16,7 +16,6 @@ ARG NODE_VERSION
 ARG BIN_DEPLOY_PREP
 ARG BIN_DEPLOY_REQ
 ARG BIN_DEPLOY_ENTRY_DEV
-ARG BIN_DEPLOY_HEALTH
 
 RUN groupadd --gid $USER_GID $USERNAME \
     && useradd -m -d $HOME_MAIN \
@@ -27,7 +26,6 @@ COPY . /tmp/app
 WORKDIR /tmp/app
 
 COPY ./${BIN_DEPLOY_ENTRY_DEV} /entry_dev.sh
-COPY ./${BIN_DEPLOY_HEALTH} /health.sh
 
 RUN dnf clean all && dnf install -y bash
 RUN bash "./${BIN_DEPLOY_PREP}" && bash "./${BIN_DEPLOY_REQ}"
