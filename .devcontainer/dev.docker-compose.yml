@@ -33,12 +33,12 @@ services:
       - .:/workspace:cached
       - ${GITCONFIG_PATH:-${HOME}/.gitconfig}:/etc/gitconfig:ro
     networks:
-      - ollama
+      - agent
     ports:
       - ${DOC_PORT}:8000
 
 networks:
-    ollama:
+    agent:
         external: true
-        name: ollama
+        name: agent
         driver: bridge

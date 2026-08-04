@@ -15,9 +15,27 @@ Before generating any text, scan the git diff for sensitive information. This in
 - Infrastructure: Private SSH keys, hardcoded IP addresses, internal staging URLs.
 - Files: `.env` contents, `.pem` files, or `.p12` certificates.
 
-**If a secret is detected:**
-- Output EXACTLY: `ERROR - potential secret detected in: [FILE_PATH]. commit message generation aborted.`
+Secret Detection Rules:
+1. **Contextual Analysis**
+   - Only flag if secret appears in non-test, non-example, non-comment code.
+   - Example: Ignore `password: "test123"` in `test_data.json` or `// API_KEY = "example"`.
+
+2. **Pattern Refinement**
+   - Replace generic regex with high-entropy checks:
+     - API keys: Require 32+ chars, mixed case, digits, symbols.
+     - Passwords: Require 6+ chars, not dictionary words.
+   - Whitelist common false positives:
+     - `password`, `secret`, `token` in variable names (e.g., `password_field`).
+     - Placeholder values (`"your_api_key_here"`).
+
+3. **Entropy-Based Filtering**
+   - Calculate Shannon entropy for strings. Flag only if entropy > 3.5 (randomness threshold).
+
+**If a secret is detected and ALL `Secret Detection Rules` are met:**
+- Output EXACTLY: `ERROR - potential secret detected in: [FILE_PATH] - [FOUND_SECRET]. commit message generation aborted. [EXPLANATION_WHY_NOT_FALSE_POSITIVE]`
 - Stop processing immediately. Do not generate a commit message.
+
+**Otherwise, proceed with Step 2**
 
 # Step 2: Change Analysis
 If the diff is clean, analyze the changes with these priorities:

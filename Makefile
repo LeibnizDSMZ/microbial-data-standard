@@ -16,7 +16,6 @@ $(shell $(ROOT_MAKEFILE)/bin/install/env.sh $(ROOT_MAKEFILE)/package.env > .env.
 
 export
 export PATH := $(PATH):$(ROOT_MAKEFILE)/$(UV_INSTALL_DIR)/:$(ROOT_MAKEFILE)/$(PNPM_HOME)/bin
-OLLAMA_MODEL?=qwen3.6:27b-q4_K_M
 
 $(eval UVEL := $(shell which uv && echo "true" || echo ""))
 $(eval PNPMEL := $(shell which pnpm && echo "true" || echo ""))
@@ -106,7 +105,7 @@ export_runUpdate:
 
 com commit:
 	@echo "" > .commit_msg
-	@if curl -sf http://ollama:11434; then \
+	@if curl -sf --compressed -o /dev/null http://commit:8080; then \
 		$(MAKE) message || exit 1; \
 	else \
 		$(UVE) run cz commit || exit 1; \
@@ -114,7 +113,7 @@ com commit:
 	@echo "" > .commit_msg
 
 recom recommit:
-	@if curl -sf http://ollama:11434; then \
+	@if curl -sf --compressed -o /dev/null http://commit:8080; then \
 		[ -s .commit_msg ] || (echo "Missing commit message!" && exit 1); \
 		git commit -F .commit_msg || exit 1; \
 	else\
@@ -123,13 +122,13 @@ recom recommit:
 	@echo "" > .commit_msg
 
 message:
-	git diff --staged -- . ':(exclude)uv.lock' ':(exclude)*pnpm-lock.yaml' | \
+	git diff --staged -U0 -- .  ':(exclude)uv.lock' ':(exclude)*pnpm-lock.yaml' | \
 		jq -Rs --rawfile prompt configs/prompt/commit.md \
-			'{"stream": false, "model": "$(OLLAMA_MODEL)", "prompt": ("<GIT_DIFF>" + . + "</GIT_DIFF>" + $$prompt)}' | \
-		curl -s -X POST http://ollama:11434/api/generate \
+			'{"messages": [{ "role": "user", "content": ("<GIT_DIFF>" + . + "</GIT_DIFF>" + $$prompt)} ]}' | \
+		curl -f -s -X POST http://commit:8080/v1/chat/completions \
 			-H "Content-Type: application/json" \
 			-d @- | \
-		jq -r 'select(.done == true) | .response' > .commit_msg
+		jq -r 'select(.choices[0].finish_reason == "stop") | .choices[0].message.content' > .commit_msg
 	vim .commit_msg
 	@if ! $(UVE) run cz check --commit-msg-file .commit_msg; then \
 		echo "Commit message failed cz check. Aborting."; \
