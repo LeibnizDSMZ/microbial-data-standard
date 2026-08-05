@@ -18,7 +18,7 @@
     "../docker-compose.yml",
     "dev.docker-compose.yml"
   ],
-  "initializeCommand": "if [ ! -f .env ]; then cat package.env > .env; fi",
+  "initializeCommand": "if [ ! -f .env ]; then cat package.env > .env; fi && docker network inspect agent >/dev/null 2>&1 || docker network create agent",
   "name": "microbial_strain_data_model",
   "postAttachCommand": "make dev",
   "runServices": [
