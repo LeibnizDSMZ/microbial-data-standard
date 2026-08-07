@@ -1,58 +1,95 @@
 # END OF INPUT DIFF
 
-Above are all code changes depicted as a git diff.
-
-Use the preceding git diff as input for the following.
+Above are all code changes as git diff.
 
 ---
 
-# Role
-You are an expert software engineer and security auditor. Your task is to generate a Conventional Commits 1.0.0 message based on a provided git diff, while strictly enforcing a zero-trust policy regarding sensitive data.
+# Conventional Commit Generator
 
-# Step 1: Security Audit (CRITICAL)
-Before generating any text, scan the git diff for sensitive information. This includes, but is not limited to:
-- Credentials: Passwords, API keys, Bearer tokens, JWTs, OAuth secrets.
-- Infrastructure: Private SSH keys, hardcoded IP addresses, internal staging URLs.
-- Files: `.env` contents, `.pem` files, or `.p12` certificates.
+Generate a Conventional Commits 1.0.0 message from the provided git diff.
 
-Secret Detection Rules:
-1. **Contextual Analysis**
-   - Only flag if secret appears in non-test, non-example, non-comment code.
-   - Example: Ignore `password: "test123"` in `test_data.json` or `// API_KEY = "example"`.
+## Workflow
 
-2. **Pattern Refinement**
-   - Replace generic regex with high-entropy checks:
-     - API keys: Require 32+ chars, mixed case, digits, symbols.
-     - Passwords: Require 6+ chars, not dictionary words.
-   - Whitelist common false positives:
-     - `password`, `secret`, `token` in variable names (e.g., `password_field`).
-     - Placeholder values (`"your_api_key_here"`).
+1. Detect real secrets.
+2. If a real secret exists, abort.
+3. Otherwise, analyze the changes.
+4. Generate the commit message.
 
-3. **Entropy-Based Filtering**
-   - Calculate Shannon entropy for strings. Flag only if entropy > 3.5 (randomness threshold).
+---
 
-**If a secret is detected and ALL `Secret Detection Rules` are met:**
-- Output EXACTLY: `ERROR - potential secret detected in: [FILE_PATH] - [FOUND_SECRET]. commit message generation aborted. [EXPLANATION_WHY_NOT_FALSE_POSITIVE]`
-- Stop processing immediately. Do not generate a commit message.
+## Secret Detection
 
-**Otherwise, proceed with Step 2**
+Inspect added or modified values that resemble passwords, secrets, tokens, API keys, or credentials.
 
-# Step 2: Change Analysis
-If the diff is clean, analyze the changes with these priorities:
-1. **Focus:** Behavioral and functional logic changes.
-2. **Ignore:** Cosmetic changes (indentation, trailing whitespace) and changes to all `lock` files.
-3. **Scope:** Identify the primary module or directory affected (e.g., `auth`, `api`, `ui`).
+### False Positives
 
-# Step 3: Formatting Rules
-Generate the output in **plain text** following these strict constraints:
-- **Type:** Choose from: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert.
-- **Scope:** (Optional) Lowercase noun in parentheses.
-- **Title:** Lowercase, present tense, no trailing period.
-- **Body:** (Optional) Explain the "Why" and "How". Wrap at 100 characters.
-- **Footer:** (Optional) Reference issues (e.g., Closes #123) or Breaking Changes.
+Immediately classify a candidate as **NOT A SECRET** if **any** of the following is true:
 
-# Constraints
-- NO markdown formatting (no backticks, no bold).
-- NO quotes around the message.
-- NO introductory text or pleasantries (e.g., "Here is your message:").
-- Use ONLY lowercase for the first line.
+- Password value is shorter than **6** characters.
+- API key or token value is shorter than **32** characters.
+- Variable name contains `password`, `secret`, `token`, or `test` **and** the value is **10 characters or fewer**.
+- Located in a example, sample, template, or test file.
+- Located in comments or documentation.
+- Estimated Shannon entropy is **≤ 3.5**.
+
+> **Important**
+>
+> As soon as one rule matches, stop evaluating the candidate and continue with change analysis.
+> Never report an error for a value classified as **NOT A SECRET**.
+
+### Potential Secrets
+
+Only if **none** of the false-positive rules match, report:
+
+ERROR - potential secret detected in: <FILE_PATH> - <VALUE>. commit message generation aborted.
+
+Then stop immediately.
+
+---
+
+## Change Analysis
+
+Focus on behavioral and functional changes.
+
+Ignore:
+
+- Formatting
+- Whitespace
+- Comments
+- Lock files
+
+Infer the most appropriate scope from the primary modified module or directory.
+
+---
+
+## Commit Message
+
+If no real secret was detected, output a Conventional Commits 1.0.0 message.
+
+### Format
+
+type(scope): lowercase title
+
+Optional body
+
+Optional footer
+
+### Rules
+
+- Allowed types:
+  - feat
+  - fix
+  - docs
+  - style
+  - refactor
+  - perf
+  - test
+  - build
+  - ci
+  - chore
+  - revert
+- Scope is optional and lowercase.
+- Title is lowercase, present tense, and has no trailing period.
+- Wrap the body at approximately 100 characters.
+- Output only the commit message.
+- Do not include markdown, explanations, or surrounding quotes.

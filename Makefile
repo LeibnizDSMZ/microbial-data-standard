@@ -122,7 +122,8 @@ recom recommit:
 	@echo "" > .commit_msg
 
 message:
-	git diff --staged -U0 -- .  ':(exclude)uv.lock' ':(exclude)*pnpm-lock.yaml' | \
+	git diff --staged -U0 --no-prefix -- .  ':(exclude)uv.lock' ':(exclude)*pnpm-lock.yaml' | \
+		sed 's/  */ /g' | \
 		jq -Rs --rawfile prompt configs/prompt/commit.md \
 			'{"messages": [{ "role": "user", "content": ("<GIT_DIFF>" + . + "</GIT_DIFF>" + $$prompt)} ]}' | \
 		curl -f -s -X POST http://commit:8080/v1/chat/completions \
