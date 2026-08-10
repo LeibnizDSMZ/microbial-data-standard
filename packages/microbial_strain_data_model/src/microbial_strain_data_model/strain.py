@@ -123,7 +123,7 @@ class Strain(BaseModel):
 
     # version
 
-    version: Annotated[StandardVersion, PlainValidator(_check_v1)]
+    version: Annotated[Literal[StandardVersion.V1], PlainValidator(_check_v1)]
 
     # single data points
 
