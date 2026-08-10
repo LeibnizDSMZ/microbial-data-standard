@@ -2,6 +2,7 @@
 #
 # SPDX-License-Identifier: MIT
 
+from microbial_strain_data_model.shared.data_con.constants import StandardVersion
 from microbial_strain_data_model.strain import Strain
 
 
@@ -18,7 +19,7 @@ def test_microbe(micro: Strain) -> None:
 
 def test_populate_new_class(micro: Strain) -> None:
     new_micro = Strain(
-        version=1,
+        version=StandardVersion.V1,
         primaryId=micro.primaryId,
         organismType=micro.organismType,
         typeStrain=micro.typeStrain,

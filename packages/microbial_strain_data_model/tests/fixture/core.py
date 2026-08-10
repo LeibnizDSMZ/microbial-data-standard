@@ -2,6 +2,7 @@
 #
 # SPDX-License-Identifier: MIT
 
+from microbial_strain_data_model.shared.data_con.constants import StandardVersion
 from pydantic import HttpUrl
 from microbial_strain_data_model.classes.identifier import Identifier
 from microbial_strain_data_model.classes.address import Address
@@ -24,7 +25,7 @@ from microbial_strain_data_model.strain import Strain
 @pytest.fixture
 def micro():
     return Strain(
-        version=1,
+        version=StandardVersion.V1,
         primaryId="DSM 1",
         organismType=OrganismType.bacteria,
         identifier=[

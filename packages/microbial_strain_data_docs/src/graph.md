@@ -667,7 +667,7 @@ staining: array[Staining]
 taxon: array[TaxonWithSource]
 tolerances: array[Tolerance]
 typeStrain: array[TypeStrain]
-version: integer
+version:
 wallConstituents: array[CellWall]
 }
 

@@ -3,6 +3,10 @@
 # SPDX-License-Identifier: MIT
 
 from typing import Literal
+from pydantic import PlainValidator
+from typing import Annotated
+from microbial_strain_data_model.shared.data_con.constants import StandardVersion
+
 from microbial_strain_data_model.classes.root import split_item
 from copy import deepcopy
 from microbial_strain_data_model.shared.data_ops.mapping import (
@@ -99,6 +103,14 @@ type _MAPPING = tuple[
 ]
 
 
+def _check_v1(version: Any) -> Literal[StandardVersion.V1]:
+    if version == StandardVersion.V1 or (
+        isinstance(version, (float, int)) and int(version) == StandardVersion.V1.value
+    ):
+        return StandardVersion.V1
+    raise ValueError("expected version 1")
+
+
 class Strain(BaseModel):
     """Microbial Strain - main class of the new microbial strain data standard."""
 
@@ -111,7 +123,7 @@ class Strain(BaseModel):
 
     # version
 
-    version: Literal[1]
+    version: Annotated[StandardVersion, PlainValidator(_check_v1)]
 
     # single data points
 
