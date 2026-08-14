@@ -47,49 +47,56 @@ Then stop immediately.
 
 ---
 
-## Change Analysis
-
-Focus on behavioral and functional changes.
-
-Ignore:
-
-- Formatting
-- Whitespace
-- Comments
-- Lock files
-
-Infer the most appropriate scope from the primary modified module or directory.
-
----
-
 ## Commit Message
 
-If no real secret was detected, output a Conventional Commits 1.0.0 message.
+If no real secret was detected, output a Conventional Commits 1.0.0 message **ONLY** based on the provided git diff (everything inside <GIT_DIFF></GIT_DIFF>).
 
-### Format
+### **STRICT FORMAT**
 
-type(scope): lowercase title
+```
+type(scope)!: title
 
-Optional body
+body text
 
-Optional footer
+footer
+```
 
-### Rules
+### **STRICT RULES**
 
-- Allowed types:
-  - feat
-  - fix
-  - docs
-  - style
-  - refactor
-  - perf
-  - test
-  - build
-  - ci
-  - chore
-  - revert
-- Scope is optional and lowercase.
-- Title is lowercase, present tense, and has no trailing period.
-- Wrap the body at approximately 100 characters.
-- Output only the commit message.
-- Do not include markdown, explanations, or surrounding quotes.
+#### **1. Type (REQUIRED)**
+- **ONLY** use: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore`, `revert`
+- **NEVER** invent new types.
+
+#### **2. Scope (OPTIONAL)**
+- **ONLY** use lowercase words in parentheses, e.g., `(api)`, `(auth)`, `(ui)`.
+- **NEVER** use uppercase or spaces.
+
+#### **3. Breaking Change**
+- Add `!` **IMMEDIATELY** after type or scope if the change breaks existing behavior.
+- Example: `feat!:`, `fix(auth)!:`
+
+#### **4. Title (REQUIRED)**
+- **MUST** be lowercase.
+- **MUST** use present tense (e.g., `add`, `fix`, `update`).
+- **MUST NOT** end with a period.
+- **MUST** be ≤ 72 characters.
+- **MUST** follow the colon and space after type/scope.
+
+#### **5. Body (OPTIONAL)**
+- **ONLY** use if the title does **NOT** fully explain the change.
+- **MUST** be prose (full sentences, **NO** bullet points).
+- **MUST** wrap at 100 characters.
+- **MUST** have a blank line after the title.
+
+#### **6. Footer (OPTIONAL)**
+- **ONLY** use for:
+  - `BREAKING CHANGE: <description>` (if `!` is used in the title).
+  - Real references (e.g., `Refs: #123`).
+- **NEVER** invent fake references or issue numbers.
+
+#### **7. Output**
+- **ONLY** output the commit message.
+- **NO** markdown code blocks.
+- **NO** quotes.
+- **NO** explanations.
+- **NO** mentions of secrets or scan results.
