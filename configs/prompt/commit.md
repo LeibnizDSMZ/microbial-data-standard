@@ -47,6 +47,21 @@ Then stop immediately.
 
 ---
 
+## Change Analysis
+
+Focus on behavioral and functional changes.
+
+Ignore:
+
+- Formatting
+- Whitespace
+- Comments
+- Lock files
+
+Infer the most appropriate scope from the primary modified module or directory.
+
+---
+
 ## Commit Message
 
 If no real secret was detected, output a Conventional Commits 1.0.0 message **ONLY** based on the provided git diff (everything inside <GIT_DIFF></GIT_DIFF>).
